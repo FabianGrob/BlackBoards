@@ -15,8 +15,17 @@ namespace BlackBoardsTest
     {
         public UserTest()
         {
-            User u = new User();
-            Assert.IsTrue(true);
+            string name = "Robert";
+            string lastN = "Belferino";
+            DateTime birth = new DateTime(1995, 04, 11);
+            string email = "RBelferino";
+            string password = "12345678";
+            User anUser = new User(name, lastN, email, birth, password);
+            Assert.Equals(name, anUser.Name);
+            Assert.Equals(lastN, anUser.LastName);
+            Assert.Equals(birth, anUser.BirthDate);
+            Assert.Equals(email, anUser.Email);
+            Assert.Equals(password, anUser.Password);
             //
             // TODO: Add constructor logic here
             //
