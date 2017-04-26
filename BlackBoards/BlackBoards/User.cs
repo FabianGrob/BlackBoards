@@ -1,7 +1,7 @@
 ﻿using System;
 namespace BlackBoards
 {
-    public class User
+    public abstract class User
     {
         private string name;
         private string lastName;
@@ -10,7 +10,7 @@ namespace BlackBoards
         private string password;
 
 
-        [Obsolete("constructor only usable by EntityFramework", true)]
+       // [Obsolete("constructor only usable by EntityFramework", true)]
         public User()
         {
 
