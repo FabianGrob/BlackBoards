@@ -9,6 +9,8 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestMethod1()
         {
+            Admin anAdmin = new Admin();
+            Assert.IsTrue(true);
         }
     }
 }
