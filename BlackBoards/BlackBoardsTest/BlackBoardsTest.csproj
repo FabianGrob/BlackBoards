@@ -55,7 +55,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserTest.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BlackBoards\BlackBoards.csproj">
+      <Project>{966CEA0C-70E4-403F-8E6C-D6F90867A568}</Project>
+      <Name>BlackBoards</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

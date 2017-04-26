@@ -2,6 +2,8 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BlackBoards;
+
 
 namespace BlackBoardsTest
 {
@@ -13,6 +15,8 @@ namespace BlackBoardsTest
     {
         public UserTest()
         {
+            User u = new User();
+            Assert.IsTrue(true);
             //
             // TODO: Add constructor logic here
             //
