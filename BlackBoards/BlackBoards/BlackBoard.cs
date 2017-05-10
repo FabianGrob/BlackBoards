@@ -84,7 +84,17 @@ namespace BlackBoards
         }
         public override bool Equals(object aBlackBoard)
         {
-            return true;
+            if (aBlackBoard == null)
+            {
+                return false;
+            }
+            BlackBoard anotherBlackBoard = aBlackBoard as BlackBoard;
+            if ((System.Object)anotherBlackBoard == null)
+            {
+                return false;
+            }
+            return this.Name.Equals(anotherBlackBoard.Name);
         }
+    
     }
 }

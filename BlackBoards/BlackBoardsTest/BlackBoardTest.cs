@@ -43,6 +43,17 @@ namespace BlackBoardsTest
             //assert
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestBlackBoardNotEquals()
+        {
+            //object instance
+            BlackBoard aBoard = new BlackBoard();
+            BlackBoard anotherBoard = new BlackBoard();
+            anotherBoard.Name = "Different board";
+            Boolean result = aBoard.Equals(anotherBoard);
+            //assert
+            Assert.IsFalse(result);
+        }
 
     }
 }
