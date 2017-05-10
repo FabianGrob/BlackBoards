@@ -9,3 +9,8 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\Black
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csprojResolveAssemblyReference.cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.Properties.Resources.resources
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csproj.GenerateResource.Cache
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe.config
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.pdb
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.exe
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.pdb

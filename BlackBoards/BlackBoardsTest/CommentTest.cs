@@ -27,7 +27,7 @@ namespace BlackBoardsTest
             otherComment.ResolvingUser = resolvingUser;
             otherComment.CommentingDate = commentingDate;
             otherComment.ResolvingDate = resolvingDate;
-            otherComment.Comment = comment;
+            otherComment.WrittenComment = comment;
       
             Assert.IsTrue(aComment.Equals(otherComment));
         }
