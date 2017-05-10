@@ -30,7 +30,7 @@ namespace BlackBoardsTest
             
             }
         [TestMethod]
-        public void TestEqualsTeam() {
+        public void TestNotEqualsTeam() {
             Team testTeamOne = new Team();
             Team testTeamTwo = new Team();
             testTeamOne.Name = "Team One";
