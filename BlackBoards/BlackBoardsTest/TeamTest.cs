@@ -17,13 +17,15 @@ namespace BlackBoardsTest
             DateTime creationDate = new DateTime();
             String description = "testDescription";
             int maximumUsers = 10;
+            List<User> members = new List<User>();
 
-            Team aTeam = new Team(name,creationDate,description,maximumUsers);
+            Team aTeam = new Team(name,creationDate,description,maximumUsers,members);
             Team otherTeam = new Team();
             otherTeam.Name = name;
             otherTeam.CreationDate = creationDate;
             otherTeam.Description = description;
             otherTeam.MaxUsers = maximumUsers;
+            otherTeam.Members = members;
             Assert.IsTrue(aTeam.Equals(otherTeam));
 
 
