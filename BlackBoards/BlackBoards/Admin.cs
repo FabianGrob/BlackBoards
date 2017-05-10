@@ -3,7 +3,11 @@ namespace BlackBoards
 {
     public class Admin : User
     {
-        public Admin(string name, string lastName, string email, DateTime birthDate, string password)
+        public Admin()
+        {
+
+        }
+        public Admin(String name, String lastName, String email, DateTime birthDate, String password)
         {
             this.Name = name;
             this.LastName = lastName;

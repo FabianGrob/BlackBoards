@@ -5,3 +5,10 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\Bla
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.dll
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoardsTest.dll
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoardsTest.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.csprojResolveAssemblyReference.cache
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.dll
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.pdb

@@ -10,8 +10,19 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestMethod1()
         {
-            Admin anAdmin = new Admin();
-            Assert.IsTrue(true);
+            String name = "testName";
+            String lastName = "testLastName";
+            String email = "testEmail";
+            DateTime birthDate= new DateTime();
+            String password = "testPassword";
+            Admin anAdmin = new Admin(name,lastName,email,birthDate,password);
+            Admin otherAdmin = new Admin();
+            otherAdmin.Name = name;
+            otherAdmin.LastName = lastName;
+            otherAdmin.Email = email;
+            otherAdmin.BirthDate = birthDate;
+            otherAdmin.Password = password;
+            Assert.Equals(anAdmin,otherAdmin);
         }
     }
 }
