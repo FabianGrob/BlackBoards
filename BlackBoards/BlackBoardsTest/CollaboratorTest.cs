@@ -26,7 +26,17 @@ namespace BlackBoardsTest
             otherCollaborator.Email = email;
             otherCollaborator.BirthDate = birthDate;
             otherCollaborator.Password = password;
-            Assert.Equals(anCollaborator, otherCollaborator);
+            Assert.IsTrue(anCollaborator.Equals(otherCollaborator));
+        }
+        [TestMethod]
+        public void TestCollaboratorEquals()
+        {
+            
+            Collaborator aCollaborator = new Collaborator();
+            aCollaborator.Name = "Name A";
+            Collaborator otherCollaborator = new Collaborator();
+            otherCollaborator.Name = "Name B";
+            Assert.IsFalse(aCollaborator.Equals(otherCollaborator));
         }
     }
 }
