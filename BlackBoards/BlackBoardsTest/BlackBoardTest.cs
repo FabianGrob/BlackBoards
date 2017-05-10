@@ -13,12 +13,14 @@ namespace BlackBoardsTest
     {
         [TestMethod]
         public void TestBlackBoardBuilder() {
+            //variables instance
             String name = "testBoard1";
             String description = "this is a board";
             int heigth = 5;
             int width = 5;
             Team team = new Team();
             team.Name = "testTeam";
+            //objects instance
             BlackBoard aBoard = new BlackBoard(name,description,heigth,width,team);
             BlackBoard anotherBoard = new BlackBoard();
             anotherBoard.Name = name;
@@ -26,6 +28,8 @@ namespace BlackBoardsTest
             anotherBoard.Heigth = heigth;
             anotherBoard.Width = width;
             anotherBoard.Team = team;
+
+            //assert
             Assert.IsTrue(aBoard.Equals(anotherBoard));
 
 
