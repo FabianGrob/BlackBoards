@@ -23,7 +23,5 @@ namespace BlackBoards
             this.Password = password;
         }
 
-
-
     }
 }

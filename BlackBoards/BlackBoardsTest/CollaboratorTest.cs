@@ -11,7 +11,19 @@ namespace BlackBoardsTest
     [TestClass]
     public class CollaboratorTest
     {
+
         [TestMethod]
+        public void TestCollaboratorEquals()
+        {
+            Collaborator aCollaborator = new Collaborator();
+            aCollaborator.Email = "Email A";
+            Collaborator otherCollaborator = new Collaborator();
+            otherCollaborator.Email = "Email B";
+            Assert.IsFalse(aCollaborator.Equals(otherCollaborator));
+        }
+  
+
+    [TestMethod]
         public void TestCollaboratorBuilder()
         {
             String name = "testName";
@@ -27,16 +39,6 @@ namespace BlackBoardsTest
             otherCollaborator.BirthDate = birthDate;
             otherCollaborator.Password = password;
             Assert.IsTrue(anCollaborator.Equals(otherCollaborator));
-        }
-        [TestMethod]
-        public void TestCollaboratorEquals()
-        {
-            
-            Collaborator aCollaborator = new Collaborator();
-            aCollaborator.Name = "Name A";
-            Collaborator otherCollaborator = new Collaborator();
-            otherCollaborator.Name = "Name B";
-            Assert.IsFalse(aCollaborator.Equals(otherCollaborator));
         }
     }
 }
