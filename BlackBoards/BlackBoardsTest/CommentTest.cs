@@ -35,20 +35,20 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestEqualsComment()
         {
-            Admin resolvingUser = Admin("nameResolvingTest", "lastNameResolvingTest", "emailResolvingTest", new DateTime(), "passwordResolvingTest");
-            Admin commentingUser = Admin("nameCommentingTest", "lastNameCommentingTest", "emailCommentingTest", new DateTime(), "passwordCommentingTest");
+            Admin resolvingUser = new Admin("nameResolvingTest", "lastNameResolvingTest", "emailResolvingTest", new DateTime(), "passwordResolvingTest");
+            Admin commentingUser = new Admin("nameCommentingTest", "lastNameCommentingTest", "emailCommentingTest", new DateTime(), "passwordCommentingTest");
             Comment aComment = new Comment();
             aComment.CommentingUser = commentingUser;
             aComment.ResolvingUser = resolvingUser;
             aComment.CommentingDate = DateTime.MinValue; 
             aComment.ResolvingDate = DateTime.MinValue;
-            aComment.Comment = "CommentTest";
+            aComment.WrittenComment = "CommentTest";
             Comment otherComment = new Comment();
             otherComment.CommentingUser = commentingUser;
             otherComment.ResolvingUser = resolvingUser;
             otherComment.CommentingDate = DateTime.MaxValue; 
             otherComment.ResolvingDate = DateTime.MaxValue;
-            otherComment.Comment = "CommentTest";
+            otherComment.WrittenComment = "CommentTest";
 
             Assert.IsFalse(aComment.Equals(otherComment));
         }

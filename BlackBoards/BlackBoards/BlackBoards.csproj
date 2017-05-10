@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Collaborator.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
