@@ -20,6 +20,7 @@ namespace BlackBoardsTest
             int width = 5;
             Team team = new Team();
             team.Name = "testTeam";
+
             //objects instance
             BlackBoard aBoard = new BlackBoard(name,description,heigth,width,team);
             BlackBoard anotherBoard = new BlackBoard();
@@ -40,6 +41,7 @@ namespace BlackBoardsTest
             BlackBoard aBoard = new BlackBoard();
             BlackBoard anotherBoard = new BlackBoard();
             Boolean result = aBoard.Equals(anotherBoard);
+
             //assert
             Assert.IsTrue(result);
         }
@@ -51,6 +53,7 @@ namespace BlackBoardsTest
             BlackBoard anotherBoard = new BlackBoard();
             anotherBoard.Name = "Different board";
             Boolean result = aBoard.Equals(anotherBoard);
+
             //assert
             Assert.IsFalse(result);
         }
