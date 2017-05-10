@@ -6,23 +6,26 @@ using System.Threading.Tasks;
 
 namespace BlackBoards
 {
-   public class Team
+    public class BlackBoard
     {
         private String name;
         private String description;
-        private DateTime creationDate;
-        private int maxUsers;
-        private List<User> members;
-        public Team() {
-            
-
+        private int heigth;
+        private int width;
+        private Team team;
+        public BlackBoard() {
+            this.name = "Default name";
+            this.description = "Default description";
+            this.heigth = 0;
+            this.width = 0;
+            this.team = new Team();
         }
-        public Team(String aName,DateTime aCreationDate,String aDescription,int maximumUsers,List<User>members) {
+        public BlackBoard(String aName, String aDescription, int aHeigth, int aWidth, Team aTeam) {
             this.name = aName;
-            this.creationDate = aCreationDate;
             this.description = aDescription;
-            this.maxUsers = maximumUsers;
-            this.Members = members;
+            this.heigth = aHeigth;
+            this.width = aWidth;
+            this.team = aTeam;
         }
         public string Name
         {
@@ -35,7 +38,7 @@ namespace BlackBoards
                 this.name = value;
             }
         }
-        public string Description
+        public String Description
         {
             get
             {
@@ -46,52 +49,52 @@ namespace BlackBoards
                 this.description = value;
             }
         }
-        public DateTime CreationDate
+        public int Heigth
         {
             get
             {
-                return this.creationDate;
+                return this.heigth;
             }
             set
             {
-                this.creationDate = value;
+                this.heigth = value;
             }
         }
-        public int MaxUsers
+        public int Width
         {
             get
             {
-                return this.maxUsers;
+                return this.width;
             }
             set
             {
-                this.maxUsers = value;
+                this.width = value;
             }
         }
-
-        public List<User> Members
+        public Team Team
         {
             get
             {
-                return this.members;
+                return this.team;
             }
             set
             {
-                this.members = value;
+                this.team = value;
             }
         }
-        public override bool Equals(object aTeam)
+        public override bool Equals(object aBlackBoard)
         {
-            if (aTeam == null)
+            if (aBlackBoard == null)
             {
                 return false;
             }
-            Team anotherTeam = aTeam as Team;
-            if ((System.Object)anotherTeam == null)
+            BlackBoard anotherBlackBoard = aBlackBoard as BlackBoard;
+            if ((System.Object)anotherBlackBoard == null)
             {
                 return false;
             }
-            return this.Name.Equals(anotherTeam.Name);
+            return this.Name.Equals(anotherBlackBoard.Name);
         }
+    
     }
 }

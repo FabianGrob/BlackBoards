@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BlackBoardTest.cs" />
     <Compile Include="CollaboratorTest.cs" />
     <Compile Include="CommentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
