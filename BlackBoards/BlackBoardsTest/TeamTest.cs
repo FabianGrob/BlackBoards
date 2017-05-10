@@ -12,7 +12,7 @@ namespace BlackBoardsTest
     public class TeamTest
     {
         [TestMethod]
-        public void teamTest(){
+        public void TestTeamBuilder(){
             String name = "testName";
             DateTime creationDate = new DateTime();
             String description = "testDescription";
@@ -24,10 +24,21 @@ namespace BlackBoardsTest
             otherTeam.CreationDate = creationDate;
             otherTeam.Description = description;
             otherTeam.MaxUsers = maximumUsers;
-            Assert.Equals(aTeam,otherTeam);
+            Assert.IsTrue(aTeam.Equals(otherTeam));
 
 
             
             }
+        [TestMethod]
+        public void TestEqualsTeam() {
+            Team testTeamOne = new Team();
+            Team testTeamTwo = new Team();
+            testTeamOne.Name = "Team One";
+            testTeamTwo.Name = "Team Two";
+            Boolean result = testTeamOne.Equals(testTeamTwo);
+            Assert.IsFalse(result);
+
+        }
     }
+
 }

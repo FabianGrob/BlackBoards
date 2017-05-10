@@ -65,5 +65,6 @@ namespace BlackBoards
                 this.maxUsers = value;
             }
         }
+       
     }
 }
