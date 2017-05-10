@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BlackBoards;
 using System.Threading.Tasks;
 
 namespace BlackBoardsTest
 {
+    [TestClass]
     public class CollaboratorTest
     {
+        [TestMethod]
         public void TestCollaboratorBuilder()
         {
             String name = "testName";
