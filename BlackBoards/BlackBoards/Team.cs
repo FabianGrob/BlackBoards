@@ -12,6 +12,7 @@ namespace BlackBoards
         private String description;
         private DateTime creationDate;
         private int maxUsers;
+        private List<User> members;
         public Team() {
 
         }
@@ -63,6 +64,18 @@ namespace BlackBoards
             set
             {
                 this.maxUsers = value;
+            }
+        }
+
+        public List<User> Members
+        {
+            get
+            {
+                return this.members;
+            }
+            set
+            {
+                this.members = value;
             }
         }
         public override bool Equals(object aTeam)
