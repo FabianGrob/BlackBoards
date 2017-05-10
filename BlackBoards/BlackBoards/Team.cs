@@ -16,11 +16,12 @@ namespace BlackBoards
         public Team() {
 
         }
-        public Team(String aName,DateTime aCreationDate,String aDescription,int maximumUsers) {
+        public Team(String aName,DateTime aCreationDate,String aDescription,int maximumUsers,List<User>members) {
             this.name = aName;
             this.creationDate = aCreationDate;
             this.description = aDescription;
             this.maxUsers = maximumUsers;
+            this.Members = members;
         }
         public string Name
         {
