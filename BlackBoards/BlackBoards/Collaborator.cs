@@ -13,6 +13,7 @@ namespace BlackBoards
         {
 
         }
+
         public Collaborator(String name, String lastName, String email, DateTime birthDate, String password)
         {
             this.Name = name;
