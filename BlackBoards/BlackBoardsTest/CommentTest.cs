@@ -14,11 +14,11 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestBuilderComment()
         {
-            User commentingUser = new Admin();
-            User resolvingUser = new Admin();
+            Admin resolvingUser = new Admin("nameResolvingTest", "lastNameResolvingTest", "emailResolvingTest", new DateTime(), "passwordResolvingTest");
+            Admin commentingUser = new Admin("nameCommentingTest", "lastNameCommentingTest", "emailCommentingTest", new DateTime(), "passwordCommentingTest");
             DateTime commentingDate = new DateTime();
             DateTime resolvingDate = new DateTime();
-            String comment = "";
+            String comment = "testComment";
 
             Comment aComment = new Comment(commentingUser, resolvingUser, commentingDate, resolvingDate, comment);
 

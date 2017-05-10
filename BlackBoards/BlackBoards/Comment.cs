@@ -15,10 +15,14 @@ namespace BlackBoards
         private String writtenComment;
         public Comment()
         {
-
+            this.CommentingUser = new Admin();
+            this.ResolvingUser = new Admin();
+            this.CommentingDate = new DateTime();
+            this.ResolvingDate = new DateTime();
+            this.WrittenComment = "Default written comment";
         }
 
-        public Comment(User commentingUser, User resolvingUser, DateTime commentingDate, DateTime resolvingDate, String comment)
+        public Comment(User commentingUser, User resolvingUser, DateTime commentingDate, DateTime resolvingDate, String writtenComment)
         {
             this.CommentingUser = commentingUser;
             this.ResolvingUser = resolvingUser;
@@ -84,7 +88,21 @@ namespace BlackBoards
         }
         public override bool Equals(object aComment)
         {
-            return (true);
+            if (aComment == null)
+            {
+                return false;
+            }
+            Comment anotherComment = aComment as Comment;
+            if ((System.Object)anotherComment == null)
+            {
+                return false;
+            }
+
+            bool dateEquals = this.ResolvingDate.Equals(anotherComment.ResolvingDate) && this.CommentingDate.Equals(anotherComment.CommentingDate);
+            bool userEquals = this.ResolvingUser.Equals(anotherComment.ResolvingUser) && this.CommentingUser.Equals(anotherComment.CommentingUser);
+            bool writtenCommentEquals = this.WrittenComment.Equals(anotherComment.WrittenComment);
+
+            return (dateEquals && userEquals&& writtenCommentEquals);
         }
     }
 }
