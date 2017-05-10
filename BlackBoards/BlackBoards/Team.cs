@@ -65,6 +65,18 @@ namespace BlackBoards
                 this.maxUsers = value;
             }
         }
-       
+        public override bool Equals(object aTeam)
+        {
+            if (aTeam == null)
+            {
+                return false;
+            }
+            Team anotherTeam = aTeam as Team;
+            if ((System.Object)anotherTeam == null)
+            {
+                return false;
+            }
+            return this.Name.Equals(anotherTeam.Name);
+        }
     }
 }
