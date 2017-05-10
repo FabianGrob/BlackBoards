@@ -18,6 +18,7 @@ namespace BlackBoardsTest
             User resolvingUser = new Admin();
             DateTime commentingDate = new DateTime();
             DateTime resolvingDate = new DateTime();
+            String comment = "";
             
             Comment aComment = new Comment(commentingUser, resolvingUser, commentingDate, resolvingDate);
 
