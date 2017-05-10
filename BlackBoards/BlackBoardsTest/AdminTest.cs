@@ -8,7 +8,7 @@ namespace BlackBoardsTest
     public class AdminTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestBuilderAdmin()
         {
             String name = "testName";
             String lastName = "testLastName";
