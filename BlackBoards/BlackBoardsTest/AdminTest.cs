@@ -22,7 +22,7 @@ namespace BlackBoardsTest
             otherAdmin.Email = email;
             otherAdmin.BirthDate = birthDate;
             otherAdmin.Password = password;
-            Assert.Equals(anAdmin,otherAdmin);
+            Assert.IsTrue(anAdmin.Equals(otherAdmin));
         }
     }
 }
