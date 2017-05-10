@@ -80,6 +80,20 @@ namespace BlackBoards
                 this.password = value;
             }
         }
+        public override bool Equals(object anUser)
+        {
+            if (anUser == null)
+            {
+                return false;
+            }
+            User anotherUser = anUser as User;
+            if ((System.Object)anotherUser == null)
+            {
+                return false;
+            }
+
+            return (this.Email.Equals(anotherUser.Email));
+        }
 
     }
 }
