@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BlackBoardsTest
 {
     [TestClass]
-    class BlackBoardTest
+    public class BlackBoardTest
     {
         [TestMethod]
         public void TestBlackBoardBuilder() {
@@ -30,5 +30,6 @@ namespace BlackBoardsTest
 
 
         }
+
     }
 }
