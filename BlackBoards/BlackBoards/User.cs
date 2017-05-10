@@ -62,11 +62,11 @@ namespace BlackBoards
         {
             get
             {
-                return this.BirthDate;
+                return this.birthDate;
             }
             set
             {
-                this.BirthDate = value;
+                this.birthDate = value;
             }
         }
         public string Password
@@ -80,8 +80,20 @@ namespace BlackBoards
                 this.password = value;
             }
         }
+        public override bool Equals(object anUser)
+        {
+            if (anUser == null)
+            {
+                return false;
+            }
+            User anotherUser = anUser as User;
+            if ((System.Object)anotherUser == null)
+            {
+                return false;
+            }
 
-
+            return (this.Email.Equals(anotherUser.Email));
+        }
 
     }
 }
