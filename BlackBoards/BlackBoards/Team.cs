@@ -14,6 +14,7 @@ namespace BlackBoards
         private int maxUsers;
         private List<User> members;
         public Team() {
+            
 
         }
         public Team(String aName,DateTime aCreationDate,String aDescription,int maximumUsers,List<User>members) {
