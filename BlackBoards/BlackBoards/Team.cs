@@ -13,16 +13,22 @@ namespace BlackBoards
         private DateTime creationDate;
         private int maxUsers;
         private List<User> members;
+        private List<BlackBoard> boards;
         public Team() {
-            
+            this.name = "Default name";
+            this.creationDate = new DateTime();
+            this.description = "Default description";
+            this.maxUsers = 10;
+            this.Members = new List<User>();
 
         }
-        public Team(String aName,DateTime aCreationDate,String aDescription,int maximumUsers,List<User>members) {
+        public Team(String aName,DateTime aCreationDate,String aDescription,int maximumUsers,List<User>someMembers,List<BlackBoard> someBoards) {
             this.name = aName;
             this.creationDate = aCreationDate;
             this.description = aDescription;
             this.maxUsers = maximumUsers;
-            this.Members = members;
+            this.members = someMembers;
+            this.boards = someBoards;
         }
         public string Name
         {
@@ -78,6 +84,17 @@ namespace BlackBoards
             set
             {
                 this.members = value;
+            }
+        }
+        public List<BlackBoard> Boards
+        {
+            get
+            {
+                return this.boards;
+            }
+            set
+            {
+                this.boards = value;
             }
         }
         public override bool Equals(object aTeam)

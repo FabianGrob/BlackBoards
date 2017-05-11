@@ -18,14 +18,15 @@ namespace BlackBoardsTest
             String description = "testDescription";
             int maximumUsers = 10;
             List<User> members = new List<User>();
-
-            Team aTeam = new Team(name,creationDate,description,maximumUsers,members);
+            List<BlackBoard> boards = new List<BlackBoard>();
+            Team aTeam = new Team(name,creationDate,description,maximumUsers,members,boards);
             Team otherTeam = new Team();
             otherTeam.Name = name;
             otherTeam.CreationDate = creationDate;
             otherTeam.Description = description;
             otherTeam.MaxUsers = maximumUsers;
             otherTeam.Members = members;
+            otherTeam.Boards = boards;
             Assert.IsTrue(aTeam.Equals(otherTeam));
 
 

@@ -26,10 +26,24 @@ namespace BlackBoards
 
 
        
-        public override bool Equals(object aTextBox)
+        public override bool Equals(object aPicture)
         {
-            
-            return true;
+
+
+            if (aPicture == null)
+            {
+                return false;
+            }
+            Picture anotherPicture = aPicture as Picture;
+            if ((System.Object)anotherPicture == null)
+            {
+                return false;
+            }
+            bool sameHeigthAndWidth = this.Heigth == anotherPicture.Heigth && this.Width == anotherPicture.Width;
+            bool sameOrigin = this.Origin == anotherPicture.Origin;
+            bool sameComments = this.Comments.Equals(anotherPicture.Comments);
+            return sameHeigthAndWidth && sameComments && sameComments;
         }
     }
-}
+ }
+
