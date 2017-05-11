@@ -27,18 +27,18 @@ namespace BlackBoardsTest
             Collaborator collaborator = new Collaborator("nameTest", "lastNameTest", "emailTest", new DateTime(), "passwordTest");
            
             List<Admin> administratorList= new List<Admin>();
-            List<Collaborator> collaboratorList = new List<Collaborator>();
+            List<User> userList = new List<User>();
             List<BlackBoard> blackBoardList = new List<BlackBoard>();
 
             blackBoardList.Add(board);
             administratorList.Add(admin);
-            collaboratorList.Add(collaborator);
+            userList.Add(collaborator);
 
-            Repository repository = new Repository(administratorList,collaboratorList,blackBoardList);
+            Repository repository = new Repository(administratorList, userList, blackBoardList);
             bool compareAdministratorList = repository.AdministratorList.Equals(administratorList);
-            bool compareCollaboratorList = repository.CollaboratorList.Equals(collaboratorList);
+            bool compareUserList = repository.UserList.Equals(userList);
             bool compareBlackBoardList = repository.BlackBoardList.Equals(blackBoardList);
-            Assert.IsTrue(compareAdministratorList && compareCollaboratorList && compareBlackBoardList);
+            Assert.IsTrue(compareAdministratorList && compareUserList && compareBlackBoardList);
         }
 
     }
