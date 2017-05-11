@@ -124,8 +124,12 @@ namespace BlackBoards
             {
                 return false;
             }
-
-            return this.heigth== anotherTextBox.heigth && this.width== anotherTextBox.width && this.origin== anotherTextBox.origin && this.content.Equals(anotherTextBox.content) && this.comments.Equals(anotherTextBox.comments) && this.fontSize== anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
+            bool sameHeigthAndWidth=this.heigth== anotherTextBox.heigth && this.width== anotherTextBox.width;
+            bool sameOrigin=this.origin== anotherTextBox.origin;
+            bool sameComments= this.comments.Equals(anotherTextBox.comments);
+            bool sameFontAndSize=this.fontSize== anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
+            bool sameContent=this.content.Equals(anotherTextBox.content);
+            return sameHeigthAndWidth && sameOrigin && sameComments && sameFontAndSize && sameContent;
         }
     }
     
