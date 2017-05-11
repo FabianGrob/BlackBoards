@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BlackBoards;
 
 
 namespace BlackBoardsTest
@@ -12,7 +13,7 @@ namespace BlackBoardsTest
     public class CoordinateTest
     {
         [TestMethod]
-        public void testBuilderCoordinate()
+        public void TestBuilderCoordinate()
         {
             int xAxis = 3;
             int yAxis = 3;
@@ -24,19 +25,19 @@ namespace BlackBoardsTest
             
             Assert.IsTrue(aCoordinate.Equals(otherCoordinate));
         }
-    }
-    [TestMethod]
-    public void testEqualsCoordinate()
-    {
-        int xAxisVaule1 = 3;
-        int yAxisValue1 = 3;
-        int xAxisVaule2 = 5;
-        int yAxisValue2 = 3;
 
-        Coordinate aCoordinate = new Coordinate(xAxisValue1, yAxisValue1);
-        Coordinate otherCoordinate = new Coordinate(xAxisValue2, yAxisValue2);
+        [TestMethod]
+        public void TestEqualsCoordinate()
+        {
+            int xAxisValue1 = 3;
+            int yAxisValue1 = 3;
+            int xAxisValue2 = 5;
+            int yAxisValue2 = 3;
 
-        Assert.IsFalse(aCoordinate.Equals(otherCoordinate));
+            Coordinate aCoordinate = new Coordinate(xAxisValue1, yAxisValue1);
+            Coordinate otherCoordinate = new Coordinate(xAxisValue2, yAxisValue2);
+
+            Assert.IsFalse(aCoordinate.Equals(otherCoordinate));
+        }
     }
-}
 }
