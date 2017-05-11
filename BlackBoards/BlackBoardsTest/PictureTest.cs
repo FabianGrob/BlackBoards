@@ -18,10 +18,14 @@ namespace BlackBoardsTest
             aPic.Heigth = 1;
             aPic.Width = 1;
             aPic.Comments = new List<Comment>();
-            aPic.Origin = { 1, 1};
+            int[] origin = new int[2];
+            origin[0] = 1;
+            origin[1] = 1;
+            aPic.Origin = origin;
             
-            Picture anotherPic = new Picture(1, 1, new List<Comment>(),{1,1});
-            Assert.Equals(aPic,anotherPic);
+            Picture anotherPic = new Picture(1, 1, new List<Comment>(), origin);
+            bool result = aPic.Equals(anotherPic);
+            Assert.IsTrue(result);
         }
     }
 }
