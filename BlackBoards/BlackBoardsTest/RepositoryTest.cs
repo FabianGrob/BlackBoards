@@ -15,30 +15,20 @@ namespace BlackBoardsTest
         public void TestBuilderRepository()
         {
             //instance variables
-            String name = "testBoard";
-            String description = "this is a board";
-            int heigth = 5;
-            int width = 5;
-            Team team = new Team();
-            team.Name = "testTeam";
-            BlackBoard board = new BlackBoard(name, description, heigth, width, team);
             Admin admin = new Admin("nameTest", "lastNameTest", "emailTest", new DateTime(), "passwordTest");
             Collaborator collaborator = new Collaborator("nameTest", "lastNameTest", "emailTest", new DateTime(), "passwordTest");
 
             //objects instance
             List<Admin> administratorList= new List<Admin>();
             List<User> userList = new List<User>();
-            List<BlackBoard> blackBoardList = new List<BlackBoard>();
-            blackBoardList.Add(board);
             administratorList.Add(admin);
             userList.Add(collaborator);
 
             //assert
-            Repository repository = new Repository(administratorList, userList, blackBoardList);
+            Repository repository = new Repository(administratorList, userList);
             bool compareAdministratorList = repository.AdministratorList.Equals(administratorList);
             bool compareUserList = repository.UserList.Equals(userList);
-            bool compareBlackBoardList = repository.BlackBoardList.Equals(blackBoardList);
-            Assert.IsTrue(compareAdministratorList && compareUserList && compareBlackBoardList);
+            Assert.IsTrue(compareAdministratorList && compareUserList);
         }
 
     }

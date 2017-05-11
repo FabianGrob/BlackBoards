@@ -6,23 +6,20 @@ namespace BlackBoards
     {
         private List<Admin> administratorList;
         private List<User> userList;
-        private List<BlackBoard> blackBoardList;
-
+      
         // [Obsolete("constructor only usable by EntityFramework", true)]
         public Repository()
         {
             this.administratorList = new List<Admin>();
             this.userList = new List<User>();
-            this.blackBoardList = new List<BlackBoard>();
         }
-        public Repository(List<Admin> administratorList, List<User> userList, List<BlackBoard> blackBoardList)
+        public Repository(List<Admin> administratorList, List<User> userList)
         {
             this.administratorList = administratorList;
             this.userList = userList;
-            this.blackBoardList = blackBoardList;
         }
 
-        public List<Admin> AdministradorList
+        public List<Admin> AdministratorList
         {
             get
             {
@@ -42,18 +39,6 @@ namespace BlackBoards
             set
             {
                 this.userList = value;
-            }
-        }
-
-        public List<BlackBoard> BlackBoardList
-        {
-            get
-            {
-                return this.blackBoardList;
-            }
-            set
-            {
-                this.blackBoardList = value;
             }
         }
     }
