@@ -14,26 +14,26 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestBuilderRepository()
         {
+            //instance variables
             String name = "testBoard";
             String description = "this is a board";
             int heigth = 5;
             int width = 5;
             Team team = new Team();
             team.Name = "testTeam";
-
-            //objects instance
             BlackBoard board = new BlackBoard(name, description, heigth, width, team);
             Admin admin = new Admin("nameTest", "lastNameTest", "emailTest", new DateTime(), "passwordTest");
             Collaborator collaborator = new Collaborator("nameTest", "lastNameTest", "emailTest", new DateTime(), "passwordTest");
-           
+
+            //objects instance
             List<Admin> administratorList= new List<Admin>();
             List<User> userList = new List<User>();
             List<BlackBoard> blackBoardList = new List<BlackBoard>();
-
             blackBoardList.Add(board);
             administratorList.Add(admin);
             userList.Add(collaborator);
 
+            //assert
             Repository repository = new Repository(administratorList, userList, blackBoardList);
             bool compareAdministratorList = repository.AdministratorList.Equals(administratorList);
             bool compareUserList = repository.UserList.Equals(userList);
