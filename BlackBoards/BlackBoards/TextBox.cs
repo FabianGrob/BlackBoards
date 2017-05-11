@@ -6,80 +6,33 @@ using System.Threading.Tasks;
 
 namespace BlackBoards
 {
-    public class TextBox
+    public class TextBox:Item
     {
-            private int width;
-            private int heigth;
-            private List<Comment>comments;
-            private int[] origin;
             private string content;
             private string font;
             private int fontSize;
 
         public TextBox() {
-            this.width = 1;
-            this.heigth = 1;
-            this.comments = new List<Comment>();
-            this.origin = new int[2];
+            this.Width = 1;
+            this.Heigth = 1;
+            this.Comments = new List<Comment>();
+            this.Origin = new int[2];
             this.content = "aContent";
             this.font = "aFont";
             this.fontSize = 10;
     }
         public TextBox(int aWidth, int aHeigth, List<Comment> someComments, int[] anOrigin, String aContent, string aFont, int aFontSize) {
 
-            this.width = aWidth;
-            this.heigth = aHeigth;
-            this.comments = someComments;
-            this.origin = anOrigin;
+            this.Width = aWidth;
+            this.Heigth = aHeigth;
+            this.Comments = someComments;
+            this.Origin = anOrigin;
             this.content = aContent;
             this.font = aFont;
             this.fontSize = aFontSize;
 
         }
-        public int Width
-        {
-            get
-            {
-                return this.width;
-            }
-            set
-            {
-                this.width = value;
-            }
-        }
-        public int Heigth
-        {
-            get
-            {
-                return this.heigth;
-            }
-            set
-            {
-                this.heigth = value;
-            }
-        }
-        public List<Comment> Comments
-        {
-            get
-            {
-                return this.comments;
-            }
-            set
-            {
-                this.comments = value;
-            }
-        }
-        public int[] Origin
-        {
-            get
-            {
-                return this.origin;
-            }
-            set
-            {
-                this.origin = value;
-            }
-        }
+      
         public string Content
         {
             get
@@ -124,9 +77,9 @@ namespace BlackBoards
             {
                 return false;
             }
-            bool sameHeigthAndWidth=this.heigth== anotherTextBox.heigth && this.width== anotherTextBox.width;
-            bool sameOrigin=this.origin== anotherTextBox.origin;
-            bool sameComments= this.comments.Equals(anotherTextBox.comments);
+            bool sameHeigthAndWidth=this.Heigth== anotherTextBox.Heigth && this.Width== anotherTextBox.Width;
+            bool sameOrigin=this.Origin== anotherTextBox.Origin;
+            bool sameComments= this.Comments.Equals(anotherTextBox.Comments);
             bool sameFontAndSize=this.fontSize== anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
             bool sameContent=this.content.Equals(anotherTextBox.content);
             return sameHeigthAndWidth && sameOrigin && sameComments && sameFontAndSize && sameContent;
