@@ -16,12 +16,12 @@ namespace BlackBoards
             this.Width = 1;
             this.Heigth = 1;
             this.Comments = new List<Comment>();
-            this.Origin = new int[2];
+            this.Origin = new Coordinate();
             this.content = "aContent";
             this.font = "aFont";
             this.fontSize = 10;
     }
-        public TextBox(int aWidth, int aHeigth, List<Comment> someComments, int[] anOrigin, String aContent, string aFont, int aFontSize) {
+        public TextBox(int aWidth, int aHeigth, List<Comment> someComments, Coordinate anOrigin, String aContent, string aFont, int aFontSize) {
 
             this.Width = aWidth;
             this.Heigth = aHeigth;

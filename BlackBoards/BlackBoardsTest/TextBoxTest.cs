@@ -19,9 +19,7 @@ namespace BlackBoardsTest
             aTextBox.Heigth = 2;
             List<Comment> comments = new List<Comment>();
             aTextBox.Comments=comments ;
-            int[] origin = new int[2];
-            origin[0] = 1;
-            origin[1] = 1;
+            Coordinate origin = new Coordinate();
             aTextBox.Origin = origin;
             aTextBox.Content = "TestContent";
             aTextBox.Font = "Arial";
@@ -33,16 +31,12 @@ namespace BlackBoardsTest
 
         }
         [TestMethod]
-        public void TestTextBoxNotEquals() {
-            int[] origin = new int[2];
-            origin[0] = 1;
-            origin[1] = 1;
+        public void TestTextBoxEquals() {
+            Coordinate origin = new Coordinate();
             TextBox aTextBox = new TextBox(1, 2, new List<Comment>(), origin, "TestContent", "Arial", 14);
             TextBox anotherTextBox = new TextBox(1, 2, new List<Comment>(), origin, "TestContent2", "Verdana", 11);
             Assert.AreNotEqual(aTextBox, anotherTextBox);
         }
-        
-
-
+    
     }
 }

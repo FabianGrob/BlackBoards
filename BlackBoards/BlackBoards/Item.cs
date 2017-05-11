@@ -11,7 +11,7 @@ namespace BlackBoards
         private int width;
         private int heigth;
         private List<Comment> comments;
-        private int[] origin;
+        private Coordinate origin;
 
         public int Width
         {
@@ -46,7 +46,7 @@ namespace BlackBoards
                 this.comments = value;
             }
         }
-        public int[] Origin
+        public Coordinate Origin
         {
             get
             {

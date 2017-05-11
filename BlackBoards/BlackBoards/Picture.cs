@@ -14,9 +14,9 @@ namespace BlackBoards
             this.Width = 1;
             this.Heigth = 1;
             this.Comments = new List<Comment>();
-            this.Origin = new int[2];
+            this.Origin = new Coordinate();
         }
-        public Picture(int aWidth,int aHeigth, List<Comment> someComments, int[] anOrigin)
+        public Picture(int aWidth,int aHeigth, List<Comment> someComments, Coordinate anOrigin)
         {
             this.Width = aWidth;
             this.Heigth = aHeigth;

@@ -17,9 +17,7 @@ namespace BlackBoardsTest
             List<Comment> comments =new List<Comment>();
             aPic.Heigth = 1;
             aPic.Width = 1;
-            int[] origin = new int[2];
-            origin[0] = 1;
-            origin[1] = 1;
+            Coordinate origin = new Coordinate();
 
             aPic.Origin = origin;
             aPic.Comments = comments;
@@ -34,12 +32,9 @@ namespace BlackBoardsTest
             aPic.Heigth = 1;
             aPic.Width = 1;
             aPic.Comments = new List<Comment>();
-            int[] origin = new int[2];
-            origin[0] = 1;
-            origin[1] = 1;
+            Coordinate origin = new Coordinate();
             aPic.Origin = origin;
-
-            origin[1] = 10;
+            origin.XAxis = 10;
             Picture anotherPic = new Picture(1, 1, new List<Comment>(), origin);
             bool result = aPic.Equals(anotherPic);
             Assert.IsFalse(result);
