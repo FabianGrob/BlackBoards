@@ -32,6 +32,15 @@ namespace BlackBoardsTest
             Assert.IsTrue(result);
 
         }
+        [TestMethod]
+        public void TestTextBoxEquals() {
+            int[] origin = new int[2];
+            origin[0] = 1;
+            origin[1] = 1;
+            TextBox aTextBox = new TextBox(1, 2, new List<Comment>(), origin, "TestContent", "Arial", 14);
+            TextBox anotherTextBox = new TextBox(1, 2, new List<Comment>(), origin, "TestContent2", "Verdana", 11);
+            Assert.AreNotEqual(aTextBox, anotherTextBox);
+        }
         
 
 
