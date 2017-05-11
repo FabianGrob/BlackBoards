@@ -13,6 +13,7 @@ namespace BlackBoardsTest
     {
         [TestMethod]
         public void TestTextBoxBuilder() {
+            //instance
             TextBox aTextBox = new TextBox();
             aTextBox.Width = 1;
             aTextBox.Heigth = 2;
@@ -26,12 +27,12 @@ namespace BlackBoardsTest
             aTextBox.Font = "Arial";
             aTextBox.FontSize = 14;
             TextBox anotherTextBox = new TextBox(1, 2,comments,origin,"TestContent","Arial",14);
+            //assertion
             bool result = aTextBox.Equals(anotherTextBox);
             Assert.IsTrue(result);
 
         }
-        //tiene un ancho, una altura, una lista de comentarios y un punto de origen
-        //Cuadro de texto: tiene un contenido, el cual puede tener distinto tamaño y tipo de letra.
+        
 
 
     }
