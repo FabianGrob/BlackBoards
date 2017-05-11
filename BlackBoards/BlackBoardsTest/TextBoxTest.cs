@@ -33,7 +33,7 @@ namespace BlackBoardsTest
 
         }
         [TestMethod]
-        public void TestTextBoxEquals() {
+        public void TestTextBoxNotEquals() {
             int[] origin = new int[2];
             origin[0] = 1;
             origin[1] = 1;

@@ -115,8 +115,17 @@ namespace BlackBoards
         }
         public override bool Equals(object aTextBox)
         {
-            
-            return true;
+            if (aTextBox == null)
+            {
+                return false;
+            }
+            TextBox anotherTextBox = aTextBox as TextBox;
+            if ((System.Object)anotherTextBox == null)
+            {
+                return false;
+            }
+
+            return this.heigth== anotherTextBox.heigth && this.width== anotherTextBox.width && this.origin== anotherTextBox.origin && this.content.Equals(anotherTextBox.content) && this.comments.Equals(anotherTextBox.comments) && this.fontSize== anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
         }
     }
     
