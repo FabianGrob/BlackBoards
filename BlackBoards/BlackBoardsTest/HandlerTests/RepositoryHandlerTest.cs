@@ -60,8 +60,21 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddTeam(anotherTeam);
             //assertion
             bool result = repository1.TeamList.ElementAt(0).Equals(handler.Repository.TeamList.ElementAt(0));
+            Assert.IsTrue(result);            
+        }
+        [TestMethod]
+        public void TestUserAlreadyExists() {
+            User anUser = new Collaborator();
+            anUser.Email = "anEmail";
+            User anotherUser = new Admin();
+            anotherUser.Email = "anEmail";
+
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.AddUser(anUser);
+            bool result = handler.UserAlreadyExists(anotherUser);
             Assert.IsTrue(result);
-            
+
         }
     }
    
