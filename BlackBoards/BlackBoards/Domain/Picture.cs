@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,15 +12,13 @@ namespace BlackBoards
         
 
         public Picture() {
-            this.Width = 1;
-            this.Heigth = 1;
+            this.Dimension= new Dimension(1,1);
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
         }
-        public Picture(int aWidth,int aHeigth, List<Comment> someComments, Coordinate anOrigin)
+        public Picture(Dimension aDimension, List<Comment> someComments, Coordinate anOrigin)
         {
-            this.Width = aWidth;
-            this.Heigth = aHeigth;
+            this.Dimension = aDimension;
             this.Comments = someComments;
             this.Origin = anOrigin;
         }
@@ -39,10 +38,10 @@ namespace BlackBoards
             {
                 return false;
             }
-            bool sameHeigthAndWidth = this.Heigth == anotherPicture.Heigth && this.Width == anotherPicture.Width;
+            bool sameDimensions = this.Dimension.Equals(anotherPicture.Dimension);
             bool sameOrigin = this.Origin == anotherPicture.Origin;
             bool sameComments = this.Comments.Equals(anotherPicture.Comments);
-            return sameHeigthAndWidth && sameComments && sameComments;
+            return sameDimensions && sameComments && sameComments;
         }
     }
  }

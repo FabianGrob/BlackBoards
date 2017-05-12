@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,21 +11,18 @@ namespace BlackBoards
     {
         private string name;
         private string description;
-        private int heigth;
-        private int width;
+        private Dimension dimension;
         private Team team;
         public BlackBoard() {
             this.name = "Default name";
             this.description = "Default description";
-            this.heigth = 0;
-            this.width = 0;
+            this.dimension = new Dimension(0, 0);
             this.team = new Team();
         }
-        public BlackBoard(string aName, string aDescription, int aHeigth, int aWidth, Team aTeam) {
+        public BlackBoard(string aName, string aDescription, Dimension aDimension, Team aTeam) {
             this.name = aName;
             this.description = aDescription;
-            this.heigth = aHeigth;
-            this.width = aWidth;
+            this.dimension = aDimension;
             this.team = aTeam;
         }
         public string Name
@@ -49,28 +47,18 @@ namespace BlackBoards
                 this.description = value;
             }
         }
-        public int Heigth
+        public Dimension Dimension
         {
             get
             {
-                return this.heigth;
+                return this.dimension;
             }
             set
             {
-                this.heigth = value;
+                this.dimension = value;
             }
         }
-        public int Width
-        {
-            get
-            {
-                return this.width;
-            }
-            set
-            {
-                this.width = value;
-            }
-        }
+       
         public Team Team
         {
             get

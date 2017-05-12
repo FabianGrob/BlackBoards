@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,12 @@ namespace BlackBoardsTest
         public void TestPictureBuilder() {
             Picture aPic = new Picture();
             List<Comment> comments =new List<Comment>();
-            aPic.Heigth = 1;
-            aPic.Width = 1;
+            aPic.Dimension = new Dimension(1,1);
             Coordinate origin = new Coordinate();
 
             aPic.Origin = origin;
             aPic.Comments = comments;
-            Picture anotherPic = new Picture(1, 1, comments, origin);
+            Picture anotherPic = new Picture(new Dimension(1, 1), comments, origin);
             bool result = aPic.Equals(anotherPic);
             Assert.IsTrue(result);
         }
@@ -29,13 +29,12 @@ namespace BlackBoardsTest
         public void TestPictureNotEquals() {
             Picture aPic = new Picture();
 
-            aPic.Heigth = 1;
-            aPic.Width = 1;
+            aPic.Dimension = new Dimension(1,1);
             aPic.Comments = new List<Comment>();
             Coordinate origin = new Coordinate();
             aPic.Origin = origin;
             origin.XAxis = 10;
-            Picture anotherPic = new Picture(1, 1, new List<Comment>(), origin);
+            Picture anotherPic = new Picture(new Dimension(1, 1), new List<Comment>(), origin);
             bool result = aPic.Equals(anotherPic);
             Assert.IsFalse(result);
 
