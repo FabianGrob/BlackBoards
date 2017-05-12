@@ -43,8 +43,19 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddAdmin(anAdmin);
             bool result = repository.UserList.Equals(handler.Repository.UserList) && repository.AdministratorList.Equals(handler.Repository.AdministratorList) && repository.TeamList.Equals(handler.Repository.TeamList);
             Assert.IsTrue(result);
-
-
+        }
+        [TestMethod]
+        public void TestAddTeam() {
+            Team aTeam = new Team();
+            aTeam.Name = "Team A";
+            Repository repository1 = new Repository();
+            repository1.TeamList.Add(aTeam);
+            Repository repository2 = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository2);
+            handler.AddTeam(aTeam);
+            bool result = repository1.TeamList.ElementAt(0).Equals(handler.Repository.TeamList.ElementAt(0));
+            Assert.IsTrue(result);
+            
         }
     }
    
