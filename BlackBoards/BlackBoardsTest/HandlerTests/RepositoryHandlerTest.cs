@@ -93,7 +93,20 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsFalse(result);
 
         }
-    }
-   
+        [TestMethod]
+        public void TestTeamAlreadyExists()
+        {
+            Team aTeam = new Team();
+            aTeam.Name = "aName";
+            Team anotherTeam = new Team();
+            anotherTeam.Name = "aName";
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.AddTeam(aTeam);
+            bool result = handler.TeamAlreadyExists(anotherTeam);
+            Assert.IsTrue(result);
 
+
+        }
+    }
 }
