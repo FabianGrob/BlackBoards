@@ -12,12 +12,15 @@ namespace BlackBoardsTest
     public class UserHandlerTest
     {
         [TestMethod]
-        public void TestUserHandlerBuilder() {
+        public void TestUserHandlerBuilder()
+        {
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             bool result = u.Equals(userHandler.User);
             Assert.IsTrue(result);
 
         }
+       
     }
+    
 }
