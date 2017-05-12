@@ -33,14 +33,15 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(result);
             
         }
+        [TestMethod]
         public void TestAddAdmin() {
             Admin anAdmin = new Admin();
-            Repository repository = new Repository();
+            Repository repository = new Repository();            
             RepositoryHandler handler = new RepositoryHandler(repository);
             repository.AdministratorList.Add(anAdmin);
             repository.UserList.Add(anAdmin);
             handler.AddAdmin(anAdmin);
-            bool result = repository.Equals(handler.Repository);
+            bool result = repository.UserList.Equals(handler.Repository.UserList) && repository.AdministratorList.Equals(handler.Repository.AdministratorList) && repository.TeamList.Equals(handler.Repository.TeamList);
             Assert.IsTrue(result);
 
 

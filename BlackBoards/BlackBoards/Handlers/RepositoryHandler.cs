@@ -27,6 +27,10 @@ namespace BlackBoards.Handlers
         public void AddUser(User anUser) {
             repository.UserList.Add(anUser);
         }
-
+        public void AddAdmin(Admin anAdmin)
+        {
+            repository.AdministratorList.Add(anAdmin);
+            repository.UserList.Add(anAdmin);
+        }
     }
 }
