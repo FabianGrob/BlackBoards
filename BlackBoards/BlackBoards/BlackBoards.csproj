@@ -64,6 +64,7 @@
     <Compile Include="Handlers\CommentHandler.cs" />
     <Compile Include="Handlers\RepositoryHandler.cs" />
     <Compile Include="Handlers\TeamHandler.cs" />
+    <Compile Include="Interfaces\ICommentHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\TextBox.cs" />
