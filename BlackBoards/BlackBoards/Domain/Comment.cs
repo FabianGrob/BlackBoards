@@ -12,7 +12,7 @@ namespace BlackBoards
         private User resolvingUser;
         private DateTime commentingDate;
         private DateTime resolvingDate;
-        private String writtenComment;
+        private string writtenComment;
         public Comment()
         {
             this.CommentingUser = new Admin();
@@ -22,7 +22,7 @@ namespace BlackBoards
             this.WrittenComment = "Default written comment";
         }
 
-        public Comment(User commentingUser, User resolvingUser, DateTime commentingDate, DateTime resolvingDate, String writtenComment)
+        public Comment(User commentingUser, User resolvingUser, DateTime commentingDate, DateTime resolvingDate, string writtenComment)
         {
             this.CommentingUser = commentingUser;
             this.ResolvingUser = resolvingUser;
@@ -75,7 +75,7 @@ namespace BlackBoards
                 this.resolvingDate = value;
             }
         }
-        public String WrittenComment
+        public string WrittenComment
         {
             get
             {

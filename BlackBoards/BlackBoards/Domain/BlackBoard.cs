@@ -8,8 +8,8 @@ namespace BlackBoards
 {
     public class BlackBoard
     {
-        private String name;
-        private String description;
+        private string name;
+        private string description;
         private int heigth;
         private int width;
         private Team team;
@@ -20,7 +20,7 @@ namespace BlackBoards
             this.width = 0;
             this.team = new Team();
         }
-        public BlackBoard(String aName, String aDescription, int aHeigth, int aWidth, Team aTeam) {
+        public BlackBoard(string aName, string aDescription, int aHeigth, int aWidth, Team aTeam) {
             this.name = aName;
             this.description = aDescription;
             this.heigth = aHeigth;
@@ -38,7 +38,7 @@ namespace BlackBoards
                 this.name = value;
             }
         }
-        public String Description
+        public string Description
         {
             get
             {

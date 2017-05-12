@@ -8,8 +8,8 @@ namespace BlackBoards
 {
    public class Team
     {
-        private String name;
-        private String description;
+        private string name;
+        private string description;
         private DateTime creationDate;
         private int maxUsers;
         private List<User> members;
@@ -22,7 +22,7 @@ namespace BlackBoards
             this.Members = new List<User>();
 
         }
-        public Team(String aName,DateTime aCreationDate,String aDescription,int maximumUsers,List<User>someMembers,List<BlackBoard> someBoards) {
+        public Team(string aName,DateTime aCreationDate, string aDescription,int maximumUsers,List<User>someMembers,List<BlackBoard> someBoards) {
             this.name = aName;
             this.creationDate = aCreationDate;
             this.description = aDescription;
