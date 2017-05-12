@@ -30,7 +30,18 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddUser(u);
             repository.UserList.Add(u);
             bool result = repository.Equals(handler.Repository);
-            Assert.AreEqual(repository,handler.Repository);
+            Assert.IsTrue(result);
+            
+        }
+        public void TestAddAdmin() {
+            Admin anAdmin = new Admin();
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            repository.AdministratorList.Add(anAdmin);
+            repository.UserList.Add(anAdmin);
+            handler.AddAdmin(anAdmin);
+            bool result = repository.Equals(handler.Repository);
+            Assert.IsTrue(result);
 
 
         }
