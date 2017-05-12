@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="UserHandlerTest.cs" />
     <Compile Include="DomainTests\BlackBoardTest.cs" />
     <Compile Include="DomainTests\CollaboratorTest.cs" />
     <Compile Include="DomainTests\CommentTest.cs" />
