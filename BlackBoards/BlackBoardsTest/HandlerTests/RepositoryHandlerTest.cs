@@ -30,7 +30,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddUser(u);
             repository.UserList.Add(u);
             bool result = repository.Equals(handler.Repository);
-            Assert.IsTrue(result);
+            Assert.AreEqual(repository,handler.Repository);
 
 
         }

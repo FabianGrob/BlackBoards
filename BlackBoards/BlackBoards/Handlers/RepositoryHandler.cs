@@ -24,6 +24,9 @@ namespace BlackBoards.Handlers
                 this.repository = value;
             }
         }
+        public void AddUser(User anUser) {
+            repository.UserList.Add(anUser);
+        }
 
     }
 }
