@@ -30,7 +30,7 @@ namespace BlackBoards.Handlers
         public void AddAdmin(Admin anAdmin)
         {
             repository.AdministratorList.Add(anAdmin);
-            repository.UserList.Add(anAdmin);
+            this.AddUser(anAdmin);
         }
     }
 }
