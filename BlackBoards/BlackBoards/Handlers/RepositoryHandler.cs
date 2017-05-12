@@ -35,5 +35,8 @@ namespace BlackBoards.Handlers
         public void AddTeam(Team aTeam) {
             this.repository.TeamList.Add(aTeam);
         }
+        public bool UserAlreadyExists(User anUser) {
+            return this.repository.UserList.Contains(anUser);
+        }
     }
 }
