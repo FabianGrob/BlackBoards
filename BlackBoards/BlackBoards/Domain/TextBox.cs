@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,7 @@ namespace BlackBoards
             private int fontSize;
 
         public TextBox() {
-            this.Width = 1;
-            this.Heigth = 1;
+            this.Dimension = new Domain.Dimension(1,1);
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
             this.content = "aContent";
@@ -23,18 +23,16 @@ namespace BlackBoards
     }
         public TextBox(TextBox aTextBox)
         {
-            this.Width = aTextBox.Width;
-            this.Heigth = aTextBox.Heigth;
+            this.Dimension=aTextBox.Dimension;
             this.Comments = aTextBox.Comments;
             this.Origin = aTextBox.Origin;
             this.content = aTextBox.content;
             this.font = aTextBox.font;
             this.fontSize = aTextBox.fontSize;
         }
-        public TextBox(int aWidth, int aHeigth, List<Comment> someComments, Coordinate anOrigin, String aContent, string aFont, int aFontSize) {
+        public TextBox(Dimension aDimension, List<Comment> someComments, Coordinate anOrigin, String aContent, string aFont, int aFontSize) {
 
-            this.Width = aWidth;
-            this.Heigth = aHeigth;
+            this.Dimension = aDimension;
             this.Comments = someComments;
             this.Origin = anOrigin;
             this.content = aContent;
@@ -87,12 +85,12 @@ namespace BlackBoards
             {
                 return false;
             }
-            bool sameHeigthAndWidth=this.Heigth== anotherTextBox.Heigth && this.Width== anotherTextBox.Width;
+            bool sameDimensions=this.Dimension.Equals(anotherTextBox.Dimension);
             bool sameOrigin=this.Origin.Equals(anotherTextBox.Origin);
             bool sameComments= this.Comments.Equals(anotherTextBox.Comments);
             bool sameFontAndSize=this.fontSize== anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
             bool sameContent=this.content.Equals(anotherTextBox.content);
-            return sameHeigthAndWidth && sameOrigin && sameComments && sameFontAndSize && sameContent;
+            return sameDimensions && sameOrigin && sameComments && sameFontAndSize && sameContent;
         }
     }
     

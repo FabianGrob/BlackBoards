@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,33 +9,22 @@ namespace BlackBoards
 {
     public abstract class Item
     {
-        private int width;
-        private int heigth;
+        private Dimension dimension;
         private List<Comment> comments;
         private Coordinate origin;
 
-        public int Width
+        public Dimension Dimension
         {
             get
             {
-                return this.width;
+                return this.dimension;
             }
             set
             {
-                this.width = value;
+                this.dimension = value;
             }
         }
-        public int Heigth
-        {
-            get
-            {
-                return this.heigth;
-            }
-            set
-            {
-                this.heigth = value;
-            }
-        }
+       
         public List<Comment> Comments
         {
             get
