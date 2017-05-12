@@ -21,14 +21,16 @@ namespace BlackBoardsTest
             //objects instance
             List<Admin> administratorList= new List<Admin>();
             List<User> userList = new List<User>();
+            List<Team> teamList = new List<Team>();
             administratorList.Add(admin);
             userList.Add(collaborator);
 
             //assert
-            Repository repository = new Repository(administratorList, userList);
+            Repository repository = new Repository(administratorList, userList,teamList);
             bool compareAdministratorList = repository.AdministratorList.Equals(administratorList);
             bool compareUserList = repository.UserList.Equals(userList);
-            Assert.IsTrue(compareAdministratorList && compareUserList);
+            bool compareTeamList = repository.TeamList.Equals(teamList);
+            Assert.IsTrue(compareAdministratorList && compareUserList && compareTeamList);
         }
 
     }

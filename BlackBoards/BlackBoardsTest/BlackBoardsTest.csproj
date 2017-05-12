@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DomainTests\RepositoryTest.cs" />
     <Compile Include="HandlerTests\CommentHandlerTest.cs" />
+    <Compile Include="HandlerTests\RepositoryHandlerTest.cs" />
     <Compile Include="HandlerTests\TeamHandlerTest.cs" />
     <Compile Include="HandlerTests\UserHandlerTest.cs" />
     <Compile Include="DomainTests\BlackBoardTest.cs" />

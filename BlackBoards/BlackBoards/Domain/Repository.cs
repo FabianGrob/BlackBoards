@@ -6,6 +6,7 @@ namespace BlackBoards
     {
         private List<Admin> administratorList;
         private List<User> userList;
+        private List<Team> teamList;
       
 
       
@@ -13,12 +14,14 @@ namespace BlackBoards
         {
             this.administratorList = new List<Admin>();
             this.userList = new List<User>();
+            this.teamList = new List<Team>();
            
         }
-        public Repository(List<Admin> administratorList, List<User> userList)
+        public Repository(List<Admin> administratorList, List<User> userList, List<Team> teamList)
         {
             this.administratorList = administratorList;
             this.userList = userList;
+            this.teamList = teamList;
 
         }
         public List<Admin> AdministratorList
@@ -44,6 +47,18 @@ namespace BlackBoards
             }
         }
 
-        
+        public List<Team> TeamList
+        {
+            get
+            {
+                return this.teamList;
+            }
+            set
+            {
+                this.teamList = value;
+            }
+        }
+
+
     }
 }
