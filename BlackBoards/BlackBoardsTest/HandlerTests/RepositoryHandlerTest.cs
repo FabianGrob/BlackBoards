@@ -46,15 +46,19 @@ namespace BlackBoardsTest.HandlerTests
         }
         [TestMethod]
         public void TestAddTeam() {
+            //teams instances
             Team aTeam = new Team();
-            aTeam.Name = "Team A";
             Team anotherTeam = new Team();
+            //set teams names
+            aTeam.Name = "Team A";            
             anotherTeam.Name = "Team A";
+            //create repositories & adding items
             Repository repository1 = new Repository();
-            repository1.TeamList.Add(aTeam);
             Repository repository2 = new Repository();
+            repository1.TeamList.Add(aTeam);            
             RepositoryHandler handler = new RepositoryHandler(repository2);
             handler.AddTeam(anotherTeam);
+            //assertion
             bool result = repository1.TeamList.ElementAt(0).Equals(handler.Repository.TeamList.ElementAt(0));
             Assert.IsTrue(result);
             
