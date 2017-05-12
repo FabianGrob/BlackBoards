@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,8 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestTextBoxHandler() {
             TextBox aTbx = new TextBox();
-            TextBox otherTbx = new TextBox();
-            TextBoxHandler handler = new TextBoxHandler(tbx);
+            TextBox otherTbx = new TextBox(aTbx);
+            TextBoxHandler handler = new TextBoxHandler(aTbx);
             bool result = otherTbx.Equals(handler.TextBox);
             Assert.IsTrue(result);
 

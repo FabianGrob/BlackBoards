@@ -21,6 +21,16 @@ namespace BlackBoards
             this.font = "aFont";
             this.fontSize = 10;
     }
+        public TextBox(TextBox aTextBox)
+        {
+            this.Width = aTextBox.Width;
+            this.Heigth = aTextBox.Heigth;
+            this.Comments = aTextBox.Comments;
+            this.Origin = aTextBox.Origin;
+            this.content = aTextBox.content;
+            this.font = aTextBox.font;
+            this.fontSize = aTextBox.fontSize;
+        }
         public TextBox(int aWidth, int aHeigth, List<Comment> someComments, Coordinate anOrigin, String aContent, string aFont, int aFontSize) {
 
             this.Width = aWidth;
@@ -78,7 +88,7 @@ namespace BlackBoards
                 return false;
             }
             bool sameHeigthAndWidth=this.Heigth== anotherTextBox.Heigth && this.Width== anotherTextBox.Width;
-            bool sameOrigin=this.Origin== anotherTextBox.Origin;
+            bool sameOrigin=this.Origin.Equals(anotherTextBox.Origin);
             bool sameComments= this.Comments.Equals(anotherTextBox.Comments);
             bool sameFontAndSize=this.fontSize== anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
             bool sameContent=this.content.Equals(anotherTextBox.content);
