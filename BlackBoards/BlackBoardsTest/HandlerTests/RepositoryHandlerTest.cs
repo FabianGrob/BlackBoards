@@ -48,11 +48,13 @@ namespace BlackBoardsTest.HandlerTests
         public void TestAddTeam() {
             Team aTeam = new Team();
             aTeam.Name = "Team A";
+            Team anotherTeam = new Team();
+            anotherTeam.Name = "Team A";
             Repository repository1 = new Repository();
             repository1.TeamList.Add(aTeam);
             Repository repository2 = new Repository();
             RepositoryHandler handler = new RepositoryHandler(repository2);
-            handler.AddTeam(aTeam);
+            handler.AddTeam(anotherTeam);
             bool result = repository1.TeamList.ElementAt(0).Equals(handler.Repository.TeamList.ElementAt(0));
             Assert.IsTrue(result);
             
