@@ -64,14 +64,15 @@ namespace BlackBoardsTest.HandlerTests
         }
         [TestMethod]
         public void TestUserAlreadyExists() {
+            //instance
             User anUser = new Collaborator();
             anUser.Email = "anEmail";
             User anotherUser = new Admin();
-            anotherUser.Email = "anEmail";
-
+            anotherUser.Email = "anEmail";            
             Repository repository = new Repository();
             RepositoryHandler handler = new RepositoryHandler(repository);
             handler.AddUser(anUser);
+            //assertion
             bool result = handler.UserAlreadyExists(anotherUser);
             Assert.IsTrue(result);
 
