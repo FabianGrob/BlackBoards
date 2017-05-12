@@ -13,4 +13,3 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBo
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.pdb
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csprojResolveAssemblyReference.cache

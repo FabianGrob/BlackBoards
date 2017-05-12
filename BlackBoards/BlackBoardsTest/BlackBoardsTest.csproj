@@ -53,7 +53,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DomainTests\RepositoryTest.cs" />
-    <Compile Include="UserHandlerTest.cs" />
+    <Compile Include="HandlerTests\CommentHandlerTest.cs" />
+    <Compile Include="HandlerTests\UserHandlerTest.cs" />
     <Compile Include="DomainTests\BlackBoardTest.cs" />
     <Compile Include="DomainTests\CollaboratorTest.cs" />
     <Compile Include="DomainTests\CommentTest.cs" />
