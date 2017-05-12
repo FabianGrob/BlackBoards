@@ -14,12 +14,14 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestBuilderRepository()
         {
+
             String name = "testBoard";
             String description = "this is a board";
             int heigth = 5;
             int width = 5;
             Team team = new Team();
             team.Name = "testTeam";
+
 
             //objects instance
             BlackBoard board = new BlackBoard(name, description, heigth, width, team);
