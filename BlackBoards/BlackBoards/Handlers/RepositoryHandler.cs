@@ -24,5 +24,6 @@ namespace BlackBoards.Handlers
                 this.repository = value;
             }
         }
+
     }
 }

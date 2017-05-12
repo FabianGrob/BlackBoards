@@ -12,8 +12,6 @@ namespace BlackBoardsTest.HandlerTests
     [TestClass]
     public class RepositoryHandlerTest
     {
-        public int Administrator { get; private set; }
-
         [TestMethod]
         public void TestRepositoryHandler() {
             List<Team> teams = new List<Team>();
@@ -24,5 +22,19 @@ namespace BlackBoardsTest.HandlerTests
             bool result = repository.Equals(handler.Repository);
 
         }
+        [TestMethod]
+        public void TestAddUser() {
+            User u = new Collaborator();
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.AddUser(u);
+            repository.UserList.Add(u);
+            bool result = repository.Equals(handler.Repository);
+            Assert.IsTrue(result);
+
+
+        }
     }
+   
+
 }
