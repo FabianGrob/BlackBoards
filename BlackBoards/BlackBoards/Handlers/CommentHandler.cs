@@ -26,14 +26,35 @@ namespace BlackBoards.Handlers
         }
         public void CreateComment(User anUser, string newComment)
         {
-            this.comment.CommentingUser = anUser;
-            this.comment.WrittenComment = newComment;
-            this.comment.CommentingDate = DateTime.Today;
+            this.AddCommentingUser(anUser);
+            this.WriteComment(newComment);
+            this.AddCommentingDate(DateTime.Today);
         }
         public void ResolveComment(User anUser)
         {
-            comment.ResolvingUser = anUser;
-            comment.ResolvingDate = DateTime.Today;
-        }        
+            this.AddResolvingUser(anUser);
+            this.AddResolvingDate(DateTime.Today);
+        }
+        private void AddResolvingUser(User anUser)
+        {
+            this.comment.ResolvingUser = anUser;
+        }
+        private void AddCommentingUser(User anUser)
+        {
+            this.comment.CommentingUser = anUser;
+        }
+        private void AddCommentingDate(DateTime aDate)
+        {
+            this.comment.CommentingDate = aDate;
+        }
+        private void AddResolvingDate(DateTime aDate)
+        {
+            this.comment.ResolvingDate = aDate;
+        }
+        private void WriteComment(string commentToAdd)
+        {
+            this.comment.WrittenComment = commentToAdd;
+        }
+
     }
 }
