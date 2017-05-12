@@ -20,14 +20,15 @@ namespace BlackBoardsTest
             Dimension aDimension = new Dimension(5, 5);
             Team team = new Team();
             team.Name = "testTeam";
-
+            List<Item> itemList = new List<Item>();
             //objects instance
-            BlackBoard aBoard = new BlackBoard(name,description, aDimension, team);
+            BlackBoard aBoard = new BlackBoard(name,description, aDimension, team,itemList);
             BlackBoard anotherBoard = new BlackBoard();
             anotherBoard.Name = name;
             anotherBoard.Description = description;
             anotherBoard.Dimension = aDimension;
             anotherBoard.Team = team;
+            anotherBoard.ItemList = itemList;
 
             //assert
             Assert.IsTrue(aBoard.Equals(anotherBoard));

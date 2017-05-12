@@ -9,6 +9,7 @@ namespace BlackBoards
 {
     public class BlackBoard
     {
+        private List<Item> itemList;
         private string name;
         private string description;
         private Dimension dimension;
@@ -18,12 +19,14 @@ namespace BlackBoards
             this.description = "Default description";
             this.dimension = new Dimension(0, 0);
             this.team = new Team();
+            this.itemList = new List<Item>();
         }
-        public BlackBoard(string aName, string aDescription, Dimension aDimension, Team aTeam) {
+        public BlackBoard(string aName, string aDescription, Dimension aDimension, Team aTeam, List<Item> itemList) {
             this.name = aName;
             this.description = aDescription;
             this.dimension = aDimension;
             this.team = aTeam;
+            this.itemList = itemList;
         }
         public string Name
         {
@@ -58,7 +61,7 @@ namespace BlackBoards
                 this.dimension = value;
             }
         }
-       
+
         public Team Team
         {
             get
@@ -68,6 +71,17 @@ namespace BlackBoards
             set
             {
                 this.team = value;
+            }
+        }
+        public List<Item> ItemList
+        {
+            get
+            {
+                return this.itemList;
+            }
+            set
+            {
+                this.itemList = value;
             }
         }
         public override bool Equals(object aBlackBoard)
