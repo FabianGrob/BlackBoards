@@ -42,5 +42,18 @@ namespace BlackBoards.Handlers
         public bool TeamAlreadyExists(Team aTeam) {
             return this.repository.TeamList.Contains(aTeam);
         }
+        public List<Team> getUserTeams(User user)
+        {
+            List<Team> userTeams = new List<Team>();
+            foreach (Team actualTeam in Repository.TeamList)
+            {
+                TeamHandler handler = new TeamHandler(actualTeam);
+                if (handler.isUserInTeam(user))
+                {
+                    userTeams.Add(actualTeam);
+                }
+            }
+            return userTeams;
+        }
     }
 }

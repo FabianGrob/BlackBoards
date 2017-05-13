@@ -13,6 +13,10 @@ namespace BlackBoards.Handlers
         {
             this.comment = new Comment();
         }
+        public CommentHandler(Comment aComment)
+        {
+            this.comment = aComment;
+        }
         public Comment Comment
         {
             get
@@ -30,10 +34,11 @@ namespace BlackBoards.Handlers
             this.WriteComment(newComment);
             this.AddCommentingDate(DateTime.Today);
         }
-        public void ResolveComment(User anUser)
+        public bool ResolveComment(User anUser)
         {
             this.AddResolvingUser(anUser);
             this.AddResolvingDate(DateTime.Today);
+            return true;
         }
         private void AddResolvingUser(User anUser)
         {

@@ -1,11 +1,9 @@
 ﻿using BlackBoards;
 using BlackBoards.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
 
 namespace BlackBoardsTest
 {
@@ -21,6 +19,8 @@ namespace BlackBoardsTest
 
             aPic.Origin = origin;
             aPic.Comments = comments;
+            string proyectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+            string defualtImagePath = proyectPath + "\\Images\\default.jpg";
             Picture anotherPic = new Picture(new Dimension(1, 1), comments, origin);
             bool result = aPic.Equals(anotherPic);
             Assert.IsTrue(result);
