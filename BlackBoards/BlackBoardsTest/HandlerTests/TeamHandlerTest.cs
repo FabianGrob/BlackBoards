@@ -134,6 +134,7 @@ namespace BlackBoardsTest.HandlerTests
             Team aTeam = new Team();
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
+            //assertion
             bool result = handler.AddMember(admin);
             Assert.IsTrue(result);
         }
@@ -145,6 +146,7 @@ namespace BlackBoardsTest.HandlerTests
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
+            //assertion
             bool result = handler.Team.Members.Contains(admin);
             Assert.IsTrue(result);
         }
@@ -156,6 +158,7 @@ namespace BlackBoardsTest.HandlerTests
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
+            //assertion
             bool result = handler.AddMember(admin); ;
             Assert.IsFalse(result);
         }
