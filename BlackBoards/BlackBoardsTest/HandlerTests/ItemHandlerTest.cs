@@ -20,6 +20,17 @@ namespace BlackBoardsTest.HandlerTests
             bool result = anotherItem.Equals(handler.Item);
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestMoveItem()
+        {
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Coordinate newCoordinates = new Coordinate(2, 2);
+            handler.MoveItem(newCoordinates);
+            bool result = handler.Item.Equals(anotherItem);
+            Assert.IsFalse(result);
 
+        }
     }
 }
