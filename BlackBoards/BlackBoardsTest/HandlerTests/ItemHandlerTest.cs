@@ -163,6 +163,33 @@ namespace BlackBoardsTest.HandlerTests
             
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestAddCommentInvalid()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox();
+            ItemHandler handler = new ItemHandler(anItem);
+            Comment aComment = new Comment();
+            aComment.WrittenComment = "";
+            //assertion
+            bool result = handler.AddComment(aComment);
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestAddCommentValid()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox();
+            ItemHandler handler = new ItemHandler(anItem);
+            Comment aComment = new Comment();
+            aComment.WrittenComment = "aValidComment";
+            //assertion
+            bool result = handler.AddComment(aComment);
+            Assert.IsTrue(result);
+        }
+
 
 
 
