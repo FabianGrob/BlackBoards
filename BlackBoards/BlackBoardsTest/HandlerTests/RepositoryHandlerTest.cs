@@ -127,5 +127,50 @@ namespace BlackBoardsTest.HandlerTests
 
 
         }
+        [TestMethod]
+        public void TestgetNoneUserTeams()
+        {
+            //instance
+            User anUser = new Collaborator();
+            anUser.Email = "anEmail";
+            Team aTeam = new Team();
+            aTeam.Name = "aName";
+            List<Team> teams = new List<Team>();
+            teams.Add(aTeam);
+            List<User> users = new List<User>();
+            users.Add(anUser);
+            List<Admin> admins = new List<Admin>();
+            Repository repository = new Repository(admins, users, teams);
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            List<Team> teamsWhereUserIs = handler.getUserTeams(anUser);
+            //assertion
+            bool result = teamsWhereUserIs.Count == 0;
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestgetUserTeams()
+        {
+            //instance
+            User anUser = new Collaborator();
+            anUser.Email = "anEmail";
+            Team aTeam = new Team();
+            aTeam.Name = "aName";
+            aTeam.Members.Add(anUser);
+            Team anotherTeam = new Team();
+            aTeam.Name = "anotherName";
+            List<Team> teams = new List<Team>();
+            teams.Add(aTeam);
+            List<User> users = new List<User>();
+            users.Add(anUser);
+            List<Admin> admins = new List<Admin>();
+            Repository repository = new Repository(admins, users, teams);
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            List<Team> teamsWhereUserIs = handler.getUserTeams(anUser);          
+            //assertion
+            bool result = teamsWhereUserIs.Count == 1;
+            Assert.IsTrue(result);
+        }
+
+
     }
 }

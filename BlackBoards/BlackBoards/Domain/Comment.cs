@@ -18,7 +18,7 @@ namespace BlackBoards
             this.CommentingUser = new Admin();
             this.ResolvingUser = new Admin();
             this.CommentingDate = new DateTime();
-            this.ResolvingDate = new DateTime();
+            this.ResolvingDate = DateTime.MaxValue;
             this.WrittenComment = "Default written comment";
         }
 
