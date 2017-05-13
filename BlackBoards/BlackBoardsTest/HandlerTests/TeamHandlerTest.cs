@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain;
 using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -43,7 +44,7 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsFalse(result);
 
         }
-        public void TestTeamHandlerAddBlackBoardInValid()
+        public void TestTeamHandlerAddBlackBoardInValid0()
         {
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);

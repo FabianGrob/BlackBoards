@@ -19,7 +19,8 @@ namespace BlackBoards
             this.creationDate = new DateTime();
             this.description = "Default description";
             this.maxUsers = 10;
-            this.Members = new List<User>();
+            this.members = new List<User>();
+            this.boards = new List<BlackBoard>();
 
         }
         public Team(string aName,DateTime aCreationDate, string aDescription,int maximumUsers,List<User>someMembers,List<BlackBoard> someBoards) {

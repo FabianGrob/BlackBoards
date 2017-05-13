@@ -24,5 +24,12 @@ namespace BlackBoards.Handlers
                 this.team = value;
             }
         }
+        public bool AddBlackBoard(BlackBoard aBoard) {
+            bool valid = aBoard.Dimension.Height > 3 && aBoard.Dimension.Width > 3;
+            if (valid) {
+                this.Team.Boards.Add(aBoard);
+            }
+            return valid;
+        }
     }
 }
