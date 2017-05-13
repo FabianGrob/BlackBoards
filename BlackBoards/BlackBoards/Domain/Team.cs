@@ -19,7 +19,8 @@ namespace BlackBoards
             this.creationDate = new DateTime();
             this.description = "Default description";
             this.maxUsers = 10;
-            this.Members = new List<User>();
+            this.members = new List<User>();
+            this.boards = new List<BlackBoard>();
 
         }
         public Team(string aName,DateTime aCreationDate, string aDescription,int maximumUsers,List<User>someMembers,List<BlackBoard> someBoards) {
@@ -96,6 +97,19 @@ namespace BlackBoards
             {
                 this.boards = value;
             }
+        }
+        public bool doesBlackBoardExists(BlackBoard aBoard) {
+            return this.boards.Contains(aBoard);
+        }
+        public BlackBoard getSpecificBlackBoard(BlackBoard aBoard) {
+            BlackBoard returningBoard = null;
+            foreach (BlackBoard board in this.boards){
+                if (board.Equals(aBoard))
+                {
+                    returningBoard = aBoard;
+                }
+            }
+            return returningBoard;
         }
         public override bool Equals(object aTeam)
         {

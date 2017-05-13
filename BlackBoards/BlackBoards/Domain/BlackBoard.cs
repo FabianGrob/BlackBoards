@@ -17,7 +17,7 @@ namespace BlackBoards
         public BlackBoard() {
             this.name = "Default name";
             this.description = "Default description";
-            this.dimension = new Dimension(0, 0);
+            this.dimension = new Dimension(5,5);
             this.team = new Team();
             this.itemList = new List<Item>();
         }
@@ -83,6 +83,9 @@ namespace BlackBoards
             {
                 this.itemList = value;
             }
+        }
+        public bool isValid() {
+            return this.Dimension.Height > 3 && this.Dimension.Width > 3; 
         }
         public override bool Equals(object aBlackBoard)
         {
