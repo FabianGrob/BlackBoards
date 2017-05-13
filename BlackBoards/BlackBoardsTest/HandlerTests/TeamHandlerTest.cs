@@ -169,6 +169,7 @@ namespace BlackBoardsTest.HandlerTests
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
+            //assertion
             bool result = handler.RemoveMember(admin);
             Assert.IsTrue(result);
 
@@ -182,6 +183,7 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
             handler.RemoveMember(admin);
+            //assertion
             bool result = handler.Team.Members.Count == 0;
             Assert.IsTrue(result);
 
@@ -193,7 +195,7 @@ namespace BlackBoardsTest.HandlerTests
             Team aTeam = new Team();
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
-           
+           //assertion
             bool result =  handler.RemoveMember(admin);
             Assert.IsFalse(result);
 
