@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,6 @@ namespace BlackBoardsTest.HandlerTests
             bool result = anotherItem.Equals(handler.Item);
             Assert.IsTrue(result);
         }
+
     }
 }
