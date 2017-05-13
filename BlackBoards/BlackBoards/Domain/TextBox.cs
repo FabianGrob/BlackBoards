@@ -14,7 +14,7 @@ namespace BlackBoards
             private int fontSize;
 
         public TextBox() {
-            this.Dimension = new Domain.Dimension(1,1);
+            this.Dimension = new Dimension(1,1);
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
             this.content = "aContent";
