@@ -128,5 +128,36 @@ namespace BlackBoardsTest.HandlerTests
             bool hasItem = handler.Team.getSpecificBlackBoard(board).ItemList.Contains(txtbx);
             Assert.IsTrue(hasItem);
         }
+        [TestMethod]
+        public void TestAddMemberCorrectly() {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+            bool result = handler.AddMember(admin);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestAddMemberCheckExistance()
+        {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+            handler.AddMember(admin);
+            bool result = handler.Team.Members.Contains(admin);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestAddMemberExists()
+        {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+            handler.AddMember(admin);
+            bool result = handler.AddMember(admin); ;
+            Assert.IsFalse(result);
+        }
     }
 }
