@@ -98,13 +98,7 @@ namespace BlackBoards
                 this.boards = value;
             }
         }
-        public bool AddNewBlackBoard(BlackBoard aBoard) {
-            bool valid = aBoard.isValid();
-            if (valid) {
-                this.boards.Add(aBoard);
-            }
-            return valid;
-        }
+        
         public override bool Equals(object aTeam)
         {
             if (aTeam == null)

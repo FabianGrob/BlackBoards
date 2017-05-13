@@ -25,7 +25,12 @@ namespace BlackBoards.Handlers
             }
         }
         public bool AddBlackBoard(BlackBoard aBoard) {
-            return this.Team.AddNewBlackBoard(aBoard);
+            bool valid = aBoard.isValid();
+            if (valid)
+            {
+                this.Team.Boards.Add(aBoard);
+            }
+            return valid;
         }
         public bool RemoveBlackBoard(BlackBoard aBoard) {
             bool exists = this.Team.Boards.Contains(aBoard);
