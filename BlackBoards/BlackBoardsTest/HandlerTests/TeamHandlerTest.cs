@@ -27,19 +27,23 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestTeamHandlerAddBlackBoardValid()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
+            //assertion
             bool result = handler.AddBlackBoard(board);
             Assert.IsTrue(result);
 
         }
         public void TestTeamHandlerAddBlackBoardInValid()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             board.Dimension = new Dimension(-1, -1);
+            //assertion
             bool result = handler.AddBlackBoard(board);
             Assert.IsFalse(result);
 
@@ -47,10 +51,12 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestTeamHandlerAddBlackBoardInValid0()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             board.Dimension = new Dimension(0, 0);
+            //assertion
             bool result = handler.AddBlackBoard(board);
             Assert.IsFalse(result);
 
@@ -58,10 +64,12 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestTeamHandlerAddBlackBoardAddedCorrectly()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             bool added = handler.AddBlackBoard(board);
+            //assertion
             added = added && handler.Team.Boards.Contains(board);
             Assert.IsTrue(added);
 
@@ -69,38 +77,45 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestRemoveBlackBoard()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
+            //assertion
             bool removed =handler.RemoveBlackBoard(board);
             Assert.IsTrue(removed && handler.Team.Boards.Count == 0);
 
         }
         [TestMethod]
         public void TestModifyBlackBoardValid() {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
             BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(5,5) , aTeam, new List < Item > ());
+            //assertion
             bool modified = handler.ModifyBlackBoard(board, newBoard);
             Assert.IsTrue(modified);
         }
         [TestMethod]
         public void TestModifyBlackBoardInvalid()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
             BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(2,2), aTeam, new List<Item>());
+            //assertion
             bool modified = handler.ModifyBlackBoard(board, newBoard);
             Assert.IsFalse(modified);
         }
         [TestMethod]
         public void TestModifyBlackBoardItems()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
@@ -109,7 +124,7 @@ namespace BlackBoardsTest.HandlerTests
             BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(5, 5), aTeam, new List<Item>());
             board.ItemList.Add(txtbx);
             handler.ModifyBlackBoard(board, newBoard);
-            
+            //assertion
             bool hasItem = handler.Team.getSpecificBlackBoard(board).ItemList.Contains(txtbx);
             Assert.IsTrue(hasItem);
         }
