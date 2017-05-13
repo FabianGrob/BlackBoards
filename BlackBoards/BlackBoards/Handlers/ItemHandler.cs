@@ -23,5 +23,8 @@ namespace BlackBoards.Handlers
                 this.item = value;
             }
         }
+        public void MoveItem(Coordinate newCoordinate) {
+            this.Item.Origin = newCoordinate;
+        }
     }
 }
