@@ -119,6 +119,7 @@ namespace BlackBoardsTest.HandlerTests
             ItemHandler handler = new ItemHandler(anotherItem);
             Comment aComment = new Comment();
             handler.AddComment(aComment);
+            //assertion
             bool result = anItem.Comments.Count==handler.Item.Comments.Count;
             Assert.IsFalse(result);
         }
@@ -134,6 +135,7 @@ namespace BlackBoardsTest.HandlerTests
             handler = new ItemHandler(anotherItem);
             aComment.WrittenComment = "another Comment";
             handler.AddComment(aComment);
+            //assertion
             bool result = true;
             if (handler.Item.Comments.Count > 0 && handler.Item.Comments.Count == anItem.Comments.Count)
             {
@@ -152,6 +154,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddComment(aComment);
             handler = new ItemHandler(anotherItem);
             handler.AddComment(aComment);
+            //assertion
             bool result = true;
             if (handler.Item.Comments.Count > 0 && handler.Item.Comments.Count == anItem.Comments.Count)
             {
