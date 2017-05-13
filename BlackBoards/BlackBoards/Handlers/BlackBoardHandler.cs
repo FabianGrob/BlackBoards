@@ -10,6 +10,7 @@ namespace BlackBoards.Handlers
     public class BlackBoardHandler
     {
         private BlackBoard blackBoard;
+
         public BlackBoardHandler()
         {
             this.blackBoard = new BlackBoard();
@@ -25,7 +26,7 @@ namespace BlackBoards.Handlers
                 this.blackBoard = value;
             }
         }
-      
+
         public void CreateBlackBoard(Team aTeam, string aName, string aDescription, Dimension aDimension)
         {
             this.blackBoard.Description = aDescription;
@@ -33,6 +34,7 @@ namespace BlackBoards.Handlers
             this.blackBoard.Name = aName;
             this.blackBoard.Dimension = aDimension;
         }
+
         public void Modify(Team aTeam, string aName, string aDescription, Dimension aDimension)
         {
             this.blackBoard.Description = aDescription;
@@ -40,23 +42,24 @@ namespace BlackBoards.Handlers
             this.blackBoard.Name = aName;
             this.blackBoard.Dimension = aDimension;
         }
+
         public void AddItem(Item aItem)
         {
-            this.blackBoard.ItemList.Add(aItem);
+            bool itemFitsInBlackBoard = ItemOutOfBands(aItem,aItem.Origin);
+            if (itemFitsInBlackBoard)
+            {
+                this.blackBoard.ItemList.Add(aItem);
+            }
         }
+
         public void RemoveItem(Item aItem)
         {
-               this.blackBoard.ItemList.Remove(aItem);
+            this.blackBoard.ItemList.Remove(aItem);
         }
+
         public void MoveItem(Item aItem, Coordinate coordinates)
         {
-            int maxXAxisValue = coordinates.XAxis + aItem.Dimension.Width;
-            int maxYAxisValue = coordinates.YAxis + aItem.Dimension.Height;
-            bool itemFitsInBlackBoard = true;
-            if (maxXAxisValue > blackBoard.Dimension.Height || maxYAxisValue > blackBoard.Dimension.Width)
-            {
-                itemFitsInBlackBoard = false;
-            }
+            bool itemFitsInBlackBoard = ItemOutOfBands(aItem, coordinates);
             if (itemFitsInBlackBoard)
             {
                 this.blackBoard.ItemList.Remove(aItem);
@@ -66,7 +69,16 @@ namespace BlackBoards.Handlers
 
         }
 
-
-
+        private bool ItemOutOfBands(Item aItem, Coordinate coordinates)
+        {
+            int maxXAxisValue = coordinates.XAxis + aItem.Dimension.Width;
+            int maxYAxisValue = coordinates.YAxis + aItem.Dimension.Height;
+            bool itemFitsInBlackBoard = true;
+            if (maxXAxisValue > blackBoard.Dimension.Height || maxYAxisValue > blackBoard.Dimension.Width)
+            {
+                itemFitsInBlackBoard = false;
+            }
+            return itemFitsInBlackBoard;
+        }
     }
 }
