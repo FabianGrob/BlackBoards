@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,9 @@ namespace BlackBoards.Handlers
         }
         public void MoveItem(Coordinate newCoordinate) {
             this.Item.Origin = newCoordinate;
+        }
+        public void ChangeDimension(Dimension newDimension) {
+            this.Item.Dimension = newDimension;
         }
     }
 }

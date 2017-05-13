@@ -74,10 +74,40 @@ namespace BlackBoardsTest.HandlerTests
             Item anotherItem = new TextBox(anItem as TextBox);
             ItemHandler handler = new ItemHandler(anItem);
             Dimension newDimension = new Dimension(3,3);
-            handler.ChangeDimension(nerDimension);
+            handler.ChangeDimension(newDimension);
 
             bool result = handler.Item.Equals(anotherItem);
             Assert.IsFalse(result);
+
+        }
+        [TestMethod]
+        public void TestChangeDimensionFixed()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Dimension newDimension = new Dimension(1,1);
+            handler.ChangeDimension(newDimension);
+
+            bool result = handler.Item.Equals(anotherItem);
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestChangeDimensionSame()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Dimension newDimension = new Dimension(3, 3);
+            handler.ChangeDimension(newDimension);
+            handler = new ItemHandler(anotherItem);
+            handler.ChangeDimension(newDimension);
+
+            bool result = handler.Item.Equals(anItem);
+            Assert.IsTrue(result);
 
         }
     }
