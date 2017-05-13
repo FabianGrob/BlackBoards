@@ -14,20 +14,24 @@ namespace BlackBoardsTest.HandlerTests
     {
         [TestMethod]
         public void ItemHandlerBuilder() {
+            //instance
             Item anItem = new TextBox();
             Item anotherItem = new TextBox(anItem as TextBox);
             ItemHandler handler = new ItemHandler(anItem);
+            //assertion
             bool result = anotherItem.Equals(handler.Item);
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestMoveItem()
         {
+            //instance
             Item anItem = new TextBox();
             Item anotherItem = new TextBox(anItem as TextBox);
             ItemHandler handler = new ItemHandler(anItem);
             Coordinate newCoordinates = new Coordinate(2, 2);
             handler.MoveItem(newCoordinates);
+            //assertion
             bool result = handler.Item.Equals(anotherItem);
             Assert.IsFalse(result);
 
