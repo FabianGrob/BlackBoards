@@ -63,6 +63,7 @@
     <Compile Include="Domain\Picture.cs" />
     <Compile Include="Domain\Program.cs" />
     <Compile Include="Handlers\CommentHandler.cs" />
+    <Compile Include="Handlers\ItemHandler.cs" />
     <Compile Include="Handlers\RepositoryHandler.cs" />
     <Compile Include="Handlers\TeamHandler.cs" />
     <Compile Include="Handlers\TextBoxHandler.cs" />

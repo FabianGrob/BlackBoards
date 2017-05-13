@@ -86,6 +86,9 @@ namespace BlackBoards
                 this.writtenComment = value;
             }
         }
+        public bool IsValid() {
+            return this.WrittenComment.Length > 0;
+        }
         public override bool Equals(object aComment)
         {
             if (aComment == null)

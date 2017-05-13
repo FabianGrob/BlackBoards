@@ -15,11 +15,14 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestTeamHandlerBuilder()
         {
+            //instance
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
+            //assertion
             bool result = aTeam.Equals(handler.Team);
             Assert.IsTrue(result);
 
         }
+        
     }
 }

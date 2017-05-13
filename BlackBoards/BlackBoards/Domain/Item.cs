@@ -47,6 +47,16 @@ namespace BlackBoards
                 this.origin = value;
             }
         }
+        public bool AddNewComment(Comment aComment) {
+            bool validComment = aComment.IsValid();
+            if (validComment)
+            {
+                this.Comments.Add(aComment);
+            }
+            return validComment;
+
+
+        }
     }
 
 }
