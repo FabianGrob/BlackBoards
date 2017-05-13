@@ -55,5 +55,16 @@ namespace BlackBoards.Handlers
             }
             return modified;
         }
+        public bool AddMember(User u) {
+            bool added = false;
+            bool userNotMember = !this.Team.Members.Contains(u);
+            if (userNotMember)
+            {
+                this.Team.Members.Add(u);
+                added = true;
+            }
+
+            return added;
+        }
     }
 }
