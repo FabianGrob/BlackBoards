@@ -36,5 +36,35 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsFalse(result);
 
         }
+        [TestMethod]
+        public void TestMoveItemFixed()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Coordinate newCoordinates = new Coordinate(0,0);
+            handler.MoveItem(newCoordinates);
+            //assertion
+            bool result = handler.Item.Equals(anotherItem);
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestMoveItemSamePosition()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Coordinate newCoordinates = new Coordinate(4,4);
+            handler.MoveItem(newCoordinates);
+            handler = new ItemHandler(anotherItem);
+            handler.MoveItem(new Coordinate(4,4));
+            //assertion
+            bool result = handler.Item.Equals(anItem);
+            Assert.IsTrue(result);
+
+        }
     }
 }
