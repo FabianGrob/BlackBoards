@@ -62,6 +62,7 @@
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Picture.cs" />
     <Compile Include="Domain\Program.cs" />
+    <Compile Include="Handlers\BlackBoardHandler.cs" />
     <Compile Include="Handlers\CommentHandler.cs" />
     <Compile Include="Handlers\ItemHandler.cs" />
     <Compile Include="Handlers\RepositoryHandler.cs" />

@@ -98,7 +98,19 @@ namespace BlackBoards
                 this.boards = value;
             }
         }
-        
+        public bool doesBlackBoardExists(BlackBoard aBoard) {
+            return this.boards.Contains(aBoard);
+        }
+        public BlackBoard getSpecificBlackBoard(BlackBoard aBoard) {
+            BlackBoard returningBoard = null;
+            foreach (BlackBoard board in this.boards){
+                if (board.Equals(aBoard))
+                {
+                    returningBoard = aBoard;
+                }
+            }
+            return returningBoard;
+        }
         public override bool Equals(object aTeam)
         {
             if (aTeam == null)

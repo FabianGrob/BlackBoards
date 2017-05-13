@@ -77,23 +77,28 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(removed && handler.Team.Boards.Count == 0);
 
         }
+        [TestMethod]
         public void TestModifyBlackBoardValid() {
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
+            handler.AddBlackBoard(board);
             BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(5,5) , aTeam, new List < Item > ());
-            bool modified = ModifyBlackBoard(board, newBoard);
+            bool modified = handler.ModifyBlackBoard(board, newBoard);
             Assert.IsTrue(modified);
         }
+        [TestMethod]
         public void TestModifyBlackBoardInvalid()
         {
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
+            handler.AddBlackBoard(board);
             BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(2,2), aTeam, new List<Item>());
-            bool modified = ModifyBlackBoard(board, newBoard);
+            bool modified = handler.ModifyBlackBoard(board, newBoard);
             Assert.IsFalse(modified);
         }
+        [TestMethod]
         public void TestModifyBlackBoardItems()
         {
             Team aTeam = new Team();
@@ -101,12 +106,12 @@ namespace BlackBoardsTest.HandlerTests
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
             Item txtbx = new TextBox();
-            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(2, 2), aTeam, new List<Item>());
-            newBoard.ItemList.Add(txtbx);
-            ModifyBlackBoard(board, newBoard);
-            bool hasNewBoard = handler.Team.Boards.Contains(newBoard);
-            bool hasNewItem = handler.Team.getSpecificBoard(newBoard).ItemList.contains(txtbx);
-            Assert.IsTrue(hasNewBoard&& hasNewItem);
+            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(5, 5), aTeam, new List<Item>());
+            board.ItemList.Add(txtbx);
+            handler.ModifyBlackBoard(board, newBoard);
+            
+            bool hasItem = handler.Team.getSpecificBlackBoard(board).ItemList.Contains(txtbx);
+            Assert.IsTrue(hasItem);
         }
     }
 }

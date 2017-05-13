@@ -15,6 +15,10 @@ namespace BlackBoards.Handlers
         {
             this.blackBoard = new BlackBoard();
         }
+        public BlackBoardHandler(BlackBoard aBoard)
+        {
+            this.blackBoard = aBoard;
+        }
         public BlackBoard BlackBoard
         {
             get

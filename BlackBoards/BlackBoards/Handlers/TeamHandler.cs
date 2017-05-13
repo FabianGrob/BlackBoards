@@ -26,11 +26,12 @@ namespace BlackBoards.Handlers
         }
         public bool AddBlackBoard(BlackBoard aBoard) {
             bool valid = aBoard.isValid();
-            if (valid)
+            bool notExists = !this.team.doesBlackBoardExists(aBoard);
+            if (valid && notExists)
             {
                 this.Team.Boards.Add(aBoard);
             }
-            return valid;
+            return valid && notExists;
         }
         public bool RemoveBlackBoard(BlackBoard aBoard) {
             bool exists = this.Team.Boards.Contains(aBoard);
@@ -41,6 +42,18 @@ namespace BlackBoards.Handlers
             return exists;
             
         }
-        
+        public bool ModifyBlackBoard(BlackBoard oldBoard, BlackBoard newBoard)
+        {
+
+            BlackBoardHandler handler = new BlackBoardHandler(oldBoard);
+            bool modified = false;
+            bool exists =this.Team.Boards.Contains(oldBoard);
+            if (exists && newBoard.isValid())
+            {
+                handler.Modify(newBoard.Team,newBoard.Name,newBoard.Description,newBoard.Dimension);
+                modified = true;
+            }
+            return modified;
+        }
     }
 }
