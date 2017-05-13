@@ -75,7 +75,7 @@ namespace BlackBoardsTest.HandlerTests
             ItemHandler handler = new ItemHandler(anItem);
             Dimension newDimension = new Dimension(3,3);
             handler.ChangeDimension(newDimension);
-
+            //assertion
             bool result = handler.Item.Equals(anotherItem);
             Assert.IsFalse(result);
 
@@ -89,7 +89,7 @@ namespace BlackBoardsTest.HandlerTests
             ItemHandler handler = new ItemHandler(anItem);
             Dimension newDimension = new Dimension(1,1);
             handler.ChangeDimension(newDimension);
-
+            //assertion
             bool result = handler.Item.Equals(anotherItem);
             Assert.IsTrue(result);
 
@@ -105,7 +105,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.ChangeDimension(newDimension);
             handler = new ItemHandler(anotherItem);
             handler.ChangeDimension(newDimension);
-
+            //assertion
             bool result = handler.Item.Equals(anItem);
             Assert.IsTrue(result);
 
