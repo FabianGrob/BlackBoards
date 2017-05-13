@@ -200,5 +200,25 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsFalse(result);
 
         }
+        [TestMethod]
+        public void TestIsUserInTeamTrue() {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+            handler.AddMember(admin);
+            bool result = handler.IsUserInTeam(admin);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestIsUserInTeamFalse()
+        {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+            bool result = handler.IsUserInTeam(admin);
+            Assert.IsFalse(result);
+        }
     }
 }
