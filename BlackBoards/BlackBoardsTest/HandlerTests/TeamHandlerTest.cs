@@ -207,6 +207,7 @@ namespace BlackBoardsTest.HandlerTests
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
+            //assertion
             bool result = handler.IsUserInTeam(admin);
             Assert.IsTrue(result);
         }
@@ -217,6 +218,7 @@ namespace BlackBoardsTest.HandlerTests
             Team aTeam = new Team();
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
+            //assertion
             bool result = handler.IsUserInTeam(admin);
             Assert.IsFalse(result);
         }
