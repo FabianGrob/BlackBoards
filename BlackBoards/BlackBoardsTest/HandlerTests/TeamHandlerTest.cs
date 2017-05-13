@@ -147,7 +147,7 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
             //assertion
-            bool result = handler.Team.Members.Contains(admin);
+            bool result = handler.Team.Members.Contains(admin) && handler.Team.Members.Count==1;
             Assert.IsTrue(result);
         }
         [TestMethod]
@@ -161,6 +161,42 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             bool result = handler.AddMember(admin); ;
             Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestRemoveMemberCorrectly() {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+            handler.AddMember(admin);
+            bool result = handler.RemoveMember(admin);
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestRemoveMemberCheck()
+        {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+            handler.AddMember(admin);
+            handler.RemoveMember(admin);
+            bool result = handler.Team.Members.Count == 0;
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestRemoveMemberDoesntExists()
+        {
+            //instance
+            Team aTeam = new Team();
+            User admin = new Admin();
+            TeamHandler handler = new TeamHandler(aTeam);
+           
+            bool result =  handler.RemoveMember(admin);
+            Assert.IsFalse(result);
+
         }
     }
 }
