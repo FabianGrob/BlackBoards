@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain;
 using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -64,6 +65,19 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             bool result = handler.Item.Equals(anItem);
             Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestChangeDimension() {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Dimension newDimension = new Dimension(3,3);
+            handler.ChangeDimension(nerDimension);
+
+            bool result = handler.Item.Equals(anotherItem);
+            Assert.IsFalse(result);
 
         }
     }
