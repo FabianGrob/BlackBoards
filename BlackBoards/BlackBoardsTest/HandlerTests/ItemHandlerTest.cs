@@ -110,5 +110,46 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(result);
 
         }
+        public void TestAddComment()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Comment aComment = new Comment();
+            handler.AddComment(aComment);
+            bool result = anotherItem.Equals(handler.Item);
+            Assert.IsFalse(result);
+        }
+        public void TestAddCommentDifferents()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Comment aComment = new Comment();
+            handler.AddComment(aComment);
+            handler = new ItemHandler(anotherItem);
+            aComment.WrittenComment = "another Comment";
+            handler.AddComment(aComment);
+            bool result = anItem.Equals(handler.Item);
+            Assert.IsFalse(result);
+        }
+        public void TestAddCommentSame()
+        {
+            //instance
+            Item anItem = new TextBox();
+            Item anotherItem = new TextBox(anItem as TextBox);
+            ItemHandler handler = new ItemHandler(anItem);
+            Comment aComment = new Comment();
+            handler.AddComment(aComment);
+            handler = new ItemHandler(anotherItem);
+            handler.AddComment(aComment);
+            bool result = anItem.Equals(handler.Item);
+            Assert.IsTrue(result);
+        }
+
+
+
     }
 }
