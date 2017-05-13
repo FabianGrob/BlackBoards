@@ -30,8 +30,8 @@ namespace BlackBoards.Handlers
         public void ChangeDimension(Dimension newDimension) {
             this.Item.Dimension = newDimension;
         }
-        public void AddComment(Comment aComment) {
-            this.Item.Comments.Add(aComment);
+        public bool AddComment(Comment aComment) {
+            return this.Item.AddNewComment(aComment);
         }
     }
 }
