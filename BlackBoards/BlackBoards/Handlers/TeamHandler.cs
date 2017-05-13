@@ -66,5 +66,15 @@ namespace BlackBoards.Handlers
 
             return added;
         }
+        public bool RemoveMember(User u) {
+            bool removed = false;
+            bool userMember = this.Team.Members.Contains(u);
+            if (userMember)
+            {
+                this.Team.Members.Remove(u);
+                removed = true;
+            }
+            return removed;
+        }
     }
 }
