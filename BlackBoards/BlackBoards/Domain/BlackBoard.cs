@@ -17,7 +17,7 @@ namespace BlackBoards
         public BlackBoard() {
             this.name = "Default name";
             this.description = "Default description";
-            this.dimension = new Dimension(0, 0);
+            this.dimension = new Dimension(5,5);
             this.team = new Team();
             this.itemList = new List<Item>();
         }
