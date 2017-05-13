@@ -84,6 +84,9 @@ namespace BlackBoards
                 this.itemList = value;
             }
         }
+        public bool isValid() {
+            return this.Dimension.Height > 3 && this.Dimension.Width > 3; 
+        }
         public override bool Equals(object aBlackBoard)
         {
             if (aBlackBoard == null)
