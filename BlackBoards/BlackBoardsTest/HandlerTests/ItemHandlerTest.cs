@@ -110,42 +110,54 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(result);
 
         }
+        [TestMethod]
         public void TestAddComment()
         {
             //instance
             Item anItem = new TextBox();
-            Item anotherItem = new TextBox(anItem as TextBox);
-            ItemHandler handler = new ItemHandler(anItem);
+            Item anotherItem = new TextBox();
+            ItemHandler handler = new ItemHandler(anotherItem);
             Comment aComment = new Comment();
             handler.AddComment(aComment);
-            bool result = anotherItem.Equals(handler.Item);
+            bool result = anItem.Comments.Count==handler.Item.Comments.Count;
             Assert.IsFalse(result);
         }
+        [TestMethod]
         public void TestAddCommentDifferents()
         {
             //instance
             Item anItem = new TextBox();
-            Item anotherItem = new TextBox(anItem as TextBox);
+            Item anotherItem = new TextBox();
             ItemHandler handler = new ItemHandler(anItem);
             Comment aComment = new Comment();
             handler.AddComment(aComment);
             handler = new ItemHandler(anotherItem);
             aComment.WrittenComment = "another Comment";
             handler.AddComment(aComment);
-            bool result = anItem.Equals(handler.Item);
+            bool result = true;
+            if (handler.Item.Comments.Count > 0 && handler.Item.Comments.Count == anItem.Comments.Count)
+            {
+                result = result && !anItem.Comments.ElementAt(0).Equals(handler.Item.Comments.ElementAt(0));
+            }
             Assert.IsFalse(result);
         }
+        [TestMethod]
         public void TestAddCommentSame()
         {
             //instance
             Item anItem = new TextBox();
-            Item anotherItem = new TextBox(anItem as TextBox);
+            Item anotherItem = new TextBox();
             ItemHandler handler = new ItemHandler(anItem);
             Comment aComment = new Comment();
             handler.AddComment(aComment);
             handler = new ItemHandler(anotherItem);
             handler.AddComment(aComment);
-            bool result = anItem.Equals(handler.Item);
+            bool result = true;
+            if (handler.Item.Comments.Count > 0 && handler.Item.Comments.Count == anItem.Comments.Count)
+            {
+                result = result && anItem.Comments.ElementAt(0).Equals(handler.Item.Comments.ElementAt(0));
+            }
+            
             Assert.IsTrue(result);
         }
 
