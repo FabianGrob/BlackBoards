@@ -55,26 +55,29 @@ namespace BlackBoards.Handlers
             }
             return modified;
         }
-        public bool AddMember(User u) {
+        public bool AddMember(User anUser) {
             bool added = false;
-            bool userNotMember = !this.Team.Members.Contains(u);
+            bool userNotMember = !this.Team.Members.Contains(anUser);
             if (userNotMember)
             {
-                this.Team.Members.Add(u);
+                this.Team.Members.Add(anUser);
                 added = true;
             }
 
             return added;
         }
-        public bool RemoveMember(User u) {
+        public bool RemoveMember(User anUser) {
             bool removed = false;
-            bool userMember = this.Team.Members.Contains(u);
+            bool userMember = this.Team.Members.Contains(anUser);
             if (userMember)
             {
-                this.Team.Members.Remove(u);
+                this.Team.Members.Remove(anUser);
                 removed = true;
             }
             return removed;
+        }
+        public bool IsUserInTeam(User anUser) {
+            return this.Team.Members.Contains(anUser);
         }
     }
 }
