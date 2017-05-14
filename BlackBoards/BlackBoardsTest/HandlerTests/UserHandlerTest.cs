@@ -442,6 +442,90 @@ namespace BlackBoardsTest
             bool result = userHandler.CreateNewComment(item, "New Comment");  
             //assertion
             Assert.IsTrue(result);
-        }   
+        }
+        [TestMethod]
+        public void TestResolveComment()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(2, 2);
+            userHandler.CreateNewComment(item, "New Comment");
+            User resolvingUser = new Admin();
+            resolvingUser.Email = "resolvingUser@test.com";
+            UserHandler resolvingUserHandler = new UserHandler(resolvingUser);
+            bool result = item.Comments.Count == 1;
+            if (result)
+            {
+                resolvingUserHandler.ResolveComment(item.Comments.ElementAt(0));
+                result = item.Comments.ElementAt(0).ResolvingUser.Equals(resolvingUser);
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestResolveCommentBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(2, 2);
+            userHandler.CreateNewComment(item, "New Comment");
+            User resolvingUser = new Admin();
+            resolvingUser.Email = "resolvingUser@test.com";
+            UserHandler resolvingUserHandler = new UserHandler(resolvingUser);
+            bool result = item.Comments.Count == 1;
+            if (result)
+            {
+                result = resolvingUserHandler.ResolveComment(item.Comments.ElementAt(0));
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestResolveResolvedComment()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(2, 2);
+            userHandler.CreateNewComment(item, "New Comment");
+            User resolvingUser = new Admin();
+            u.Email = "resolvingUser@test.com";
+            UserHandler resolvingUserHandler = new UserHandler(resolvingUser);
+            bool result = item.Comments.Count == 1;           
+            if (result)
+            {
+                userHandler.ResolveComment(item.Comments.ElementAt(0));
+                resolvingUserHandler.ResolveComment(item.Comments.ElementAt(0));
+                result = item.Comments.ElementAt(0).ResolvingUser.Equals(u);
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestResolveResolvedCommentBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(2, 2);
+            userHandler.CreateNewComment(item, "New Comment");
+            User resolvingUser = new Admin();
+            u.Email = "resolvingUser@test.com";
+            UserHandler resolvingUserHandler = new UserHandler(resolvingUser);
+            bool result = item.Comments.Count == 1;
+            if (result)
+            {
+                userHandler.ResolveComment(item.Comments.ElementAt(0));   
+                result = resolvingUserHandler.ResolveComment(item.Comments.ElementAt(0));
+            }
+            //assertion
+            Assert.IsFalse(result);
+        }
     }  
 }
