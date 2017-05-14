@@ -61,6 +61,18 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestAddItemToBlackBoard()
+        {
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            bool result = blackBoard.ItemList.Count == 1;
+          
+            Assert.IsTrue(result);
+        }
 
 
     }
