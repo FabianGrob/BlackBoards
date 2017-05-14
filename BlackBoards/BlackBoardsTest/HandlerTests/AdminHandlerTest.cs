@@ -21,5 +21,31 @@ namespace BlackBoardsTest.HandlerTests
             bool result = admin.Equals(handler.Admin);
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestCreateCollaboratorCorrectly() {
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string name="aNewName";
+            string lastName="aLastName";
+            string email="AnEmail";
+            DateTime birthDate=DateTime.Today;
+            string password="aPassword";
+            bool result =handler.CreateCollaborator(name,lastName,email,birthDate,password);
+            Assert.IsTrue(result);
+        }
+        public void TestCreateCollaboratorIncorrectly()
+        {
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string name = "aNewName";
+            string lastName = "aLastName";
+            string email = "AnEmail";
+            DateTime birthDate = DateTime.Today;
+            string password = "aPassword";
+            handler.CreateCollaborator(name, lastName, email, birthDate, password);
+            bool result = handler.CreateCollaborator(name, lastName, email, birthDate, password);
+            Assert.IsFalse(result);
+        }
+
     }
 }
