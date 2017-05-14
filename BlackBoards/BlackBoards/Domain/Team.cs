@@ -126,7 +126,7 @@ namespace BlackBoards
         }
         public bool isValid() {
             bool valid = true;
-            if (this.MaxUsers < this.Members.Count || this.Name.Length ==0 || this.Description.Length==0)
+            if (this.MaxUsers < this.Members.Count || this.Name.Length ==0 || this.Description.Length==0 || this.MaxUsers==0)
             {
                 valid = false;
             }

@@ -95,6 +95,25 @@ namespace BlackBoards.Handlers
             return added;
 
         }
+        public bool ModifyTeam(string oldName, string name, string description,int maxUsers,List<User> members, List<BlackBoard> boards, Repository theRepository) {
+            bool modified = false;
+            RepositoryHandler handler = new RepositoryHandler(theRepository);
+            Team abstractTeam = new Team(name, DateTime.Today,description, maxUsers,members,boards);
+            bool validModifications = abstractTeam.isValid();
+            Team oldTeam = new Team();
+            oldTeam.Name = oldName;
+            if (validModifications && theRepository.TeamList.Contains(oldTeam))
+            {
+                Team toModificate=handler.GetSpecificTeam(oldName);
+                modified = true;
+                toModificate.Name = name;
+                toModificate.Description = description;
+                toModificate.MaxUsers = maxUsers;
+                toModificate.Members = members;
+                toModificate.Boards = boards;
+            }
+            return modified;
+        }
     }
 }
 

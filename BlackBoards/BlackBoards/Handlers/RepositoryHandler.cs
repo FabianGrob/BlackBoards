@@ -114,5 +114,15 @@ namespace BlackBoards.Handlers
                 this.Repository.AdministratorList.Remove(deleteAdmin);
             }
         }
+        public Team GetSpecificTeam(string name) {
+            Team teamToReturn = null;
+            foreach (Team actualTeam in this.Repository.TeamList) {
+                if (actualTeam.Name.Equals(name))
+                {
+                    teamToReturn = actualTeam;
+                }
+            }
+            return teamToReturn;
+        }
     }
 }

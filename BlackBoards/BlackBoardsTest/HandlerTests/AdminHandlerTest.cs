@@ -451,11 +451,12 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(anAdmin);
             handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
             string newName = "TEAMB";
-            int newMaxUsers = 2;
+            int newMaxUsers = 1;
             bool result = handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
 
         }
+        [TestMethod]
         public void TestModifyTeamCheckWrong()
         {
             Repository repository = new Repository();
@@ -474,7 +475,7 @@ namespace BlackBoardsTest.HandlerTests
             string newName = "";
             int newMaxUsers = 5;
             handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
-            bool result = repository.TeamList.Count == 0;
+            bool result = repository.TeamList.ElementAt(0).Name.Equals(name) && repository.TeamList.ElementAt(0).MaxUsers== maxUsers;
             Assert.IsTrue(result);
 
         }
