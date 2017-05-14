@@ -167,5 +167,113 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsFalse(result);
 
         }
+        [TestMethod]
+        public void TestCreateTeamCorrectly()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            Collaborator col2 = new Collaborator();
+            col1.Name = "Collaborator2";
+            Collaborator col3 = new Collaborator();
+            col1.Name = "Collaborator3";
+            members.Add(col1);
+            members.Add(col2);
+            members.Add(col3);
+            members.Add(anAdmin);
+            string name= "TEAM A";
+            string description="Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            bool result = handler.CreateTeam(name,description,maxUsers,members, new List<BlackBoard>(),repository);
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestCreateTeamCheck()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            Collaborator col2 = new Collaborator();
+            col1.Name = "Collaborator2";
+            Collaborator col3 = new Collaborator();
+            col1.Name = "Collaborator3";
+            members.Add(col1);
+            members.Add(col2);
+            members.Add(col3);
+            members.Add(anAdmin);
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            bool result = repository.TeamList.ElementAt(0).Members.Count == 4;
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestCreateTeamIncorrectlyMax0()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            Collaborator col2 = new Collaborator();
+            col1.Name = "Collaborator2";
+            Collaborator col3 = new Collaborator();
+            col1.Name = "Collaborator3";
+            members.Add(col1);
+            members.Add(col2);
+            members.Add(col3);
+            members.Add(anAdmin);           
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 0;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            bool result = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestCreateTeamIncorrectlyOverSized()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            Collaborator col2 = new Collaborator();
+            col1.Name = "Collaborator2";
+            Collaborator col3 = new Collaborator();
+            col1.Name = "Collaborator3";
+            Collaborator col4 = new Collaborator();
+            col1.Name = "Collaborator4";
+            members.Add(col1);
+            members.Add(col2);
+            members.Add(col3);
+            members.Add(col4);
+            members.Add(anAdmin);
+            //instance
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            bool result = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            Assert.IsTrue(result);
+
+        }
+
     }
 }
