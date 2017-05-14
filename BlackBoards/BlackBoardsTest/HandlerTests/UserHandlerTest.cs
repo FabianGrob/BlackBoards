@@ -38,6 +38,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestRemoveBlackBoard()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
@@ -45,6 +46,7 @@ namespace BlackBoardsTest
             userHandler.CreateBlackBoard(aTeam, blackBoard);
             userHandler.RemoveBlackBoard(aTeam, blackBoard);
             bool result = aTeam.Boards.Count == 0;
+            //assertion
             Assert.IsTrue(result);
         }
 
