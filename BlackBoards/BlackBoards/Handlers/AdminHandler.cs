@@ -53,7 +53,10 @@ namespace BlackBoards.Handlers
             User anUser = new Collaborator(name, lastName, lookUpEmail, birthDate, password);
             RepositoryHandler repHandler = new RepositoryHandler(theRepository);
             bool doesUserExists = repHandler.UserAlreadyExists(anUser);
-            if (doesUserExists)
+            User modUser = new Collaborator();
+            modUser.Email = email;
+            bool userWithNewEmailValid = !theRepository.UserList.Contains(modUser);
+            if (doesUserExists && userWithNewEmailValid)
             {
                 repHandler.ModifyUser(lookUpEmail, name, lastName, email, birthDate, password);
                 modified = true;

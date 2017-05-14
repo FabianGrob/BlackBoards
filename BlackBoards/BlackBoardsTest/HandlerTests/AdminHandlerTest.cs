@@ -180,6 +180,7 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(result);
 
         }
+
         [TestMethod]
         public void TestModifyUserDoesntExists()
         {
@@ -193,6 +194,26 @@ namespace BlackBoardsTest.HandlerTests
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             string modEmail = "AModifiedEmail";
+            //assertion
+            bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
+            Assert.IsFalse(result);
+
+        }
+        [TestMethod]
+        public void TestModifyUserAlreadyExistsEmail()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string name = "aNewName";
+            string lastName = "aLastName";
+            string email = "AnEmail";
+            DateTime birthDate = DateTime.Today;
+            string password = "aPassword";
+            string modEmail = "AModifiedEmail";
+            handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
+            handler.CreateCollaborator(name, lastName, modEmail, birthDate, password, repository);
             //assertion
             bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
             Assert.IsFalse(result);
