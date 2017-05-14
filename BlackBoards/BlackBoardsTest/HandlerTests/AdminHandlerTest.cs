@@ -304,6 +304,24 @@ namespace BlackBoardsTest.HandlerTests
 
         }
         [TestMethod]
+        public void TestCreateTeamSameName()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
+            //assertion
+            bool result = handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository); ;
+            result = result && repository.TeamList.Count == 1;
+            Assert.IsFalse(result);
+
+        }
+        [TestMethod]
         public void TestCreateTeamIncorrectlyMax0()
         {
             Repository repository = new Repository();
