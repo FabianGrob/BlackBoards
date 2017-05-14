@@ -242,11 +242,7 @@ namespace BlackBoardsTest.HandlerTests
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
-            string name = "aNewName";
-            string lastName = "aLastName";
             string email = "AnEmail";
-            DateTime birthDate = DateTime.Today;
-            string password = "aPassword";
             //assertion
             bool result =handler.DeleteUser(email, repository);
             Assert.IsFalse(result);
