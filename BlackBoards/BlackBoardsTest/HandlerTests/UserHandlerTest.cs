@@ -336,6 +336,20 @@ namespace BlackBoardsTest
             Assert.IsTrue(result);
         }
         [TestMethod]
+        public void TestMoveItemBlackBoardBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(3, 3);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            bool result = userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
         public void TestInvalidMoveItemBlackBoard()
         {
             //instance
@@ -354,20 +368,6 @@ namespace BlackBoardsTest
             }
             //assertion
             Assert.IsFalse(result);
-        }
-        [TestMethod]
-        public void TestMoveItemBlackBoardBool()
-        {
-            //instance
-            User u = new Collaborator();
-            UserHandler userHandler = new UserHandler(u);
-            Item item = new TextBox();
-            Coordinate newCoordinate = new Coordinate(3, 3);
-            BlackBoard blackBoard = new BlackBoard();
-            userHandler.AddItemToBlackBoard(blackBoard, item);
-            bool result = userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
-            //assertion
-            Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestInvalidMoveItemBlackBoardBool()
