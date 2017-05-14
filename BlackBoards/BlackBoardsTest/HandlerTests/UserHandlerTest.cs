@@ -49,6 +49,18 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestRemoveInvalidBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            BlackBoard blackBoard = new BlackBoard();
+            bool result=userHandler.RemoveBlackBoard(aTeam, blackBoard);
+            //assertion
+            Assert.IsFalse(result);
+        }
 
 
     }

@@ -94,7 +94,8 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
-            BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(5,5) , aTeam, new List < Item > ());
+            User creatorUser = new Admin();
+            BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(5,5) , aTeam, new List < Item > (),creatorUser);
             //assertion
             bool modified = handler.ModifyBlackBoard(board, newBoard);
             Assert.IsTrue(modified);
@@ -107,7 +108,8 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
-            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(2,2), aTeam, new List<Item>());
+            User creatorUser = new Admin();
+            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(2,2), aTeam, new List<Item>(),creatorUser);
             //assertion
             bool modified = handler.ModifyBlackBoard(board, newBoard);
             Assert.IsFalse(modified);
@@ -121,7 +123,8 @@ namespace BlackBoardsTest.HandlerTests
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
             Item txtbx = new TextBox();
-            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(5, 5), aTeam, new List<Item>());
+            User creatorUser = new Admin();
+            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(5, 5), aTeam, new List<Item>(),creatorUser);
             board.ItemList.Add(txtbx);
             handler.ModifyBlackBoard(board, newBoard);
             //assertion

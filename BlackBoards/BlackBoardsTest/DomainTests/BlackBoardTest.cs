@@ -21,8 +21,9 @@ namespace BlackBoardsTest
             Team team = new Team();
             team.Name = "testTeam";
             List<Item> itemList = new List<Item>();
+            User creatorUser = new Admin();
             //objects instance
-            BlackBoard aBoard = new BlackBoard(name,description, aDimension, team,itemList);
+            BlackBoard aBoard = new BlackBoard(name,description, aDimension, team,itemList, creatorUser);
             BlackBoard anotherBoard = new BlackBoard();
             anotherBoard.Name = name;
             anotherBoard.Description = description;

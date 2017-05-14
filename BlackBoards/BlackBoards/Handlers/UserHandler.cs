@@ -34,9 +34,13 @@ namespace BlackBoards
         }
         public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
-            TeamHandler teamHandler = new TeamHandler(aTeam);
-            bool isABlackBoardValid = teamHandler.RemoveBlackBoard(aBlackBoard);
-            return isABlackBoardValid;
+            if (aBlackBoard.CreatorUser.Equals(this.user))
+            {
+                TeamHandler teamHandler = new TeamHandler(aTeam);
+                bool isABlackBoardValid = teamHandler.RemoveBlackBoard(aBlackBoard);
+                return isABlackBoardValid;
+            }
+            return false;
         }
     }
 }
