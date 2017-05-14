@@ -383,5 +383,65 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestCreateNewCommentUser()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            userHandler.CreateNewComment(item, "New Comment");
+            bool result = item.Comments.Count == 1;
+            if (result)
+            {
+                result = item.Comments.ElementAt(0).CommentingUser.Equals(u);
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCreateNewCommentDate()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            userHandler.CreateNewComment(item, "New Comment");
+            bool result = item.Comments.Count == 1;
+            if (result)
+            {
+                result = item.Comments.ElementAt(0).CommentingDate.Equals(DateTime.Today);
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCreateNewCommentWrite()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            userHandler.CreateNewComment(item, "New Comment");
+            bool result = item.Comments.Count == 1;
+            if (result)
+            {
+                result = item.Comments.ElementAt(0).WrittenComment.Equals("New Comment");
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCreateNewCommentBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(2, 2);
+            bool result = userHandler.CreateNewComment(item, "New Comment");  
+            //assertion
+            Assert.IsTrue(result);
+        }   
     }  
 }
