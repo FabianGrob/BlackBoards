@@ -35,6 +35,18 @@ namespace BlackBoards.Handlers
             }
             return canRegister;
         }
+        public bool CreateAdmin(string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository)
+        {
+            Admin anAdmin = new Admin(name, lastName, email, birthDate, password);
+            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
+            bool canRegister = !repHandler.UserAlreadyExists(anAdmin);
+            if (canRegister)
+            {
+                repHandler.AddAdmin(anAdmin);
+            }
+            return canRegister;
+        }
+
         public bool ModifyUser(string lookUpEmail, string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository)
         {
             bool modified = false;

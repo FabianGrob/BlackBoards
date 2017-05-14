@@ -39,6 +39,23 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(result);
         }
         [TestMethod]
+        public void TestCreateCollaboratorCheck()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string name = "aNewName";
+            string lastName = "aLastName";
+            string email = "AnEmail";
+            DateTime birthDate = DateTime.Today;
+            string password = "aPassword";
+            //assertion
+           handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
+            bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count==0;
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
         public void TestCreateCollaboratorIncorrectly()
         {
             //instance
@@ -69,6 +86,41 @@ namespace BlackBoardsTest.HandlerTests
             string password = "aPassword";
             //assertion
             bool result = handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCreateAdminCheck()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string name = "aNewName";
+            string lastName = "aLastName";
+            string email = "AnEmail";
+            DateTime birthDate = DateTime.Today;
+            string password = "aPassword";
+            //assertion
+             handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
+            bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 1;
+            Assert.IsTrue(result);
+        }
+         [TestMethod]
+        public void TestCreateAdminCheckTwoAdmins()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string name = "aNewName";
+            string lastName = "aLastName";
+            string email = "AnEmail";
+            DateTime birthDate = DateTime.Today;
+            string password = "aPassword";
+            //assertion
+             handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
+            handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
+            bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 1;
             Assert.IsTrue(result);
         }
         [TestMethod]
