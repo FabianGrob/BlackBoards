@@ -126,6 +126,7 @@ namespace BlackBoardsTest.HandlerTests
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
+            //assertion
             bool result =handler.DeleteUser(email,repository);
             Assert.IsTrue(result);
 
@@ -144,6 +145,7 @@ namespace BlackBoardsTest.HandlerTests
             string password = "aPassword";
             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
             handler.DeleteUser(email, repository);
+            //assertion
             bool result = repository.UserList.Count == 0;
             Assert.IsTrue(result);
 
@@ -160,6 +162,7 @@ namespace BlackBoardsTest.HandlerTests
             string email = "AnEmail";
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
+            //assertion
             bool result =handler.DeleteUser(email, repository);
             Assert.IsFalse(result);
 

@@ -51,7 +51,8 @@ namespace BlackBoards.Handlers
             RepositoryHandler repHandler = new RepositoryHandler(repository);
             User u = new Admin();
             u.Email = email;
-            if (repHandler.UserAlreadyExists(u))
+            bool doesUserExists =repHandler.UserAlreadyExists(u);
+            if (doesUserExists)
             {
                 repHandler.DeleteUser(email);
                 deleted = true;
