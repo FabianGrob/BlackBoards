@@ -189,6 +189,7 @@ namespace BlackBoardsTest.HandlerTests
             string description="Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
+            //assertion
             bool result = handler.CreateTeam(name,description,maxUsers,members, new List<BlackBoard>(),repository);
             Assert.IsTrue(result);
 
@@ -216,6 +217,7 @@ namespace BlackBoardsTest.HandlerTests
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
             handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            //assertion
             bool result = repository.TeamList.ElementAt(0).Members.Count == 4;
             Assert.IsTrue(result);
 
@@ -241,13 +243,15 @@ namespace BlackBoardsTest.HandlerTests
             string description = "Default Team Description";
             int maxUsers = 0;
             AdminHandler handler = new AdminHandler(anAdmin);
+            //assertion
             bool result = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
             Assert.IsFalse(result);
 
         }
         [TestMethod]
         public void TestCreateTeamIncorrectlyOverSized()
-        {
+        { 
+            //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
@@ -265,7 +269,7 @@ namespace BlackBoardsTest.HandlerTests
             members.Add(col3);
             members.Add(col4);
             members.Add(anAdmin);
-            //instance
+
             string name = "TEAM A";
             string description = "Default Team Description";
             int maxUsers = 4;
@@ -300,6 +304,7 @@ namespace BlackBoardsTest.HandlerTests
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
             handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            //assertion
             bool result = repository.TeamList.Count == 0;
             Assert.IsTrue(result);
 

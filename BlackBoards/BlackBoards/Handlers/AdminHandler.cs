@@ -73,7 +73,8 @@ namespace BlackBoards.Handlers
             newTeam.MaxUsers = maxUsers;
             newTeam.Members = members;
             newTeam.Boards = boards;
-            if (newTeam.isValid())
+            bool teamValid =newTeam.isValid() ;
+            if (teamValid)
             {
                 repHandler.AddTeam(newTeam);
                 added = true;
