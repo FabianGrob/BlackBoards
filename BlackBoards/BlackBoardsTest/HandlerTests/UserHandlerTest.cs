@@ -14,24 +14,40 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestUserHandlerBuilder()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             bool result = u.Equals(userHandler.User);
+            //assertion
             Assert.IsTrue(result);
 
         }
         [TestMethod]
         public void TestCreateBlackBoard()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
             BlackBoard blackBoard = new BlackBoard();
             userHandler.CreateBlackBoard(aTeam,blackBoard);
             bool result = aTeam.Boards.Count == 1;
+            //assertion
             Assert.IsTrue(result);
         }
-        
+        [TestMethod]
+        public void TestRemoveBlackBoard()
+        {
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            userHandler.RemoveBlackBoard(aTeam, blackBoard);
+            bool result = aTeam.Boards.Count == 0;
+            Assert.IsTrue(result);
+        }
+
 
     }
     
