@@ -93,6 +93,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestRemoveItemBlackBoard()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
@@ -100,25 +101,26 @@ namespace BlackBoardsTest
             userHandler.AddItemToBlackBoard(blackBoard, item);
             userHandler.RemoveItemBlackBoard(blackBoard, item);
             bool result = blackBoard.ItemList.Count == 0;
-
+            //assertion
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestRemoveItemBlackBoardBool()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
             BlackBoard blackBoard = new BlackBoard();
             userHandler.AddItemToBlackBoard(blackBoard, item);  
             bool result = userHandler.RemoveItemBlackBoard(blackBoard, item);
-
+            //assertion
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestRemoveInvalidItemBlackBoard()
         {
-
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
@@ -129,7 +131,7 @@ namespace BlackBoardsTest
             userHandler.AddItemToBlackBoard(blackBoard, item);
             userHandler.RemoveItemBlackBoard(blackBoard, anotherItem);
             bool result = blackBoard.ItemList.Count == 1;
-
+            //assertion
             Assert.IsTrue(result);
         }
         
