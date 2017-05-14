@@ -30,6 +30,7 @@ namespace BlackBoards
         public bool CreateBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
             TeamHandler teamHandler = new TeamHandler(aTeam);
+            aBlackBoard.CreatorUser = this.User;
             bool userInTeam = teamHandler.IsUserInTeam(this.user);
             if (userInTeam)
             {
@@ -49,9 +50,11 @@ namespace BlackBoards
             }
             return userInTeam;
         }
-        public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard)
+        public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard, Repository aRepository)
         {
-            if (aBlackBoard.CreatorUser.Equals(this.user))
+            RepositoryHandler repositoryHandler = new RepositoryHandler(aRepository);
+            bool userAdmin = repositoryHandler.IsUserAnAdmin(User.Email);
+            if (aBlackBoard.CreatorUser.Equals(this.user) || userAdmin)
             {
                 TeamHandler teamHandler = new TeamHandler(aTeam);
                 bool wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard);

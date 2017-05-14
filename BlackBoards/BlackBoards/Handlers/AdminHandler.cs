@@ -125,7 +125,6 @@ namespace BlackBoards.Handlers
                 theRepository.TeamList.Remove(toDelete);
                 deleted = true;
             }
-            
             return deleted;
         }
     }

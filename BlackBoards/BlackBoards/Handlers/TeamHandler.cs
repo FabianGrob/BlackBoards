@@ -79,5 +79,9 @@ namespace BlackBoards.Handlers
         public bool IsUserInTeam(User anUser) {
             return this.Team.Members.Contains(anUser);
         }
+        public bool HasAnyMember()
+        {
+            return !(this.Team.Members.Count == 0);
+        }
     }
 }
