@@ -400,22 +400,6 @@ namespace BlackBoardsTest
             Assert.IsTrue(result);
         }
         [TestMethod]
-        public void TestCreateNewCommentDate()
-        {
-            //instance
-            User u = new Collaborator();
-            UserHandler userHandler = new UserHandler(u);
-            Item item = new TextBox();
-            userHandler.CreateNewComment(item, "New Comment");
-            bool result = item.Comments.Count == 1;
-            if (result)
-            {
-                result = item.Comments.ElementAt(0).CommentingDate.Equals(DateTime.Today);
-            }
-            //assertion
-            Assert.IsTrue(result);
-        }
-        [TestMethod]
         public void TestCreateNewCommentWrite()
         {
             //instance
@@ -427,6 +411,22 @@ namespace BlackBoardsTest
             if (result)
             {
                 result = item.Comments.ElementAt(0).WrittenComment.Equals("New Comment");
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCreateNewCommentDate()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            userHandler.CreateNewComment(item, "New Comment");
+            bool result = item.Comments.Count == 1;
+            if (result)
+            {
+                result = item.Comments.ElementAt(0).CommentingDate.Equals(DateTime.Today);
             }
             //assertion
             Assert.IsTrue(result);
