@@ -168,6 +168,56 @@ namespace BlackBoardsTest.HandlersTests
             //assert
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestReziseItemBlackBoard()
+        {
+            //instance variables
+            Dimension dimensionsBlackBoard = new Dimension(8, 8);
+            Dimension newDimensionItem = new Dimension(2, 2);
+            Dimension dimensionsItem = new Dimension(1, 1);
+            string name = "BlackBoard Name";
+            string description = "BlackBoard Description";
+            Team aTeam = new Team();
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
+            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);
+            Item testItem = new TextBox();
+            testItem.Dimension = dimensionsItem;
+            blackBoardHandler.AddItem(testItem);
+            blackBoardHandler.ReziseItem(testItem, newDimensionItem);
+            bool result = false;
+            if (blackBoardHandler.BlackBoard.ItemList.Count == 1)
+            {
+                Item itemInBlackBoard = blackBoardHandler.BlackBoard.ItemList.ElementAt(0);
+                result = newDimensionItem.Equals(testItem.Dimension);
+            }
+            //assert
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestReziseItemBlackBoardOutOfBands()
+        {
+            //instance variables
+            Dimension dimensionsBlackBoard = new Dimension(8, 8);
+            Dimension dimensionOutOfBands = new Dimension(10, 10);
+            Dimension dimensionsItem = new Dimension(1, 1);
+            string name = "BlackBoard Name";
+            string description = "BlackBoard Description";
+            Team aTeam = new Team();
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
+            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);
+            Item testItem = new TextBox();
+            testItem.Dimension = dimensionsItem;
+            blackBoardHandler.AddItem(testItem);
+            blackBoardHandler.ReziseItem(testItem, dimensionOutOfBands);
+            bool result = false;
+            if (blackBoardHandler.BlackBoard.ItemList.Count == 1)
+            {
+                Item itemInBlackBoard = blackBoardHandler.BlackBoard.ItemList.ElementAt(0);
+                result = dimensionOutOfBands.Equals(testItem.Dimension);
+            }
+            //assert
+            Assert.IsFalse(result);
+        }
 
     }
 }

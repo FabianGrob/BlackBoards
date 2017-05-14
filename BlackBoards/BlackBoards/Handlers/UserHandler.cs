@@ -1,4 +1,5 @@
-﻿using BlackBoards.Handlers;
+﻿using BlackBoards.Domain;
+using BlackBoards.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,16 @@ namespace BlackBoards
         {
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
             return blackBoardHandler.RemoveItem(aItem);
+        }
+        public bool ResizeItemBlackBoard(BlackBoard aBlackBoard, Item aItem, Dimension newDimension)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.ReziseItem(aItem, newDimension);
+        }
+        public bool MoveItemBlackBoard(BlackBoard aBlackBoard, Item aItem, Coordinate newCoordinates)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.MoveItem(aItem, newCoordinates);
         }
     }
 }
