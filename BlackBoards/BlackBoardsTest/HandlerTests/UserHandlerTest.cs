@@ -30,11 +30,38 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
+            aTeam.Members.Add(u);
             BlackBoard blackBoard = new BlackBoard();
             userHandler.CreateBlackBoard(aTeam,blackBoard);
             bool result = aTeam.Boards.Count == 1;
             //assertion
             Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCreateBlackBoardBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();
+            bool result = userHandler.CreateBlackBoard(aTeam, blackBoard);
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCreateBlackBoardUserNotInTeam()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            bool result = aTeam.Boards.Count == 1;
+            //assertion
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestRemoveBlackBoard()
@@ -43,10 +70,26 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
+            aTeam.Members.Add(u);
             BlackBoard blackBoard = new BlackBoard();
             userHandler.CreateBlackBoard(aTeam, blackBoard);
             userHandler.RemoveBlackBoard(aTeam, blackBoard);
             bool result = aTeam.Boards.Count == 0;
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestRemoveBlackBoardBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();
+            bool ok=userHandler.CreateBlackBoard(aTeam, blackBoard);
+            int a = 0;
+            bool result = userHandler.RemoveBlackBoard(aTeam, blackBoard);
             //assertion
             Assert.IsTrue(result);
         }
@@ -134,8 +177,71 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result);
         }
-        
-
-    }
-    
+        [TestMethod]
+        public void TestModifyBlackBoardBool()
+        {
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            BlackBoard updateBlackBoard = new BlackBoard();
+            updateBlackBoard.Name = "different name"; 
+            bool result = userHandler.ModifyBlackBoard(aTeam, blackBoard, updateBlackBoard);
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestModifyBlackBoard()
+        {
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            BlackBoard updateBlackBoard = new BlackBoard();
+            updateBlackBoard.Name = "different name";
+            userHandler.ModifyBlackBoard(aTeam,blackBoard,updateBlackBoard);
+            bool result = updateBlackBoard.Equals(aTeam.Boards.ElementAt(0));
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestModifyInvalidBlackBoardBool()
+        {
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            BlackBoard updateBlackBoard = new BlackBoard();
+            updateBlackBoard.Name = "different name";
+            Dimension invalidDimension = new Dimension(1,1);
+            updateBlackBoard.Dimension = invalidDimension;           
+            bool result = userHandler.ModifyBlackBoard(aTeam, blackBoard, updateBlackBoard);
+            //assertion
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestModifyInvalidBlackBoard()
+        {
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            BlackBoard updateBlackBoard = new BlackBoard();
+            updateBlackBoard.Name = "different name";
+            Dimension invalidDimension = new Dimension(1, 1);
+            updateBlackBoard.Dimension = invalidDimension;
+            userHandler.ModifyBlackBoard(aTeam, blackBoard, updateBlackBoard);
+            bool result = updateBlackBoard.Equals(aTeam.Boards.ElementAt(0));
+            //assertion
+            Assert.IsFalse(result);
+        }
+    }  
 }
