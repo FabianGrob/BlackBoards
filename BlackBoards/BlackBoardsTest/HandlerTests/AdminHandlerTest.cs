@@ -14,10 +14,10 @@ namespace BlackBoardsTest.HandlerTests
     {
         [TestMethod]
         public void TestAdminHandlerBuilder() {
-
+            //instance
             Admin admin = new Admin();
             AdminHandler handler = new AdminHandler(admin);
-
+            //assertion
             bool result = admin.Equals(handler.Admin);
             Assert.IsTrue(result);
         }
