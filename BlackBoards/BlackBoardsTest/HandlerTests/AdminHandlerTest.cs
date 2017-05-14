@@ -523,8 +523,6 @@ namespace BlackBoardsTest.HandlerTests
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
             string name = "TEAM A";
-            string description = "Default Team Description";
-            int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
            
             bool result =handler.DeleteTeam(name, repository);

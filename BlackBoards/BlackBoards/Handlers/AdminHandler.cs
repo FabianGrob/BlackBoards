@@ -87,7 +87,7 @@ namespace BlackBoards.Handlers
             newTeam.Boards = boards;
             newTeam.CreationDate = DateTime.Today;
             bool teamValid =newTeam.isValid() ;
-            if (teamValid)
+            if (teamValid && !repHandler.TeamAlreadyExists(name))
             {
                 repHandler.AddTeam(newTeam);
                 added = true;
@@ -103,7 +103,7 @@ namespace BlackBoards.Handlers
             Team oldTeam = new Team();
             oldTeam.Name = oldName;
             bool teamExists = theRepository.TeamList.Contains(oldTeam);
-            if (validModifications && teamExists)
+            if (validModifications && teamExists && !handler.TeamAlreadyExists(name))
             {
                 Team toModificate=handler.GetSpecificTeam(oldName);
                 modified = true;
@@ -114,6 +114,19 @@ namespace BlackBoards.Handlers
                 toModificate.Boards = boards;
             }
             return modified;
+        }
+        public bool DeleteTeam(string name, Repository theRepository) {
+            bool deleted = false;
+            RepositoryHandler handler = new RepositoryHandler(theRepository);
+
+            if (handler.TeamAlreadyExists(name))
+            {
+                Team toDelete = handler.GetSpecificTeam(name);
+                theRepository.TeamList.Remove(toDelete);
+                deleted = true;
+            }
+            
+            return deleted;
         }
     }
 }

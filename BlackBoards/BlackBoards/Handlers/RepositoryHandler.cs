@@ -124,5 +124,15 @@ namespace BlackBoards.Handlers
             }
             return teamToReturn;
         }
+        public bool TeamAlreadyExists(string name) {
+            bool exists = false;
+            foreach (Team actualTeam in this.Repository.TeamList) {
+                if (actualTeam.Name.Equals(name))
+                {
+                    exists = true;
+                }
+              }
+            return exists;
+        }
     }
 }
