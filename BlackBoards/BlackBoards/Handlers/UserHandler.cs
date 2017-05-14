@@ -47,5 +47,10 @@ namespace BlackBoards
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
             return blackBoardHandler.AddItem(aItem);
         }
+        public bool RemoveItemBlackBoard(BlackBoard aBlackBoard, Item aItem)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.RemoveItem(aItem);
+        }
     }
 }
