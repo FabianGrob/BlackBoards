@@ -390,6 +390,94 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(result);
 
         }
+        [TestMethod]
+        public void TestModifyTeamCorrectly() {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            members.Add(col1);
+            members.Add(anAdmin);
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            string newName = "TEAMB";
+            int newMaxUsers = 5;
+            bool result =handler.ModifyTeam(name,newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestModifyTeamCheck()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            members.Add(col1);
+            members.Add(anAdmin);
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            string newName = "TEAMB";
+            int newMaxUsers = 5;
+            handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
+            bool result = repository.TeamList.ElementAt(0).MaxUsers == 5 && repository.TeamList.ElementAt(0).Name.Equals(newName);
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestModifyTeamIncorrectly()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            members.Add(col1);
+            members.Add(anAdmin);
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            string newName = "TEAMB";
+            int newMaxUsers = 2;
+            bool result = handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
+            Assert.IsTrue(result);
+
+        }
+        public void TestModifyTeamCheckWrong()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            List<User> members = new List<User>();
+            Collaborator col1 = new Collaborator();
+            col1.Name = "Collaborator1";
+            members.Add(col1);
+            members.Add(anAdmin);
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            string newName = "";
+            int newMaxUsers = 5;
+            handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
+            bool result = repository.TeamList.Count == 0;
+            Assert.IsTrue(result);
+
+        }
 
     }
 }
