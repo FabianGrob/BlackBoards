@@ -86,5 +86,10 @@ namespace BlackBoards
             ItemHandler itemHandler = new ItemHandler(aItem);
             return itemHandler.AddComment(commentHandler.Comment);
         }
+        public bool ResolveComment(Comment aComment)
+        {
+            CommentHandler commentHandler = new CommentHandler(aComment);
+            return commentHandler.ResolveComment(User);
+        }
     }
 }

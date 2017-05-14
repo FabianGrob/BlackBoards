@@ -36,9 +36,17 @@ namespace BlackBoards.Handlers
         }
         public bool ResolveComment(User anUser)
         {
-            this.AddResolvingUser(anUser);
-            this.AddResolvingDate(DateTime.Today);
-            return true;
+            bool canResolveComment = !(this.WasResolved());
+            if (canResolveComment)
+            {
+                this.AddResolvingUser(anUser);
+                this.AddResolvingDate(DateTime.Today);
+            }
+            return canResolveComment;
+        }
+        private bool WasResolved()
+        {
+            return !(this.Comment.ResolvingDate.Equals(DateTime.MaxValue));
         }
         private void AddResolvingUser(User anUser)
         {
