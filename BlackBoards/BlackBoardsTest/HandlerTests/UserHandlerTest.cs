@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -64,16 +65,31 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestAddItemToBlackBoard()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
             BlackBoard blackBoard = new BlackBoard();
             userHandler.AddItemToBlackBoard(blackBoard, item);
             bool result = blackBoard.ItemList.Count == 1;
-          
+            //assertion
             Assert.IsTrue(result);
         }
-
+        [TestMethod]
+        public void TestAddInvalidItemToBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Dimension invalidDimension = new Dimension(5,7);
+            item.Dimension = invalidDimension;
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            bool result = blackBoard.ItemList.Count == 1;
+            //assertion
+            Assert.IsFalse(result);
+        }
 
     }
     
