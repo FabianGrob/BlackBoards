@@ -180,6 +180,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestModifyBlackBoardBool()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
@@ -195,6 +196,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestModifyBlackBoard()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
@@ -211,6 +213,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestModifyInvalidBlackBoardBool()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
@@ -228,6 +231,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestModifyInvalidBlackBoard()
         {
+            //instance
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
