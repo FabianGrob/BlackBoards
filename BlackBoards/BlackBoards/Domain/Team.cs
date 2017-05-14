@@ -16,7 +16,7 @@ namespace BlackBoards
         private List<BlackBoard> boards;
         public Team() {
             this.name = "Default name";
-            this.creationDate = new DateTime();
+            this.creationDate = DateTime.Today;
             this.description = "Default description";
             this.maxUsers = 10;
             this.members = new List<User>();
@@ -123,6 +123,14 @@ namespace BlackBoards
                 return false;
             }
             return this.Name.Equals(anotherTeam.Name);
+        }
+        public bool isValid() {
+            bool valid = true;
+            if (this.MaxUsers < this.Members.Count || this.Name.Length ==0 || this.Description.Length==0)
+            {
+                valid = false;
+            }
+            return valid;
         }
     }
 }
