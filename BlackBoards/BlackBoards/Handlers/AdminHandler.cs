@@ -73,6 +73,7 @@ namespace BlackBoards.Handlers
             newTeam.MaxUsers = maxUsers;
             newTeam.Members = members;
             newTeam.Boards = boards;
+            newTeam.CreationDate = DateTime.Today;
             bool teamValid =newTeam.isValid() ;
             if (teamValid)
             {
