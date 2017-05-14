@@ -487,6 +487,62 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsTrue(result);
 
         }
-
+        [TestMethod]
+        public void TestDeleteTeamCorrectly()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
+            bool result = handler.DeleteTeam(name, repository);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestDeleteTeamCheck()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
+            handler.DeleteTeam(name, repository);
+            bool result = repository.TeamList.Count == 0;
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestDeleteTeamIncorrectly()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+           
+            bool result =handler.DeleteTeam(name, repository);
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestDeleteTeamCheckWrong()
+        {
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            string name = "TEAM A";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
+            bool result = handler.DeleteTeam("NotExistingTeam", repository);
+            Assert.IsFalse(result);
+        }
     }
 }
