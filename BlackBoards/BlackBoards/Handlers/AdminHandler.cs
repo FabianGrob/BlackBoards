@@ -23,7 +23,16 @@ namespace BlackBoards.Handlers
                 this.admin = value;
             }
         }
-       
+        public bool CreateCollaborator(string name,string lastName,string email,DateTime birthDate,string password,Repository theRepository) {
+            Collaborator aCollaborator = new BlackBoards.Collaborator(name,lastName,email,birthDate,password);
+            RepositoryHandler repHandler = new Handlers.RepositoryHandler(theRepository);
+            bool canRegister = !repHandler.UserAlreadyExists(aCollaborator);
+            if (canRegister)
+            {
+                repHandler.AddUser(aCollaborator);
+            }
+            return canRegister;
+        }
 
     }
 }

@@ -23,6 +23,7 @@ namespace BlackBoardsTest.HandlerTests
         }
         [TestMethod]
         public void TestCreateCollaboratorCorrectly() {
+            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
             string name="aNewName";
@@ -30,11 +31,13 @@ namespace BlackBoardsTest.HandlerTests
             string email="AnEmail";
             DateTime birthDate=DateTime.Today;
             string password="aPassword";
-            bool result =handler.CreateCollaborator(name,lastName,email,birthDate,password);
+            bool result =handler.CreateCollaborator(name,lastName,email,birthDate,password, repository);
             Assert.IsTrue(result);
         }
+        [TestMethod]
         public void TestCreateCollaboratorIncorrectly()
         {
+            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
             string name = "aNewName";
@@ -42,8 +45,8 @@ namespace BlackBoardsTest.HandlerTests
             string email = "AnEmail";
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
-            handler.CreateCollaborator(name, lastName, email, birthDate, password);
-            bool result = handler.CreateCollaborator(name, lastName, email, birthDate, password);
+            handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
+            bool result = handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
             Assert.IsFalse(result);
         }
 
