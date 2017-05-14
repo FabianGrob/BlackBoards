@@ -42,5 +42,10 @@ namespace BlackBoards
             }
             return false;
         }
+        public bool AddItemToBlackBoard(BlackBoard aBlackBoard, Item aItem)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.AddItem(aItem);
+        }
     }
 }
