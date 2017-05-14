@@ -13,20 +13,21 @@ namespace BlackBoards
         private string name;
         private string description;
         private Dimension dimension;
-        private Team team;
+        private User creatorUser;
+
         public BlackBoard() {
             this.name = "Default name";
             this.description = "Default description";
             this.dimension = new Dimension(5,5);
-            this.team = new Team();
             this.itemList = new List<Item>();
+            this.creatorUser = new Admin();
         }
-        public BlackBoard(string aName, string aDescription, Dimension aDimension, Team aTeam, List<Item> itemList) {
+        public BlackBoard(string aName, string aDescription, Dimension aDimension, List<Item> itemList, User anUser) {
             this.name = aName;
             this.description = aDescription;
             this.dimension = aDimension;
-            this.team = aTeam;
             this.itemList = itemList;
+            this.creatorUser = anUser;
         }
         public string Name
         {
@@ -62,17 +63,6 @@ namespace BlackBoards
             }
         }
 
-        public Team Team
-        {
-            get
-            {
-                return this.team;
-            }
-            set
-            {
-                this.team = value;
-            }
-        }
         public List<Item> ItemList
         {
             get
@@ -82,6 +72,17 @@ namespace BlackBoards
             set
             {
                 this.itemList = value;
+            }
+        }
+        public User CreatorUser
+        {
+            get
+            {
+                return this.creatorUser;
+            }
+            set
+            {
+                this.creatorUser = value;
             }
         }
         public bool isValid() {

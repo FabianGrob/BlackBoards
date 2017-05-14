@@ -31,48 +31,73 @@ namespace BlackBoards.Handlers
             }
         }
 
-        public void CreateBlackBoard(Team aTeam, string aName, string aDescription, Dimension aDimension)
+        public void CreateBlackBoard(string aName, string aDescription, Dimension aDimension)
         {
             this.blackBoard.Description = aDescription;
-            this.blackBoard.Team = aTeam;
             this.blackBoard.Name = aName;
             this.blackBoard.Dimension = aDimension;
         }
 
-        public void Modify(Team aTeam, string aName, string aDescription, Dimension aDimension)
+        public void Modify(string aName, string aDescription, Dimension aDimension)
         {
             this.blackBoard.Description = aDescription;
-            this.blackBoard.Team = aTeam;
             this.blackBoard.Name = aName;
             this.blackBoard.Dimension = aDimension;
         }
 
-        public void AddItem(Item aItem)
+        public bool AddItem(Item aItem)
         {
             bool itemFitsInBlackBoard = ItemOutOfBands(aItem,aItem.Origin);
             if (itemFitsInBlackBoard)
             {
                 this.blackBoard.ItemList.Add(aItem);
             }
+            return itemFitsInBlackBoard;
         }
 
-        public void RemoveItem(Item aItem)
+        public bool RemoveItem(Item aItem)
         {
-            this.blackBoard.ItemList.Remove(aItem);
+            bool existsItemInList = blackBoard.ItemList.Contains(aItem);
+            if (existsItemInList)
+            {
+                this.blackBoard.ItemList.Remove(aItem);
+
+            }
+            return existsItemInList;
         }
 
-        public void MoveItem(Item aItem, Coordinate coordinates)
+        public bool MoveItem(Item aItem, Coordinate coordinates)
         {
             bool itemFitsInBlackBoard = ItemOutOfBands(aItem, coordinates);
             if (itemFitsInBlackBoard)
             {
-                this.blackBoard.ItemList.Remove(aItem);
-                aItem.Origin = coordinates;
-                this.blackBoard.ItemList.Add(aItem);
+                ItemHandler itemHandler = new ItemHandler(aItem);
+                itemHandler.MoveItem(coordinates);
             }
+            return itemFitsInBlackBoard;
+        }
+        public bool ReziseItem(Item aItem, Dimension dimension)
+        {
+            bool itemFitsInBlackBoard = ItemSizeFitsInBlackBoard(aItem, dimension);
+            if (itemFitsInBlackBoard)
+            {
+                ItemHandler itemHandler = new ItemHandler(aItem);
+                itemHandler.ChangeDimension(dimension);
+            }
+            return itemFitsInBlackBoard;
 
         }
-
+        private bool ItemSizeFitsInBlackBoard(Item aItem, Dimension dimension)
+        {
+            int maxXAxisValue = aItem.Origin.XAxis + dimension.Width;
+            int maxYAxisValue = aItem.Origin.YAxis + dimension.Height;
+            bool itemSizeFitsInBlackBoard = true;
+            if (maxXAxisValue > blackBoard.Dimension.Height || maxYAxisValue > blackBoard.Dimension.Width)
+            {
+                itemSizeFitsInBlackBoard = false;
+            }
+            return itemSizeFitsInBlackBoard;
+        }
         private bool ItemOutOfBands(Item aItem, Coordinate coordinates)
         {
             int maxXAxisValue = coordinates.XAxis + aItem.Dimension.Width;

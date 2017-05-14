@@ -21,19 +21,16 @@ namespace BlackBoardsTest
             Team team = new Team();
             team.Name = "testTeam";
             List<Item> itemList = new List<Item>();
+            User creatorUser = new Admin();
             //objects instance
-            BlackBoard aBoard = new BlackBoard(name,description, aDimension, team,itemList);
+            BlackBoard aBoard = new BlackBoard(name,description, aDimension, itemList, creatorUser);
             BlackBoard anotherBoard = new BlackBoard();
             anotherBoard.Name = name;
             anotherBoard.Description = description;
             anotherBoard.Dimension = aDimension;
-            anotherBoard.Team = team;
             anotherBoard.ItemList = itemList;
-
             //assert
             Assert.IsTrue(aBoard.Equals(anotherBoard));
-
-
         }
         [TestMethod]
         public void TestBlackBoardEquals() {
@@ -41,7 +38,6 @@ namespace BlackBoardsTest
             BlackBoard aBoard = new BlackBoard();
             BlackBoard anotherBoard = new BlackBoard();
             Boolean result = aBoard.Equals(anotherBoard);
-
             //assert
             Assert.IsTrue(result);
         }
@@ -53,7 +49,6 @@ namespace BlackBoardsTest
             BlackBoard anotherBoard = new BlackBoard();
             anotherBoard.Name = "Different board";
             Boolean result = aBoard.Equals(anotherBoard);
-
             //assert
             Assert.IsFalse(result);
         }

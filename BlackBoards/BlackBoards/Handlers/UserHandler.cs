@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlackBoards.Domain;
+using BlackBoards.Handlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,8 @@ namespace BlackBoards
     {
         private User user;
 
-        public UserHandler(User anUser) {
+        public UserHandler(User anUser)
+        {
             this.user = anUser;
         }
         public User User
@@ -23,6 +26,70 @@ namespace BlackBoards
             {
                 this.user = value;
             }
+        }
+        public bool CreateBlackBoard(Team aTeam, BlackBoard aBlackBoard)
+        {
+            TeamHandler teamHandler = new TeamHandler(aTeam);
+            bool userInTeam = teamHandler.IsUserInTeam(this.user);
+            if (userInTeam)
+            {
+                bool isABlackBoardValid = teamHandler.AddBlackBoard(aBlackBoard);
+                return isABlackBoardValid;
+            }
+            return userInTeam;
+        }
+        public bool ModifyBlackBoard(Team aTeam, BlackBoard oldBlackBoard, BlackBoard newBlackBoard)
+        {
+            TeamHandler teamHandler = new TeamHandler(aTeam);
+            bool userInTeam = teamHandler.IsUserInTeam(this.user);
+            if (userInTeam)
+            {
+                bool isABlackBoardValid = teamHandler.ModifyBlackBoard(oldBlackBoard, newBlackBoard);
+                return isABlackBoardValid;
+            }
+            return userInTeam;
+        }
+        public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard)
+        {
+            if (aBlackBoard.CreatorUser.Equals(this.user))
+            {
+                TeamHandler teamHandler = new TeamHandler(aTeam);
+                bool wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard);
+                return wasRemoved;
+            }
+            return false;
+        }
+        public bool AddItemToBlackBoard(BlackBoard aBlackBoard, Item aItem)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.AddItem(aItem);
+        }
+        public bool RemoveItemBlackBoard(BlackBoard aBlackBoard, Item aItem)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.RemoveItem(aItem);
+        }
+        public bool ResizeItemBlackBoard(BlackBoard aBlackBoard, Item aItem, Dimension newDimension)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.ReziseItem(aItem, newDimension);
+        }
+        public bool MoveItemBlackBoard(BlackBoard aBlackBoard, Item aItem, Coordinate newCoordinates)
+        {
+            BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
+            return blackBoardHandler.MoveItem(aItem, newCoordinates);
+        }
+        public bool CreateNewComment(Item aItem, string newComment)
+        {
+            CommentHandler commentHandler = new CommentHandler();
+            commentHandler.CreateComment(User, newComment);
+            ItemHandler itemHandler = new ItemHandler(aItem);
+            return itemHandler.AddComment(commentHandler.Comment);
+        }
+        public bool ResolveComment(Comment aComment)
+        {
+            CommentHandler commentHandler = new CommentHandler(aComment);
+            return commentHandler.ResolveComment(User);
         }
     }
 }
