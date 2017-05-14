@@ -37,7 +37,8 @@ namespace BlackBoards.Handlers
             bool modified = false;
             User anUser = new Collaborator(name, lastName, lookUpEmail, birthDate, password);
             RepositoryHandler repHandler = new RepositoryHandler(theRepository);
-            if (repHandler.UserAlreadyExists(anUser))
+            bool doesUserExists =repHandler.UserAlreadyExists(anUser);
+            if (doesUserExists)
             {
                 repHandler.ModifyUser(lookUpEmail,name,lastName,email,birthDate,password);
                 modified = true;

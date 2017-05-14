@@ -55,6 +55,7 @@ namespace BlackBoardsTest.HandlerTests
         }
         [TestMethod]
         public void TestModifyUserCorrectly() {
+            //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
@@ -65,6 +66,7 @@ namespace BlackBoardsTest.HandlerTests
             string password = "aPassword";
             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
             string modEmail = "AModifiedEmail";
+            //assertion
             bool result = handler.ModifyUser(email,name, lastName, modEmail, birthDate, password, repository);
             Assert.IsTrue(result);
 
@@ -72,6 +74,7 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestModifyUserCheck()
         {
+            //instance
             Repository repository = new Repository();
             RepositoryHandler repHandler = new RepositoryHandler(repository);
             Admin anAdmin = new Admin();
@@ -84,6 +87,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
             string modEmail = "AModifiedEmail";
             handler.ModifyUser(email,name, lastName, modEmail, birthDate, password, repository);
+            //assertion
             bool result = repHandler.getSepcificUser(modEmail).Name.Equals(name);
             Assert.IsTrue(result);
 
@@ -91,6 +95,7 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestModifyUserDoesntExists()
         {
+            //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
@@ -100,6 +105,7 @@ namespace BlackBoardsTest.HandlerTests
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             string modEmail = "AModifiedEmail";
+            //assertion
             bool result = handler.ModifyUser(email,name, lastName, modEmail, birthDate, password, repository);
             Assert.IsFalse(result);
 
