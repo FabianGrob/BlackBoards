@@ -73,6 +73,7 @@ namespace BlackBoardsTest.HandlerTests
         public void TestModifyUserCheck()
         {
             Repository repository = new Repository();
+            RepositoryHandler repHandler = new RepositoryHandler(repository);
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
             string name = "aNewName";
@@ -83,7 +84,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
             string modEmail = "AModifiedEmail";
             handler.ModifyUser(email,name, lastName, modEmail, birthDate, password, repository);
-            bool result = repository.getSpecificUser(modEmail).Name.Equals(name);
+            bool result = repHandler.getSepcificUser(modEmail).Name.Equals(name);
             Assert.IsTrue(result);
 
         }

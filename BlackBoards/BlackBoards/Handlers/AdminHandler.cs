@@ -23,9 +23,9 @@ namespace BlackBoards.Handlers
                 this.admin = value;
             }
         }
-        public bool CreateCollaborator(string name,string lastName,string email,DateTime birthDate,string password,Repository theRepository) {
-            Collaborator aCollaborator = new BlackBoards.Collaborator(name,lastName,email,birthDate,password);
-            RepositoryHandler repHandler = new Handlers.RepositoryHandler(theRepository);
+        public bool CreateCollaborator(string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository) {
+            Collaborator aCollaborator = new Collaborator(name, lastName, email, birthDate, password);
+            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
             bool canRegister = !repHandler.UserAlreadyExists(aCollaborator);
             if (canRegister)
             {
@@ -33,6 +33,17 @@ namespace BlackBoards.Handlers
             }
             return canRegister;
         }
-
+        public bool ModifyUser(string lookUpEmail, string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository) {
+            bool modified = false;
+            User anUser = new Collaborator(name, lastName, lookUpEmail, birthDate, password);
+            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
+            if (repHandler.UserAlreadyExists(anUser))
+            {
+                repHandler.ModifyUser(lookUpEmail,name,lastName,email,birthDate,password);
+                modified = true;
+                               
+            }
+            return modified;
+        }
     }
 }

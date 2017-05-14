@@ -55,5 +55,55 @@ namespace BlackBoards.Handlers
             }
             return userTeams;
         }
+        public User getSepcificUser(string lookUpEmail) {
+            User u = null;
+            foreach (User user in this.Repository.UserList) {
+                if (user.Email.Equals(lookUpEmail))
+                {
+                    u = user;
+                }
+            }
+            return u;
+        }
+        public void ModifyUser(string lookUpEmail, string name, string lastName, string email, DateTime birthDate, string password) {
+            User mod = this.getSepcificUser(lookUpEmail);
+            mod.Name = name;
+            mod.LastName = lastName;
+            mod.Email = email;
+            mod.BirthDate = birthDate;
+            mod.Password = password;
+            if (IsUserAnAdmin(lookUpEmail))
+            {
+               mod= this.GetSpecificAdmin(lookUpEmail);
+                mod.Name = name;
+                mod.LastName = lastName;
+                mod.Email = email;
+                mod.BirthDate = birthDate;
+                mod.Password = password;
+            }
+
+        }
+        private bool IsUserAnAdmin(string lookUpEmail) {
+            bool isAnAdmin = false;
+            foreach (Admin admin in this.Repository.AdministratorList) {
+                if (admin.Email.Equals(lookUpEmail))
+                {
+                    isAnAdmin = true;
+                }
+            }
+            return isAnAdmin;
+
+        }
+        private Admin GetSpecificAdmin(string lookUpEmail) {
+            Admin admin = null;
+            foreach (Admin actualAdmin in this.Repository.AdministratorList)
+            {
+                if (actualAdmin.Email.Equals(lookUpEmail))
+                {
+                    admin = actualAdmin;
+                }
+            }
+            return admin;
+        }
     }
 }
