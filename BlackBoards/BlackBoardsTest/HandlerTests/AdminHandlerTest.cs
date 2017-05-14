@@ -160,8 +160,7 @@ namespace BlackBoardsTest.HandlerTests
             string email = "AnEmail";
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
-            handler.DeleteUser(email, repository);
-            bool result = repository.UserList.Count == 0;
+            bool result =handler.DeleteUser(email, repository);
             Assert.IsFalse(result);
 
         }

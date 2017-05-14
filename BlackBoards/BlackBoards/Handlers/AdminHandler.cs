@@ -46,5 +46,17 @@ namespace BlackBoards.Handlers
             }
             return modified;
         }
+        public bool DeleteUser(string email,Repository repository) {
+            bool deleted = false;
+            RepositoryHandler repHandler = new RepositoryHandler(repository);
+            User u = new Admin();
+            u.Email = email;
+            if (repHandler.UserAlreadyExists(u))
+            {
+                repHandler.DeleteUser(email);
+                deleted = true;
+            }
+            return deleted;
+        }
     }
 }

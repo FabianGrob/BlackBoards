@@ -105,5 +105,14 @@ namespace BlackBoards.Handlers
             }
             return admin;
         }
+        public void DeleteUser(string email) {
+            User delete = this.getSepcificUser(email);
+            this.Repository.UserList.Remove(delete);
+            if (this.IsUserAnAdmin(email))
+            {
+                Admin deleteAdmin = this.GetSpecificAdmin(email);
+                this.Repository.AdministratorList.Remove(deleteAdmin);
+            }
+        }
     }
 }
