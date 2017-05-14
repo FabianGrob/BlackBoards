@@ -247,5 +247,73 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestResizeItemBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Dimension newDimension = new Dimension(2, 2);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+
+            bool result = blackBoard.ItemList.Count == 1;
+            if (result)
+            {
+                result = blackBoard.ItemList.ElementAt(0).Dimension == newDimension;
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestInvalidResizeItemBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Dimension newDimension = new Dimension(9, 9);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+
+            bool result = blackBoard.ItemList.Count == 1;
+            if (result)
+            {
+                result = blackBoard.ItemList.ElementAt(0).Dimension == newDimension;
+            }
+            //assertion
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestResizeItemBlackBoardBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Dimension newDimension = new Dimension(3, 3);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            bool result = userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestInvalidResizeItemBlackBoardBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Dimension newDimension = new Dimension(9, 9);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            bool result = userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+            //assertion
+            Assert.IsFalse(result);
+        }
     }  
 }
