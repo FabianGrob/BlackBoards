@@ -494,6 +494,7 @@ namespace BlackBoardsTest
             Coordinate newCoordinate = new Coordinate(2, 2);
             userHandler.CreateNewComment(item, "New Comment");
             User resolvingUser = new Admin();
+            resolvingUser.Email= "noresolvingUser@test.com"; 
             u.Email = "resolvingUser@test.com";
             UserHandler resolvingUserHandler = new UserHandler(resolvingUser);
             bool result = item.Comments.Count == 1;           
