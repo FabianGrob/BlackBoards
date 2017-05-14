@@ -79,5 +79,12 @@ namespace BlackBoards
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
             return blackBoardHandler.MoveItem(aItem, newCoordinates);
         }
+        public bool CreateNewComment(Item aItem, string newComment)
+        {
+            CommentHandler commentHandler = new CommentHandler();
+            commentHandler.CreateComment(User, newComment);
+            ItemHandler itemHandler = new ItemHandler(aItem);
+            return itemHandler.AddComment(commentHandler.Comment);
+        }
     }
 }

@@ -20,12 +20,10 @@ namespace BlackBoardsTest.HandlersTests
             Dimension dimensions = new Dimension(0,0);
             string name = "BlackBoard Name";
             string description = "BlackBoard Description";
-            Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam,name,description,dimensions);
+            blackBoardHandler.CreateBlackBoard(name,description,dimensions);
             BlackBoard newBlackBoard = new BlackBoard();
             newBlackBoard.Name = name;
-            newBlackBoard.Team = aTeam;
             newBlackBoard.Description = description;
             newBlackBoard.Dimension = dimensions;
             bool result = newBlackBoard.Equals(blackBoardHandler.BlackBoard);
@@ -39,14 +37,12 @@ namespace BlackBoardsTest.HandlersTests
             Dimension dimensions = new Dimension(0,0);
             string name = "BlackBoard Name";
             string description = "BlackBoard Description";
-            Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensions);
+            blackBoardHandler.CreateBlackBoard(name, description, dimensions);
             string newName = "New BlackBoard Name";
-            blackBoardHandler.Modify(aTeam, newName, description, dimensions);
+            blackBoardHandler.Modify(newName, description, dimensions);
             BlackBoard newBlackBoard = new BlackBoard();
             newBlackBoard.Name = newName;
-            newBlackBoard.Team = aTeam;
             newBlackBoard.Description = description;
             newBlackBoard.Dimension = dimensions;
             bool result = newBlackBoard.Equals(blackBoardHandler.BlackBoard);
@@ -60,10 +56,8 @@ namespace BlackBoardsTest.HandlersTests
             Dimension dimensionsBlackBoard = new Dimension(5,5);
             string name = "BlackBoard Name";
             string description = "BlackBoard Description";
-            Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);
-            
+            blackBoardHandler.CreateBlackBoard(name, description, dimensionsBlackBoard); 
             Item testItem = new TextBox();
             blackBoardHandler.AddItem(testItem);
             bool result = false;
@@ -82,10 +76,9 @@ namespace BlackBoardsTest.HandlersTests
             Dimension dimensionsBlackBoard = new Dimension(5, 5);
             Dimension dimensionsItem = new Dimension(8, 8);
             string name = "BlackBoard Name";
-            string description = "BlackBoard Description";
-            Team aTeam = new Team();
+            string description = "BlackBoard Description";       
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);
+            blackBoardHandler.CreateBlackBoard(name, description, dimensionsBlackBoard);
             Item testItem = new TextBox();
             testItem.Dimension = dimensionsItem;
             blackBoardHandler.AddItem(testItem);
@@ -108,9 +101,9 @@ namespace BlackBoardsTest.HandlersTests
             string description = "BlackBoard Description";
             Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensions);
+            blackBoardHandler.CreateBlackBoard(name, description, dimensions);
             string newName = "New BlackBoard Name";
-            blackBoardHandler.CreateBlackBoard(aTeam, newName, description, dimensions);
+            blackBoardHandler.CreateBlackBoard(newName, description, dimensions);
             Item testItem = new TextBox();
             blackBoardHandler.AddItem(testItem);
             blackBoardHandler.RemoveItem(testItem);
@@ -129,7 +122,7 @@ namespace BlackBoardsTest.HandlersTests
             string description = "BlackBoard Description";
             Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);            
+            blackBoardHandler.CreateBlackBoard(name, description, dimensionsBlackBoard);            
             Item testItem = new TextBox();
             testItem.Dimension = dimensionsItem;
             blackBoardHandler.AddItem(testItem);
@@ -154,7 +147,7 @@ namespace BlackBoardsTest.HandlersTests
             string description = "BlackBoard Description";
             Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);
+            blackBoardHandler.CreateBlackBoard(name, description, dimensionsBlackBoard);
             Item testItem = new TextBox();
             testItem.Dimension = dimensionsItem;
             blackBoardHandler.AddItem(testItem);
@@ -179,7 +172,7 @@ namespace BlackBoardsTest.HandlersTests
             string description = "BlackBoard Description";
             Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);
+            blackBoardHandler.CreateBlackBoard(name, description, dimensionsBlackBoard);
             Item testItem = new TextBox();
             testItem.Dimension = dimensionsItem;
             blackBoardHandler.AddItem(testItem);
@@ -204,7 +197,7 @@ namespace BlackBoardsTest.HandlersTests
             string description = "BlackBoard Description";
             Team aTeam = new Team();
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();
-            blackBoardHandler.CreateBlackBoard(aTeam, name, description, dimensionsBlackBoard);
+            blackBoardHandler.CreateBlackBoard(name, description, dimensionsBlackBoard);
             Item testItem = new TextBox();
             testItem.Dimension = dimensionsItem;
             blackBoardHandler.AddItem(testItem);

@@ -31,18 +31,16 @@ namespace BlackBoards.Handlers
             }
         }
 
-        public void CreateBlackBoard(Team aTeam, string aName, string aDescription, Dimension aDimension)
+        public void CreateBlackBoard(string aName, string aDescription, Dimension aDimension)
         {
             this.blackBoard.Description = aDescription;
-            this.blackBoard.Team = aTeam;
             this.blackBoard.Name = aName;
             this.blackBoard.Dimension = aDimension;
         }
 
-        public void Modify(Team aTeam, string aName, string aDescription, Dimension aDimension)
+        public void Modify(string aName, string aDescription, Dimension aDimension)
         {
             this.blackBoard.Description = aDescription;
-            this.blackBoard.Team = aTeam;
             this.blackBoard.Name = aName;
             this.blackBoard.Dimension = aDimension;
         }

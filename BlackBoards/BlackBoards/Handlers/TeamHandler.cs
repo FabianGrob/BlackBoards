@@ -50,7 +50,7 @@ namespace BlackBoards.Handlers
             bool exists =this.Team.Boards.Contains(oldBoard);
             if (exists && newBoard.isValid())
             {
-                handler.Modify(newBoard.Team,newBoard.Name,newBoard.Description,newBoard.Dimension);
+                handler.Modify(newBoard.Name,newBoard.Description,newBoard.Dimension);
                 modified = true;
             }
             return modified;
