@@ -31,7 +31,6 @@ namespace BlackBoards
             TeamHandler teamHandler = new TeamHandler(aTeam);
             bool isABlackBoardValid = teamHandler.AddBlackBoard(aBlackBoard);
             return isABlackBoardValid;
-
         }
     }
 }
