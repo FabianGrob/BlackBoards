@@ -29,16 +29,32 @@ namespace BlackBoards
         public bool CreateBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
             TeamHandler teamHandler = new TeamHandler(aTeam);
-            bool isABlackBoardValid = teamHandler.AddBlackBoard(aBlackBoard);
-            return isABlackBoardValid;
+            bool userInTeam = teamHandler.IsUserInTeam(this.user);
+            if (userInTeam)
+            {
+                bool isABlackBoardValid = teamHandler.AddBlackBoard(aBlackBoard);
+                return isABlackBoardValid;
+            }
+            return userInTeam;
+        }
+        public bool ModifyBlackBoard(Team aTeam, BlackBoard oldBlackBoard, BlackBoard newBlackBoard)
+        {
+            TeamHandler teamHandler = new TeamHandler(aTeam);
+            bool userInTeam = teamHandler.IsUserInTeam(this.user);
+            if (userInTeam)
+            {
+                bool isABlackBoardValid = teamHandler.ModifyBlackBoard(oldBlackBoard, newBlackBoard);
+                return isABlackBoardValid;
+            }
+            return userInTeam;
         }
         public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
             if (aBlackBoard.CreatorUser.Equals(this.user))
             {
                 TeamHandler teamHandler = new TeamHandler(aTeam);
-                bool isABlackBoardValid = teamHandler.RemoveBlackBoard(aBlackBoard);
-                return isABlackBoardValid;
+                bool wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard);
+                return wasRemoved;
             }
             return false;
         }
