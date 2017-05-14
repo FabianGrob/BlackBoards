@@ -118,8 +118,8 @@ namespace BlackBoards.Handlers
         public bool DeleteTeam(string name, Repository theRepository) {
             bool deleted = false;
             RepositoryHandler handler = new RepositoryHandler(theRepository);
-
-            if (handler.TeamAlreadyExists(name))
+            bool teamAlreadyExists =handler.TeamAlreadyExists(name);
+            if (teamAlreadyExists)
             {
                 Team toDelete = handler.GetSpecificTeam(name);
                 theRepository.TeamList.Remove(toDelete);
