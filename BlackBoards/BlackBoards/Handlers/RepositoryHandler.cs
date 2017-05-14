@@ -83,7 +83,7 @@ namespace BlackBoards.Handlers
             }
 
         }
-        private bool IsUserAnAdmin(string lookUpEmail) {
+        public bool IsUserAnAdmin(string lookUpEmail) {
             bool isAnAdmin = false;
             foreach (Admin admin in this.Repository.AdministratorList) {
                 if (admin.Email.Equals(lookUpEmail))
@@ -105,14 +105,26 @@ namespace BlackBoards.Handlers
             }
             return admin;
         }
+        private void DeleteUsersFromTeams(User delete)
+        {
+            foreach (Team actualTeam in this.Repository.TeamList)
+            {
+                if (actualTeam.Members.Contains(delete))
+                {
+                    actualTeam.Members.Remove(delete);
+                } 
+            }
+        }
         public void DeleteUser(string email) {
             User delete = this.getSepcificUser(email);
+            DeleteUsersFromTeams(delete);
             this.Repository.UserList.Remove(delete);
             if (this.IsUserAnAdmin(email))
             {
                 Admin deleteAdmin = this.GetSpecificAdmin(email);
                 this.Repository.AdministratorList.Remove(deleteAdmin);
             }
+            CleanEmptyTeams();
         }
         public Team GetSpecificTeam(string name) {
             Team teamToReturn = null;
@@ -133,6 +145,30 @@ namespace BlackBoards.Handlers
                 }
               }
             return exists;
+        }
+        private void RemoveTeamFromRepository(Team teamToDelete)
+        {
+            this.Repository.TeamList.Remove(teamToDelete);
+        }
+        private void RemoveTeamsFromRepository(List<Team> teamsToDelete)
+        {
+            foreach (Team actualTeam in teamsToDelete)
+            {
+                RemoveTeamFromRepository(actualTeam);
+            }
+        }
+        private void CleanEmptyTeams()
+        {
+            List<Team> teamsToDelete = new List<Team>();
+            foreach (Team actualTeam in this.Repository.TeamList)
+            {   
+                TeamHandler actualTeamHandler = new TeamHandler(actualTeam);
+                if (!actualTeamHandler.HasAnyMember())
+                {
+                    teamsToDelete.Add(actualTeam);
+                }
+            }
+            RemoveTeamsFromRepository(teamsToDelete);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BlackBoards;
 using BlackBoards.Domain;
+using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -72,8 +73,9 @@ namespace BlackBoardsTest
             Team aTeam = new Team();
             aTeam.Members.Add(u);
             BlackBoard blackBoard = new BlackBoard();
+            Repository repository = new Repository();
             userHandler.CreateBlackBoard(aTeam, blackBoard);
-            userHandler.RemoveBlackBoard(aTeam, blackBoard);
+            userHandler.RemoveBlackBoard(aTeam, blackBoard,repository);
             bool result = aTeam.Boards.Count == 0;
             //assertion
             Assert.IsTrue(result);
@@ -86,10 +88,59 @@ namespace BlackBoardsTest
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
             aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();    
+            Repository repository = new Repository();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            bool result = userHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestRemoveNoCreatorUserBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            u.Email = "userCreator@gmail.com";
+            User anotherUser = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            UserHandler anotherUserHandler = new UserHandler(anotherUser);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            aTeam.Members.Add(anotherUser);
             BlackBoard blackBoard = new BlackBoard();
-            bool ok=userHandler.CreateBlackBoard(aTeam, blackBoard);
-            int a = 0;
-            bool result = userHandler.RemoveBlackBoard(aTeam, blackBoard);
+            Repository repository = new Repository();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            bool result = anotherUserHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
+            //assertion
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestRemoveNoCreatorAdminUserBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            u.Email = "userCreator@gmail.com";
+            Admin anotherUser = new Admin();
+            string adminName = "FirstName";
+            string adminLastName = "LastName";
+            string adminEmail = "admin@test.com";
+            DateTime adminDate = new DateTime();
+            string adminPassword = "password";
+            anotherUser.Name = adminName;
+            anotherUser.LastName = adminLastName;
+            anotherUser.Email = adminEmail;
+            anotherUser.BirthDate = adminDate;
+            anotherUser.Password = adminPassword;
+            Repository repository = new Repository();
+            AdminHandler adminHandler = new AdminHandler(anotherUser);
+            adminHandler.CreateAdmin(adminName,adminLastName,adminEmail,adminDate,adminPassword, repository);
+            UserHandler userHandler = new UserHandler(u);
+            UserHandler anotherUserHandler = new UserHandler(anotherUser);
+            Team aTeam = new Team();
+            aTeam.Members.Add(u);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam, blackBoard);
+            bool result = anotherUserHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
             //assertion
             Assert.IsTrue(result);
         }
@@ -100,8 +151,10 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Team aTeam = new Team();
+            aTeam.Members.Add(u);
             BlackBoard blackBoard = new BlackBoard();
-            bool result=userHandler.RemoveBlackBoard(aTeam, blackBoard);
+            Repository repository = new Repository();
+            bool result = userHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
             //assertion
             Assert.IsFalse(result);
         }
