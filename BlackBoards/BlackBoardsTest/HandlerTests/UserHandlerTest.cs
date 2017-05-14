@@ -20,7 +20,19 @@ namespace BlackBoardsTest
             Assert.IsTrue(result);
 
         }
-       
+        [TestMethod]
+        public void TestCreateBlackBoard()
+        {
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Team aTeam = new Team();
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.CreateBlackBoard(aTeam,blackBoard);
+            bool result = aTeam.Boards.Count == 1;
+            Assert.IsTrue(result);
+        }
+        
+
     }
     
 }
