@@ -47,18 +47,25 @@ namespace BlackBoards.Handlers
             this.blackBoard.Dimension = aDimension;
         }
 
-        public void AddItem(Item aItem)
+        public bool AddItem(Item aItem)
         {
             bool itemFitsInBlackBoard = ItemOutOfBands(aItem,aItem.Origin);
             if (itemFitsInBlackBoard)
             {
                 this.blackBoard.ItemList.Add(aItem);
             }
+            return itemFitsInBlackBoard;
         }
 
-        public void RemoveItem(Item aItem)
+        public bool RemoveItem(Item aItem)
         {
-            this.blackBoard.ItemList.Remove(aItem);
+            bool existsItemInList = blackBoard.ItemList.Contains(aItem);
+            if (existsItemInList)
+            {
+                this.blackBoard.ItemList.Remove(aItem);
+
+            }
+            return existsItemInList;
         }
 
         public void MoveItem(Item aItem, Coordinate coordinates)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Handlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace BlackBoards
     {
         private User user;
 
-        public UserHandler(User anUser) {
+        public UserHandler(User anUser)
+        {
             this.user = anUser;
         }
         public User User
@@ -23,6 +25,13 @@ namespace BlackBoards
             {
                 this.user = value;
             }
+        }
+        public bool CreateBlackBoard(Team aTeam, BlackBoard aBlackBoard)
+        {
+            TeamHandler teamHandler = new TeamHandler(aTeam);
+            bool isABlackBoardValid = teamHandler.AddBlackBoard(aBlackBoard);
+            return isABlackBoardValid;
+
         }
     }
 }

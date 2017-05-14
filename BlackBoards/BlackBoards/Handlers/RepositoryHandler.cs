@@ -48,7 +48,7 @@ namespace BlackBoards.Handlers
             foreach (Team actualTeam in Repository.TeamList)
             {
                 TeamHandler handler = new TeamHandler(actualTeam);
-                if (handler.isUserInTeam(user))
+                if (handler.IsUserInTeam(user))
                 {
                     userTeams.Add(actualTeam);
                 }
