@@ -102,7 +102,8 @@ namespace BlackBoards.Handlers
             bool validModifications = abstractTeam.isValid();
             Team oldTeam = new Team();
             oldTeam.Name = oldName;
-            if (validModifications && theRepository.TeamList.Contains(oldTeam))
+            bool teamExists = theRepository.TeamList.Contains(oldTeam);
+            if (validModifications && teamExists)
             {
                 Team toModificate=handler.GetSpecificTeam(oldName);
                 modified = true;
