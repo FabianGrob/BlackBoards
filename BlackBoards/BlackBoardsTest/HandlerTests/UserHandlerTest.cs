@@ -315,5 +315,73 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestMoveItemBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(2, 2);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+
+            bool result = blackBoard.ItemList.Count == 1;
+            if (result)
+            {
+                result = blackBoard.ItemList.ElementAt(0).Origin == newCoordinate;
+            }
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestInvalidMoveItemBlackBoard()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(9, 9);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+
+            bool result = blackBoard.ItemList.Count == 1;
+            if (result)
+            {
+                result = blackBoard.ItemList.ElementAt(0).Origin == newCoordinate;
+            }
+            //assertion
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestMoveItemBlackBoardBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(3, 3);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            bool result = userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+            //assertion
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestInvalidMoveItemBlackBoardBool()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            Item item = new TextBox();
+            Coordinate newCoordinate = new Coordinate(9, 9);
+            BlackBoard blackBoard = new BlackBoard();
+            userHandler.AddItemToBlackBoard(blackBoard, item);
+            bool result = userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+            //assertion
+            Assert.IsFalse(result);
+        }
     }  
 }
