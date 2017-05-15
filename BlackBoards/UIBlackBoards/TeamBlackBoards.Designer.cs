@@ -40,12 +40,12 @@
             this.listBoxBoards.FormattingEnabled = true;
             this.listBoxBoards.Location = new System.Drawing.Point(34, 23);
             this.listBoxBoards.Name = "listBoxBoards";
-            this.listBoxBoards.Size = new System.Drawing.Size(676, 212);
+            this.listBoxBoards.Size = new System.Drawing.Size(335, 212);
             this.listBoxBoards.TabIndex = 0;
             // 
             // buttonShowAll
             // 
-            this.buttonShowAll.Location = new System.Drawing.Point(362, 277);
+            this.buttonShowAll.Location = new System.Drawing.Point(21, 268);
             this.buttonShowAll.Name = "buttonShowAll";
             this.buttonShowAll.Size = new System.Drawing.Size(171, 23);
             this.buttonShowAll.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // buttonfilter
             // 
-            this.buttonfilter.Location = new System.Drawing.Point(539, 277);
+            this.buttonfilter.Location = new System.Drawing.Point(198, 268);
             this.buttonfilter.Name = "buttonfilter";
             this.buttonfilter.Size = new System.Drawing.Size(171, 23);
             this.buttonfilter.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(502, 250);
+            this.dateTimePicker.Location = new System.Drawing.Point(161, 241);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(208, 20);
             this.dateTimePicker.TabIndex = 3;
@@ -90,7 +90,7 @@
             this.Controls.Add(this.buttonShowAll);
             this.Controls.Add(this.listBoxBoards);
             this.Name = "TeamBlackBoards";
-            this.Size = new System.Drawing.Size(737, 345);
+            this.Size = new System.Drawing.Size(395, 345);
             this.Load += new System.EventHandler(this.TeamBlackBoards_Load);
             this.ResumeLayout(false);
 

@@ -115,7 +115,7 @@
             // 
             this.panelContainer.Location = new System.Drawing.Point(164, 12);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(330, 449);
+            this.panelContainer.Size = new System.Drawing.Size(450, 449);
             this.panelContainer.TabIndex = 7;
             this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 473);
+            this.ClientSize = new System.Drawing.Size(626, 473);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.buttonBlackBoardsPerTeam);

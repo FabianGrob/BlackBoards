@@ -39,6 +39,8 @@ namespace UIBlackBoards
             {
                 Team selectedTeam = (Team)listBoxTeams.SelectedItem;
                 panelContainer.Controls.Clear();
+                TeamBlackBoards content = new TeamBlackBoards(logged, theRepository, panelContainer,selectedTeam);
+                panelContainer.Controls.Add(content);
             }
             else {
                 MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
