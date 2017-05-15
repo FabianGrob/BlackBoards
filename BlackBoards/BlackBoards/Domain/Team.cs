@@ -132,5 +132,9 @@ namespace BlackBoards
             }
             return valid;
         }
+        public override string ToString()
+        {
+            return this.name;
+        }
     }
 }

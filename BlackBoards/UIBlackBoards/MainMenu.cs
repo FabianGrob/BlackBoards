@@ -59,5 +59,12 @@ namespace UIBlackBoards
             UserControl addTeam = new AddNewTeam(logged, theRepository, panelContainer);
             panelContainer.Controls.Add(addTeam);
         }
+
+        private void buttonModifyTeam_Click(object sender, EventArgs e)
+        {
+            panelContainer.Controls.Clear();
+            UserControl modifyTeam = new TeamList(logged, theRepository, panelContainer);
+            panelContainer.Controls.Add(modifyTeam);
+        }
     }
 }

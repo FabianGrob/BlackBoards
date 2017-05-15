@@ -27,7 +27,6 @@ namespace UIBlackBoards
             {
                 listBoxAllUsers.Items.Add(actualUser);
             }
-            listBoxAllUsers.SelectedItem = 0;
         }
         private void AddNewTeam_Load(object sender, EventArgs e)
         {
