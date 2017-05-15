@@ -172,6 +172,7 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestCheckPasswordUser()
         {
+            //instance
             User u = new Collaborator();
             u.Email = "email@test.com";
             u.Password = "passwordTest";
@@ -181,12 +182,14 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddUser(u);
             handler.AddUser(anotherUser);
             repository.UserList.Add(u);
+            //assertion
             bool result = handler.CheckPassword("email@test.com", "passwordTest");
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestCheckWrongPasswordUser()
         {
+            //instance
             User u = new Collaborator();
             u.Email = "email@test.com";
             u.Password = "passwordTest";
@@ -196,12 +199,14 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddUser(u);
             handler.AddUser(anotherUser);
             repository.UserList.Add(u);
+            //assertion
             bool result = handler.CheckPassword("email@test.com", "password");
             Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestCheckNonExistentUser()
         {
+            //instance
             User u = new Collaborator();
             u.Email = "email@test.com";
             u.Password = "passwordTest";
@@ -211,6 +216,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddUser(u);
             handler.AddUser(anotherUser);
             repository.UserList.Add(u);
+            //assertion
             bool result = handler.CheckPassword("NonExistentEmail@test.com", "passwordTest");
             Assert.IsFalse(result);
         }
