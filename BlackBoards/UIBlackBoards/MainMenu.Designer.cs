@@ -34,7 +34,7 @@
             this.buttonModifyTeam = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.buttonLogOut = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
@@ -99,14 +99,15 @@
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // buttonLogOut
             // 
-            this.button7.Location = new System.Drawing.Point(23, 252);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(105, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonLogOut.Location = new System.Drawing.Point(23, 252);
+            this.buttonLogOut.Name = "buttonLogOut";
+            this.buttonLogOut.Size = new System.Drawing.Size(105, 23);
+            this.buttonLogOut.TabIndex = 6;
+            this.buttonLogOut.Text = "Cerrar sesión";
+            this.buttonLogOut.UseVisualStyleBackColor = true;
+            this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
             // 
             // panelContainer
             // 
@@ -122,7 +123,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(506, 473);
             this.Controls.Add(this.panelContainer);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.buttonModifyTeam);
@@ -144,7 +145,7 @@
         private System.Windows.Forms.Button buttonModifyTeam;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonLogOut;
         private System.Windows.Forms.Panel panelContainer;
     }
 }

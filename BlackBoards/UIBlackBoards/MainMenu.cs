@@ -61,5 +61,12 @@ namespace UIBlackBoards
             UserControl addTeam = new AddNewTeam(logged, theRepository, panelContainer);
             panelContainer.Controls.Add(addTeam);
         }
+
+        private void buttonLogOut_Click(object sender, EventArgs e)
+        {
+            LogIn windows = new LogIn(theRepository);
+            this.Visible = false;
+            windows.Visible = true;
+        }
     }
 }

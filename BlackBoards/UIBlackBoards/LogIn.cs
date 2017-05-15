@@ -23,7 +23,6 @@ namespace UIBlackBoards
                 comboBoxUsers.Items.Add(actualUser);
             }
             comboBoxUsers.SelectedIndex = 0;
-               
         }
         
 

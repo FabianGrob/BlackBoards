@@ -38,7 +38,7 @@
             // 
             // comboBoxUsers
             // 
-            this.comboBoxUsers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUsers.FormattingEnabled = true;
             this.comboBoxUsers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.comboBoxUsers.Location = new System.Drawing.Point(131, 56);

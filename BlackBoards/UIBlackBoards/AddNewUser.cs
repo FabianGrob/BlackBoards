@@ -37,10 +37,10 @@ namespace UIBlackBoards
             {
                 valid = false;
                 MessageBox.Show("El formato de Email es incorrecto", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else if (!fstPass.Equals(sndPass))
+            } else if (!fstPass.Equals(sndPass) || fstPass.Length < 4)
             {
                 valid = false;
-                MessageBox.Show("Las contraseñas no coinciden", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Las contraseñas no coinciden o tienen menos de 4 carácteres", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else if (name.Length < 3) {
                 valid = false;
                 MessageBox.Show("El nombre debe tener almenos 4 letras", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
