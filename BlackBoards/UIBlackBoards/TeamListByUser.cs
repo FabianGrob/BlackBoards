@@ -52,5 +52,25 @@ namespace UIBlackBoards
                 MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void TeamListByUser_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonModifyBlackBoards_Click(object sender, EventArgs e)
+        {
+            if (hasSelectedATeam())
+            {
+                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
+                panelContainer.Controls.Clear();
+                UserControl selectBlackBoard = new SelectBlackBoard(logged, theRepository, panelContainer, selectedTeam);
+                panelContainer.Controls.Add(selectBlackBoard);
+            }
+            else
+            {
+                MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -129,6 +129,9 @@ namespace BlackBoards
             }
             return this.Name.Equals(anotherBlackBoard.Name);
         }
-    
+        public override string ToString()
+        {
+            return this.name;
+        }
     }
 }

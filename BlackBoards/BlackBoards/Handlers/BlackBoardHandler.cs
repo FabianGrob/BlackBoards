@@ -38,11 +38,32 @@ namespace BlackBoards.Handlers
             this.blackBoard.Dimension = aDimension;
         }
 
-        public void Modify(string aName, string aDescription, Dimension aDimension)
+        private bool CanModifyTheDimension(Dimension newDimension)
         {
-            this.blackBoard.Description = aDescription;
-            this.blackBoard.Name = aName;
-            this.blackBoard.Dimension = aDimension;
+            BlackBoard fakeBlackBoard = new BlackBoard();
+            fakeBlackBoard.Dimension = BlackBoard.Dimension;
+            bool canModify = true;
+            foreach (Item actualItem in BlackBoard.ItemList)
+            {
+                BlackBoardHandler fakeHandler = new BlackBoardHandler(fakeBlackBoard);
+                if (fakeHandler.ItemOutOfBands(actualItem, actualItem.Origin))
+                {
+                    canModify = false;
+                }
+            }
+            return canModify;
+        }
+
+        public bool Modify(string aName, string aDescription, Dimension aDimension)
+        {
+            if (CanModifyTheDimension(aDimension))
+            {
+                this.blackBoard.Description = aDescription;
+                this.blackBoard.Name = aName;
+                this.blackBoard.Dimension = aDimension;
+                return true;
+            }
+            return false;
         }
 
         public bool AddItem(Item aItem)

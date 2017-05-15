@@ -40,3 +40,4 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBla
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.SelectBlackBoard.resources
