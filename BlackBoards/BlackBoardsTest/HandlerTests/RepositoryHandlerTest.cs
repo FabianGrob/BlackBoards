@@ -30,8 +30,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddUser(u);
             repository.UserList.Add(u);
             bool result = repository.Equals(handler.Repository);
-            Assert.IsTrue(result);
-            
+            Assert.IsTrue(result);      
         }
         [TestMethod]
         public void TestAddAdmin() {
@@ -170,7 +169,50 @@ namespace BlackBoardsTest.HandlerTests
             bool result = teamsWhereUserIs.Count == 1;
             Assert.IsTrue(result);
         }
-
-
+        [TestMethod]
+        public void TestCheckPasswordUser()
+        {
+            User u = new Collaborator();
+            u.Email = "email@test.com";
+            u.Password = "passwordTest";
+            User anotherUser = new Admin();
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.AddUser(u);
+            handler.AddUser(anotherUser);
+            repository.UserList.Add(u);
+            bool result = handler.CheckPassword("email@test.com", "passwordTest");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestCheckWrongPasswordUser()
+        {
+            User u = new Collaborator();
+            u.Email = "email@test.com";
+            u.Password = "passwordTest";
+            User anotherUser = new Admin();
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.AddUser(u);
+            handler.AddUser(anotherUser);
+            repository.UserList.Add(u);
+            bool result = handler.CheckPassword("email@test.com", "password");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestCheckNonExistentUser()
+        {
+            User u = new Collaborator();
+            u.Email = "email@test.com";
+            u.Password = "passwordTest";
+            User anotherUser = new Admin();
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.AddUser(u);
+            handler.AddUser(anotherUser);
+            repository.UserList.Add(u);
+            bool result = handler.CheckPassword("NonExistentEmail@test.com", "passwordTest");
+            Assert.IsFalse(result);
+        }
     }
 }
