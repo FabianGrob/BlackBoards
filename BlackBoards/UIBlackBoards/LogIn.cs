@@ -30,19 +30,28 @@ namespace UIBlackBoards
         private void start_Click(object sender, EventArgs e)
         {
             RepositoryHandler repHandler = new RepositoryHandler(theRepository);
-            string posibleEmail = (string)comboBoxUsers.SelectedItem;
-            string posiblePassword = textBoxPassword.Text;
-            if (repHandler.CheckPassword(posibleEmail, posiblePassword))
+           
+           User selectedUser = (User)comboBoxUsers.SelectedItem;
+            if (selectedUser == null)
             {
-                User entering = repHandler.getSepcificUser(posibleEmail);
-                //Application.Run(new MainMenu(entering,theRepository));
-                MessageBox.Show("OK", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El usuario no existe", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else {
-                MessageBox.Show("Usuario inválido o contraseña incorrecta", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                string posibleEmail = (string)selectedUser.Email;
+                string posiblePassword = textBoxPassword.Text;
+                if (repHandler.CheckPassword(posibleEmail, posiblePassword))
+                {
+                    User entering = repHandler.getSepcificUser(posibleEmail);
+                    //Application.Run(new MainMenu(entering,theRepository));
+                    MessageBox.Show("OK", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Usuario inválido o contraseña incorrecta", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
-
-
             
         }
 
@@ -52,6 +61,11 @@ namespace UIBlackBoards
         }
 
         private void comboBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogIn_Load(object sender, EventArgs e)
         {
 
         }
