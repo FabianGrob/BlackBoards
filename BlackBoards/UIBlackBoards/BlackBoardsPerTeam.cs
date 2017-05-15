@@ -22,11 +22,28 @@ namespace UIBlackBoards
             logged = anUser;
             theRepository = aRepository;
             panelContainer = container;
+            foreach (Team actualteam in theRepository.TeamList)
+            {
+                listBoxTeams.Items.Add(actualteam);
+            }
         }
 
         private void BlackBoardsPerTeam_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonChooseTeam_Click(object sender, EventArgs e)
+        {
+            if (listBoxTeams.SelectedIndex != -1)
+            {
+                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
+                panelContainer.Controls.Clear();
+            }
+            else {
+                MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }
