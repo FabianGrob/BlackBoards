@@ -89,5 +89,10 @@ namespace UIBlackBoards
                 }
             }
         }
+
+        private void AddNewUser_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -40,7 +40,9 @@ namespace UIBlackBoards
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            panelContainer.Controls.Clear();
+            UserControl userList = new UserList(logged, theRepository, panelContainer);
+            panelContainer.Controls.Add(userList);
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
