@@ -33,7 +33,9 @@ namespace UIBlackBoards
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            panelContainer.Controls.Clear();
+            UserControl addUser = new AddNewUser(logged, theRepository, panelContainer);
+            panelContainer.Controls.Add(addUser);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -42,6 +44,11 @@ namespace UIBlackBoards
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -35,7 +35,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelContainer = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // buttonCreateUser
@@ -107,19 +107,20 @@
             this.button7.Text = "button7";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // panelContainer
             // 
-            this.panel1.Location = new System.Drawing.Point(164, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(330, 449);
-            this.panel1.TabIndex = 7;
+            this.panelContainer.Location = new System.Drawing.Point(164, 12);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(330, 449);
+            this.panelContainer.TabIndex = 7;
+            this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(506, 473);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -143,6 +144,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelContainer;
     }
 }
