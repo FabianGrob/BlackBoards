@@ -40,7 +40,10 @@ namespace UIBlackBoards
         {
             if (hasSelectedATeam())
             {
-                
+                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
+                panelContainer.Controls.Clear();
+                UserControl modifyTeamWindow = new ModifyTeam(logged, theRepository, panelContainer, selectedTeam);
+                panelContainer.Controls.Add(modifyTeamWindow);
             } else
             {
                 MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

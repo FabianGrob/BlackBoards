@@ -73,16 +73,16 @@ namespace UIBlackBoards
 
         }
 
-        private bool isInListBox(User user)
+        private bool isInListBox(User user, ListBox listBoxSelectedUsers)
         {
             return (listBoxSelectedUsers.Items.Contains(user));
         }
-        private List<User> getSelectedUsers()
+        public List<User> getSelectedUsers(ListBox listBoxSelectedUsers)
         {
             List<User> userList = new List<User>();
             foreach (User actualUser in theRepository.UserList)
             {
-                if (isInListBox(actualUser))
+                if (isInListBox(actualUser, listBoxSelectedUsers))
                 {
                     userList.Add(actualUser);
                 }
@@ -90,22 +90,22 @@ namespace UIBlackBoards
             return userList;
         }
 
-        private bool validations()
+        public bool validations(string name, string description, string cantMaxUsers, List<User> userList)
         {
             bool allValidationsOk = true;
-            if (textBoxName.Text.Length == 0)
+            if (name.Length == 0)
             {
                 allValidationsOk = false;
                 MessageBox.Show("El nombre ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
             }
-            if (richTextBoxDescription.Text.Length == 0)
+            if (description.Length == 0)
             {
                 allValidationsOk = false;
                 MessageBox.Show("La descripcion ingresada es vacia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
             }
-            if (textBoxCantMaxUsers.Text.Length == 0)
+            if (cantMaxUsers.Length == 0)
             {
                 allValidationsOk = false;
                 MessageBox.Show("La cantidad de usuarios maxima es vacia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -114,14 +114,14 @@ namespace UIBlackBoards
             else
             {
                 int n;
-                if (int.TryParse(textBoxCantMaxUsers.Text, out n) == false)
+                if (int.TryParse(cantMaxUsers, out n) == false)
                 {
                     allValidationsOk = false;
                     MessageBox.Show("La cantidad de usuarios maxima no puede tener letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return allValidationsOk;
                 }
             }
-            if (getSelectedUsers().Count == 0)
+            if (userList.Count == 0)
             {
                 allValidationsOk = false;
                 MessageBox.Show("No se seleccino ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -132,10 +132,10 @@ namespace UIBlackBoards
 
         private void buttonCreateTeam_Click(object sender, EventArgs e)
         {
-            bool validationsOk = validations();
+            bool validationsOk = validations(textBoxName.Text, richTextBoxDescription.Text, textBoxCantMaxUsers.Text, getSelectedUsers(listBoxSelectedUsers));
             if (validationsOk)
             {
-                List<User> members = getSelectedUsers();
+                List<User> members = getSelectedUsers(listBoxSelectedUsers);
                 string teamName = textBoxName.Text;
                 string description = richTextBoxDescription.Text;
                 int maxUsers = Int32.Parse(textBoxCantMaxUsers.Text);
