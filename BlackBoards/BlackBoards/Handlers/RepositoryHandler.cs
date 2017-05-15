@@ -182,5 +182,68 @@ namespace BlackBoards.Handlers
             }
             else return false;    
         }
+        public List<Comment> resolvedCommentsByUser(User anUser) {
+            List<Comment> resolvedCommentsUser = new List<Comment>();
+            List<Team> teamsUserMember = this.getUserTeams(anUser);
+
+            List<Item> allItemsInTeamsUser = new List<Item>();
+            foreach (Team actualTeam in teamsUserMember )
+            {
+                foreach (BlackBoard board in actualTeam.Boards)
+                {
+                    foreach (Item actualItem in board.ItemList)
+                    {
+                        foreach (Comment actualComment in actualItem.Comments)
+                        {
+                            if (actualComment.ResolvingUser.Equals(anUser))
+                            {
+                                resolvedCommentsUser.Add(actualComment);
+                            }
+
+                        }
+                    }
+                }
+            }
+            return resolvedCommentsUser;
+
+        }
+        public List<Comment> filterCreationDate(List<Comment> comments,DateTime creationDate) {
+            List<Comment> filtered = new List<Comment>();
+            foreach (Comment actualComment in comments)
+            {
+                if (creationDate.Equals(actualComment.CommentingDate))
+                {
+                    filtered.Add(actualComment);
+                }
+            }
+            return filtered;
+
+        }
+        public List<Comment> filterResolvingDate(List<Comment> comments, DateTime resolvingnDate)
+        {
+            List<Comment> filtered = new List<Comment>();
+            foreach (Comment actualComment in comments)
+            {
+                if (resolvingnDate.Equals(actualComment.ResolvingDate))
+                {
+                    filtered.Add(actualComment);
+                }
+            }
+            return filtered;
+
+        }
+        public List<Comment> filterCommentingUser(List<Comment> comments, User commentingUser)
+        {
+            List<Comment> filtered = new List<Comment>();
+            foreach (Comment actualComment in comments)
+            {
+                if (commentingUser.Equals(actualComment.CommentingUser))
+                {
+                    filtered.Add(actualComment);
+                }
+            }
+            return filtered;
+
+        }
     }
 }

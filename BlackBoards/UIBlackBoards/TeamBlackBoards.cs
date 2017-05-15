@@ -48,6 +48,7 @@ namespace UIBlackBoards
             else {
                 DateTime date = dateTimePicker.Value;
                 List<BlackBoard> boardsToShow = actualTeam.Boards;
+                listBoxBoards.Items.Clear();
                 foreach (BlackBoard actualBoard in boardsToShow)
                 {
                     if (date.Equals(actualBoard.CreationDate))
@@ -65,9 +66,10 @@ namespace UIBlackBoards
         private void buttonShowAll_Click(object sender, EventArgs e)
         {
             List<BlackBoard> boardsToShow = actualTeam.Boards;
+            listBoxBoards.Items.Clear();
             foreach (BlackBoard actualBoard in boardsToShow)
             {
-                string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.ItemList.Count;
+                string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad elementos: " + actualBoard.ItemList.Count;
 
                 listBoxBoards.Items.Add(line);
             }
