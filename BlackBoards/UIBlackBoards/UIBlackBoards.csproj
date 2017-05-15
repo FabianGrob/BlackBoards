@@ -82,6 +82,12 @@
     <Compile Include="LogIn.Designer.cs">
       <DependentUpon>LogIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModifyBlackBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModifyBlackBoard.Designer.cs">
+      <DependentUpon>ModifyBlackBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModifyTeam.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyBlackBoard.resx">
+      <DependentUpon>ModifyBlackBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifyTeam.resx">
       <DependentUpon>ModifyTeam.cs</DependentUpon>

@@ -99,7 +99,7 @@ namespace UIBlackBoards
                 bool existingBlackBoard = uHandler.CreateBlackBoard(team, newBlackBoard);
                 if (!existingBlackBoard)
                 {
-                    MessageBox.Show("El pizarron ingresado ya existe, se le ingreso un tamaño muy pequeño o muy grande.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El pizarron ingresado ya existe, o se le ingreso un tamaño pequeño/grande.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

@@ -61,6 +61,7 @@ namespace BlackBoards.Handlers
                 this.blackBoard.Description = aDescription;
                 this.blackBoard.Name = aName;
                 this.blackBoard.Dimension = aDimension;
+                this.blackBoard.LastModificationDate = DateTime.Today;
                 return true;
             }
             return false;
