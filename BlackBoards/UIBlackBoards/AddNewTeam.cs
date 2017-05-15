@@ -56,10 +56,17 @@ namespace UIBlackBoards
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
+            int selectedIndex = listBoxAllUsers.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                User selectedUser = (User)listBoxAllUsers.SelectedItem;
+                listBoxAllUsers.Items.Remove(selectedUser);
+                listBoxSelectedUsers.Items.Add(selectedUser);
+            } else
+            {
+                MessageBox.Show("No se selecciono ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            User selectedUser=(User)listBoxAllUsers.SelectedItem;
-            listBoxAllUsers.Items.Remove(selectedUser);
-            listBoxSelectedUsers.Items.Add(selectedUser);
         }
 
         private void textBoxCantMaxUsers_TextChanged(object sender, EventArgs e)
@@ -73,7 +80,7 @@ namespace UIBlackBoards
         }
         private List<User> getSelectedUsers()
         {
-            List<User> userList=new List<User>();
+            List<User> userList = new List<User>();
             foreach (User actualUser in theRepository.UserList)
             {
                 if (isInListBox(actualUser))
@@ -90,25 +97,36 @@ namespace UIBlackBoards
             if (textBoxName.Text.Length == 0)
             {
                 allValidationsOk = false;
+                MessageBox.Show("El nombre ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return allValidationsOk;
             }
             if (richTextBoxDescription.Text.Length == 0)
             {
                 allValidationsOk = false;
+                MessageBox.Show("La descripcion ingresada es vacia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return allValidationsOk;
             }
             if (textBoxCantMaxUsers.Text.Length == 0)
             {
                 allValidationsOk = false;
-            } else
+                MessageBox.Show("La cantidad de usuarios maxima es vacia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return allValidationsOk;
+            }
+            else
             {
                 int n;
-                if(int.TryParse(textBoxCantMaxUsers.Text, out n) == false)
+                if (int.TryParse(textBoxCantMaxUsers.Text, out n) == false)
                 {
                     allValidationsOk = false;
+                    MessageBox.Show("La cantidad de usuarios maxima no puede tener letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return allValidationsOk;
                 }
             }
             if (getSelectedUsers().Count == 0)
             {
                 allValidationsOk = false;
+                MessageBox.Show("No se seleccino ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return allValidationsOk;
             }
             return allValidationsOk;
         }
@@ -124,14 +142,16 @@ namespace UIBlackBoards
                 int maxUsers = Int32.Parse(textBoxCantMaxUsers.Text);
                 List<BlackBoard> blackBoards = new List<BlackBoard>();
                 AdminHandler handler = new AdminHandler((Admin)logged);
-                bool existingTeam = handler.CreateTeam(teamName,description,maxUsers,members,blackBoards,theRepository);
-                if (existingTeam)
+                bool existingTeam = handler.CreateTeam(teamName, description, maxUsers, members, blackBoards, theRepository);
+                if (!existingTeam)
                 {
                     MessageBox.Show("El equipo ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            } else
-            {
-                MessageBox.Show("El equipo ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    MessageBox.Show("El equipo ha sido ingresado.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    panelContainer.Controls.Clear();
+                }
             }
         }
     }

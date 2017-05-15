@@ -69,6 +69,7 @@
             this.buttonCreateTeam.TabIndex = 2;
             this.buttonCreateTeam.Text = "Crear Equipo";
             this.buttonCreateTeam.UseVisualStyleBackColor = true;
+            this.buttonCreateTeam.Click += new System.EventHandler(this.buttonCreateTeam_Click);
             // 
             // buttonModifyTeam
             // 
