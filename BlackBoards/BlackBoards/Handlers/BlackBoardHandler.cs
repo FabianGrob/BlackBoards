@@ -100,13 +100,14 @@ namespace BlackBoards.Handlers
         }
         public bool ReziseItem(Item aItem, Dimension dimension)
         {
+            bool validSize = aItem.Dimension.Height > 0 && aItem.Dimension.Width > 0;
             bool itemFitsInBlackBoard = ItemSizeFitsInBlackBoard(aItem, dimension);
-            if (itemFitsInBlackBoard)
+            if (itemFitsInBlackBoard && validSize)
             {
                 ItemHandler itemHandler = new ItemHandler(aItem);
                 itemHandler.ChangeDimension(dimension);
             }
-            return itemFitsInBlackBoard;
+            return itemFitsInBlackBoard && validSize;
 
         }
         private bool ItemSizeFitsInBlackBoard(Item aItem, Dimension dimension)

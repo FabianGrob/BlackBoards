@@ -45,6 +45,8 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIB
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.TeamListByUser.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.UserList.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.UserListForComments.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBlackBoard.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBoard.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb

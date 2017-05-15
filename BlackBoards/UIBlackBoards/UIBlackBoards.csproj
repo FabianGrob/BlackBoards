@@ -70,6 +70,7 @@
     <Compile Include="BlackBoardsPerTeam.Designer.cs">
       <DependentUpon>BlackBoardsPerTeam.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlMoverOrResizer.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +145,18 @@
     <Compile Include="UserListForComments.Designer.cs">
       <DependentUpon>UserListForComments.cs</DependentUpon>
     </Compile>
+    <Compile Include="VisualizeBlackBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VisualizeBlackBoard.Designer.cs">
+      <DependentUpon>VisualizeBlackBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizeBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisualizeBoard.Designer.cs">
+      <DependentUpon>VisualizeBoard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddNewBlackBoard.resx">
       <DependentUpon>AddNewBlackBoard.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +213,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserListForComments.resx">
       <DependentUpon>UserListForComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VisualizeBlackBoard.resx">
+      <DependentUpon>VisualizeBlackBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VisualizeBoard.resx">
+      <DependentUpon>VisualizeBoard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
