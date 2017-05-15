@@ -36,12 +36,13 @@
             // 
             this.panelBoard.Location = new System.Drawing.Point(12, 12);
             this.panelBoard.Name = "panelBoard";
-            this.panelBoard.Size = new System.Drawing.Size(455, 336);
+            this.panelBoard.Size = new System.Drawing.Size(750, 500);
             this.panelBoard.TabIndex = 0;
+            this.panelBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBoard_Paint);
             // 
             // panelOptions
             // 
-            this.panelOptions.Location = new System.Drawing.Point(473, 12);
+            this.panelOptions.Location = new System.Drawing.Point(788, 86);
             this.panelOptions.Name = "panelOptions";
             this.panelOptions.Size = new System.Drawing.Size(251, 336);
             this.panelOptions.TabIndex = 1;
@@ -50,7 +51,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 360);
+            this.ClientSize = new System.Drawing.Size(1064, 549);
             this.Controls.Add(this.panelOptions);
             this.Controls.Add(this.panelBoard);
             this.Name = "VisualizeBoard";

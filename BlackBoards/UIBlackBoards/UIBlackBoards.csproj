@@ -52,6 +52,12 @@
     <Compile Include="AddNewBlackBoard.Designer.cs">
       <DependentUpon>AddNewBlackBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddNewItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddNewItem.Designer.cs">
+      <DependentUpon>AddNewItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewTeam.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,12 @@
     </Compile>
     <Compile Include="LogIn.Designer.cs">
       <DependentUpon>LogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageBlackBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManageBlackBoard.Designer.cs">
+      <DependentUpon>ManageBlackBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="ModifyBlackBoard.cs">
       <SubType>UserControl</SubType>
@@ -178,6 +190,9 @@
     <EmbeddedResource Include="AddNewBlackBoard.resx">
       <DependentUpon>AddNewBlackBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddNewItem.resx">
+      <DependentUpon>AddNewItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddNewTeam.resx">
       <DependentUpon>AddNewTeam.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageBlackBoard.resx">
+      <DependentUpon>ManageBlackBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifyBlackBoard.resx">
       <DependentUpon>ModifyBlackBoard.cs</DependentUpon>

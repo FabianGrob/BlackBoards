@@ -52,7 +52,7 @@ namespace UIBlackBoards
                 bool existingBlackBoard = uHandler.ModifyBlackBoard(team, oldBlackBoard, newBlackBoard);
                 if (!existingBlackBoard)
                 {
-                    MessageBox.Show("El pizarron ingresado ya existe, o se le ingreso un tamaño pequeño/grande. *Los elementos del pizarron deben caber en las nuevas dimensiones del mismo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El pizarron ingresado ya existe, o se le ingreso un tamaño pequeño / grande (El Ancho debe estar entre 50 y 750 y el Alto entre 50 y 500). * Los elementos del pizarron deben caber en las nuevas dimensiones del mismo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

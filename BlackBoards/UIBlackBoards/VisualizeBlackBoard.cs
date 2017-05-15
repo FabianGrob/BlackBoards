@@ -24,28 +24,33 @@ namespace UIBlackBoards
             panelContainer = container;
             actualBlackBoard = aBoard;
             logged = anUser;
-            panel.SetBounds(0, 0, actualBlackBoard.Dimension.Width, actualBlackBoard.Dimension.Height);
+            panelContainer.SetBounds(0, 0, actualBlackBoard.Dimension.Width, actualBlackBoard.Dimension.Height);
             controls = new List<Control>();
             foreach (Item actualItem in actualBlackBoard.ItemList) {
-               /*
+              
                 if (actualItem.IsPicture())
                 {
                     PictureBox itemToAdd = new PictureBox();
-                    itemToAdd.Image= actualItem.Image;
+                    itemToAdd.SizeMode = PictureBoxSizeMode.StretchImage;
+                    itemToAdd.Image= ((Picture)actualItem).Img;
                     itemToAdd.SetBounds(actualItem.Origin.XAxis, actualItem.Origin.YAxis, actualItem.Dimension.Width, actualItem.Dimension.Height);
                     ControlMoverOrResizer.Init(itemToAdd);
                     controls.Add(itemToAdd);
-                   
-                    
+                    Controls.Add(itemToAdd);
+
+
                 }
                 else{
+
                     RichTextBox itemToAdd = new RichTextBox();
                     itemToAdd.Text = ((BlackBoards.TextBox)actualItem).Content;
                     itemToAdd.Font = new Font(((BlackBoards.TextBox)actualItem).Font, ((BlackBoards.TextBox)actualItem).FontSize) ;
                     itemToAdd.SetBounds(actualItem.Origin.XAxis, actualItem.Origin.YAxis, actualItem.Dimension.Width, actualItem.Dimension.Height);
+                    itemToAdd.Visible = true;
                     ControlMoverOrResizer.Init(itemToAdd);
                     controls.Add(itemToAdd);
-                }*/
+                    Controls.Add(itemToAdd);
+                }
                 
               
             }
@@ -76,6 +81,7 @@ namespace UIBlackBoards
                     BlackBoards.TextBox actualTxtBx = (BlackBoards.TextBox)actualItem;
                     actualTxtBx.Content = aControl.Text;
                 }
+                indexItems++;
 
             }
             MessageBox.Show("Se guardaron las posiciones correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -53,7 +53,7 @@ namespace BlackBoardsTest.HandlersTests
         public void TestAddItemBlackBoard()
         {
             //instance variables
-            Dimension dimensionsBlackBoard = new Dimension(5,5);
+            Dimension dimensionsBlackBoard = new Dimension(600,600);
             string name = "BlackBoard Name";
             string description = "BlackBoard Description";
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler();

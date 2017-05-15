@@ -88,7 +88,9 @@ namespace BlackBoardsTest.HandlerTests
             Item anotherItem = new TextBox(anItem as TextBox);
             ItemHandler handler = new ItemHandler(anItem);
             Dimension newDimension = new Dimension(1,1);
+            anotherItem.Dimension = newDimension;
             handler.ChangeDimension(newDimension);
+           
             //assertion
             bool result = handler.Item.Equals(anotherItem);
             Assert.IsTrue(result);

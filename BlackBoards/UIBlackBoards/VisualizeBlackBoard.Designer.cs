@@ -28,22 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel = new System.Windows.Forms.Panel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonDiscard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // panel
-            // 
-            this.panel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel.Location = new System.Drawing.Point(0, 0);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(460, 231);
-            this.panel.TabIndex = 0;
-            // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(385, 243);
+            this.buttonSave.Location = new System.Drawing.Point(84, 3);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 1;
@@ -53,7 +44,7 @@
             // 
             // buttonDiscard
             // 
-            this.buttonDiscard.Location = new System.Drawing.Point(4, 238);
+            this.buttonDiscard.Location = new System.Drawing.Point(3, 3);
             this.buttonDiscard.Name = "buttonDiscard";
             this.buttonDiscard.Size = new System.Drawing.Size(75, 23);
             this.buttonDiscard.TabIndex = 2;
@@ -67,17 +58,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonDiscard);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.panel);
             this.Name = "VisualizeBlackBoard";
-            this.Size = new System.Drawing.Size(463, 269);
+            this.Size = new System.Drawing.Size(697, 484);
             this.Load += new System.EventHandler(this.VisualizeBlackBoard_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonDiscard;
     }

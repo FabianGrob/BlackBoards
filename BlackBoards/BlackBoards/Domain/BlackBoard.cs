@@ -20,7 +20,7 @@ namespace BlackBoards
         public BlackBoard() {
             this.name = "Default name";
             this.description = "Default description";
-            this.dimension = new Dimension(5,5);
+            this.dimension = new Dimension(350,350);
             this.itemList = new List<Item>();
             this.creatorUser = new Admin();
             this.creationDate = DateTime.Today;
@@ -114,7 +114,8 @@ namespace BlackBoards
             }
         }
         public bool isValid() {
-            return this.Dimension.Height > 3 && this.Dimension.Width > 3; 
+            bool topRestriction =  this.Dimension.Height <= 500 && this.Dimension.Width <= 750;
+            return topRestriction && this.Dimension.Height > 50 && this.Dimension.Width > 50; 
         }
         public override bool Equals(object aBlackBoard)
         {
