@@ -26,6 +26,18 @@ namespace BlackBoardsTest
             Assert.IsTrue(result);
         }
         [TestMethod]
+        public void TestIsPicture()
+        {
+            Picture aPic = new Picture();
+            Assert.IsTrue(aPic.IsPicture());
+        }
+        [TestMethod]
+        public void TestIsPictureItem()
+        {
+            Item aPic = new Picture();
+            Assert.IsTrue(aPic.IsPicture());
+        }
+        [TestMethod]
         public void TestPictureNotEquals() {
             Picture aPic = new Picture();
 

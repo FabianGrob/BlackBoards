@@ -47,6 +47,10 @@ namespace BlackBoards
                 this.origin = value;
             }
         }
+        public virtual bool IsPicture()
+        {
+            return false;
+        }
         public bool AddNewComment(Comment aComment) {
             bool validComment = aComment.IsValid();
             if (validComment)

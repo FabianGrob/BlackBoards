@@ -11,12 +11,40 @@ namespace BlackBoards
 {
     public class Picture:Item
     {
-        private Image picture;
+        private Image img;
+        private string description;
         public Picture() {
             this.Dimension= new Dimension(1,1);
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
-            this.picture = Image.FromFile(getDefaultPicturePath());
+            this.img = Image.FromFile(getDefaultPicturePath());
+            this.description = "default description";
+        }
+        public override bool IsPicture()
+        {
+            return true;
+        }
+        public Image Img
+        {
+            get
+            {
+                return this.img;
+            }
+            set
+            {
+                this.img = value;
+            }
+        }
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+            set
+            {
+                this.description = value;
+            }
         }
         public Picture(Dimension aDimension, List<Comment> someComments, Coordinate anOrigin)
         {
@@ -31,7 +59,7 @@ namespace BlackBoards
             string defualtImagePath = proyectPath + "\\Images\\default.jpg";
             return defualtImagePath;
         }
-       
+        
         public override bool Equals(object aPicture)
         {
             if (aPicture == null)
