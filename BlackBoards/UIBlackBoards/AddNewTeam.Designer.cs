@@ -121,6 +121,7 @@
             this.buttonAddUser.TabIndex = 9;
             this.buttonAddUser.Text = "Añadir";
             this.buttonAddUser.UseVisualStyleBackColor = true;
+            this.buttonAddUser.Click += new System.EventHandler(this.buttonAddUser_Click);
             // 
             // buttonCreateTeam
             // 
@@ -130,6 +131,7 @@
             this.buttonCreateTeam.TabIndex = 10;
             this.buttonCreateTeam.Text = "Crear Equipo";
             this.buttonCreateTeam.UseVisualStyleBackColor = true;
+            this.buttonCreateTeam.Click += new System.EventHandler(this.buttonCreateTeam_Click);
             // 
             // labelCantMaxUsers
             // 
@@ -147,6 +149,7 @@
             this.textBoxCantMaxUsers.Name = "textBoxCantMaxUsers";
             this.textBoxCantMaxUsers.Size = new System.Drawing.Size(86, 20);
             this.textBoxCantMaxUsers.TabIndex = 13;
+            this.textBoxCantMaxUsers.TextChanged += new System.EventHandler(this.textBoxCantMaxUsers_TextChanged);
             // 
             // richTextBoxDescription
             // 
