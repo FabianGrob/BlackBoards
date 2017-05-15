@@ -95,7 +95,7 @@ namespace BlackBoardsTest.HandlerTests
             BlackBoard board = new BlackBoard();
             handler.AddBlackBoard(board);
             User creatorUser = new Admin();
-            BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(5,5) , new List < Item > (),creatorUser);
+            BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(60,60) , new List < Item > (),creatorUser);
             //assertion
             bool modified = handler.ModifyBlackBoard(board, newBoard);
             Assert.IsTrue(modified);

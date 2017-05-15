@@ -34,7 +34,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(85, 238);
+            this.buttonSave.Location = new System.Drawing.Point(84, 3);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 1;
@@ -44,7 +44,7 @@
             // 
             // buttonDiscard
             // 
-            this.buttonDiscard.Location = new System.Drawing.Point(4, 238);
+            this.buttonDiscard.Location = new System.Drawing.Point(3, 3);
             this.buttonDiscard.Name = "buttonDiscard";
             this.buttonDiscard.Size = new System.Drawing.Size(75, 23);
             this.buttonDiscard.TabIndex = 2;
@@ -59,7 +59,7 @@
             this.Controls.Add(this.buttonDiscard);
             this.Controls.Add(this.buttonSave);
             this.Name = "VisualizeBlackBoard";
-            this.Size = new System.Drawing.Size(463, 269);
+            this.Size = new System.Drawing.Size(697, 484);
             this.Load += new System.EventHandler(this.VisualizeBlackBoard_Load);
             this.ResumeLayout(false);
 

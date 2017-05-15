@@ -38,8 +38,8 @@ namespace BlackBoards
             UserHandler handlerUser = new UserHandler(anAdmin);
             BlackBoard blackBoard = new BlackBoard();
             blackBoard.Name = "GeneratedBlackBoard";
-            blackBoard.Dimension.Height = 500;
-            blackBoard.Dimension.Width = 500;
+            blackBoard.Dimension.Height = 350;
+            blackBoard.Dimension.Width = 650;
             blackBoard.Description = "GeneratedDescription";
             TextBox textBox = new TextBox();
             textBox.Dimension.Height = 50;

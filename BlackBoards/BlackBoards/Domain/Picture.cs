@@ -14,7 +14,7 @@ namespace BlackBoards
         private Image img;
         private string description;
         public Picture() {
-            this.Dimension= new Dimension(1,1);
+            this.Dimension= new Dimension(50,50);
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
             //this.img = Image.FromFile(getDefaultPicturePath());

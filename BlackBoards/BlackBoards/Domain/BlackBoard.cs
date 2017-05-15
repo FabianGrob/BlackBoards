@@ -114,7 +114,8 @@ namespace BlackBoards
             }
         }
         public bool isValid() {
-            return this.Dimension.Height > 3 && this.Dimension.Width > 3; 
+            bool topRestriction =  this.Dimension.Height <= 500 && this.Dimension.Width <= 750;
+            return topRestriction && this.Dimension.Height > 50 && this.Dimension.Width > 50; 
         }
         public override bool Equals(object aBlackBoard)
         {

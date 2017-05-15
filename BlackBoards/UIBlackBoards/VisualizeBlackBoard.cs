@@ -31,6 +31,7 @@ namespace UIBlackBoards
                 if (actualItem.IsPicture())
                 {
                     PictureBox itemToAdd = new PictureBox();
+                    itemToAdd.SizeMode = PictureBoxSizeMode.StretchImage;
                     itemToAdd.Image= ((Picture)actualItem).Img;
                     itemToAdd.SetBounds(actualItem.Origin.XAxis, actualItem.Origin.YAxis, actualItem.Dimension.Width, actualItem.Dimension.Height);
                     ControlMoverOrResizer.Init(itemToAdd);
@@ -40,7 +41,8 @@ namespace UIBlackBoards
 
                 }
                 else{
-                    System.Windows.Forms.TextBox itemToAdd = new System.Windows.Forms.TextBox();
+
+                    RichTextBox itemToAdd = new RichTextBox();
                     itemToAdd.Text = ((BlackBoards.TextBox)actualItem).Content;
                     itemToAdd.Font = new Font(((BlackBoards.TextBox)actualItem).Font, ((BlackBoards.TextBox)actualItem).FontSize) ;
                     itemToAdd.SetBounds(actualItem.Origin.XAxis, actualItem.Origin.YAxis, actualItem.Dimension.Width, actualItem.Dimension.Height);

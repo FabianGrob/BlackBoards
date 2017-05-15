@@ -34,5 +34,10 @@ namespace UIBlackBoards
         {
 
         }
+
+        private void panelBoard_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
