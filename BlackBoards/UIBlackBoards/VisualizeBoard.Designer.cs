@@ -55,6 +55,7 @@
             this.Controls.Add(this.panelBoard);
             this.Name = "VisualizeBoard";
             this.Text = "VisualizeBoard";
+            this.Load += new System.EventHandler(this.VisualizeBoard_Load);
             this.ResumeLayout(false);
 
         }

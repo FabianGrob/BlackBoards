@@ -16,5 +16,10 @@ namespace UIBlackBoards
         {
             InitializeComponent();
         }
+
+        private void VisualizeBoard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
