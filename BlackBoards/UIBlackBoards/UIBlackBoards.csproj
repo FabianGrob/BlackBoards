@@ -102,11 +102,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="SelectBlackBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SelectBlackBoard.Designer.cs">
       <DependentUpon>SelectBlackBoard.cs</DependentUpon>
+=======
+    <Compile Include="ResolvedCommentsByUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResolvedCommentsByUser.Designer.cs">
+      <DependentUpon>ResolvedCommentsByUser.cs</DependentUpon>
+>>>>>>> UIComentarios_resueltos_por_equipo
     </Compile>
     <Compile Include="TeamBlackBoards.cs">
       <SubType>UserControl</SubType>
@@ -131,6 +139,12 @@
     </Compile>
     <Compile Include="UserList.Designer.cs">
       <DependentUpon>UserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserListForComments.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserListForComments.Designer.cs">
+      <DependentUpon>UserListForComments.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddNewBlackBoard.resx">
       <DependentUpon>AddNewBlackBoard.cs</DependentUpon>
@@ -168,8 +182,13 @@
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="SelectBlackBoard.resx">
       <DependentUpon>SelectBlackBoard.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="ResolvedCommentsByUser.resx">
+      <DependentUpon>ResolvedCommentsByUser.cs</DependentUpon>
+>>>>>>> UIComentarios_resueltos_por_equipo
     </EmbeddedResource>
     <EmbeddedResource Include="TeamBlackBoards.resx">
       <DependentUpon>TeamBlackBoards.cs</DependentUpon>
@@ -182,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserList.resx">
       <DependentUpon>UserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserListForComments.resx">
+      <DependentUpon>UserListForComments.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

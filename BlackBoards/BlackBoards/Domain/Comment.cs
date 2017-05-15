@@ -107,5 +107,15 @@ namespace BlackBoards
 
             return (dateEquals && userEquals&& writtenCommentEquals);
         }
+        public override string ToString()
+        {
+            bool resolved = this.resolvingUser.Email.Equals("Default email");
+            string res = " no resuelto";
+            if (resolved)
+            {
+                res = "resuelto";
+            }
+            return this.writtenComment + "| Por: "+ this.commentingUser+ " " + res;
+        }
     }
 }
