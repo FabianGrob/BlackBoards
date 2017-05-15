@@ -28,6 +28,7 @@ namespace UIBlackBoards
             buttonCreateUser.Enabled = isUserAdmin;
             buttonModifyUser.Enabled = isUserAdmin;
             buttonBlackBoardsPerTeam.Enabled = isUserAdmin;
+            buttonCommentsInform.Enabled = isUserAdmin;
 
         }
 
@@ -87,6 +88,13 @@ namespace UIBlackBoards
             panelContainer.Controls.Clear();
             UserControl teamByUser = new TeamListByUser(logged, theRepository, panelContainer);
             panelContainer.Controls.Add(teamByUser);
+        }
+
+        private void buttonCommentsInform_Click(object sender, EventArgs e)
+        {
+            panelContainer.Controls.Clear();
+            UserControl informComments = new UserListForComments(logged, theRepository, panelContainer);
+            panelContainer.Controls.Add(informComments);
         }
     }
 }
