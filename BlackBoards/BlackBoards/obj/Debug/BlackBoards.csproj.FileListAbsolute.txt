@@ -1,10 +1,3 @@
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe.config
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.pdb
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.Properties.Resources.resources
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csproj.GenerateResource.Cache
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.exe
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe.config
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.pdb
@@ -13,3 +6,11 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBo
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csprojResolveAssemblyReference.cache
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe.config
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Debug\BlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csprojResolveAssemblyReference.cache
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.Properties.Resources.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csproj.GenerateResource.Cache
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.pdb

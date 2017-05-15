@@ -11,11 +11,9 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIB
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewUser.resources
-<<<<<<< HEAD
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewTeam.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.ModifyUser.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.UserList.resources
-=======
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe.config
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.pdb
@@ -32,4 +30,5 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBla
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb
->>>>>>> UIModifyTeam
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.ModifyTeam.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.TeamList.resources

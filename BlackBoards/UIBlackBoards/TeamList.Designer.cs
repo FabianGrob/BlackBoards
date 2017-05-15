@@ -81,6 +81,7 @@
             this.Controls.Add(this.buttonModify);
             this.Name = "TeamList";
             this.Size = new System.Drawing.Size(246, 286);
+            this.Load += new System.EventHandler(this.TeamList_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

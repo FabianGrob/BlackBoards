@@ -187,6 +187,7 @@
             this.Controls.Add(this.labelTitle);
             this.Name = "ModifyTeam";
             this.Size = new System.Drawing.Size(256, 408);
+            this.Load += new System.EventHandler(this.ModifyTeam_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

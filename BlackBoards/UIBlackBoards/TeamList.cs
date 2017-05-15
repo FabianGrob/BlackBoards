@@ -71,5 +71,10 @@ namespace UIBlackBoards
                 MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void TeamList_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

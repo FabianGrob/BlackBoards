@@ -99,5 +99,10 @@ namespace UIBlackBoards
                 MessageBox.Show("No se selecciono ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ModifyTeam_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
