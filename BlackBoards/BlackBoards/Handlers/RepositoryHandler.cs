@@ -170,5 +170,17 @@ namespace BlackBoards.Handlers
             }
             RemoveTeamsFromRepository(teamsToDelete);
         }
+
+        public bool CheckPassword(string lookUpEmail, string password)
+        {
+            User wantedUser = new Collaborator();
+            wantedUser.Email = lookUpEmail;
+            if (UserAlreadyExists(wantedUser))
+            {
+                User user = getSepcificUser(lookUpEmail);
+                return user.Password.Equals(password);
+            }
+            else return false;    
+        }
     }
 }
