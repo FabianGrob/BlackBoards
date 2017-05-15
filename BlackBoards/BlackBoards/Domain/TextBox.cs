@@ -18,7 +18,7 @@ namespace BlackBoards
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
             this.content = "aContent";
-            this.font = "aFont";
+            this.font = "Arial";
             this.fontSize = 10;
     }
         public TextBox(TextBox aTextBox)
@@ -62,6 +62,11 @@ namespace BlackBoards
             {
                 this.font = value;
             }
+        }
+        
+        public override bool IsPicture()
+        {
+            return false;
         }
         public int FontSize
         {
