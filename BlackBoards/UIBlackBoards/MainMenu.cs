@@ -81,5 +81,12 @@ namespace UIBlackBoards
             UserControl blackBoardsPerTeam = new BlackBoardsPerTeam(logged, theRepository, panelContainer);
             panelContainer.Controls.Add(blackBoardsPerTeam);
         }
+
+        private void buttonCreatePizarron_Click(object sender, EventArgs e)
+        {
+            panelContainer.Controls.Clear();
+            UserControl teamByUser = new TeamListByUser(logged, theRepository, panelContainer);
+            panelContainer.Controls.Add(teamByUser);
+        }
     }
 }
