@@ -9,3 +9,4 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIB
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.MainMenu.resources

@@ -43,8 +43,10 @@ namespace UIBlackBoards
                 if (repHandler.CheckPassword(posibleEmail, posiblePassword))
                 {
                     User entering = repHandler.getSepcificUser(posibleEmail);
-                    //Application.Run(new MainMenu(entering,theRepository));
-                    MessageBox.Show("OK", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MainMenu window =new MainMenu(entering,theRepository);
+                    window.Visible = true;
+                    this.Visible = false;
+                    //MessageBox.Show("OK", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
