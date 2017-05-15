@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBoards", "BlackBoards\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBoardsTest", "BlackBoardsTest\BlackBoardsTest.csproj", "{5A831C74-F8D1-44D5-A4B3-FD0CF79F585F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIBlackBoards", "UIBlackBoards\UIBlackBoards.csproj", "{EE561AB0-2A89-4024-A736-C9B36DBF1653}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5A831C74-F8D1-44D5-A4B3-FD0CF79F585F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A831C74-F8D1-44D5-A4B3-FD0CF79F585F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A831C74-F8D1-44D5-A4B3-FD0CF79F585F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE561AB0-2A89-4024-A736-C9B36DBF1653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE561AB0-2A89-4024-A736-C9B36DBF1653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE561AB0-2A89-4024-A736-C9B36DBF1653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE561AB0-2A89-4024-A736-C9B36DBF1653}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

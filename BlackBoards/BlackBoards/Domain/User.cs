@@ -99,7 +99,9 @@ namespace BlackBoards
 
             return (this.Email.Equals(anotherUser.Email));
         }
-
+        public override string ToString() {
+            return this.email;
+        }
     }
 }
                
