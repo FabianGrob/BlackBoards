@@ -44,7 +44,8 @@ namespace UIBlackBoards
             {
                 Team selectedTeam = (Team) listBoxTeams.SelectedItem;
                 panelContainer.Controls.Clear();
-              
+                UserControl addNewBlackBoardWindow = new AddNewBlackBoard(logged, theRepository, panelContainer, selectedTeam);
+                panelContainer.Controls.Add(addNewBlackBoardWindow);
             }
             else
             {

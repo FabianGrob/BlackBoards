@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewBlackBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddNewBlackBoard.Designer.cs">
+      <DependentUpon>AddNewBlackBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewTeam.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,12 +102,21 @@
     <Compile Include="TeamList.Designer.cs">
       <DependentUpon>TeamList.cs</DependentUpon>
     </Compile>
+    <Compile Include="TeamListByUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TeamListByUser.Designer.cs">
+      <DependentUpon>TeamListByUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserList.Designer.cs">
       <DependentUpon>UserList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddNewBlackBoard.resx">
+      <DependentUpon>AddNewBlackBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddNewTeam.resx">
       <DependentUpon>AddNewTeam.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TeamList.resx">
       <DependentUpon>TeamList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamListByUser.resx">
+      <DependentUpon>TeamListByUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserList.resx">
       <DependentUpon>UserList.cs</DependentUpon>

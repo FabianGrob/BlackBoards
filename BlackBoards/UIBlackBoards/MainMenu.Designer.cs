@@ -32,7 +32,7 @@
             this.buttonModifyUser = new System.Windows.Forms.Button();
             this.buttonCreateTeam = new System.Windows.Forms.Button();
             this.buttonModifyTeam = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonCreatePizarron = new System.Windows.Forms.Button();
             this.buttonBlackBoardsPerTeam = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
@@ -82,14 +82,15 @@
             this.buttonModifyTeam.UseVisualStyleBackColor = true;
             this.buttonModifyTeam.Click += new System.EventHandler(this.buttonModifyTeam_Click);
             // 
-            // button5
+            // buttonCreatePizarron
             // 
-            this.button5.Location = new System.Drawing.Point(23, 194);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(105, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonCreatePizarron.Location = new System.Drawing.Point(23, 194);
+            this.buttonCreatePizarron.Name = "buttonCreatePizarron";
+            this.buttonCreatePizarron.Size = new System.Drawing.Size(105, 23);
+            this.buttonCreatePizarron.TabIndex = 4;
+            this.buttonCreatePizarron.Text = "Crear Pizarron";
+            this.buttonCreatePizarron.UseVisualStyleBackColor = true;
+            this.buttonCreatePizarron.Click += new System.EventHandler(this.buttonCreatePizarron_Click);
             // 
             // buttonBlackBoardsPerTeam
             // 
@@ -127,7 +128,7 @@
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.buttonBlackBoardsPerTeam);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.buttonCreatePizarron);
             this.Controls.Add(this.buttonModifyTeam);
             this.Controls.Add(this.buttonCreateTeam);
             this.Controls.Add(this.buttonModifyUser);
@@ -145,7 +146,7 @@
         private System.Windows.Forms.Button buttonModifyUser;
         private System.Windows.Forms.Button buttonCreateTeam;
         private System.Windows.Forms.Button buttonModifyTeam;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonCreatePizarron;
         private System.Windows.Forms.Button buttonBlackBoardsPerTeam;
         private System.Windows.Forms.Button buttonLogOut;
         private System.Windows.Forms.Panel panelContainer;
