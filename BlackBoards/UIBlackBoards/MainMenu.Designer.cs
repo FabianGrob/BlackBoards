@@ -80,6 +80,7 @@
             this.buttonModifyTeam.TabIndex = 3;
             this.buttonModifyTeam.Text = "Modificar Equipo";
             this.buttonModifyTeam.UseVisualStyleBackColor = true;
+            this.buttonModifyTeam.Click += new System.EventHandler(this.buttonModifyTeam_Click);
             // 
             // button5
             // 

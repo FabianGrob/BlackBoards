@@ -62,11 +62,19 @@ namespace UIBlackBoards
             panelContainer.Controls.Add(addTeam);
         }
 
+<<<<<<< HEAD
         private void buttonLogOut_Click(object sender, EventArgs e)
         {
             LogIn windows = new LogIn(theRepository);
             this.Visible = false;
             windows.Visible = true;
+=======
+        private void buttonModifyTeam_Click(object sender, EventArgs e)
+        {
+            panelContainer.Controls.Clear();
+            UserControl modifyTeam = new TeamList(logged, theRepository, panelContainer);
+            panelContainer.Controls.Add(modifyTeam);
+>>>>>>> UIModifyTeam
         }
     }
 }
