@@ -121,6 +121,12 @@
     <Compile Include="ResolvedCommentsByUser.Designer.cs">
       <DependentUpon>ResolvedCommentsByUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResolveItemComment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResolveItemComment.Designer.cs">
+      <DependentUpon>ResolveItemComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectBlackBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResolvedCommentsByUser.resx">
       <DependentUpon>ResolvedCommentsByUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResolveItemComment.resx">
+      <DependentUpon>ResolveItemComment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectBlackBoard.resx">
       <DependentUpon>SelectBlackBoard.cs</DependentUpon>

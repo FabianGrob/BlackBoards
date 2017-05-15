@@ -17,13 +17,15 @@ namespace UIBlackBoards
         private User logged;
         private Panel panelContainer;
         private Panel boardContainer;
-        public ItemListed(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer)
+        private Repository theRepository;
+        public ItemListed(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer,Repository aRepository)
         {
             InitializeComponent();
             actualBlackBoard = aBoard;
             logged = anUser;
             panelContainer = container;
             boardContainer = boardcontainer;
+            theRepository = aRepository;
 
             foreach (Item actualItem in actualBlackBoard.ItemList)
             {
@@ -41,14 +43,17 @@ namespace UIBlackBoards
             int selectedIndex = listBoxItems.SelectedIndex;
             if (selectedIndex == -1)
             {
-                MessageBox.Show("No se ha seleccionado ningun usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se ha seleccionado ningun elemento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+
                 Item selectedItem = (Item)listBoxItems.SelectedItem;
                 panelContainer.Controls.Clear();
-               
-                
+                CommentItem commentWindow = new CommentItem(actualBlackBoard, logged, panelContainer, boardContainer, selectedItem, theRepository);
+                panelContainer.Controls.Add(commentWindow);
+
+
             }
         }
 
@@ -57,13 +62,14 @@ namespace UIBlackBoards
             int selectedIndex = listBoxItems.SelectedIndex;
             if (selectedIndex == -1)
             {
-                MessageBox.Show("No se ha seleccionado ningun usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se ha seleccionado ningun elemento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 Item selectedItem = (Item)listBoxItems.SelectedItem;
                 panelContainer.Controls.Clear();
-
+                ResolveItemComment resolveWindow = new ResolveItemComment(actualBlackBoard, logged, panelContainer, boardContainer,selectedItem, theRepository);
+                panelContainer.Controls.Add(resolveWindow);
 
             }
         }
@@ -71,6 +77,8 @@ namespace UIBlackBoards
         private void buttonBack_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
+            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+            panelContainer.Controls.Add(pwindow);
         }
     }
 }

@@ -22,6 +22,11 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBla
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.SelectBlackBoard.resources
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.ModifyBlackBoard.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe.config
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.pdb
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csprojResolveAssemblyReference.cache
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewBlackBoard.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewTeam.resources
@@ -45,3 +50,5 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIB
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBlackBoard.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBoard.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb
