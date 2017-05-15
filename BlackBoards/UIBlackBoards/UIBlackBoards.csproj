@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewTeam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddNewTeam.Designer.cs">
+      <DependentUpon>AddNewTeam.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddNewTeam.resx">
+      <DependentUpon>AddNewTeam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddNewUser.resx">
       <DependentUpon>AddNewUser.cs</DependentUpon>
     </EmbeddedResource>
