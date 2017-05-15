@@ -181,6 +181,7 @@
             this.Controls.Add(this.CreateUser);
             this.Name = "AddNewUser";
             this.Size = new System.Drawing.Size(312, 410);
+            this.Load += new System.EventHandler(this.AddNewUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
