@@ -70,7 +70,19 @@
     <Compile Include="BlackBoardsPerTeam.Designer.cs">
       <DependentUpon>BlackBoardsPerTeam.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommentItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommentItem.Designer.cs">
+      <DependentUpon>CommentItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlMoverOrResizer.cs" />
+    <Compile Include="ItemListed.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemListed.Designer.cs">
+      <DependentUpon>ItemListed.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +180,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BlackBoardsPerTeam.resx">
       <DependentUpon>BlackBoardsPerTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommentItem.resx">
+      <DependentUpon>CommentItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemListed.resx">
+      <DependentUpon>ItemListed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

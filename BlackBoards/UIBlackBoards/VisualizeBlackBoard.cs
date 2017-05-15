@@ -21,7 +21,7 @@ namespace UIBlackBoards
         public VisualizeBlackBoard(BlackBoard aBoard,User anUser,Panel container)
         {
             InitializeComponent();
-            
+            panelContainer = container;
             actualBlackBoard = aBoard;
             logged = anUser;
             panel.SetBounds(0, 0, actualBlackBoard.Dimension.Width, actualBlackBoard.Dimension.Height);
@@ -71,6 +71,11 @@ namespace UIBlackBoards
                 actualItem.Dimension.Width = width;
                 actualItem.Origin.XAxis = x;
                 actualItem.Origin.YAxis = y;
+                if (!actualItem.IsPicture())
+                {
+                    BlackBoards.TextBox actualTxtBx = (BlackBoards.TextBox)actualItem;
+                    actualTxtBx.Content = aControl.Text;
+                }
 
             }
             MessageBox.Show("Se guardaron las posiciones correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
