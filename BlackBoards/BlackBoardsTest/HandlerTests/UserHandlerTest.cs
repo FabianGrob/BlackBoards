@@ -178,7 +178,7 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
-            Dimension invalidDimension = new Dimension(5,7);
+            Dimension invalidDimension = new Dimension(600,7);
             item.Dimension = invalidDimension;
             BlackBoard blackBoard = new BlackBoard();
             userHandler.AddItemToBlackBoard(blackBoard, item);
@@ -327,7 +327,7 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
-            Dimension newDimension = new Dimension(9, 9);
+            Dimension newDimension = new Dimension(999, 9);
             BlackBoard blackBoard = new BlackBoard();
             userHandler.AddItemToBlackBoard(blackBoard, item);
             userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
@@ -361,7 +361,7 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
-            Dimension newDimension = new Dimension(9, 9);
+            Dimension newDimension = new Dimension(999, 9);
             BlackBoard blackBoard = new BlackBoard();
             userHandler.AddItemToBlackBoard(blackBoard, item);
             bool result = userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
@@ -409,7 +409,7 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
-            Coordinate newCoordinate = new Coordinate(9, 9);
+            Coordinate newCoordinate = new Coordinate(9999, 9);
             BlackBoard blackBoard = new BlackBoard();
             userHandler.AddItemToBlackBoard(blackBoard, item);
             userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
@@ -429,7 +429,7 @@ namespace BlackBoardsTest
             User u = new Collaborator();
             UserHandler userHandler = new UserHandler(u);
             Item item = new TextBox();
-            Coordinate newCoordinate = new Coordinate(9, 9);
+            Coordinate newCoordinate = new Coordinate(9999, 9);
             BlackBoard blackBoard = new BlackBoard();
             userHandler.AddItemToBlackBoard(blackBoard, item);
             bool result = userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);

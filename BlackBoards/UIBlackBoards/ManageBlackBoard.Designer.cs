@@ -45,6 +45,7 @@
             this.buttonCreateItem.TabIndex = 0;
             this.buttonCreateItem.Text = "Crear Elemento";
             this.buttonCreateItem.UseVisualStyleBackColor = true;
+            this.buttonCreateItem.Click += new System.EventHandler(this.buttonCreateItem_Click);
             // 
             // buttonModifyItem
             // 

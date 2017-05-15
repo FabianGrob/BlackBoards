@@ -81,5 +81,16 @@ namespace UIBlackBoards
                 MessageBox.Show("No se selecciono ningun pizarron.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void buttonVisualice_Click(object sender, EventArgs e)
+        {
+            if (hasSelectedABlackBoard())
+            {
+                BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
+                this.Visible = false;
+                VisualizeBoard newVi = new VisualizeBoard(selectedBlackBoard, logged, theRepository);
+                newVi.Visible = true;
+            }
+        }
     }
 }

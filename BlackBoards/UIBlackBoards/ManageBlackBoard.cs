@@ -32,5 +32,12 @@ namespace UIBlackBoards
         {
 
         }
+
+        private void buttonCreateItem_Click(object sender, EventArgs e)
+        {
+            AddNewItem newVisualize = new AddNewItem(logged, theRepository, panelContainer, panelContainerBlackBoard, blackBoard);
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(newVisualize);
+        }
     }
 }

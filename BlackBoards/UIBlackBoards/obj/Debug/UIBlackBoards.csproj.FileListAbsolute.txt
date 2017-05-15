@@ -21,11 +21,6 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIB
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBlackBoard.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBoard.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
-C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe.config
-C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe
-C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.pdb
-C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.exe
-C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csprojResolveAssemblyReference.cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewBlackBoard.resources
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewItem.resources
@@ -51,5 +46,10 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBla
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBlackBoard.resources
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.VisualizeBoard.resources
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe.config
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.pdb
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.exe
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb

@@ -20,7 +20,7 @@ namespace BlackBoards
         public BlackBoard() {
             this.name = "Default name";
             this.description = "Default description";
-            this.dimension = new Dimension(5,5);
+            this.dimension = new Dimension(350,350);
             this.itemList = new List<Item>();
             this.creatorUser = new Admin();
             this.creationDate = DateTime.Today;

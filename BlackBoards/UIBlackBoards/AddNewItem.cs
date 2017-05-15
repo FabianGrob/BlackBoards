@@ -20,13 +20,13 @@ namespace UIBlackBoards
         private Panel containerPanel;
         private Panel blackboardPanel;
 
-        public AddNewItem(User anUser, Repository aRepository, Panel container, Panel blackBoardPanel,BlackBoard aBlackBoard)
+        public AddNewItem(User anUser, Repository aRepository, Panel container, Panel aBlackboardPanel, BlackBoard aBlackBoard)
         {
             InitializeComponent();
             logged = anUser;
             theRepository = aRepository;
             containerPanel = container;
-            blackBoardPanel = blackboardPanel;
+            blackboardPanel = aBlackboardPanel;
             blackBoard = aBlackBoard;
 
             List<string> allFonts = loadAllFonts();
@@ -63,11 +63,16 @@ namespace UIBlackBoards
         private void buttonTextBox_Click(object sender, EventArgs e)
         {
             BlackBoards.TextBox newItem = new BlackBoards.TextBox();
-            newItem.Font = (string) comboBoxFont.SelectedItem;
+            newItem.Font = (string)comboBoxFont.SelectedItem;
             newItem.FontSize = Convert.ToInt32(numericUpDown1.Value);
             newItem.Content = textBox.Text;
             UserHandler handler = new UserHandler(logged);
-            handler.AddItemToBlackBoard(blackBoard,newItem);
+            handler.AddItemToBlackBoard(blackBoard, newItem);
+
+            blackboardPanel.Controls.Clear();
+            VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel);
+            blackboardPanel.Controls.Add(visualize);
+
         }
 
         private void buttonLoadFile_Click(object sender, EventArgs e)

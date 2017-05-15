@@ -32,6 +32,7 @@
             this.buttonRemoveBlackBoard = new System.Windows.Forms.Button();
             this.buttonModifyBlackBoard = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.buttonVisualice = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxBlackBoards
@@ -72,10 +73,21 @@
             this.labelTitle.TabIndex = 3;
             this.labelTitle.Text = "Pizarrones";
             // 
+            // buttonVisualice
+            // 
+            this.buttonVisualice.Location = new System.Drawing.Point(134, 287);
+            this.buttonVisualice.Name = "buttonVisualice";
+            this.buttonVisualice.Size = new System.Drawing.Size(121, 23);
+            this.buttonVisualice.TabIndex = 4;
+            this.buttonVisualice.Text = "Visualizar Pizarron";
+            this.buttonVisualice.UseVisualStyleBackColor = true;
+            this.buttonVisualice.Click += new System.EventHandler(this.buttonVisualice_Click);
+            // 
             // SelectBlackBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonVisualice);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.buttonModifyBlackBoard);
             this.Controls.Add(this.buttonRemoveBlackBoard);
@@ -93,5 +105,6 @@
         private System.Windows.Forms.Button buttonRemoveBlackBoard;
         private System.Windows.Forms.Button buttonModifyBlackBoard;
         private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Button buttonVisualice;
     }
 }
