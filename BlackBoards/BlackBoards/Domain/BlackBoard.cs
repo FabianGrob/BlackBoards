@@ -14,6 +14,8 @@ namespace BlackBoards
         private string description;
         private Dimension dimension;
         private User creatorUser;
+        private DateTime creationDate;
+        private DateTime lastModificationDate;
 
         public BlackBoard() {
             this.name = "Default name";
@@ -21,6 +23,8 @@ namespace BlackBoards
             this.dimension = new Dimension(5,5);
             this.itemList = new List<Item>();
             this.creatorUser = new Admin();
+            this.creationDate = DateTime.Today;
+            this.lastModificationDate = this.creationDate;
         }
         public BlackBoard(string aName, string aDescription, Dimension aDimension, List<Item> itemList, User anUser) {
             this.name = aName;
@@ -28,6 +32,8 @@ namespace BlackBoards
             this.dimension = aDimension;
             this.itemList = itemList;
             this.creatorUser = anUser;
+            this.creationDate = DateTime.Today;
+            this.lastModificationDate = this.creationDate;
         }
         public string Name
         {
@@ -83,6 +89,28 @@ namespace BlackBoards
             set
             {
                 this.creatorUser = value;
+            }
+        }
+        public DateTime CreationDate
+        {
+            get
+            {
+                return this.creationDate;
+            }
+            set
+            {
+                this.creationDate = value;
+            }
+        }
+        public DateTime LastModificationDate
+        {
+            get
+            {
+                return this.lastModificationDate;
+            }
+            set
+            {
+                this.lastModificationDate = value;
             }
         }
         public bool isValid() {

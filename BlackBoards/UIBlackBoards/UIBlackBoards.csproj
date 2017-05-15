@@ -58,6 +58,12 @@
     <Compile Include="AddNewUser.Designer.cs">
       <DependentUpon>AddNewUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="BlackBoardsPerTeam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BlackBoardsPerTeam.Designer.cs">
+      <DependentUpon>BlackBoardsPerTeam.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewUser.resx">
       <DependentUpon>AddNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BlackBoardsPerTeam.resx">
+      <DependentUpon>BlackBoardsPerTeam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

@@ -33,7 +33,7 @@
             this.buttonCreateTeam = new System.Windows.Forms.Button();
             this.buttonModifyTeam = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonBlackBoardsPerTeam = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.SuspendLayout();
@@ -91,18 +91,19 @@
             this.button5.Text = "button5";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // buttonBlackBoardsPerTeam
             // 
-            this.button6.Location = new System.Drawing.Point(23, 223);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(105, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonBlackBoardsPerTeam.Location = new System.Drawing.Point(23, 298);
+            this.buttonBlackBoardsPerTeam.Name = "buttonBlackBoardsPerTeam";
+            this.buttonBlackBoardsPerTeam.Size = new System.Drawing.Size(105, 23);
+            this.buttonBlackBoardsPerTeam.TabIndex = 5;
+            this.buttonBlackBoardsPerTeam.Text = "Informe Pizarrones";
+            this.buttonBlackBoardsPerTeam.UseVisualStyleBackColor = true;
+            this.buttonBlackBoardsPerTeam.Click += new System.EventHandler(this.buttonBlackBoardsPerTeam_Click);
             // 
             // buttonLogOut
             // 
-            this.buttonLogOut.Location = new System.Drawing.Point(23, 252);
+            this.buttonLogOut.Location = new System.Drawing.Point(23, 327);
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(105, 23);
             this.buttonLogOut.TabIndex = 6;
@@ -125,7 +126,7 @@
             this.ClientSize = new System.Drawing.Size(506, 473);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.buttonLogOut);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.buttonBlackBoardsPerTeam);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.buttonModifyTeam);
             this.Controls.Add(this.buttonCreateTeam);
@@ -145,7 +146,7 @@
         private System.Windows.Forms.Button buttonCreateTeam;
         private System.Windows.Forms.Button buttonModifyTeam;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonBlackBoardsPerTeam;
         private System.Windows.Forms.Button buttonLogOut;
         private System.Windows.Forms.Panel panelContainer;
     }
