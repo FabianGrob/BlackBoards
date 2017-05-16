@@ -33,6 +33,10 @@ namespace BlackBoards.Handlers
             this.AddCommentingUser(anUser);
             this.WriteComment(newComment);
             this.AddCommentingDate(DateTime.Today);
+            this.AddResolvingDate(DateTime.MaxValue);
+            Admin admin = new Admin();
+            this.AddResolvingUser(admin);
+
         }
         public bool ResolveComment(User anUser)
         {

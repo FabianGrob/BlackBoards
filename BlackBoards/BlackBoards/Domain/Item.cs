@@ -58,9 +58,8 @@ namespace BlackBoards
                 this.Comments.Add(aComment);
             }
             return validComment;
-
-
         }
+        
     }
 
 }

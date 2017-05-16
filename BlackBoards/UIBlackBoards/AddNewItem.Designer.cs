@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label = new System.Windows.Forms.Label();
             this.labelSize = new System.Windows.Forms.Label();
             this.labelFont = new System.Windows.Forms.Label();
             this.buttonTextBox = new System.Windows.Forms.Button();
@@ -39,18 +38,10 @@
             this.comboBoxFont = new System.Windows.Forms.ComboBox();
             this.textBox = new System.Windows.Forms.TextBox();
             this.labelText = new System.Windows.Forms.Label();
+            this.buttonComeBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label
-            // 
-            this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(18, 131);
-            this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(103, 13);
-            this.label.TabIndex = 26;
-            this.label.Text = "================";
             // 
             // labelSize
             // 
@@ -72,7 +63,7 @@
             // 
             // buttonTextBox
             // 
-            this.buttonTextBox.Location = new System.Drawing.Point(15, 105);
+            this.buttonTextBox.Location = new System.Drawing.Point(14, 273);
             this.buttonTextBox.Name = "buttonTextBox";
             this.buttonTextBox.Size = new System.Drawing.Size(120, 23);
             this.buttonTextBox.TabIndex = 23;
@@ -82,7 +73,7 @@
             // 
             // buttonPicture
             // 
-            this.buttonPicture.Location = new System.Drawing.Point(15, 272);
+            this.buttonPicture.Location = new System.Drawing.Point(14, 244);
             this.buttonPicture.Name = "buttonPicture";
             this.buttonPicture.Size = new System.Drawing.Size(121, 23);
             this.buttonPicture.TabIndex = 22;
@@ -92,7 +83,7 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(39, 172);
+            this.pictureBox.Location = new System.Drawing.Point(38, 130);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(69, 65);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -101,7 +92,7 @@
             // 
             // buttonLoadFile
             // 
-            this.buttonLoadFile.Location = new System.Drawing.Point(15, 243);
+            this.buttonLoadFile.Location = new System.Drawing.Point(15, 215);
             this.buttonLoadFile.Name = "buttonLoadFile";
             this.buttonLoadFile.Size = new System.Drawing.Size(120, 23);
             this.buttonLoadFile.TabIndex = 20;
@@ -111,10 +102,31 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.numericUpDown1.Location = new System.Drawing.Point(73, 45);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(63, 20);
             this.numericUpDown1.TabIndex = 19;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // comboBoxFont
             // 
@@ -127,7 +139,7 @@
             // 
             // textBox
             // 
-            this.textBox.Location = new System.Drawing.Point(56, 79);
+            this.textBox.Location = new System.Drawing.Point(56, 88);
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(80, 20);
             this.textBox.TabIndex = 27;
@@ -135,20 +147,30 @@
             // labelText
             // 
             this.labelText.AutoSize = true;
-            this.labelText.Location = new System.Drawing.Point(15, 82);
+            this.labelText.Location = new System.Drawing.Point(12, 88);
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(34, 13);
             this.labelText.TabIndex = 28;
             this.labelText.Text = "Texto";
             this.labelText.Click += new System.EventHandler(this.label1_Click);
             // 
+            // buttonComeBack
+            // 
+            this.buttonComeBack.Location = new System.Drawing.Point(14, 323);
+            this.buttonComeBack.Name = "buttonComeBack";
+            this.buttonComeBack.Size = new System.Drawing.Size(120, 23);
+            this.buttonComeBack.TabIndex = 29;
+            this.buttonComeBack.Text = "Volver";
+            this.buttonComeBack.UseVisualStyleBackColor = true;
+            this.buttonComeBack.Click += new System.EventHandler(this.buttonComeBack_Click);
+            // 
             // AddNewItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonComeBack);
             this.Controls.Add(this.labelText);
             this.Controls.Add(this.textBox);
-            this.Controls.Add(this.label);
             this.Controls.Add(this.labelSize);
             this.Controls.Add(this.labelFont);
             this.Controls.Add(this.buttonTextBox);
@@ -158,7 +180,7 @@
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.comboBoxFont);
             this.Name = "AddNewItem";
-            this.Size = new System.Drawing.Size(150, 298);
+            this.Size = new System.Drawing.Size(150, 349);
             this.Load += new System.EventHandler(this.AddNewItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -168,8 +190,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label labelSize;
         private System.Windows.Forms.Label labelFont;
         private System.Windows.Forms.Button buttonTextBox;
@@ -180,5 +200,6 @@
         private System.Windows.Forms.ComboBox comboBoxFont;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Label labelText;
+        private System.Windows.Forms.Button buttonComeBack;
     }
 }

@@ -42,9 +42,9 @@
             // 
             // panelOptions
             // 
-            this.panelOptions.Location = new System.Drawing.Point(788, 86);
+            this.panelOptions.Location = new System.Drawing.Point(792, 74);
             this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(251, 336);
+            this.panelOptions.Size = new System.Drawing.Size(251, 385);
             this.panelOptions.TabIndex = 1;
             // 
             // VisualizeBoard

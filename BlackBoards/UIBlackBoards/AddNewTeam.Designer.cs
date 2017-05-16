@@ -158,6 +158,7 @@
             this.richTextBoxDescription.Size = new System.Drawing.Size(227, 72);
             this.richTextBoxDescription.TabIndex = 14;
             this.richTextBoxDescription.Text = "";
+            this.richTextBoxDescription.TextChanged += new System.EventHandler(this.richTextBoxDescription_TextChanged);
             // 
             // AddNewTeam
             // 

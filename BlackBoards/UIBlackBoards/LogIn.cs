@@ -22,6 +22,7 @@ namespace UIBlackBoards
             foreach (User actualUser in theRepository.UserList) {
                 comboBoxUsers.Items.Add(actualUser);
             }
+            textBoxPassword.PasswordChar = '*';
             comboBoxUsers.SelectedIndex = 0;
         }
         
@@ -70,5 +71,7 @@ namespace UIBlackBoards
         {
 
         }
+
+      
     }
 }

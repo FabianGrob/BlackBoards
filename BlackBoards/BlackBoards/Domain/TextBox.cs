@@ -97,6 +97,11 @@ namespace BlackBoards
             bool sameContent=this.content.Equals(anotherTextBox.content);
             return sameDimensions && sameOrigin && sameComments && sameFontAndSize && sameContent;
         }
+        public override string ToString()
+        {
+            return this.content;
+        }
     }
     
+
 }

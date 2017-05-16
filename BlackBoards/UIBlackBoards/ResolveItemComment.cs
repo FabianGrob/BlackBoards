@@ -51,29 +51,22 @@ namespace UIBlackBoards
                 Comment selectedComment = (Comment)listBoxComments.SelectedItem;
               
                 UserHandler handler = new UserHandler(logged);
-                bool resolved = handler.ResolveComment(selectedComment);
-                if (resolved)
-                {
+               
+              
                     if (selectedComment.ResolvingDate.Equals(DateTime.MaxValue))
                     {
-
+                        bool resolved = handler.ResolveComment(selectedComment);
+                   
 
                         MessageBox.Show("El comentario se marcó como resuelto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         panelContainer.Controls.Clear();
                         ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
                         panelContainer.Controls.Add(pwindow);
-                    }
+                   
+                     }
                     else {
                         MessageBox.Show("El comentario ya estaba resuelto por: " + selectedComment.ResolvingUser, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else {
-                    MessageBox.Show("El comentario No se marcó como resuelto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-                
-                
-
             }
         }
 

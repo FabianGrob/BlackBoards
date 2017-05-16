@@ -153,5 +153,10 @@ namespace UIBlackBoards
                 }
             }
         }
+
+        private void richTextBoxDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

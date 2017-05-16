@@ -76,6 +76,10 @@ namespace BlackBoards
             bool sameComments = this.Comments.Equals(anotherPicture.Comments);
             return sameDimensions && sameComments && sameComments;
         }
+        public override string ToString()
+        {
+            return this.description;
+        }
     }
  }
 

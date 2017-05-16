@@ -21,8 +21,7 @@ namespace UIBlackBoards
         private Repository theRepository;
         public CommentItem(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer,Item actualItem,Repository aRepository)
         {
-            InitializeComponent();
-            InitializeComponent();
+            InitializeComponent();     
             actualBlackBoard = aBoard;
             logged = anUser;
             panelContainer = container;
@@ -36,19 +35,25 @@ namespace UIBlackBoards
 
         }
 
+        private bool validateText(string text)
+        {
+            return text.Length > 5;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.Text.Length > 5)
+            string txt = textBox1.Text;
+            if (validateText(txt))
             {
                 UserHandler handler = new UserHandler(logged);
-                handler.CreateNewComment(selectedItem, richTextBox1.Text);
+                handler.CreateNewComment(selectedItem, txt);
                 panelContainer.Controls.Clear();
                 ManageBlackBoard pwindow = new ManageBlackBoard(logged,theRepository,panelContainer,boardContainer,actualBlackBoard);
                 panelContainer.Controls.Add(pwindow);
                 MessageBox.Show("Se creó el comentario correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else {
-                MessageBox.Show("Se ingreso un comentario demasiado corto(almenos 6 letras)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Se ingreso un comentario demasiado corto (almenos 6 letras)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -58,6 +63,11 @@ namespace UIBlackBoards
             panelContainer.Controls.Clear();
             ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
             panelContainer.Controls.Add(pwindow);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

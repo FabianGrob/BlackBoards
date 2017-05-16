@@ -116,6 +116,9 @@ namespace UIBlackBoards
                 blackboardPanel.Controls.Clear();
                 VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel);
                 blackboardPanel.Controls.Add(visualize);
+                containerPanel.Controls.Clear();
+                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, containerPanel, blackboardPanel, blackBoard);
+                containerPanel.Controls.Add(pwindow);
             }
         }
 
@@ -145,12 +148,27 @@ namespace UIBlackBoards
                 blackboardPanel.Controls.Clear();
                 VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel);
                 blackboardPanel.Controls.Add(visualize);
+                containerPanel.Controls.Clear();
+                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, containerPanel, blackboardPanel, blackBoard);
+                containerPanel.Controls.Add(pwindow);
             }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonComeBack_Click(object sender, EventArgs e)
+        {
+            containerPanel.Controls.Clear();
+            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, containerPanel, blackboardPanel, blackBoard);
+            containerPanel.Controls.Add(pwindow);
         }
     }
 }
