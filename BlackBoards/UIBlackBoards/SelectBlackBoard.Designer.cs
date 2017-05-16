@@ -75,7 +75,7 @@
             // 
             // buttonVisualice
             // 
-            this.buttonVisualice.Location = new System.Drawing.Point(134, 287);
+            this.buttonVisualice.Location = new System.Drawing.Point(123, 287);
             this.buttonVisualice.Name = "buttonVisualice";
             this.buttonVisualice.Size = new System.Drawing.Size(121, 23);
             this.buttonVisualice.TabIndex = 4;

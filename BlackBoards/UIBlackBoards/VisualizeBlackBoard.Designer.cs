@@ -30,6 +30,7 @@
         {
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonDiscard = new System.Windows.Forms.Button();
+            this.buttonCapture = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonSave
@@ -52,10 +53,21 @@
             this.buttonDiscard.UseVisualStyleBackColor = true;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
             // 
+            // buttonCapture
+            // 
+            this.buttonCapture.Location = new System.Drawing.Point(166, 2);
+            this.buttonCapture.Name = "buttonCapture";
+            this.buttonCapture.Size = new System.Drawing.Size(116, 23);
+            this.buttonCapture.TabIndex = 3;
+            this.buttonCapture.Text = "Tomar Captura";
+            this.buttonCapture.UseVisualStyleBackColor = true;
+            this.buttonCapture.Click += new System.EventHandler(this.button1_Click);
+            // 
             // VisualizeBlackBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonCapture);
             this.Controls.Add(this.buttonDiscard);
             this.Controls.Add(this.buttonSave);
             this.Name = "VisualizeBlackBoard";
@@ -68,5 +80,6 @@
         #endregion
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonDiscard;
+        private System.Windows.Forms.Button buttonCapture;
     }
 }

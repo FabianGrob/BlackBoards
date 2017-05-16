@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using System.Collections;
+using System.Drawing.Printing;
+using System.Drawing.Imaging;
 
 namespace UIBlackBoards
 {
@@ -18,6 +20,8 @@ namespace UIBlackBoards
         private User logged;
         private Panel panelContainer;
         private List<Control> controls;
+        private Bitmap _memoryImage;
+
         public VisualizeBlackBoard(BlackBoard aBoard,User anUser,Panel container)
         {
             InitializeComponent();
@@ -64,7 +68,8 @@ namespace UIBlackBoards
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            int indexItems = 0; ;
+           
+            int indexItems = 0; 
             foreach (Control aControl in controls)
             {
                 int x =aControl.Bounds.X;
@@ -85,7 +90,6 @@ namespace UIBlackBoards
 
             }
             MessageBox.Show("Se guardaron las posiciones correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void buttonDiscard_Click(object sender, EventArgs e)
@@ -93,6 +97,15 @@ namespace UIBlackBoards
             panelContainer.Controls.Clear();
             UserControl discardWindow = new VisualizeBlackBoard(actualBlackBoard, logged, panelContainer);
             panelContainer.Controls.Add(discardWindow);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var Screenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width,Screen.PrimaryScreen.Bounds.Height,PixelFormat.Format32bppArgb);
+            var gfxScreenshot = Graphics.FromImage(Screenshot);
+            gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0,Screen.PrimaryScreen.Bounds.Size,CopyPixelOperation.SourceCopy);
+            Screenshot.Save("ScreenshotOut.png", ImageFormat.Png);
+            MessageBox.Show("Se guardaron las posiciones correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

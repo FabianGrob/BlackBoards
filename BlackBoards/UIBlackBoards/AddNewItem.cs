@@ -125,7 +125,7 @@ namespace UIBlackBoards
         private void buttonLoadFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog f = new OpenFileDialog();
-            f.Filter = "JPG(*.JPG)|*.jpg";
+            f.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
 
             if (f.ShowDialog() == DialogResult.OK)
             {

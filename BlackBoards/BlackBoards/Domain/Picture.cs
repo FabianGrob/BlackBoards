@@ -17,7 +17,6 @@ namespace BlackBoards
             this.Dimension= new Dimension(50,50);
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
-            //this.img = Image.FromFile(getDefaultPicturePath());
             this.description = "default description";
         }
         public override bool IsPicture()

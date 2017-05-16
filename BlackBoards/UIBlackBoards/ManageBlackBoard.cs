@@ -46,5 +46,17 @@ namespace UIBlackBoards
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(newVisualize);
         }
+
+        private void buttonRemoveItem_Click(object sender, EventArgs e)
+        {
+            SelectItemToDelete newVisualize = new SelectItemToDelete(blackBoard, logged, panelContainer, panelContainerBlackBoard, theRepository);
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(newVisualize);
+        }
+
+        private void buttonCleanBlackBoard_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -52,6 +52,7 @@
             this.buttonRemoveItem.TabIndex = 2;
             this.buttonRemoveItem.Text = "Eliminar Elemento";
             this.buttonRemoveItem.UseVisualStyleBackColor = true;
+            this.buttonRemoveItem.Click += new System.EventHandler(this.buttonRemoveItem_Click);
             // 
             // buttonManageComment
             // 
@@ -71,6 +72,7 @@
             this.buttonCleanBlackBoard.TabIndex = 6;
             this.buttonCleanBlackBoard.Text = "Limpiar Pizarron";
             this.buttonCleanBlackBoard.UseVisualStyleBackColor = true;
+            this.buttonCleanBlackBoard.Click += new System.EventHandler(this.buttonCleanBlackBoard_Click);
             // 
             // ManageBlackBoard
             // 
