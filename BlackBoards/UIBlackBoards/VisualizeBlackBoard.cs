@@ -20,7 +20,6 @@ namespace UIBlackBoards
         private User logged;
         private Panel panelContainer;
         private List<Control> controls;
-        private Bitmap _memoryImage;
 
         public VisualizeBlackBoard(BlackBoard aBoard,User anUser,Panel container)
         {
@@ -55,8 +54,6 @@ namespace UIBlackBoards
                     controls.Add(itemToAdd);
                     Controls.Add(itemToAdd);
                 }
-                
-              
             }
            
         }
@@ -104,8 +101,14 @@ namespace UIBlackBoards
             var Screenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width,Screen.PrimaryScreen.Bounds.Height,PixelFormat.Format32bppArgb);
             var gfxScreenshot = Graphics.FromImage(Screenshot);
             gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0,Screen.PrimaryScreen.Bounds.Size,CopyPixelOperation.SourceCopy);
-            Screenshot.Save("ScreenshotOut.png", ImageFormat.Png);
-            MessageBox.Show("Se guardaron las posiciones correctamente", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SaveFileDialog f = new SaveFileDialog();
+            f.Filter = "PNG(*.PNG)|*.png";
+
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                Screenshot.Save(f.FileName, ImageFormat.Png);
+            }
+          
         }
     }
 }
