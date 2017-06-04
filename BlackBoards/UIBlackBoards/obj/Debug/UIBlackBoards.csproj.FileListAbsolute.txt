@@ -62,3 +62,7 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBla
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csproj.GenerateResource.Cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewItem.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.ManageBlackBoard.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.ResolveItemComment.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.SelectItemToDelete.resources
