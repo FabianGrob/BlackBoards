@@ -29,33 +29,18 @@ namespace UIBlackBoards
             logged = anUser;
             panelContainer.SetBounds(0, 0, actualBlackBoard.Dimension.Width, actualBlackBoard.Dimension.Height);
             controls = new List<Control>();
-            foreach (Item actualItem in actualBlackBoard.ItemList) {
-              
-                if (actualItem.IsPicture())
-                {
-                    PictureBox itemToAdd = new PictureBox();
-                    itemToAdd.SizeMode = PictureBoxSizeMode.StretchImage;
-                    itemToAdd.Image= ((Picture)actualItem).Img;
-                    itemToAdd.SetBounds(actualItem.Origin.XAxis, actualItem.Origin.YAxis, actualItem.Dimension.Width, actualItem.Dimension.Height);
-                    ControlMoverOrResizer.Init(itemToAdd);
-                    controls.Add(itemToAdd);
-                    Controls.Add(itemToAdd);
-
-
-                }
-                else{
-
-                    RichTextBox itemToAdd = new RichTextBox();
-                    itemToAdd.Text = ((BlackBoards.TextBox)actualItem).Content;
-                    itemToAdd.Font = new Font(((BlackBoards.TextBox)actualItem).Font, ((BlackBoards.TextBox)actualItem).FontSize) ;
-                    itemToAdd.SetBounds(actualItem.Origin.XAxis, actualItem.Origin.YAxis, actualItem.Dimension.Width, actualItem.Dimension.Height);
-                    itemToAdd.Visible = true;
-                    ControlMoverOrResizer.Init(itemToAdd);
-                    controls.Add(itemToAdd);
-                    Controls.Add(itemToAdd);
-                }
-            }
+            loadControls();
            
+           
+        }
+        private void loadControls() {
+            foreach (Item actualItem in actualBlackBoard.ItemList)
+            {
+                Control itemToAdd = actualItem.Print();
+                ControlMoverOrResizer.Init(itemToAdd);
+                controls.Add(itemToAdd);
+                Controls.Add(itemToAdd);
+            }
         }
 
         private void VisualizeBlackBoard_Load(object sender, EventArgs e)

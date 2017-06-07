@@ -1,9 +1,11 @@
 ﻿using BlackBoards.Domain;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BlackBoards
 {
@@ -96,6 +98,15 @@ namespace BlackBoards
             bool sameFontAndSize=this.fontSize== anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
             bool sameContent=this.content.Equals(anotherTextBox.content);
             return sameDimensions && sameOrigin && sameComments && sameFontAndSize && sameContent;
+        }
+        public override Control Print() {
+            RichTextBox itemToAdd = new RichTextBox();
+            itemToAdd.Text = this.content;
+            itemToAdd.Font = new Font(this.Font, this.FontSize);
+            itemToAdd.SetBounds(this.Origin.XAxis, this.Origin.YAxis, this.Dimension.Width, this.Dimension.Height);
+            itemToAdd.Visible = true;
+            return itemToAdd;
+           
         }
         public override string ToString()
         {
