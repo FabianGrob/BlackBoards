@@ -158,5 +158,20 @@ namespace UIBlackBoards
         {
 
         }
+
+        private void buttonDeleteMember_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = listBoxSelectedUsers.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                User selectedUser = (User)listBoxSelectedUsers.SelectedItem;
+                listBoxSelectedUsers.Items.Remove(selectedUser);
+                listBoxAllUsers.Items.Add(selectedUser);
+            }
+            else
+            {
+                MessageBox.Show("No se selecciono ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

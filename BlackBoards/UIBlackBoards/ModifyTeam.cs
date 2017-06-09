@@ -104,5 +104,10 @@ namespace UIBlackBoards
         {
 
         }
+
+        private void labelSelectedUsers_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

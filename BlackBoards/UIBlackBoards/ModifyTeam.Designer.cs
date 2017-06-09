@@ -93,9 +93,10 @@
             this.labelSelectedUsers.AutoSize = true;
             this.labelSelectedUsers.Location = new System.Drawing.Point(21, 178);
             this.labelSelectedUsers.Name = "labelSelectedUsers";
-            this.labelSelectedUsers.Size = new System.Drawing.Size(121, 13);
+            this.labelSelectedUsers.Size = new System.Drawing.Size(100, 13);
             this.labelSelectedUsers.TabIndex = 22;
-            this.labelSelectedUsers.Text = "Usuarios Seleccionados";
+            this.labelSelectedUsers.Text = "Usuarios del equipo";
+            this.labelSelectedUsers.Click += new System.EventHandler(this.labelSelectedUsers_Click);
             // 
             // labelAllUsers
             // 

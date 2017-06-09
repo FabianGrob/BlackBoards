@@ -41,6 +41,7 @@
             this.labelCantMaxUsers = new System.Windows.Forms.Label();
             this.textBoxCantMaxUsers = new System.Windows.Forms.TextBox();
             this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
+            this.buttonDeleteMember = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -160,10 +161,21 @@
             this.richTextBoxDescription.Text = "";
             this.richTextBoxDescription.TextChanged += new System.EventHandler(this.richTextBoxDescription_TextChanged);
             // 
+            // buttonDeleteMember
+            // 
+            this.buttonDeleteMember.Location = new System.Drawing.Point(169, 250);
+            this.buttonDeleteMember.Name = "buttonDeleteMember";
+            this.buttonDeleteMember.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteMember.TabIndex = 15;
+            this.buttonDeleteMember.Text = "Eliminar";
+            this.buttonDeleteMember.UseVisualStyleBackColor = true;
+            this.buttonDeleteMember.Click += new System.EventHandler(this.buttonDeleteMember_Click);
+            // 
             // AddNewTeam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonDeleteMember);
             this.Controls.Add(this.richTextBoxDescription);
             this.Controls.Add(this.textBoxCantMaxUsers);
             this.Controls.Add(this.labelCantMaxUsers);
@@ -200,5 +212,6 @@
         private System.Windows.Forms.Label labelCantMaxUsers;
         private System.Windows.Forms.TextBox textBoxCantMaxUsers;
         private System.Windows.Forms.RichTextBox richTextBoxDescription;
+        private System.Windows.Forms.Button buttonDeleteMember;
     }
 }
