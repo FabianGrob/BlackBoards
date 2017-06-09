@@ -42,15 +42,8 @@ namespace UIBlackBoards
                 Controls.Add(itemToAdd);
             }
         }
-
-        private void VisualizeBlackBoard_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
-           
             int indexItems = 0; 
             foreach (Control aControl in controls)
             {

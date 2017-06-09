@@ -54,12 +54,6 @@
     <Compile Include="Domain\Dimension.cs" />
     <Compile Include="Domain\Program.cs" />
     <Compile Include="Domain\Repository.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Picture.cs" />
     <Compile Include="Handlers\AdminHandler.cs" />

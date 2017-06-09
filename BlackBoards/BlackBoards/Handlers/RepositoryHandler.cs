@@ -81,7 +81,6 @@ namespace BlackBoards.Handlers
                 mod.BirthDate = birthDate;
                 mod.Password = password;
             }
-
         }
         public bool IsUserAnAdmin(string lookUpEmail) {
             bool isAnAdmin = false;
@@ -92,7 +91,6 @@ namespace BlackBoards.Handlers
                 }
             }
             return isAnAdmin;
-
         }
         private Admin GetSpecificAdmin(string lookUpEmail) {
             Admin admin = null;
@@ -205,7 +203,6 @@ namespace BlackBoards.Handlers
                 }
             }
             return resolvedCommentsUser;
-
         }
         public List<Comment> filterCreationDate(List<Comment> comments,DateTime creationDate) {
             List<Comment> filtered = new List<Comment>();

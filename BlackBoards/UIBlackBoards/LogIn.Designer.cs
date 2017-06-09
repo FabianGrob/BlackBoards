@@ -45,7 +45,6 @@
             this.comboBoxUsers.Name = "comboBoxUsers";
             this.comboBoxUsers.Size = new System.Drawing.Size(121, 21);
             this.comboBoxUsers.TabIndex = 0;
-            this.comboBoxUsers.SelectedIndexChanged += new System.EventHandler(this.comboBoxUsers_SelectedIndexChanged);
             // 
             // Start
             // 
@@ -105,7 +104,6 @@
             this.Controls.Add(this.comboBoxUsers);
             this.Name = "LogIn";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.LogIn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

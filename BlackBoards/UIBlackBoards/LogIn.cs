@@ -46,7 +46,6 @@ namespace UIBlackBoards
                     MainMenu window =new MainMenu(entering,theRepository);
                     window.Visible = true;
                     this.Visible = false;
-                    //MessageBox.Show("OK", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -59,19 +58,7 @@ namespace UIBlackBoards
 
         private void exit_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
-
-        private void comboBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LogIn_Load(object sender, EventArgs e)
-        {
-
-        }
-
-      
     }
 }
