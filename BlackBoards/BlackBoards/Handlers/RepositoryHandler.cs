@@ -266,7 +266,8 @@ namespace BlackBoards.Handlers
             BlackBoard boardB = new BlackBoard("Trabajo Escritorio", "Es una pizarra de prueba", new Domain.Dimension(600, 500), new List<Item>(), handlerSndAdm.User);
             handlerSndAdm.CreateBlackBoard(this.GetSpecificTeam("Equipo B"), boardB);
         }
-        public void loadTestData() {
+        public bool loadTestData() {
+            bool generated = false;
             if (!this.repository.TestData)
             {
                 this.Repository.TestData = true;
@@ -278,7 +279,9 @@ namespace BlackBoards.Handlers
                 this.loadTeams(admHandler, secondAdm);
                 UserHandler handlerSndAdm = new UserHandler(secondAdm);
                 this.LoadBoards(handlerAdm, handlerSndAdm);
+                generated = true;
             }
+            return generated;
         }
     }
 }
