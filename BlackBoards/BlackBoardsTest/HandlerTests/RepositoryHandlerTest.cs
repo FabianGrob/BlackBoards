@@ -220,5 +220,40 @@ namespace BlackBoardsTest.HandlerTests
             bool result = handler.CheckPassword("NonExistentEmail@test.com", "passwordTest");
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestLoadTestDataAddedUsers()
+        {
+            //instance
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.loadTestData();
+            bool addedUsers = repository.UserList.Count > 1;
+            bool addedTeams = handler.TeamAlreadyExists("Equipo A") && handler.TeamAlreadyExists("Equipo B");
+            bool addedBoards = handler.GetSpecificTeam("Equipo A").Boards.Count > 0 && handler.GetSpecificTeam("Equipo B").Boards.Count > 0;
+            //assertion
+            Assert.IsFalse(addedUsers);
+        }
+        [TestMethod]
+        public void TestLoadTestDataAddedTeams()
+        {
+            //instance
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.loadTestData();
+            bool addedTeams = handler.TeamAlreadyExists("Equipo A") && handler.TeamAlreadyExists("Equipo B");
+            //assertion
+            Assert.IsFalse(addedTeams);
+        }
+        [TestMethod]
+        public void TestLoadTestDataAddedBoards()
+        {
+            //instance
+            Repository repository = new Repository();
+            RepositoryHandler handler = new RepositoryHandler(repository);
+            handler.loadTestData();
+            bool addedBoards = handler.GetSpecificTeam("Equipo A").Boards.Count > 0 && handler.GetSpecificTeam("Equipo B").Boards.Count > 0;
+            //assertion
+            Assert.IsFalse(addedBoards);
+        }
     }
 }
