@@ -240,7 +240,34 @@ namespace BlackBoards.Handlers
                 }
             }
             return filtered;
-
+        }
+        public void loadTestData() {
+            if (!this.repository.TestData)
+            {
+                this.Repository.TestData = true;
+                Admin adm = this.GetSpecificAdmin("Admin@Admin.com");
+                AdminHandler admHandler = new AdminHandler(adm);
+                admHandler.CreateCollaborator("Roberto", "Gonzales", "rGonzales@testEmail.com", DateTime.Today, "password", this.Repository);
+                admHandler.CreateCollaborator("Rodrigo", "Rodriguez", "rodriguezRodrigo@testEmail.com", DateTime.Today, "password", this.Repository);
+                admHandler.CreateCollaborator("Alberto", "Gomez", "AlbertoG@testEmail.com", DateTime.Today, "password", this.Repository);
+                admHandler.CreateAdmin("Maria", "Fernandez", "mraFernandez@testEmail.com", DateTime.Today, "password", this.Repository);
+                List<User> membersA = new List<User>();
+                membersA.Add(this.getSepcificUser("rGonzales@testEmail.com"));
+                membersA.Add(this.getSepcificUser("rodriguezRodrigo@testEmail.com"));
+                membersA.Add(adm);
+                admHandler.CreateTeam("Equipo A", "Equipo de prueba", 4, membersA, new List<BlackBoard>(), this.Repository);
+                List<User> membersB = new List<User>();
+                membersB.Add(this.getSepcificUser("rGonzales@testEmail.com"));
+                Admin secondAdm = this.GetSpecificAdmin("mraFernandez@testEmail.com");
+                membersB.Add(secondAdm);
+                admHandler.CreateTeam("Equipo B", "Equipo de prueba", 3, membersB, new List<BlackBoard>(), this.Repository);
+                UserHandler handlerAdm = new UserHandler(adm);
+                UserHandler handlerSndAdm = new UserHandler(secondAdm);
+                BlackBoard boardB = new BlackBoard("Trabajo Escritorio", "Es una pizarra de prueba", new Domain.Dimension(600, 500), new List<Item>(), secondAdm);
+                handlerSndAdm.CreateBlackBoard(this.GetSpecificTeam("Equipo B"),boardB);
+                BlackBoard boardA = new BlackBoard("Trabajo Empresa", "Es una pizarra de prueba", new Domain.Dimension(600, 500), new List<Item>(), adm);
+                handlerAdm.CreateBlackBoard(this.GetSpecificTeam("Equipo A"), boardA);
+            }
         }
     }
 }

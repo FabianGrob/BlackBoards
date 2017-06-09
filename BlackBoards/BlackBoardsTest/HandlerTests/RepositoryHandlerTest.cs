@@ -227,11 +227,9 @@ namespace BlackBoardsTest.HandlerTests
             Repository repository = new Repository();
             RepositoryHandler handler = new RepositoryHandler(repository);
             handler.loadTestData();
-            bool addedUsers = repository.UserList.Count > 1;
-            bool addedTeams = handler.TeamAlreadyExists("Equipo A") && handler.TeamAlreadyExists("Equipo B");
-            bool addedBoards = handler.GetSpecificTeam("Equipo A").Boards.Count > 0 && handler.GetSpecificTeam("Equipo B").Boards.Count > 0;
+            bool addedUsers = repository.UserList.Count > 1;            
             //assertion
-            Assert.IsFalse(addedUsers);
+            Assert.IsTrue(addedUsers);
         }
         [TestMethod]
         public void TestLoadTestDataAddedTeams()
@@ -242,7 +240,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.loadTestData();
             bool addedTeams = handler.TeamAlreadyExists("Equipo A") && handler.TeamAlreadyExists("Equipo B");
             //assertion
-            Assert.IsFalse(addedTeams);
+            Assert.IsTrue(addedTeams);
         }
         [TestMethod]
         public void TestLoadTestDataAddedBoards()
@@ -253,7 +251,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.loadTestData();
             bool addedBoards = handler.GetSpecificTeam("Equipo A").Boards.Count > 0 && handler.GetSpecificTeam("Equipo B").Boards.Count > 0;
             //assertion
-            Assert.IsFalse(addedBoards);
+            Assert.IsTrue(addedBoards);
         }
     }
 }
