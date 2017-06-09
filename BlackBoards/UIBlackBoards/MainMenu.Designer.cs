@@ -37,6 +37,7 @@
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.buttonCommentsInform = new System.Windows.Forms.Button();
+            this.buttonLoadTestData = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonCreateUser
@@ -95,7 +96,7 @@
             // 
             // buttonBlackBoardsPerTeam
             // 
-            this.buttonBlackBoardsPerTeam.Location = new System.Drawing.Point(23, 298);
+            this.buttonBlackBoardsPerTeam.Location = new System.Drawing.Point(23, 281);
             this.buttonBlackBoardsPerTeam.Name = "buttonBlackBoardsPerTeam";
             this.buttonBlackBoardsPerTeam.Size = new System.Drawing.Size(112, 23);
             this.buttonBlackBoardsPerTeam.TabIndex = 5;
@@ -105,7 +106,7 @@
             // 
             // buttonLogOut
             // 
-            this.buttonLogOut.Location = new System.Drawing.Point(23, 327);
+            this.buttonLogOut.Location = new System.Drawing.Point(23, 310);
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(112, 23);
             this.buttonLogOut.TabIndex = 6;
@@ -123,7 +124,7 @@
             // 
             // buttonCommentsInform
             // 
-            this.buttonCommentsInform.Location = new System.Drawing.Point(23, 269);
+            this.buttonCommentsInform.Location = new System.Drawing.Point(23, 252);
             this.buttonCommentsInform.Name = "buttonCommentsInform";
             this.buttonCommentsInform.Size = new System.Drawing.Size(112, 23);
             this.buttonCommentsInform.TabIndex = 8;
@@ -131,11 +132,22 @@
             this.buttonCommentsInform.UseVisualStyleBackColor = true;
             this.buttonCommentsInform.Click += new System.EventHandler(this.buttonCommentsInform_Click);
             // 
+            // buttonLoadTestData
+            // 
+            this.buttonLoadTestData.Location = new System.Drawing.Point(23, 223);
+            this.buttonLoadTestData.Name = "buttonLoadTestData";
+            this.buttonLoadTestData.Size = new System.Drawing.Size(112, 23);
+            this.buttonLoadTestData.TabIndex = 9;
+            this.buttonLoadTestData.Text = "Generar datos";
+            this.buttonLoadTestData.UseVisualStyleBackColor = true;
+            this.buttonLoadTestData.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 473);
+            this.Controls.Add(this.buttonLoadTestData);
             this.Controls.Add(this.buttonCommentsInform);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.buttonLogOut);
@@ -163,5 +175,6 @@
         private System.Windows.Forms.Button buttonLogOut;
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Button buttonCommentsInform;
+        private System.Windows.Forms.Button buttonLoadTestData;
     }
 }

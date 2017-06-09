@@ -96,5 +96,19 @@ namespace UIBlackBoards
             UserControl informComments = new UserListForComments(logged, theRepository, panelContainer);
             panelContainer.Controls.Add(informComments);
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            RepositoryHandler handler = new RepositoryHandler(theRepository);
+            bool generated = handler.loadTestData();
+            if (generated)
+            {                
+                MessageBox.Show("Se generaron datos de prueba", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else {
+                MessageBox.Show("Los datos de prueba ya habian sido generados", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
     }
 }
