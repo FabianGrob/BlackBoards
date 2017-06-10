@@ -70,5 +70,24 @@ namespace BlackBoardsTest
             bool result = validationResult.Validation;
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestPictureValidationReturnFalseMessageImage()
+        {
+            Picture aPic = setUpPicture();
+            aPic.Img=null;
+            ValidationReturn validationResult = aPic.IsValid();
+            bool result = validationResult.Message.Equals("No se ha cargado ninguna foto.");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestPictureValidationReturnFalseMessageText()
+        {
+            Picture aPic = setUpPicture();
+            aPic.Description = "";
+            ValidationReturn validationResult = aPic.IsValid();
+            bool result = validationResult.Message.Equals("El texto ingresado es vacio.");
+            Assert.IsTrue(result);
+        }
     }
+
 }
