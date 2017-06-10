@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain.BlackBoards;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,44 +49,24 @@ namespace UIBlackBoards
 
         public bool validationsTextBox(BlackBoards.TextBox newItem)
         {
-            bool allValidationsOk = true;
-            if (!newItem.IsContentValid())
+            ValidationReturn validation = newItem.isValid();
+            bool isValid = validation.Validation;
+            if (!isValid)
             {
-                allValidationsOk = false;
-                MessageBox.Show("El texto ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
+                MessageBox.Show(validation.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (!newItem.IsFontValid())
-            {
-                allValidationsOk = false;   
-                MessageBox.Show("La fuente ingresada es invalida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
-            }
-            if (!newItem.IsFontSizeValid())
-            {
-                allValidationsOk = false;
-                MessageBox.Show("El tamaño de fuente no puede ser menor a 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
-            }
-            return allValidationsOk;
+            return isValid;
         }
 
         public bool validationsPictures(Picture newPicture)
         {
-            bool allValidationsOk = true;
-            if (!newPicture.IsDescriptionValid())
+            ValidationReturn validation = newPicture.IsValid();
+            bool isValid = validation.Validation;
+            if (!isValid)
             {
-                allValidationsOk = false;
-                MessageBox.Show("El texto ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
+                MessageBox.Show(validation.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (!newPicture.IsPictureValid())
-            {
-                allValidationsOk = false;
-                MessageBox.Show("No se ha cargado ninguna foto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
-            }
-            return allValidationsOk;
+            return isValid;
         }
 
         private void buttonTextBox_Click(object sender, EventArgs e)
