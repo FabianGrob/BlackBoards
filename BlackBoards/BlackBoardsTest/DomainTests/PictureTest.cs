@@ -52,7 +52,6 @@ namespace BlackBoardsTest
         public void TestPictureNotEquals()
         {
             Picture aPic = new Picture();
-
             aPic.Dimension = new Dimension(1, 1);
             aPic.Comments = new List<Comment>();
             Coordinate origin = new Coordinate();
@@ -61,7 +60,6 @@ namespace BlackBoardsTest
             Picture anotherPic = new Picture(new Dimension(1, 1), new List<Comment>(), origin);
             bool result = aPic.Equals(anotherPic);
             Assert.IsFalse(result);
-
         }
         [TestMethod]
         public void TestPictureValidationReturnFalse()
@@ -73,5 +71,4 @@ namespace BlackBoardsTest
             Assert.IsFalse(result);
         }
     }
-
 }
