@@ -8,16 +8,12 @@ namespace BlackBoards
         private List<User> userList;
         private List<Team> teamList;
         private bool testData;
-      
-
-      
         public Repository()
         {
             bool testData = false;
             this.administratorList = new List<Admin>();
             this.userList = new List<User>();
             this.teamList = new List<Team>();
-           
         }
         public Repository(List<Admin> administratorList, List<User> userList, List<Team> teamList)
         {
@@ -60,7 +56,6 @@ namespace BlackBoards
                 this.userList = value;
             }
         }
-
         public List<Team> TeamList
         {
             get
@@ -72,7 +67,5 @@ namespace BlackBoards
                 this.teamList = value;
             }
         }
-
-
     }
 }

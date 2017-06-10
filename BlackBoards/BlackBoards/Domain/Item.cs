@@ -13,7 +13,6 @@ namespace BlackBoards
         private Dimension dimension;
         private List<Comment> comments;
         private Coordinate origin;
-
         public Dimension Dimension
         {
             get
@@ -25,7 +24,6 @@ namespace BlackBoards
                 this.dimension = value;
             }
         }
-       
         public List<Comment> Comments
         {
             get
@@ -53,7 +51,8 @@ namespace BlackBoards
             return false;
         }
         public virtual Control Print() { return null; }
-        public bool AddNewComment(Comment aComment) {
+        public bool AddNewComment(Comment aComment)
+        {
             bool validComment = aComment.IsValid();
             if (validComment)
             {
@@ -61,7 +60,5 @@ namespace BlackBoards
             }
             return validComment;
         }
-        
     }
-
 }

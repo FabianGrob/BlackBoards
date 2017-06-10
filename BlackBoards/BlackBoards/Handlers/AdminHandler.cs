@@ -60,7 +60,6 @@ namespace BlackBoards.Handlers
             {
                 repHandler.ModifyUser(lookUpEmail, name, lastName, email, birthDate, password);
                 modified = true;
-
             }
             return modified;
         }
@@ -89,26 +88,26 @@ namespace BlackBoards.Handlers
             newTeam.Members = members;
             newTeam.Boards = boards;
             newTeam.CreationDate = DateTime.Today;
-            bool teamValid =newTeam.isValid() ;
+            bool teamValid = newTeam.isValid();
             if (teamValid && !repHandler.TeamAlreadyExists(name))
             {
                 repHandler.AddTeam(newTeam);
                 added = true;
             }
             return added;
-
         }
-        public bool ModifyTeam(string oldName, string name, string description,int maxUsers,List<User> members, List<BlackBoard> boards, Repository theRepository) {
+        public bool ModifyTeam(string oldName, string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, Repository theRepository)
+        {
             bool modified = false;
             RepositoryHandler handler = new RepositoryHandler(theRepository);
-            Team abstractTeam = new Team(name, DateTime.Today,description, maxUsers,members,boards);
+            Team abstractTeam = new Team(name, DateTime.Today, description, maxUsers, members, boards);
             bool validModifications = abstractTeam.isValid();
             Team oldTeam = new Team();
             oldTeam.Name = oldName;
             bool teamExists = theRepository.TeamList.Contains(oldTeam);
-            if (validModifications && teamExists && (!handler.TeamAlreadyExists(name)||oldName.Equals(name)))
+            if (validModifications && teamExists && (!handler.TeamAlreadyExists(name) || oldName.Equals(name)))
             {
-                Team toModificate=handler.GetSpecificTeam(oldName);
+                Team toModificate = handler.GetSpecificTeam(oldName);
                 modified = true;
                 toModificate.Name = name;
                 toModificate.Description = description;
@@ -118,10 +117,11 @@ namespace BlackBoards.Handlers
             }
             return modified;
         }
-        public bool DeleteTeam(string name, Repository theRepository) {
+        public bool DeleteTeam(string name, Repository theRepository)
+        {
             bool deleted = false;
             RepositoryHandler handler = new RepositoryHandler(theRepository);
-            bool teamAlreadyExists =handler.TeamAlreadyExists(name);
+            bool teamAlreadyExists = handler.TeamAlreadyExists(name);
             if (teamAlreadyExists)
             {
                 Team toDelete = handler.GetSpecificTeam(name);

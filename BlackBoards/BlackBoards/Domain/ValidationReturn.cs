@@ -12,13 +12,11 @@ namespace BlackBoards.Domain
         {
             private string message;
             private bool validation;
-
             public ValidationReturn()
             {
                 this.message = "Default Message";
                 this.validation = false;
             }
-
             public ValidationReturn(bool isValid, string aMessage)
             {
                 this.validation = isValid;
@@ -35,7 +33,6 @@ namespace BlackBoards.Domain
                     this.validation = value;
                 }
             }
-
             public string Message
             {
                 get

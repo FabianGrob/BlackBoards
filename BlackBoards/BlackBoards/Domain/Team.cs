@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackBoards
 {
-   public class Team
+    public class Team
     {
         private string name;
         private string description;
@@ -14,16 +14,17 @@ namespace BlackBoards
         private int maxUsers;
         private List<User> members;
         private List<BlackBoard> boards;
-        public Team() {
+        public Team()
+        {
             this.name = "Default name";
             this.creationDate = DateTime.Today;
             this.description = "Default description";
             this.maxUsers = 10;
             this.members = new List<User>();
             this.boards = new List<BlackBoard>();
-
         }
-        public Team(string aName,DateTime aCreationDate, string aDescription,int maximumUsers,List<User>someMembers,List<BlackBoard> someBoards) {
+        public Team(string aName, DateTime aCreationDate, string aDescription, int maximumUsers, List<User> someMembers, List<BlackBoard> someBoards)
+        {
             this.name = aName;
             this.creationDate = aCreationDate;
             this.description = aDescription;
@@ -98,12 +99,15 @@ namespace BlackBoards
                 this.boards = value;
             }
         }
-        public bool doesBlackBoardExists(BlackBoard aBoard) {
+        public bool doesBlackBoardExists(BlackBoard aBoard)
+        {
             return this.boards.Contains(aBoard);
         }
-        public BlackBoard getSpecificBlackBoard(BlackBoard aBoard) {
+        public BlackBoard getSpecificBlackBoard(BlackBoard aBoard)
+        {
             BlackBoard returningBoard = null;
-            foreach (BlackBoard board in this.boards){
+            foreach (BlackBoard board in this.boards)
+            {
                 if (board.Equals(aBoard))
                 {
                     returningBoard = aBoard;
@@ -124,9 +128,10 @@ namespace BlackBoards
             }
             return this.Name.Equals(anotherTeam.Name);
         }
-        public bool isValid() {
+        public bool isValid()
+        {
             bool valid = true;
-            if (this.MaxUsers < this.Members.Count || this.Name.Length ==0 || this.Description.Length==0 || this.MaxUsers==0 || this.Members.Count==0)
+            if (this.MaxUsers < this.Members.Count || this.Name.Length == 0 || this.Description.Length == 0 || this.MaxUsers == 0 || this.Members.Count == 0)
             {
                 valid = false;
             }

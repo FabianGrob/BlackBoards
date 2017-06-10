@@ -15,7 +15,7 @@ namespace BlackBoards.Domain
             this.width = aWidth;
             this.heigth = aHeigth;
         }
-            public int Width
+        public int Width
         {
             get
             {
@@ -25,8 +25,7 @@ namespace BlackBoards.Domain
             {
                 this.width = value;
             }
-        
-    }
+        }
         public int Height
         {
             get
@@ -37,7 +36,6 @@ namespace BlackBoards.Domain
             {
                 this.heigth = value;
             }
-
         }
         public override bool Equals(object someDimensions)
         {
@@ -50,8 +48,6 @@ namespace BlackBoards.Domain
             {
                 return false;
             }
-
-                      
             return (this.width == otherDimensions.Width) && (this.heigth == otherDimensions.Height);
         }
     }

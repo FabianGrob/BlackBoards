@@ -21,7 +21,6 @@ namespace BlackBoards
             this.ResolvingDate = DateTime.MaxValue;
             this.WrittenComment = "Default written comment";
         }
-
         public Comment(User commentingUser, User resolvingUser, DateTime commentingDate, DateTime resolvingDate, string writtenComment)
         {
             this.CommentingUser = commentingUser;
@@ -41,7 +40,6 @@ namespace BlackBoards
                 this.commentingUser = value;
             }
         }
-
         public User ResolvingUser
         {
             get
@@ -86,7 +84,8 @@ namespace BlackBoards
                 this.writtenComment = value;
             }
         }
-        public bool IsValid() {
+        public bool IsValid()
+        {
             return this.WrittenComment.Length > 0;
         }
         public override bool Equals(object aComment)
@@ -100,12 +99,10 @@ namespace BlackBoards
             {
                 return false;
             }
-
             bool dateEquals = this.ResolvingDate.Equals(anotherComment.ResolvingDate) && this.CommentingDate.Equals(anotherComment.CommentingDate);
             bool userEquals = this.ResolvingUser.Equals(anotherComment.ResolvingUser) && this.CommentingUser.Equals(anotherComment.CommentingUser);
             bool writtenCommentEquals = this.WrittenComment.Equals(anotherComment.WrittenComment);
-
-            return (dateEquals && userEquals&& writtenCommentEquals);
+            return (dateEquals && userEquals && writtenCommentEquals);
         }
         public override string ToString()
         {
@@ -115,7 +112,7 @@ namespace BlackBoards
             {
                 res = "resuelto";
             }
-            return this.writtenComment + "| Por: "+ this.commentingUser+ " " + res;
+            return this.writtenComment + "| Por: " + this.commentingUser + " " + res;
         }
     }
 }

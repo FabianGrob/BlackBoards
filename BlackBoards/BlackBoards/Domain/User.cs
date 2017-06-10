@@ -8,9 +8,7 @@ namespace BlackBoards
         private string email;
         private DateTime birthDate;
         private string password;
-
-
-       // [Obsolete("constructor only usable by EntityFramework", true)]
+        // [Obsolete("constructor only usable by EntityFramework", true)]
         public User()
         {
             this.Name = "Default name";
@@ -18,7 +16,6 @@ namespace BlackBoards
             this.Email = "Default email";
             this.BirthDate = new DateTime();
             this.Password = "Default password";
-
         }
         public User(string name, string lastName, string email, DateTime birthDate, string password)
         {
@@ -26,9 +23,8 @@ namespace BlackBoards
             this.LastName = lastName;
             this.Email = email;
             this.BirthDate = birthDate;
-            this.Password = password;  
+            this.Password = password;
         }
-
         public string Name
         {
             get
@@ -51,7 +47,6 @@ namespace BlackBoards
                 this.lastName = value;
             }
         }
-       
         public string Email
         {
             get
@@ -99,9 +94,10 @@ namespace BlackBoards
 
             return (this.Email.Equals(anotherUser.Email));
         }
-        public override string ToString() {
+        public override string ToString()
+        {
             return this.email;
         }
     }
 }
-               
+

@@ -54,14 +54,12 @@ namespace BlackBoards
             this.Comments = someComments;
             this.Origin = anOrigin;
         }
-
         private string getDefaultPicturePath()
         {
             string proyectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
             string defualtImagePath = proyectPath + "\\Images\\default.jpg";
             return defualtImagePath;
         }
-
         public override bool Equals(object aPicture)
         {
             if (aPicture == null)

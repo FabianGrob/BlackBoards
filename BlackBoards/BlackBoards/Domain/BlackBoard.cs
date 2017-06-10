@@ -17,16 +17,18 @@ namespace BlackBoards
         private DateTime creationDate;
         private DateTime lastModificationDate;
 
-        public BlackBoard() {
+        public BlackBoard()
+        {
             this.name = "Default name";
             this.description = "Default description";
-            this.dimension = new Dimension(350,350);
+            this.dimension = new Dimension(350, 350);
             this.itemList = new List<Item>();
             this.creatorUser = new Admin();
             this.creationDate = DateTime.Today;
             this.lastModificationDate = this.creationDate;
         }
-        public BlackBoard(string aName, string aDescription, Dimension aDimension, List<Item> itemList, User anUser) {
+        public BlackBoard(string aName, string aDescription, Dimension aDimension, List<Item> itemList, User anUser)
+        {
             this.name = aName;
             this.description = aDescription;
             this.dimension = aDimension;
@@ -113,9 +115,10 @@ namespace BlackBoards
                 this.lastModificationDate = value;
             }
         }
-        public bool isValid() {
-            bool topRestriction =  this.Dimension.Height <= 500 && this.Dimension.Width <= 750;
-            return topRestriction && this.Dimension.Height > 50 && this.Dimension.Width > 50; 
+        public bool isValid()
+        {
+            bool topRestriction = this.Dimension.Height <= 500 && this.Dimension.Width <= 750;
+            return topRestriction && this.Dimension.Height > 50 && this.Dimension.Width > 50;
         }
         public override bool Equals(object aBlackBoard)
         {

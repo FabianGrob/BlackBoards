@@ -10,13 +10,11 @@ namespace BlackBoards
     {
         private int xAxis;
         private int yAxis;
-
         public Coordinate()
         {
             this.xAxis = 0;
             this.yAxis = 0;
         }
-
         public Coordinate(int xAxis, int yAxis)
         {
             this.xAxis = xAxis;
@@ -45,7 +43,6 @@ namespace BlackBoards
                 this.yAxis = value;
             }
         }
-        
         public override bool Equals(object aCoordinate)
         {
             if (aCoordinate == null)
@@ -57,7 +54,6 @@ namespace BlackBoards
             {
                 return false;
             }
-
             bool xAxisBool = this.XAxis == anotherCoordinate.XAxis;
             bool yAxisBool = this.YAxis == anotherCoordinate.YAxis;
             return (xAxisBool && yAxisBool);

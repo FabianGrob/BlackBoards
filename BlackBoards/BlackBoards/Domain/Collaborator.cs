@@ -8,7 +8,6 @@ namespace BlackBoards
 {
     public class Collaborator : User
     {
-
         public Collaborator()
         {
             this.Name = "Default name";
@@ -16,9 +15,7 @@ namespace BlackBoards
             this.Email = "Default email";
             this.BirthDate = new DateTime();
             this.Password = "Default password";
-
         }
-
         public Collaborator(String name, String lastName, String email, DateTime birthDate, String password)
         {
             this.Name = name;
@@ -27,6 +24,5 @@ namespace BlackBoards
             this.BirthDate = birthDate;
             this.Password = password;
         }
-
     }
 }

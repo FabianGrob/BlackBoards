@@ -15,7 +15,6 @@ namespace BlackBoards
         private string content;
         private string font;
         private int fontSize;
-
         public TextBox()
         {
             this.Dimension = new Dimension(50, 50);
@@ -36,7 +35,6 @@ namespace BlackBoards
         }
         public TextBox(Dimension aDimension, List<Comment> someComments, Coordinate anOrigin, String aContent, string aFont, int aFontSize)
         {
-
             this.Dimension = aDimension;
             this.Comments = someComments;
             this.Origin = anOrigin;
@@ -67,7 +65,6 @@ namespace BlackBoards
                 this.font = value;
             }
         }
-
         public override bool IsPicture()
         {
             return false;
@@ -167,6 +164,4 @@ namespace BlackBoards
             return this.content;
         }
     }
-
-
 }

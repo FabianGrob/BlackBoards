@@ -10,7 +10,6 @@ namespace BlackBoards.Handlers
     public class BlackBoardHandler
     {
         private BlackBoard blackBoard;
-
         public BlackBoardHandler()
         {
             this.blackBoard = new BlackBoard();
@@ -30,14 +29,12 @@ namespace BlackBoards.Handlers
                 this.blackBoard = value;
             }
         }
-
         public void CreateBlackBoard(string aName, string aDescription, Dimension aDimension)
         {
             this.blackBoard.Description = aDescription;
             this.blackBoard.Name = aName;
             this.blackBoard.Dimension = aDimension;
         }
-
         private bool CanModifyTheDimension(Dimension newDimension)
         {
             BlackBoard fakeBlackBoard = new BlackBoard();
@@ -66,10 +63,9 @@ namespace BlackBoards.Handlers
             }
             return false;
         }
-
         public bool AddItem(Item aItem)
         {
-            bool itemFitsInBlackBoard = ItemOutOfBands(aItem,aItem.Origin);
+            bool itemFitsInBlackBoard = ItemOutOfBands(aItem, aItem.Origin);
             if (itemFitsInBlackBoard)
             {
                 this.blackBoard.ItemList.Add(aItem);
