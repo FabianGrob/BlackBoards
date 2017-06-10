@@ -64,7 +64,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestPictureValidationReturnFalse()
         {
-            Picture aPic = setUpPicture();
+            Picture aPic = this.setUpPicture();
             aPic.Img = null;
             ValidationReturn validationResult = aPic.IsValid();
             bool result = validationResult.Validation;
@@ -73,8 +73,8 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestPictureValidationReturnFalseMessageImage()
         {
-            Picture aPic = setUpPicture();
-            aPic.Img=null;
+            Picture aPic = this.setUpPicture();
+            aPic.Img = null;
             ValidationReturn validationResult = aPic.IsValid();
             bool result = validationResult.Message.Equals("No se ha cargado ninguna foto.");
             Assert.IsTrue(result);
@@ -82,12 +82,11 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestPictureValidationReturnFalseMessageText()
         {
-            Picture aPic = setUpPicture();
+            Picture aPic = this.setUpPicture();
             aPic.Description = "";
             ValidationReturn validationResult = aPic.IsValid();
             bool result = validationResult.Message.Equals("El texto ingresado es vacio.");
             Assert.IsTrue(result);
         }
     }
-
 }
