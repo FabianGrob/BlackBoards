@@ -61,5 +61,14 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestTextBoxInvalidSize()
+        {
+            TextBox aTextBox = setUpTextBox();
+            aTextBox.FontSize = 0;
+            ValidationReturn validations = aTextBox.isValid();
+            bool result = validations.Validation;
+            Assert.IsFalse(result);
+        }
     }
 }
