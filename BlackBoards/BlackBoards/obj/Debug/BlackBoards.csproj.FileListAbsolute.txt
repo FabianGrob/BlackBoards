@@ -13,3 +13,4 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBo
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csproj.GenerateResource.Cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.pdb
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Debug\BlackBoards.csprojResolveAssemblyReference.cache
