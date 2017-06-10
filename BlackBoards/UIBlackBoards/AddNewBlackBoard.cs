@@ -83,13 +83,13 @@ namespace UIBlackBoards
 
         private void buttonCreateBlackBoard_Click(object sender, EventArgs e)
         {
-            bool validationsOk = validations(textBoxName.Text, richTextBoxDescription.Text,textBoxHeight.Text,textBoxWidth.Text);
+            bool validationsOk = validations(textBoxName.Text, richTextBoxDescription.Text, textBoxHeight.Text, textBoxWidth.Text);
             if (validationsOk)
             {
                 string blackBoardName = textBoxName.Text;
                 string description = richTextBoxDescription.Text;
                 int height = Int32.Parse(textBoxHeight.Text);
-                int width =  Int32.Parse(textBoxWidth.Text);
+                int width = Int32.Parse(textBoxWidth.Text);
                 BlackBoard newBlackBoard = new BlackBoard();
                 newBlackBoard.Name = blackBoardName;
                 newBlackBoard.Description = description;

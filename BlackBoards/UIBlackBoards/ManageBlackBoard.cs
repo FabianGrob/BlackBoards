@@ -28,11 +28,6 @@ namespace UIBlackBoards
             blackBoard = aBlackBoard;
         }
 
-        private void ManageBlackBoard_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonCreateItem_Click(object sender, EventArgs e)
         {
             AddNewItem newVisualize = new AddNewItem(logged, theRepository, panelContainer, panelContainerBlackBoard, blackBoard);
@@ -42,7 +37,7 @@ namespace UIBlackBoards
 
         private void buttonManageComment_Click(object sender, EventArgs e)
         {
-            ItemListed newVisualize = new ItemListed(blackBoard,logged,panelContainer, panelContainerBlackBoard, theRepository);
+            ItemListed newVisualize = new ItemListed(blackBoard, logged, panelContainer, panelContainerBlackBoard, theRepository);
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(newVisualize);
         }
@@ -52,11 +47,6 @@ namespace UIBlackBoards
             SelectItemToDelete newVisualize = new SelectItemToDelete(blackBoard, logged, panelContainer, panelContainerBlackBoard, theRepository);
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(newVisualize);
-        }
-
-        private void buttonCleanBlackBoard_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

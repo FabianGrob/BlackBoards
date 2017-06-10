@@ -18,7 +18,6 @@ namespace BlackBoards
             this.Email = email;
             this.BirthDate = birthDate;
             this.Password = password;
-        }
-        
+        }   
     }
 }

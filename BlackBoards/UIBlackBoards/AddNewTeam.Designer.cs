@@ -52,7 +52,6 @@
             this.labelTitle.Size = new System.Drawing.Size(68, 13);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Crear Equipo";
-            this.labelTitle.Click += new System.EventHandler(this.label1_Click);
             // 
             // listBoxAllUsers
             // 
@@ -61,7 +60,6 @@
             this.listBoxAllUsers.Name = "listBoxAllUsers";
             this.listBoxAllUsers.Size = new System.Drawing.Size(221, 56);
             this.listBoxAllUsers.TabIndex = 1;
-            this.listBoxAllUsers.SelectedIndexChanged += new System.EventHandler(this.listBoxAllUsers_SelectedIndexChanged);
             // 
             // listBoxSelectedUsers
             // 
@@ -142,7 +140,6 @@
             this.labelCantMaxUsers.Size = new System.Drawing.Size(132, 13);
             this.labelCantMaxUsers.TabIndex = 12;
             this.labelCantMaxUsers.Text = "Cantidad Maxima Usuarios";
-            this.labelCantMaxUsers.Click += new System.EventHandler(this.label5_Click);
             // 
             // textBoxCantMaxUsers
             // 
@@ -150,7 +147,6 @@
             this.textBoxCantMaxUsers.Name = "textBoxCantMaxUsers";
             this.textBoxCantMaxUsers.Size = new System.Drawing.Size(86, 20);
             this.textBoxCantMaxUsers.TabIndex = 13;
-            this.textBoxCantMaxUsers.TextChanged += new System.EventHandler(this.textBoxCantMaxUsers_TextChanged);
             // 
             // richTextBoxDescription
             // 
@@ -159,7 +155,6 @@
             this.richTextBoxDescription.Size = new System.Drawing.Size(227, 72);
             this.richTextBoxDescription.TabIndex = 14;
             this.richTextBoxDescription.Text = "";
-            this.richTextBoxDescription.TextChanged += new System.EventHandler(this.richTextBoxDescription_TextChanged);
             // 
             // buttonDeleteMember
             // 
@@ -191,7 +186,6 @@
             this.Controls.Add(this.labelTitle);
             this.Name = "AddNewTeam";
             this.Size = new System.Drawing.Size(271, 378);
-            this.Load += new System.EventHandler(this.AddNewTeam_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

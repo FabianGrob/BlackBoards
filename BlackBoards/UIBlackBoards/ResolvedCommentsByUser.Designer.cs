@@ -45,7 +45,6 @@
             this.listBoxResolvedComments.Name = "listBoxResolvedComments";
             this.listBoxResolvedComments.Size = new System.Drawing.Size(324, 225);
             this.listBoxResolvedComments.TabIndex = 0;
-            this.listBoxResolvedComments.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -125,7 +124,6 @@
             this.Controls.Add(this.listBoxResolvedComments);
             this.Name = "ResolvedCommentsByUser";
             this.Size = new System.Drawing.Size(415, 375);
-            this.Load += new System.EventHandler(this.ResolvedCommentsByUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

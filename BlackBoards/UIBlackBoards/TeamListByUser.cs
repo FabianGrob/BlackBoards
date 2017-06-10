@@ -42,7 +42,7 @@ namespace UIBlackBoards
         {
             if (hasSelectedATeam())
             {
-                Team selectedTeam = (Team) listBoxTeams.SelectedItem;
+                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
                 panelContainer.Controls.Clear();
                 UserControl addNewBlackBoardWindow = new AddNewBlackBoard(logged, theRepository, panelContainer, selectedTeam);
                 panelContainer.Controls.Add(addNewBlackBoardWindow);
@@ -51,11 +51,6 @@ namespace UIBlackBoards
             {
                 MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void TeamListByUser_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonModifyBlackBoards_Click(object sender, EventArgs e)

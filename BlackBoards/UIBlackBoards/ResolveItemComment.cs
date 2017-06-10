@@ -22,20 +22,15 @@ namespace UIBlackBoards
         public ResolveItemComment(BlackBoard aBoard, User anUser, Panel container, Panel aBoardContainer, Item anItem, Repository aRepository)
         {
             InitializeComponent();
-            actualBlackBoard=aBoard;
-            logged=anUser;
-            panelContainer=container;
-            boardContainer= aBoardContainer;
-            theRepository= aRepository;
+            actualBlackBoard = aBoard;
+            logged = anUser;
+            panelContainer = container;
+            boardContainer = aBoardContainer;
+            theRepository = aRepository;
             foreach (Comment aComment in anItem.Comments)
             {
                 listBoxComments.Items.Add(aComment);
             }
-    }
-
-        private void ResolveItemComment_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,26 +42,20 @@ namespace UIBlackBoards
             }
             else
             {
-
                 Comment selectedComment = (Comment)listBoxComments.SelectedItem;
-              
                 UserHandler handler = new UserHandler(logged);
-               
-              
-                    if (selectedComment.ResolvingDate.Equals(DateTime.MaxValue))
-                    {
-                        bool resolved = handler.ResolveComment(selectedComment);
-                   
-
-                        MessageBox.Show("El comentario se marcó como resuelto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        panelContainer.Controls.Clear();
-                        ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
-                        panelContainer.Controls.Add(pwindow);
-                   
-                     }
-                    else {
-                        MessageBox.Show("El comentario ya estaba resuelto por: " + selectedComment.ResolvingUser, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                if (selectedComment.ResolvingDate.Equals(DateTime.MaxValue))
+                {
+                    bool resolved = handler.ResolveComment(selectedComment);
+                    MessageBox.Show("El comentario se marcó como resuelto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    panelContainer.Controls.Clear();
+                    ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+                    panelContainer.Controls.Add(pwindow);
+                }
+                else
+                {
+                    MessageBox.Show("El comentario ya estaba resuelto por: " + selectedComment.ResolvingUser, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

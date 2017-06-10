@@ -81,7 +81,6 @@
             this.Controls.Add(this.listBoxAllUsers);
             this.Name = "UserList";
             this.Size = new System.Drawing.Size(217, 319);
-            this.Load += new System.EventHandler(this.UserList_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

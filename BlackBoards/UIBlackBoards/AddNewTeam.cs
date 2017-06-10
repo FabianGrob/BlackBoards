@@ -28,31 +28,6 @@ namespace UIBlackBoards
                 listBoxAllUsers.Items.Add(actualUser);
             }
         }
-        private void AddNewTeam_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBoxAllUsers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
             int selectedIndex = listBoxAllUsers.SelectedIndex;
@@ -61,18 +36,12 @@ namespace UIBlackBoards
                 User selectedUser = (User)listBoxAllUsers.SelectedItem;
                 listBoxAllUsers.Items.Remove(selectedUser);
                 listBoxSelectedUsers.Items.Add(selectedUser);
-            } else
+            }
+            else
             {
                 MessageBox.Show("No se selecciono ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
-        private void textBoxCantMaxUsers_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private bool isInListBox(User user, ListBox listBoxSelectedUsers)
         {
             return (listBoxSelectedUsers.Items.Contains(user));
@@ -89,7 +58,6 @@ namespace UIBlackBoards
             }
             return userList;
         }
-
         public bool validations(string name, string description, string cantMaxUsers, List<User> userList)
         {
             bool allValidationsOk = true;
@@ -152,11 +120,6 @@ namespace UIBlackBoards
                     panelContainer.Controls.Clear();
                 }
             }
-        }
-
-        private void richTextBoxDescription_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonDeleteMember_Click(object sender, EventArgs e)

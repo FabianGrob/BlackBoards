@@ -28,36 +28,34 @@ namespace UIBlackBoards
             foreach (User actualUser in theRepository.UserList)
             {
                 TeamHandler handler = new TeamHandler(teamToModify);
-                if(handler.IsUserInTeam(actualUser)){
+                if (handler.IsUserInTeam(actualUser))
+                {
                     listBoxSelectedUsers.Items.Add(actualUser);
-                } else
+                }
+                else
                 {
                     listBoxAllUsers.Items.Add(actualUser);
-                }             
+                }
             }
             textBoxName.Text = team.Name;
             richTextBoxDescription.Text = team.Description;
-            textBoxCantMaxUsers.Text = team.MaxUsers+"";
-        }
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
-
+            textBoxCantMaxUsers.Text = team.MaxUsers + "";
         }
 
         private void buttonModifyTeam_Click(object sender, EventArgs e)
         {
-            AddNewTeam validations = new AddNewTeam(logged,theRepository,panelContainer);
+            AddNewTeam validations = new AddNewTeam(logged, theRepository, panelContainer);
             bool validationsOk = validations.validations(textBoxName.Text, richTextBoxDescription.Text, textBoxCantMaxUsers.Text, validations.getSelectedUsers(listBoxSelectedUsers));
             if (validationsOk)
             {
-                List<User> members= validations.getSelectedUsers(listBoxSelectedUsers);
+                List<User> members = validations.getSelectedUsers(listBoxSelectedUsers);
                 string teamName = textBoxName.Text;
                 string description = richTextBoxDescription.Text;
                 int maxUsers = Int32.Parse(textBoxCantMaxUsers.Text);
                 List<BlackBoard> blackBoards = team.Boards;
                 AdminHandler handler = new AdminHandler((Admin)logged);
-     
-                bool existingTeam = handler.ModifyTeam(team.Name,teamName, description, maxUsers, members, blackBoards, theRepository);
+
+                bool existingTeam = handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, theRepository);
                 if (!existingTeam)
                 {
                     MessageBox.Show("El equipo ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -98,16 +96,6 @@ namespace UIBlackBoards
             {
                 MessageBox.Show("No se selecciono ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void ModifyTeam_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSelectedUsers_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

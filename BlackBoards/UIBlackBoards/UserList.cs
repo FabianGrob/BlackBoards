@@ -31,11 +31,6 @@ namespace UIBlackBoards
             listBoxAllUsers.SelectedItem = 0;
         }
 
-        private void UserList_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             AdminHandler adminHandler = new AdminHandler((Admin)logged);
@@ -44,7 +39,8 @@ namespace UIBlackBoards
             {
                 MessageBox.Show("No se ha seleccionado ningun usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else {
+            else
+            {
                 User selectedUser = (User)listBoxAllUsers.SelectedItem;
                 if (selectedUser.Equals(logged))
                 {
@@ -70,7 +66,7 @@ namespace UIBlackBoards
             {
                 User selectedUser = (User)listBoxAllUsers.SelectedItem;
                 panelContainer.Controls.Clear();
-                UserControl modifyUser = new ModifyUser(logged, theRepository, panelContainer,selectedUser);
+                UserControl modifyUser = new ModifyUser(logged, theRepository, panelContainer, selectedUser);
                 panelContainer.Controls.Add(modifyUser);
             }
         }

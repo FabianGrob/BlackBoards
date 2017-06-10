@@ -70,7 +70,6 @@
             this.Controls.Add(this.listBoxComments);
             this.Name = "ResolveItemComment";
             this.Size = new System.Drawing.Size(219, 261);
-            this.Load += new System.EventHandler(this.ResolveItemComment_Load);
             this.ResumeLayout(false);
 
         }

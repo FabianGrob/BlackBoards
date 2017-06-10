@@ -46,8 +46,8 @@ namespace UIBlackBoards
             }
             return hasSelectedSomething;
         }
-        
-    private void buttonRemove_Click(object sender, EventArgs e)
+
+        private void buttonRemove_Click(object sender, EventArgs e)
         {
             if (hasSelected())
             {

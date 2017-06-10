@@ -24,20 +24,10 @@ namespace UIBlackBoards
             theRepository = thRepository;
             panelOptions.Controls.Clear();
             panelBoard.Controls.Clear();
-            ManageBlackBoard manageBlackBoards = new ManageBlackBoard(logged, theRepository, panelOptions,panelBoard,blackBoard);
+            ManageBlackBoard manageBlackBoards = new ManageBlackBoard(logged, theRepository, panelOptions, panelBoard, blackBoard);
             VisualizeBlackBoard visualizeBoards = new VisualizeBlackBoard(blackBoard, logged, panelBoard);
             panelBoard.Controls.Add(visualizeBoards);
             panelOptions.Controls.Add(manageBlackBoards);
-        }
-
-        private void VisualizeBoard_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelBoard_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

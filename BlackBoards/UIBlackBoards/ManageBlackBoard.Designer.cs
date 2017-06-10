@@ -72,7 +72,6 @@
             this.Controls.Add(this.buttonCreateItem);
             this.Name = "ManageBlackBoard";
             this.Size = new System.Drawing.Size(162, 297);
-            this.Load += new System.EventHandler(this.ManageBlackBoard_Load);
             this.ResumeLayout(false);
 
         }

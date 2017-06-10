@@ -38,19 +38,13 @@ namespace UIBlackBoards
             return hasSelected;
         }
 
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonModifyBlackBoard_Click(object sender, EventArgs e)
         {
             if (hasSelectedABlackBoard())
             {
                 BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
                 panelContainer.Controls.Clear();
-                UserControl selectBlackBoard = new ModifyBlackBoard(logged, theRepository, panelContainer, team,selectedBlackBoard);
+                UserControl selectBlackBoard = new ModifyBlackBoard(logged, theRepository, panelContainer, team, selectedBlackBoard);
                 panelContainer.Controls.Add(selectBlackBoard);
             }
             else

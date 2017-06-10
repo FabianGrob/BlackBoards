@@ -17,7 +17,7 @@ namespace UIBlackBoards
         private Repository theRepository;
         private Panel panelContainer;
         private Team actualTeam;
-        public TeamBlackBoards(User anUser, Repository aRepository, Panel container,Team aTeam)
+        public TeamBlackBoards(User anUser, Repository aRepository, Panel container, Team aTeam)
         {
             InitializeComponent();
             logged = anUser;
@@ -28,15 +28,10 @@ namespace UIBlackBoards
             List<BlackBoard> boardsToShow = actualTeam.Boards;
             foreach (BlackBoard actualBoard in boardsToShow)
             {
-                string line = "Equipo creador: " + actualTeam +"Fecha creación: "+actualBoard.CreationDate+ " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.ItemList.Count;
-               
+                string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.ItemList.Count;
+
                 listBoxBoards.Items.Add(line);
             }
-        }
-
-        private void TeamBlackBoards_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonfilter_Click(object sender, EventArgs e)
@@ -45,7 +40,8 @@ namespace UIBlackBoards
             {
                 MessageBox.Show("La fecha seleccionada pertenece al futuro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else {
+            else
+            {
                 DateTime date = dateTimePicker.Value;
                 List<BlackBoard> boardsToShow = actualTeam.Boards;
                 listBoxBoards.Items.Clear();
@@ -56,7 +52,7 @@ namespace UIBlackBoards
                         string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.ItemList.Count;
                         listBoxBoards.Items.Add(line);
                     }
-                    
+
                 }
 
 
