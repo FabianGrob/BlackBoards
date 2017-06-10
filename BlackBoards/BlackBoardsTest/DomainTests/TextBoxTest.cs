@@ -83,5 +83,14 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestTextBoxInvalidContent()
+        {
+            TextBox aTextBox = setUpTextBox();
+            aTextBox.Content = "";
+            ValidationReturn validations = aTextBox.isValid();
+            bool result = validations.Validation;
+            Assert.IsFalse(result);
+        }
     }
 }
