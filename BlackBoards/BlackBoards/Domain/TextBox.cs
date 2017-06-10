@@ -113,10 +113,14 @@ namespace BlackBoards
         public ValidationReturn isValid()
         {
             ValidationReturn validation = new ValidationReturn(false, "Error");
-           
+            bool validContent = this.IsContentValid();
             bool validFont = this.IsFontValid();
             bool validFontSize = this.IsFontSizeValid();
-          
+            if (!validContent)
+            {
+                validation.Message = "El texto ingresado es vacio.";
+                return validation;
+            }
             if (!validFont)
             {
                 validation.Message = "La fuente ingresada es invalida.";
