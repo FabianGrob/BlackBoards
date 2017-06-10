@@ -54,11 +54,12 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestTextBoxValid()
         {
+            //instance
             TextBox aTextBox = setUpTextBox();
             ValidationReturn validations = aTextBox.isValid();
             bool result = validations.Validation;
+            //assertion
             Assert.IsTrue(result);
         }
-       
     }
 }
