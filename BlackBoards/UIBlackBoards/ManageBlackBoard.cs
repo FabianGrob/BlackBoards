@@ -37,7 +37,7 @@ namespace UIBlackBoards
 
         private void buttonManageComment_Click(object sender, EventArgs e)
         {
-            ItemListed newVisualize = new ItemListed(blackBoard,logged,panelContainer, panelContainerBlackBoard, theRepository);
+            ItemListed newVisualize = new ItemListed(blackBoard, logged, panelContainer, panelContainerBlackBoard, theRepository);
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(newVisualize);
         }

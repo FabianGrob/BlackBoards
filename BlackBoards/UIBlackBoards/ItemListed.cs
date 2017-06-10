@@ -18,7 +18,7 @@ namespace UIBlackBoards
         private Panel panelContainer;
         private Panel boardContainer;
         private Repository theRepository;
-        public ItemListed(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer,Repository aRepository)
+        public ItemListed(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer, Repository aRepository)
         {
             InitializeComponent();
             actualBlackBoard = aBoard;
@@ -68,7 +68,7 @@ namespace UIBlackBoards
             {
                 Item selectedItem = (Item)listBoxItems.SelectedItem;
                 panelContainer.Controls.Clear();
-                ResolveItemComment resolveWindow = new ResolveItemComment(actualBlackBoard, logged, panelContainer, boardContainer,selectedItem, theRepository);
+                ResolveItemComment resolveWindow = new ResolveItemComment(actualBlackBoard, logged, panelContainer, boardContainer, selectedItem, theRepository);
                 panelContainer.Controls.Add(resolveWindow);
 
             }

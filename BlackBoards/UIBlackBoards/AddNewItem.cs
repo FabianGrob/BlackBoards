@@ -37,7 +37,7 @@ namespace UIBlackBoards
             comboBoxFont.SelectedIndex = 0;
 
         }
-         
+
         public List<string> loadAllFonts()
         {
             List<string> fonts = new List<string>();
@@ -65,7 +65,7 @@ namespace UIBlackBoards
                 MessageBox.Show("La fuente ingresada es invalida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
             }
-            if (fontSize<0)
+            if (fontSize < 0)
             {
                 allValidationsOk = false;
                 MessageBox.Show("El tamaño de fuente no puede ser menor a 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -83,18 +83,18 @@ namespace UIBlackBoards
                 MessageBox.Show("El texto ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
             }
-            if (aFile==null)
+            if (aFile == null)
             {
                 allValidationsOk = false;
                 MessageBox.Show("No se ha cargado ninguna foto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
-            } 
+            }
             return allValidationsOk;
         }
 
         private void buttonTextBox_Click(object sender, EventArgs e)
         {
-            bool ok=validationsTextBox(textBox.Text,(string)comboBoxFont.SelectedItem, Convert.ToInt32(numericUpDown1.Value));
+            bool ok = validationsTextBox(textBox.Text, (string)comboBoxFont.SelectedItem, Convert.ToInt32(numericUpDown1.Value));
             if (ok)
             {
                 BlackBoards.TextBox newItem = new BlackBoards.TextBox();
@@ -121,7 +121,7 @@ namespace UIBlackBoards
             {
                 File = Image.FromFile(f.FileName);
                 pictureBox.Image = File;
-                
+
             }
         }
 
@@ -143,7 +143,7 @@ namespace UIBlackBoards
                 containerPanel.Controls.Add(pwindow);
             }
         }
-        
+
         private void buttonComeBack_Click(object sender, EventArgs e)
         {
             containerPanel.Controls.Clear();

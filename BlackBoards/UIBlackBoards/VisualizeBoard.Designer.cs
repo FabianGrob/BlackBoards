@@ -38,7 +38,6 @@
             this.panelBoard.Name = "panelBoard";
             this.panelBoard.Size = new System.Drawing.Size(750, 500);
             this.panelBoard.TabIndex = 0;
-            this.panelBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBoard_Paint);
             // 
             // panelOptions
             // 
@@ -56,7 +55,6 @@
             this.Controls.Add(this.panelBoard);
             this.Name = "VisualizeBoard";
             this.Text = "VisualizeBoard";
-            this.Load += new System.EventHandler(this.VisualizeBoard_Load);
             this.ResumeLayout(false);
 
         }

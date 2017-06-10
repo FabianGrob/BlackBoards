@@ -27,15 +27,15 @@ namespace UIBlackBoards
             team = teamToModifyBlackBoard;
             oldBlackBoard = oBlackBoard;
             textBoxName.Text = oldBlackBoard.Name;
-            textBoxWidth.Text = oldBlackBoard.Dimension.Width+"";
+            textBoxWidth.Text = oldBlackBoard.Dimension.Width + "";
             textBoxHeight.Text = oldBlackBoard.Dimension.Height + "";
             richTextBoxDescription.Text = oldBlackBoard.Description;
         }
 
         private void buttonModifiyBlackBoard_Click(object sender, EventArgs e)
         {
-            AddNewBlackBoard doValidations = new AddNewBlackBoard(logged,theRepository,panelContainer,team);
-            
+            AddNewBlackBoard doValidations = new AddNewBlackBoard(logged, theRepository, panelContainer, team);
+
             bool validationsOk = doValidations.validations(textBoxName.Text, richTextBoxDescription.Text, textBoxHeight.Text, textBoxWidth.Text);
             if (validationsOk)
             {

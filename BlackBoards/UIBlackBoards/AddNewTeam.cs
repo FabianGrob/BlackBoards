@@ -36,7 +36,8 @@ namespace UIBlackBoards
                 User selectedUser = (User)listBoxAllUsers.SelectedItem;
                 listBoxAllUsers.Items.Remove(selectedUser);
                 listBoxSelectedUsers.Items.Add(selectedUser);
-            } else
+            }
+            else
             {
                 MessageBox.Show("No se selecciono ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

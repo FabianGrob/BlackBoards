@@ -18,7 +18,7 @@ namespace UIBlackBoards
         private Repository theRepository;
         private Panel panelContainer;
         private User userToModify;
-        public ModifyUser(User anUser, Repository aRepository, Panel container,User modifyingUser)
+        public ModifyUser(User anUser, Repository aRepository, Panel container, User modifyingUser)
         {
             InitializeComponent();
             logged = anUser;
@@ -28,21 +28,21 @@ namespace UIBlackBoards
 
             textBoxEmail.Text = userToModify.Email;
             textBoxFstPass.Text = userToModify.Password;
-            textBoxSndPass.Text= userToModify.Password;
+            textBoxSndPass.Text = userToModify.Password;
             textBoxName.Text = userToModify.Name;
             textBoxLastN.Text = userToModify.LastName;
             dateTimePicker.Value = userToModify.BirthDate;
-            
+
         }
 
         private void buttonGeneratePassword_Click(object sender, EventArgs e)
         {
             string posibleChars = "0123456789abcdefghijlkmnopqrstuvwxyz";
-            string generatedPassword ="";
+            string generatedPassword = "";
             Random rnd = new Random();
             for (int i = 0; i < 5; i++)
             {
-                generatedPassword = generatedPassword + posibleChars.ElementAt(rnd.Next(1,34));
+                generatedPassword = generatedPassword + posibleChars.ElementAt(rnd.Next(1, 34));
             }
             textBoxFstPass.Text = generatedPassword;
             textBoxSndPass.Text = generatedPassword;

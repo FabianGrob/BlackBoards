@@ -26,24 +26,32 @@ namespace UIBlackBoards
             dateTimePicker.Value = DateTime.Today;
         }
 
-        public bool isValid(string email, string fstPass, string sndPass, string name, string lastName,DateTime birthDate) {
+        public bool isValid(string email, string fstPass, string sndPass, string name, string lastName, DateTime birthDate)
+        {
             string[] splited = email.Split('@');
             bool valid = true;
             if (!(splited.Length == 2 && splited[0].Length > 0 && splited[1].Length > 0))
             {
                 valid = false;
                 MessageBox.Show("El formato de Email es incorrecto", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else if (!fstPass.Equals(sndPass) || fstPass.Length < 4)
+            }
+            else if (!fstPass.Equals(sndPass) || fstPass.Length < 4)
             {
                 valid = false;
                 MessageBox.Show("Las contraseñas no coinciden o tienen menos de 4 carácteres", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else if (name.Length < 3) {
+            }
+            else if (name.Length < 3)
+            {
                 valid = false;
                 MessageBox.Show("El nombre debe tener almenos 4 letras", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else if (lastName.Length < 3) {
+            }
+            else if (lastName.Length < 3)
+            {
                 valid = false;
                 MessageBox.Show("El apellido debe tener almenos 4 letras", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else if (birthDate > DateTime.Today) {
+            }
+            else if (birthDate > DateTime.Today)
+            {
                 valid = false;
                 MessageBox.Show("La fecha de nacimiento seleccionada pertenece al futuro", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -62,7 +70,7 @@ namespace UIBlackBoards
             RepositoryHandler repHandler = new RepositoryHandler(theRepository);
             AdminHandler adminHandler = new AdminHandler((Admin)logged);
             bool created = false;
-            if (isValid(email,fstPass,sndPass,name,lastName,birthDate))
+            if (isValid(email, fstPass, sndPass, name, lastName, birthDate))
             {
 
                 if (isAdmin)

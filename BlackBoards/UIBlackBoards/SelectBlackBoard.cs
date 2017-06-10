@@ -44,7 +44,7 @@ namespace UIBlackBoards
             {
                 BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
                 panelContainer.Controls.Clear();
-                UserControl selectBlackBoard = new ModifyBlackBoard(logged, theRepository, panelContainer, team,selectedBlackBoard);
+                UserControl selectBlackBoard = new ModifyBlackBoard(logged, theRepository, panelContainer, team, selectedBlackBoard);
                 panelContainer.Controls.Add(selectBlackBoard);
             }
             else

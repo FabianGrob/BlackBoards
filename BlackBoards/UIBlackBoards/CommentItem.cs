@@ -19,9 +19,9 @@ namespace UIBlackBoards
         private Panel boardContainer;
         private Item selectedItem;
         private Repository theRepository;
-        public CommentItem(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer,Item actualItem,Repository aRepository)
+        public CommentItem(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer, Item actualItem, Repository aRepository)
         {
-            InitializeComponent();     
+            InitializeComponent();
             actualBlackBoard = aBoard;
             logged = anUser;
             panelContainer = container;
@@ -42,11 +42,12 @@ namespace UIBlackBoards
                 UserHandler handler = new UserHandler(logged);
                 handler.CreateNewComment(selectedItem, txt);
                 panelContainer.Controls.Clear();
-                ManageBlackBoard pwindow = new ManageBlackBoard(logged,theRepository,panelContainer,boardContainer,actualBlackBoard);
+                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
                 panelContainer.Controls.Add(pwindow);
                 MessageBox.Show("Se creó el comentario correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else {
+            else
+            {
                 MessageBox.Show("Se ingreso un comentario demasiado corto (almenos 6 letras)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }

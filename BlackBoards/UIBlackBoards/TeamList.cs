@@ -44,7 +44,8 @@ namespace UIBlackBoards
                 panelContainer.Controls.Clear();
                 UserControl modifyTeamWindow = new ModifyTeam(logged, theRepository, panelContainer, selectedTeam);
                 panelContainer.Controls.Add(modifyTeamWindow);
-            } else
+            }
+            else
             {
                 MessageBox.Show("No se selecciono ningun equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -59,9 +60,10 @@ namespace UIBlackBoards
                 bool hasDeletedTheTeam = handler.DeleteTeam(selectedTeam.Name, theRepository);
                 if (hasDeletedTheTeam)
                 {
-                    MessageBox.Show("Equipo "+ selectedTeam.Name + " borrado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Equipo " + selectedTeam.Name + " borrado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     panelContainer.Controls.Clear();
-                } else
+                }
+                else
                 {
                     MessageBox.Show("No se pudo borrar al equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

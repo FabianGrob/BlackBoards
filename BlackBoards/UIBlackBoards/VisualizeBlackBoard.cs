@@ -21,7 +21,7 @@ namespace UIBlackBoards
         private Panel panelContainer;
         private List<Control> controls;
 
-        public VisualizeBlackBoard(BlackBoard aBoard,User anUser,Panel container)
+        public VisualizeBlackBoard(BlackBoard aBoard, User anUser, Panel container)
         {
             InitializeComponent();
             panelContainer = container;
@@ -30,10 +30,11 @@ namespace UIBlackBoards
             panelContainer.SetBounds(0, 0, actualBlackBoard.Dimension.Width, actualBlackBoard.Dimension.Height);
             controls = new List<Control>();
             loadControls();
-           
-           
+
+
         }
-        private void loadControls() {
+        private void loadControls()
+        {
             foreach (Item actualItem in actualBlackBoard.ItemList)
             {
                 Control itemToAdd = actualItem.Print();
@@ -44,10 +45,10 @@ namespace UIBlackBoards
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            int indexItems = 0; 
+            int indexItems = 0;
             foreach (Control aControl in controls)
             {
-                int x =aControl.Bounds.X;
+                int x = aControl.Bounds.X;
                 int y = aControl.Bounds.Y;
                 int height = aControl.Bounds.Height;
                 int width = aControl.Bounds.Width;
@@ -76,9 +77,9 @@ namespace UIBlackBoards
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var Screenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width,Screen.PrimaryScreen.Bounds.Height,PixelFormat.Format32bppArgb);
+            var Screenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
             var gfxScreenshot = Graphics.FromImage(Screenshot);
-            gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0,Screen.PrimaryScreen.Bounds.Size,CopyPixelOperation.SourceCopy);
+            gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
             SaveFileDialog f = new SaveFileDialog();
             f.Filter = "PNG(*.PNG)|*.png";
 
@@ -86,7 +87,7 @@ namespace UIBlackBoards
             {
                 Screenshot.Save(f.FileName, ImageFormat.Png);
             }
-          
+
         }
     }
 }
