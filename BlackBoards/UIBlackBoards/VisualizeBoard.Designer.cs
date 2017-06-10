@@ -56,7 +56,6 @@
             this.Name = "VisualizeBoard";
             this.Text = "VisualizeBoard";
             this.ResumeLayout(false);
-
         }
 
         #endregion

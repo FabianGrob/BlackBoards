@@ -83,6 +83,24 @@ namespace BlackBoards
             itemToAdd.SetBounds(this.Origin.XAxis, this.Origin.YAxis, this.Dimension.Width, this.Dimension.Height);
             return itemToAdd;
         }
+        public bool IsDescriptionValid()
+        {
+            bool valid = true;
+            if (this.Description.Length == 0)
+            {
+                valid = false;
+            }
+            return valid;
+        }
+        public bool IsPictureValid()
+        {
+            bool valid = true;
+            if (this.Img == null)
+            {
+                valid = false;
+            }
+            return valid;
+        }
         public override string ToString()
         {
             return this.description;

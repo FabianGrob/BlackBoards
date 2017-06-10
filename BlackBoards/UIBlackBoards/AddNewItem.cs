@@ -28,44 +28,40 @@ namespace UIBlackBoards
             containerPanel = container;
             blackboardPanel = aBlackboardPanel;
             blackBoard = aBlackBoard;
-
             List<string> allFonts = loadAllFonts();
             foreach (string font in allFonts)
             {
                 comboBoxFont.Items.Add(font);
             }
             comboBoxFont.SelectedIndex = 0;
-
         }
 
         public List<string> loadAllFonts()
         {
             List<string> fonts = new List<string>();
-
             foreach (FontFamily font in System.Drawing.FontFamily.Families)
             {
                 fonts.Add(font.Name);
             }
             return fonts;
-
         }
 
-        public bool validationsTextBox(string text, string font, int fontSize)
+        public bool validationsTextBox(BlackBoards.TextBox newItem)
         {
             bool allValidationsOk = true;
-            if (text.Length == 0)
+            if (!newItem.IsContentValid())
             {
                 allValidationsOk = false;
                 MessageBox.Show("El texto ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
             }
-            if (font.Length == 0)
+            if (!newItem.IsFontValid())
             {
-                allValidationsOk = false;
+                allValidationsOk = false;   
                 MessageBox.Show("La fuente ingresada es invalida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
             }
-            if (fontSize < 0)
+            if (!newItem.IsFontSizeValid())
             {
                 allValidationsOk = false;
                 MessageBox.Show("El tamaño de fuente no puede ser menor a 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,16 +70,16 @@ namespace UIBlackBoards
             return allValidationsOk;
         }
 
-        public bool validationsPictures(string text, Image aFile)
+        public bool validationsPictures(Picture newPicture)
         {
             bool allValidationsOk = true;
-            if (text.Length == 0)
+            if (!newPicture.IsDescriptionValid())
             {
                 allValidationsOk = false;
                 MessageBox.Show("El texto ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return allValidationsOk;
             }
-            if (aFile == null)
+            if (!newPicture.IsPictureValid())
             {
                 allValidationsOk = false;
                 MessageBox.Show("No se ha cargado ninguna foto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -94,13 +90,13 @@ namespace UIBlackBoards
 
         private void buttonTextBox_Click(object sender, EventArgs e)
         {
-            bool ok = validationsTextBox(textBox.Text, (string)comboBoxFont.SelectedItem, Convert.ToInt32(numericUpDown1.Value));
+            BlackBoards.TextBox newItem = new BlackBoards.TextBox();
+            newItem.Font = (string)comboBoxFont.SelectedItem;
+            newItem.FontSize = Convert.ToInt32(numericUpDown1.Value);
+            newItem.Content = textBox.Text;
+            bool ok = validationsTextBox(newItem);
             if (ok)
             {
-                BlackBoards.TextBox newItem = new BlackBoards.TextBox();
-                newItem.Font = (string)comboBoxFont.SelectedItem;
-                newItem.FontSize = Convert.ToInt32(numericUpDown1.Value);
-                newItem.Content = textBox.Text;
                 UserHandler handler = new UserHandler(logged);
                 handler.AddItemToBlackBoard(blackBoard, newItem);
                 blackboardPanel.Controls.Clear();
@@ -127,12 +123,12 @@ namespace UIBlackBoards
 
         private void buttonPicture_Click(object sender, EventArgs e)
         {
-            bool ok = validationsPictures(textBox.Text, File);
+            Picture newPicture = new Picture();
+            newPicture.Img = File;
+            newPicture.Description = textBox.Text;
+            bool ok = validationsPictures(newPicture);
             if (ok)
             {
-                Picture newPicture = new Picture();
-                newPicture.Img = File;
-                newPicture.Description = textBox.Text;
                 UserHandler handler = new UserHandler(logged);
                 handler.AddItemToBlackBoard(blackBoard, newPicture);
                 blackboardPanel.Controls.Clear();
