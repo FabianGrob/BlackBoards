@@ -107,7 +107,20 @@ namespace BlackBoards
         public ValidationReturn IsValid()
         {
             ValidationReturn validation = new ValidationReturn(false, "Error");
-            
+            bool validDescription = this.IsDescriptionValid();
+            bool validImage = this.IsImageValid();
+            if (!validDescription)
+            {
+                validation.Message = "El texto ingresado es vacio.";
+                return validation;
+            }
+            if (!validImage)
+            {
+                validation.Message = "No se ha cargado ninguna foto.";
+                return validation;
+            }
+            validation.Message = "OK";
+            validation.Validation = true;
             return validation;
         }
         public override string ToString()
