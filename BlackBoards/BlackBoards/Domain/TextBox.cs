@@ -1,4 +1,5 @@
 ﻿using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -109,7 +110,13 @@ namespace BlackBoards
             itemToAdd.Visible = true;
             return itemToAdd;
         }
-        public bool IsContentValid()
+        public ValidationReturn isValid()
+        {
+            ValidationReturn validation = new ValidationReturn(true, "Error");
+          
+            return validation;
+        }
+        private bool IsContentValid()
         {
             bool valid = true;
             if (this.Content.Length == 0)
@@ -118,7 +125,7 @@ namespace BlackBoards
             }
             return valid;
         }
-        public bool IsFontValid()
+        private bool IsFontValid()
         {
             bool valid = true;
             if (this.Font.Length == 0)
@@ -130,7 +137,7 @@ namespace BlackBoards
         public bool IsFontSizeValid()
         {
             bool valid = true;
-            if (this.FontSize < 0)
+            if (this.FontSize < 1)
             {
                 valid = false;
             }
