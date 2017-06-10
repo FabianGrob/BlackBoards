@@ -1,4 +1,5 @@
 ﻿using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,12 +11,13 @@ using System.Windows.Forms;
 
 namespace BlackBoards
 {
-    public class Picture:Item
+    public class Picture : Item
     {
         private Image img;
         private string description;
-        public Picture() {
-            this.Dimension= new Dimension(50,50);
+        public Picture()
+        {
+            this.Dimension = new Dimension(50, 50);
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
             this.description = "default description";
@@ -50,7 +52,7 @@ namespace BlackBoards
         {
             this.Dimension = aDimension;
             this.Comments = someComments;
-            this.Origin = anOrigin;         
+            this.Origin = anOrigin;
         }
 
         private string getDefaultPicturePath()
@@ -59,7 +61,7 @@ namespace BlackBoards
             string defualtImagePath = proyectPath + "\\Images\\default.jpg";
             return defualtImagePath;
         }
-        
+
         public override bool Equals(object aPicture)
         {
             if (aPicture == null)
@@ -76,14 +78,15 @@ namespace BlackBoards
             bool sameComments = this.Comments.Equals(anotherPicture.Comments);
             return sameDimensions && sameComments && sameComments;
         }
-        public override Control Print() {
+        public override Control Print()
+        {
             PictureBox itemToAdd = new PictureBox();
             itemToAdd.SizeMode = PictureBoxSizeMode.StretchImage;
             itemToAdd.Image = this.Img;
             itemToAdd.SetBounds(this.Origin.XAxis, this.Origin.YAxis, this.Dimension.Width, this.Dimension.Height);
             return itemToAdd;
         }
-        public bool IsDescriptionValid()
+        private bool IsDescriptionValid()
         {
             bool valid = true;
             if (this.Description.Length == 0)
@@ -92,7 +95,7 @@ namespace BlackBoards
             }
             return valid;
         }
-        public bool IsPictureValid()
+        private bool IsImageValid()
         {
             bool valid = true;
             if (this.Img == null)
@@ -101,10 +104,16 @@ namespace BlackBoards
             }
             return valid;
         }
+        public ValidationReturn IsValid()
+        {
+            ValidationReturn validation = new ValidationReturn(false, "Error");
+            
+            return validation;
+        }
         public override string ToString()
         {
             return this.description;
         }
     }
- }
+}
 
