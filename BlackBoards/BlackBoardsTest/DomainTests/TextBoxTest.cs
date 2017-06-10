@@ -75,12 +75,13 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestTextBoxInvalidFont()
         {
+            //instance
             TextBox aTextBox = setUpTextBox();
             aTextBox.Font = "";
             ValidationReturn validations = aTextBox.isValid();
             bool result = validations.Validation;
+            //assertion
             Assert.IsFalse(result);
         }
-       
     }
 }
