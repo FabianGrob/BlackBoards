@@ -112,8 +112,23 @@ namespace BlackBoards
         }
         public ValidationReturn isValid()
         {
-            ValidationReturn validation = new ValidationReturn(true, "Error");
+            ValidationReturn validation = new ValidationReturn(false, "Error");
+           
+            bool validFont = this.IsFontValid();
+            bool validFontSize = this.IsFontSizeValid();
           
+            if (!validFont)
+            {
+                validation.Message = "La fuente ingresada es invalida.";
+                return validation;
+            }
+            if (!validFontSize)
+            {
+                validation.Message = "El tamaño de fuente no puede ser menor a 1.";
+                return validation;
+            }
+            validation.Validation = true;
+            validation.Message = "OK";
             return validation;
         }
         private bool IsContentValid()
