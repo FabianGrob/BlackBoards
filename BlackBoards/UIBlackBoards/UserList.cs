@@ -31,11 +31,6 @@ namespace UIBlackBoards
             listBoxAllUsers.SelectedItem = 0;
         }
 
-        private void UserList_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             AdminHandler adminHandler = new AdminHandler((Admin)logged);

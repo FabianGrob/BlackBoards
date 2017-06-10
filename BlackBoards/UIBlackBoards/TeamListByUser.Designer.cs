@@ -81,7 +81,6 @@
             this.Controls.Add(this.buttonCreateBlackBoard);
             this.Name = "TeamListByUser";
             this.Size = new System.Drawing.Size(398, 317);
-            this.Load += new System.EventHandler(this.TeamListByUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

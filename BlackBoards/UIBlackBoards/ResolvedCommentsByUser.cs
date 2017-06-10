@@ -41,16 +41,6 @@ namespace UIBlackBoards
             comboBoxUsers.SelectedIndex = 0;
         }
 
-        private void ResolvedCommentsByUser_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonCreationDAte_Click(object sender, EventArgs e)
         {
             RepositoryHandler handler = new RepositoryHandler(theRepository);

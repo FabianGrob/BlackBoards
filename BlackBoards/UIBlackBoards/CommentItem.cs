@@ -29,12 +29,6 @@ namespace UIBlackBoards
             selectedItem = actualItem;
             theRepository = aRepository;
         }
-
-        private void CommentItem_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private bool validateText(string text)
         {
             return text.Length > 5;
@@ -63,11 +57,6 @@ namespace UIBlackBoards
             panelContainer.Controls.Clear();
             ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
             panelContainer.Controls.Add(pwindow);
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

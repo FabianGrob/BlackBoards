@@ -125,7 +125,6 @@
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Repetir contraseña";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -181,7 +180,6 @@
             this.Controls.Add(this.CreateUser);
             this.Name = "AddNewUser";
             this.Size = new System.Drawing.Size(312, 410);
-            this.Load += new System.EventHandler(this.AddNewUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

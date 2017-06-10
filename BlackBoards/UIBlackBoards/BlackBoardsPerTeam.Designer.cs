@@ -69,7 +69,6 @@
             this.Controls.Add(this.listBoxTeams);
             this.Name = "BlackBoardsPerTeam";
             this.Size = new System.Drawing.Size(249, 331);
-            this.Load += new System.EventHandler(this.BlackBoardsPerTeam_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

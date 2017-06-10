@@ -91,7 +91,6 @@
             this.Controls.Add(this.listBoxBoards);
             this.Name = "TeamBlackBoards";
             this.Size = new System.Drawing.Size(395, 345);
-            this.Load += new System.EventHandler(this.TeamBlackBoards_Load);
             this.ResumeLayout(false);
 
         }

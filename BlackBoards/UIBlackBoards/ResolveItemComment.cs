@@ -33,11 +33,6 @@ namespace UIBlackBoards
             }
     }
 
-        private void ResolveItemComment_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             int selectedIndex = listBoxComments.SelectedIndex;
@@ -46,27 +41,21 @@ namespace UIBlackBoards
                 MessageBox.Show("No se ha seleccionado ningun comentario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            {
-
-                Comment selectedComment = (Comment)listBoxComments.SelectedItem;
-              
+             {
+                Comment selectedComment = (Comment)listBoxComments.SelectedItem;    
                 UserHandler handler = new UserHandler(logged);
-               
-              
-                    if (selectedComment.ResolvingDate.Equals(DateTime.MaxValue))
-                    {
-                        bool resolved = handler.ResolveComment(selectedComment);
-                   
-
-                        MessageBox.Show("El comentario se marcó como resuelto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        panelContainer.Controls.Clear();
-                        ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
-                        panelContainer.Controls.Add(pwindow);
-                   
-                     }
-                    else {
-                        MessageBox.Show("El comentario ya estaba resuelto por: " + selectedComment.ResolvingUser, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (selectedComment.ResolvingDate.Equals(DateTime.MaxValue))
+                {
+                    bool resolved = handler.ResolveComment(selectedComment);
+                    MessageBox.Show("El comentario se marcó como resuelto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    panelContainer.Controls.Clear();
+                    ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+                    panelContainer.Controls.Add(pwindow);       
                     }
+                else
+                {
+                    MessageBox.Show("El comentario ya estaba resuelto por: " + selectedComment.ResolvingUser, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

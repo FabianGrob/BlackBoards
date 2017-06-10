@@ -26,10 +26,6 @@ namespace UIBlackBoards
             dateTimePicker.Value = DateTime.Today;
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
         public bool isValid(string email, string fstPass, string sndPass, string name, string lastName,DateTime birthDate) {
             string[] splited = email.Split('@');
             bool valid = true;
@@ -88,11 +84,6 @@ namespace UIBlackBoards
                     MessageBox.Show("El usuario no fue creado porque ya existe", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void AddNewUser_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

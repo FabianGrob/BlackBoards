@@ -34,11 +34,6 @@ namespace UIBlackBoards
             }
         }
 
-        private void TeamBlackBoards_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonfilter_Click(object sender, EventArgs e)
         {
             if (dateTimePicker.Value > DateTime.Today)

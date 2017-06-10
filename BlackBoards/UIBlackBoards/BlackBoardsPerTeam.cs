@@ -28,11 +28,6 @@ namespace UIBlackBoards
             }
         }
 
-        private void BlackBoardsPerTeam_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonChooseTeam_Click(object sender, EventArgs e)
         {
             if (listBoxTeams.SelectedIndex != -1)

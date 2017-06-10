@@ -96,7 +96,6 @@
             this.labelSelectedUsers.Size = new System.Drawing.Size(100, 13);
             this.labelSelectedUsers.TabIndex = 22;
             this.labelSelectedUsers.Text = "Usuarios del equipo";
-            this.labelSelectedUsers.Click += new System.EventHandler(this.labelSelectedUsers_Click);
             // 
             // labelAllUsers
             // 
@@ -131,7 +130,6 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(180, 20);
             this.textBoxName.TabIndex = 18;
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // listBoxSelectedUsers
             // 
@@ -188,7 +186,6 @@
             this.Controls.Add(this.labelTitle);
             this.Name = "ModifyTeam";
             this.Size = new System.Drawing.Size(256, 408);
-            this.Load += new System.EventHandler(this.ModifyTeam_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

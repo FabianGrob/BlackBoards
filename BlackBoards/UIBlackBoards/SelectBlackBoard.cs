@@ -38,12 +38,6 @@ namespace UIBlackBoards
             return hasSelected;
         }
 
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonModifyBlackBoard_Click(object sender, EventArgs e)
         {
             if (hasSelectedABlackBoard())

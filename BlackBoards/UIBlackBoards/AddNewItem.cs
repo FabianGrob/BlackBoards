@@ -50,16 +50,6 @@ namespace UIBlackBoards
 
         }
 
-        private void AddNewItem_Load(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public bool validationsTextBox(string text, string font, int fontSize)
         {
             bool allValidationsOk = true;
@@ -153,17 +143,7 @@ namespace UIBlackBoards
                 containerPanel.Controls.Add(pwindow);
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void buttonComeBack_Click(object sender, EventArgs e)
         {
             containerPanel.Controls.Clear();

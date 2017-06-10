@@ -42,7 +42,6 @@
             this.listBoxBlackBoards.Name = "listBoxBlackBoards";
             this.listBoxBlackBoards.Size = new System.Drawing.Size(333, 251);
             this.listBoxBlackBoards.TabIndex = 0;
-            this.listBoxBlackBoards.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // buttonRemoveBlackBoard
             // 

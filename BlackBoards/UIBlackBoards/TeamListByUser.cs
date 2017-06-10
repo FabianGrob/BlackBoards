@@ -53,11 +53,6 @@ namespace UIBlackBoards
             }
         }
 
-        private void TeamListByUser_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonModifyBlackBoards_Click(object sender, EventArgs e)
         {
             if (hasSelectedATeam())

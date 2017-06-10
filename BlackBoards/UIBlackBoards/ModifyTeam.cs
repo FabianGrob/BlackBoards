@@ -39,11 +39,7 @@ namespace UIBlackBoards
             richTextBoxDescription.Text = team.Description;
             textBoxCantMaxUsers.Text = team.MaxUsers+"";
         }
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+   
         private void buttonModifyTeam_Click(object sender, EventArgs e)
         {
             AddNewTeam validations = new AddNewTeam(logged,theRepository,panelContainer);
@@ -98,16 +94,6 @@ namespace UIBlackBoards
             {
                 MessageBox.Show("No se selecciono ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void ModifyTeam_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSelectedUsers_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

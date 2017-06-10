@@ -126,7 +126,6 @@
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // comboBoxFont
             // 
@@ -152,7 +151,6 @@
             this.labelText.Size = new System.Drawing.Size(34, 13);
             this.labelText.TabIndex = 28;
             this.labelText.Text = "Texto";
-            this.labelText.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonComeBack
             // 
@@ -181,7 +179,6 @@
             this.Controls.Add(this.comboBoxFont);
             this.Name = "AddNewItem";
             this.Size = new System.Drawing.Size(150, 349);
-            this.Load += new System.EventHandler(this.AddNewItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);

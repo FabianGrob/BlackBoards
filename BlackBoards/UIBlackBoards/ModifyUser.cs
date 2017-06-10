@@ -35,11 +35,6 @@ namespace UIBlackBoards
             
         }
 
-        private void buttonModify_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void buttonGeneratePassword_Click(object sender, EventArgs e)
         {
             string posibleChars = "0123456789abcdefghijlkmnopqrstuvwxyz";
