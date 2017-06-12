@@ -85,30 +85,51 @@ namespace BlackBoards.Domain
                 this.solveComment = value;
             }
         }
+
+        private bool ValidCreateBlackBoard()
+        {
+            return this.createBlackBoard < 0;
+        }
+        private bool ValidDeleteBlackBoard()
+        {
+            return this.deleteBlackBoard < 0;
+        }
+        private bool ValidAddItem()
+        {
+            return this.addItem < 0;
+        }
+        private bool ValidAddComment()
+        {
+            return this.addComment < 0;
+        }
+        private bool ValidSolveComment()
+        {
+            return this.solveComment < 0;
+        }
         public ValidationReturn IsValid()
         {
             ValidationReturn validation = new ValidationReturn(true, "OK");
-            if (this.createBlackBoard < 0)
+            if (this.ValidCreateBlackBoard())
             {
                 validation.Validation = false;
                 validation.Message = ("La puntuacion de crear pizarron no puede ser menor a 0");
             }
-            if (this.deleteBlackBoard < 0)
+            if (this.ValidDeleteBlackBoard())
             {
                 validation.Validation = false;
                 validation.Message = ("La puntuacion de borrar pizarron no puede ser menor a 0");
             }
-            if (this.addItem < 0)
+            if (this.ValidAddItem())
             {
                 validation.Validation = false;
                 validation.Message = ("La puntuacion de añadir un item no puede ser menor a 0");
             }
-            if (this.addComment < 0)
+            if (this.ValidAddComment())
             {
                 validation.Validation = false;
                 validation.Message = ("La puntuacion de añadir un comentario no puede ser menor a 0");
             }
-            if (this.solveComment < 0)
+            if (this.ValidSolveComment())
             {
                 validation.Validation = false;
                 validation.Message = ("La puntuacion de resolver un comentario no puede ser menor a 0");

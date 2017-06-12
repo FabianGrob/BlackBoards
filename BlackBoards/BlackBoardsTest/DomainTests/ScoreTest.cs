@@ -35,7 +35,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestInvalidScore()
         {
-            Score scoreTest = new Score(-1, 0, 0, 0, 0);
+            Score scoreTest = new Score(-1, -1, -1, -1, -1);
             ValidationReturn validation = scoreTest.IsValid();
             bool result = validation.Validation;
             Assert.IsFalse(result);
