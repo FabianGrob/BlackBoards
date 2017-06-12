@@ -88,6 +88,31 @@ namespace BlackBoards.Domain
         public ValidationReturn IsValid()
         {
             ValidationReturn validation = new ValidationReturn(true, "OK");
+            if (this.createBlackBoard < 0)
+            {
+                validation.Validation = false;
+                validation.Message = ("La puntuacion de crear pizarron no puede ser menor a 0");
+            }
+            if (this.deleteBlackBoard < 0)
+            {
+                validation.Validation = false;
+                validation.Message = ("La puntuacion de borrar pizarron no puede ser menor a 0");
+            }
+            if (this.addItem < 0)
+            {
+                validation.Validation = false;
+                validation.Message = ("La puntuacion de añadir un item no puede ser menor a 0");
+            }
+            if (this.addComment < 0)
+            {
+                validation.Validation = false;
+                validation.Message = ("La puntuacion de añadir un comentario no puede ser menor a 0");
+            }
+            if (this.solveComment < 0)
+            {
+                validation.Validation = false;
+                validation.Message = ("La puntuacion de resolver un comentario no puede ser menor a 0");
+            }
             return validation;
         }
         public override bool Equals(object anotherScore)
