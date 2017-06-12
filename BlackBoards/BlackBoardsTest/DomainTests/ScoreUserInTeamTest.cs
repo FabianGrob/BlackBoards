@@ -44,5 +44,15 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestEqualsScoreUserInTeamTest()
+        {
+            //instance
+            ScoreUserInTeam aScoreUserInTeamTest = setUp();
+            ScoreUserInTeam anotherScoreUserInTeamTest = new ScoreUserInTeam();
+            bool result = aScoreUserInTeamTest.Equals(anotherScoreUserInTeamTest);
+            //assertion
+            Assert.IsFalse(result);
+        }
     }
 }
