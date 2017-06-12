@@ -37,6 +37,10 @@ namespace BlackBoards.Domain
                 this.score = value;
             }
         }
+        private bool IsOfTeam(Team team)
+        {
+            return this.team.Equals(team);
+        }
         public override bool Equals(object aEstablishedScoreTeam)
         {
             if (aEstablishedScoreTeam == null)
@@ -48,7 +52,7 @@ namespace BlackBoards.Domain
             {
                 return false;
             }
-            return this.team.Equals(anotherEstablishedScoreTeam.Team);
+            return this.IsOfTeam(anotherEstablishedScoreTeam.Team);
         }
     }
 }
