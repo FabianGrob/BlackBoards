@@ -78,25 +78,33 @@ namespace BlackBoards.Domain
                 this.direction = value;
             }
         }
+        private bool IsAnyItemNull()
+        {
+            return this.From == null || this.To == null;
+        }
+        private bool ItemsAreTheSame()
+        {
+            return this.To.Equals(this.From);
+        }
+        private bool IsNameShort()
+        {
+            return this.Name.Length < 3;
+        }
         public ValidationReturn isValid()
         {
             ValidationReturn valid = new ValidationReturn(true, "");
-            if (this.From == null || this.To == null)
+            if (IsAnyItemNull())
             {
-                valid.Validation = false;
-                valid.Message = "null";
+                valid.RedefineValues(false, "Se debe seleccionar dos Items");
                 return valid;
             }
-            if (this.To.Equals(this.From))
+            if (ItemsAreTheSame())
             {
-                valid.Validation = false;
-                valid.Message = "No se puede conectar el elemento con si mismo";
+                valid.RedefineValues(false, "No se puede conectar el elemento con si mismo");
             }
-            
-            if (this.Name.Length < 3)
+            if (IsNameShort())
             {
-                valid.Validation = false;
-                valid.Message = "El nombre debe tener almenos 3 caracteres";
+                valid.RedefineValues(false, "El nombre debe tener almenos 3 caracteres");
             }
             return valid;
         }

@@ -60,47 +60,59 @@ namespace BlackBoardsTest.DomainTests
         [TestMethod]
         public void TestIsValidOk()
         {
+            //instance
             Connection connection = this.setUp();
+            //assertion
             bool result = connection.isValid().Validation;
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestIsValidShortName()
         {
+            //instance
             Connection connection = this.setUp();
             connection.Name = "A1";
+            //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestIsValidEmptyName()
         {
+            //instance
             Connection connection = this.setUp();
             connection.Name = "";
+            //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestIsValidSameItem()
         {
+            //instance
             Connection connection = this.setUp();
             connection.To = new TextBox(connection.From as TextBox);
+            //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestIsValidNullItemTo()
         {
+            //instance
             Connection connection = this.setUp();
             connection.To = null;
+            //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestIsValidNullItemFrom()
         {
+            //instance
             Connection connection = this.setUp();
             connection.From = null;
+            //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
         }

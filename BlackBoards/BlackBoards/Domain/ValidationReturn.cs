@@ -44,6 +44,10 @@ namespace BlackBoards.Domain
                     this.message = value;
                 }
             }
+            public void RedefineValues(bool isValid, string message) {
+                this.Validation = isValid;
+                this.Message=message;
+            }
         }
     }
 }
