@@ -84,6 +84,10 @@ namespace BlackBoards.Domain
                 this.solveComment = value;
             }
         }
+        public bool IsValid()
+        {
+            return true;
+        }
         public override bool Equals(object anotherScore)
         {
             if (anotherScore == null)
