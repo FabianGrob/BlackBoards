@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,6 +77,28 @@ namespace BlackBoards.Domain
             {
                 this.direction = value;
             }
+        }
+        public ValidationReturn isValid()
+        {
+            ValidationReturn valid = new ValidationReturn(true, "");
+            if (this.From == null || this.To == null)
+            {
+                valid.Validation = false;
+                valid.Message = "null";
+                return valid;
+            }
+            if (this.To.Equals(this.From))
+            {
+                valid.Validation = false;
+                valid.Message = "No se puede conectar el elemento con si mismo";
+            }
+            
+            if (this.Name.Length < 3)
+            {
+                valid.Validation = false;
+                valid.Message = "El nombre debe tener almenos 3 caracteres";
+            }
+            return valid;
         }
     }
 }
