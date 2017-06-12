@@ -12,14 +12,15 @@ namespace BlackBoardsTest
     public class TeamTest
     {
         [TestMethod]
-        public void TestTeamBuilder(){
+        public void TestTeamBuilder()
+        {
             String name = "testName";
             DateTime creationDate = new DateTime();
             String description = "testDescription";
             int maximumUsers = 10;
             List<User> members = new List<User>();
             List<BlackBoard> boards = new List<BlackBoard>();
-            Team aTeam = new Team(name,creationDate,description,maximumUsers,members,boards);
+            Team aTeam = new Team(name, creationDate, description, maximumUsers, members, boards);
             Team otherTeam = new Team();
             otherTeam.Name = name;
             otherTeam.CreationDate = creationDate;
@@ -28,20 +29,16 @@ namespace BlackBoardsTest
             otherTeam.Members = members;
             otherTeam.Boards = boards;
             Assert.IsTrue(aTeam.Equals(otherTeam));
-
-
-            
-            }
+        }
         [TestMethod]
-        public void TestNotEqualsTeam() {
+        public void TestNotEqualsTeam()
+        {
             Team testTeamOne = new Team();
             Team testTeamTwo = new Team();
             testTeamOne.Name = "Team One";
             testTeamTwo.Name = "Team Two";
             Boolean result = testTeamOne.Equals(testTeamTwo);
             Assert.IsFalse(result);
-
         }
     }
-
 }
