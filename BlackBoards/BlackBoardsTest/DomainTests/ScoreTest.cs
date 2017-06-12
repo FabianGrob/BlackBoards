@@ -20,6 +20,13 @@ namespace BlackBoardsTest
             bool result = scoreTest.Equals(anotherScoreTest);
             //assertion
             Assert.IsTrue(result);
-        }      
+        }
+        [TestMethod]
+        public void TestInvalidScore()
+        {
+            Score scoreTest = new Score(0, 0, 0, 0, 0);
+            bool result = scoreTest.IsValid();
+            Assert.IsTrue(result);
+        }
     }
 }
