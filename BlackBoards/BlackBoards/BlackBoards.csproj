@@ -52,10 +52,13 @@
     <Compile Include="Domain\Comment.cs" />
     <Compile Include="Domain\Coordinate.cs" />
     <Compile Include="Domain\Dimension.cs" />
+    <Compile Include="Domain\EstablishedScoreTeam.cs" />
     <Compile Include="Domain\Program.cs" />
     <Compile Include="Domain\Repository.cs" />
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Picture.cs" />
+    <Compile Include="Domain\Score.cs" />
+    <Compile Include="Domain\ScoreUserInTeam.cs" />
     <Compile Include="Domain\ValidationReturn.cs" />
     <Compile Include="Handlers\AdminHandler.cs" />
     <Compile Include="Handlers\BlackBoardHandler.cs" />
