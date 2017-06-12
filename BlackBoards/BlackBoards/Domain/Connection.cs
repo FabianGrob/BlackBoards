@@ -14,7 +14,8 @@ namespace BlackBoards.Domain
         private string name;
         private string description;
 
-        public Connection(Item  anItem, Item anotherItem, string aName, string aDescripton, DirectionType aDirection) {
+        public Connection(Item anItem, Item anotherItem, string aName, string aDescripton, DirectionType aDirection)
+        {
             this.from = anItem;
             this.to = anotherItem;
             this.name = aName;
