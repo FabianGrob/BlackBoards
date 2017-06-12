@@ -57,6 +57,53 @@ namespace BlackBoardsTest.DomainTests
             bool result = sameName && sameDesccription && sameItems && sameDirection;
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void TestIsValidOk()
+        {
+            Connection connection = this.setUp();
+            bool result = connection.isValid().Validation;
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestIsValidShortName()
+        {
+            Connection connection = this.setUp();
+            connection.Name = "A1";
+            bool result = connection.isValid().Validation;
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestIsValidEmptyName()
+        {
+            Connection connection = this.setUp();
+            connection.Name = "";
+            bool result = connection.isValid().Validation;
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestIsValidSameItem()
+        {
+            Connection connection = this.setUp();
+            connection.To = new TextBox(connection.From as TextBox);
+            bool result = connection.isValid().Validation;
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestIsValidNullItemTo()
+        {
+            Connection connection = this.setUp();
+            connection.To = null;
+            bool result = connection.isValid().Validation;
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void TestIsValidNullItemFrom()
+        {
+            Connection connection = this.setUp();
+            connection.From = null;
+            bool result = connection.isValid().Validation;
+            Assert.IsFalse(result);
+        }
 
     }
 }
