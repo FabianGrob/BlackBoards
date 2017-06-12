@@ -1,4 +1,5 @@
 ﻿using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,11 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestInvalidScore()
         {
+            //instance
             Score scoreTest = new Score(0, 0, 0, 0, 0);
-            bool result = scoreTest.IsValid();
+            ValidationReturn validation = scoreTest.IsValid();
+            bool result = validation.Validation;
+            //assertion
             Assert.IsTrue(result);
         }
     }

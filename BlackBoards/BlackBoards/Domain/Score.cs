@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,9 +85,10 @@ namespace BlackBoards.Domain
                 this.solveComment = value;
             }
         }
-        public bool IsValid()
+        public ValidationReturn IsValid()
         {
-            return true;
+            ValidationReturn validation = new ValidationReturn(true, "OK");
+            return validation;
         }
         public override bool Equals(object anotherScore)
         {
