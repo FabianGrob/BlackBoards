@@ -23,7 +23,7 @@ namespace BlackBoardsTest
             Assert.IsTrue(result);
         }
         [TestMethod]
-        public void TestInvalidScore()
+        public void TestValidScore()
         {
             //instance
             Score scoreTest = new Score(0, 0, 0, 0, 0);
@@ -31,6 +31,14 @@ namespace BlackBoardsTest
             bool result = validation.Validation;
             //assertion
             Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void TestInvalidScore()
+        {
+            Score scoreTest = new Score(-1, 0, 0, 0, 0);
+            ValidationReturn validation = scoreTest.IsValid();
+            bool result = validation.Validation;
+            Assert.IsFalse(result);
         }
     }
 }
