@@ -50,6 +50,18 @@ namespace BlackBoards.Domain
                 this.score = value;
             }
         }
+        private bool IsOfUser(User user)
+        {
+            return this.user.Equals(user);
+        }
+        private bool IsOfTeam(Team team)
+        {
+            return this.team.Equals(team);
+        }
+        private bool IsThisScore(Score score)
+        {
+            return this.score.Equals(score);
+        }
         public override bool Equals(object aScoreUserInTeam)
         {
             if (aScoreUserInTeam == null)
@@ -61,9 +73,9 @@ namespace BlackBoards.Domain
             {
                 return false;
             }
-            bool scoreEquals = (this.score.Equals(otherScoreUserInTeam.Score));
-            bool teamEquals = (this.team.Equals(otherScoreUserInTeam.Team));
-            bool userEquals = (this.user.Equals(otherScoreUserInTeam.User));
+            bool scoreEquals = this.IsThisScore(otherScoreUserInTeam.Score);
+            bool teamEquals = this.IsOfTeam(otherScoreUserInTeam.Team);
+            bool userEquals = this.IsOfUser(otherScoreUserInTeam.User);
             return (scoreEquals && teamEquals && userEquals);
         }
     }
