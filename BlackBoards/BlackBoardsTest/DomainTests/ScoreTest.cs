@@ -14,10 +14,12 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestBuilderScore()
         {
+            //instance
             Score scoreTest = new Score();
             Score anotherScoreTest = new Score(0,0,0,0,0);
             bool result = scoreTest.Equals(anotherScoreTest);
+            //assertion
             Assert.IsTrue(result);
-        }
+        }      
     }
 }
