@@ -50,8 +50,10 @@
     <Compile Include="Domain\BlackBoard.cs" />
     <Compile Include="Domain\Collaborator.cs" />
     <Compile Include="Domain\Comment.cs" />
+    <Compile Include="Domain\Connection.cs" />
     <Compile Include="Domain\Coordinate.cs" />
     <Compile Include="Domain\Dimension.cs" />
+    <Compile Include="Domain\DirectionType.cs" />
     <Compile Include="Domain\Program.cs" />
     <Compile Include="Domain\Repository.cs" />
     <Compile Include="Domain\Item.cs" />

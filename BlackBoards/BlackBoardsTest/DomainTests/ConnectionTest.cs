@@ -28,10 +28,8 @@ namespace BlackBoardsTest.DomainTests
         public void TestBuilderConnection()
         {
             Connection connection = this.setUp();
-            TextBox from = new TextBox();
-            from.Content = "firstItem";
-            TextBox to = new TextBox();
-            to.Content = "secondItem";
+            TextBox from = new TextBox(connection.From as TextBox);
+            TextBox to = new TextBox(connection.To as TextBox);
             DirectionType direction = DirectionType.nonDirected;
 
             bool sameName = connection.Name.Equals("testingConnection");
@@ -45,10 +43,8 @@ namespace BlackBoardsTest.DomainTests
         public void TestBuilderConnectionNotEq()
         {
             Connection connection = this.setUp();
-            TextBox from = new TextBox();
-            from.Content = "firstItem";
-            TextBox to = new TextBox();
-            to.Content = "firstItem";
+            TextBox from = new TextBox(connection.From as TextBox);
+            TextBox to = new TextBox(connection.From as TextBox);
             DirectionType direction = DirectionType.nonDirected;
 
             bool sameName = connection.Name.Equals("testingConnection");
