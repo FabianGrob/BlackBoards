@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BlackBoards
 {
@@ -76,14 +75,7 @@ namespace BlackBoards
             bool sameComments = this.Comments.Equals(anotherPicture.Comments);
             return sameDimensions && sameComments && sameComments;
         }
-        public override Control Print()
-        {
-            PictureBox itemToAdd = new PictureBox();
-            itemToAdd.SizeMode = PictureBoxSizeMode.StretchImage;
-            itemToAdd.Image = this.Img;
-            itemToAdd.SetBounds(this.Origin.XAxis, this.Origin.YAxis, this.Dimension.Width, this.Dimension.Height);
-            return itemToAdd;
-        }
+    
         private bool IsDescriptionValid()
         {
             bool valid = true;

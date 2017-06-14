@@ -69,8 +69,6 @@
     <Compile Include="Handlers\RepositoryHandler.cs" />
     <Compile Include="Handlers\TeamHandler.cs" />
     <Compile Include="Handlers\TextBoxHandler.cs" />
-    <Compile Include="Printable\IItemPrintable.cs" />
-    <Compile Include="Printable\TextBoxPrintable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\TextBox.cs" />

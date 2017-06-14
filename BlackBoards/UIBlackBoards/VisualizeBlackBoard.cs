@@ -37,11 +37,45 @@ namespace UIBlackBoards
         {
             foreach (Item actualItem in actualBlackBoard.ItemList)
             {
-                Control itemToAdd = actualItem.Print();
-                ControlMoverOrResizer.Init(itemToAdd);
-                controls.Add(itemToAdd);
-                Controls.Add(itemToAdd);
+                Control controlToAdd;
+                if (actualItem.IsPicture())
+                {
+                    PictureBox actualControl = new PictureBox();
+                    Picture itemToAdd = actualItem as Picture;
+                    //controlToAdd = 
+
+                    actualControl.SizeMode = PictureBoxSizeMode.StretchImage;
+                    actualControl.Image = itemToAdd.Img;
+                    actualControl.SetBounds(itemToAdd.Origin.XAxis, itemToAdd.Origin.YAxis, itemToAdd.Dimension.Width, itemToAdd.Dimension.Height);
+                    controlToAdd = actualControl;
+                }
+                else
+                {
+                    RichTextBox actualControl = new RichTextBox();
+                    BlackBoards.TextBox itemToAdd = actualItem as BlackBoards.TextBox;
+                    actualControl = new RichTextBox();
+                    actualControl.Text = itemToAdd.Content;
+                    actualControl.Font = new Font(itemToAdd.Font, itemToAdd.FontSize);
+                    actualControl.SetBounds(itemToAdd.Origin.XAxis, itemToAdd.Origin.YAxis, itemToAdd.Dimension.Width, itemToAdd.Dimension.Height);
+                    actualControl.Visible = true;
+                    controlToAdd = actualControl;
+                }
+
+                ControlMoverOrResizer.Init(controlToAdd);
+                controls.Add(controlToAdd);
+                Controls.Add(controlToAdd);
             }
+            /*   
+        
+             public override Control Print()
+        {
+            RichTextBox itemToAdd = new RichTextBox();
+            itemToAdd.Text = this.content;
+            itemToAdd.Font = new Font(this.Font, this.FontSize);
+            itemToAdd.SetBounds(this.Origin.XAxis, this.Origin.YAxis, this.Dimension.Width, this.Dimension.Height);
+            itemToAdd.Visible = true;
+            return itemToAdd;
+        }*/
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -89,5 +123,6 @@ namespace UIBlackBoards
             }
 
         }
+
     }
 }

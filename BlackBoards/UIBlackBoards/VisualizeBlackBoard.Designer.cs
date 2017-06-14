@@ -72,7 +72,6 @@
             this.Controls.Add(this.buttonSave);
             this.Name = "VisualizeBlackBoard";
             this.Size = new System.Drawing.Size(697, 484);
-            
             this.ResumeLayout(false);
 
         }
