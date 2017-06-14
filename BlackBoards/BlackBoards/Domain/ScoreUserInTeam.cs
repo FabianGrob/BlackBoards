@@ -8,6 +8,7 @@ namespace BlackBoards.Domain
 {
     public class ScoreUserInTeam
     {
+        public int ID { get; set; }
         private Team team;
         private User user;
         private Score score;

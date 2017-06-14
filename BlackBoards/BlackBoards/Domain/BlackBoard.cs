@@ -9,6 +9,7 @@ namespace BlackBoards
 {
     public class BlackBoard
     {
+        public int ID { get; set; }
         private List<Item> itemList;
         private string name;
         private string description;

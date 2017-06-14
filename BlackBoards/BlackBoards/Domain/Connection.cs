@@ -9,6 +9,7 @@ namespace BlackBoards.Domain
 {
     public class Connection
     {
+        public int ID { get; set; }
         private Item from;
         private Item to;
         private DirectionType direction;

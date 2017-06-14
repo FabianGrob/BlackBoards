@@ -8,6 +8,7 @@ namespace BlackBoards
 {
     public class Comment
     {
+        public int ID { get; set; }
         private User commentingUser;
         private User resolvingUser;
         private DateTime commentingDate;

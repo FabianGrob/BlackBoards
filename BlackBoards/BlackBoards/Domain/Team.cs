@@ -8,6 +8,7 @@ namespace BlackBoards
 {
     public class Team
     {
+        public int ID { get; set; }
         private string name;
         private string description;
         private DateTime creationDate;
