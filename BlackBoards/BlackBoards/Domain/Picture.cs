@@ -12,7 +12,7 @@ namespace BlackBoards
 {
     public class Picture : Item
     {
-        private Image img;
+        private string imgPath;
         private string description;
         public Picture()
         {
@@ -20,20 +20,25 @@ namespace BlackBoards
             this.Comments = new List<Comment>();
             this.Origin = new Coordinate();
             this.description = "default description";
+            this.imgPath = "";
         }
         public override bool IsPicture()
         {
             return true;
         }
-        public Image Img
+        public Image Img()
+        {
+            return Image.FromFile(this.imgPath);
+        }
+        public string ImgPath
         {
             get
             {
-                return this.img;
+                return this.imgPath;
             }
             set
             {
-                this.img = value;
+                this.imgPath = value;
             }
         }
         public string Description
@@ -75,7 +80,7 @@ namespace BlackBoards
             bool sameComments = this.Comments.Equals(anotherPicture.Comments);
             return sameDimensions && sameComments && sameComments;
         }
-    
+
         private bool IsDescriptionValid()
         {
             bool valid = true;
@@ -88,7 +93,7 @@ namespace BlackBoards
         private bool IsImageValid()
         {
             bool valid = true;
-            if (this.Img == null)
+            if (this.ImgPath.Equals(""))
             {
                 valid = false;
             }

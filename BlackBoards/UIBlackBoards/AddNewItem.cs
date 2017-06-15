@@ -15,6 +15,7 @@ namespace UIBlackBoards
     public partial class AddNewItem : UserControl
     {
         private Image File;
+        private string FileNamePath;
         private User logged;
         private BlackBoard blackBoard;
         private Repository theRepository;
@@ -96,16 +97,16 @@ namespace UIBlackBoards
 
             if (f.ShowDialog() == DialogResult.OK)
             {
+                FileNamePath = f.FileName;
                 File = Image.FromFile(f.FileName);
                 pictureBox.Image = File;
-
             }
         }
 
         private void buttonPicture_Click(object sender, EventArgs e)
         {
             Picture newPicture = new Picture();
-            newPicture.Img = File;
+            newPicture.ImgPath = (string)FileNamePath;
             newPicture.Description = textBox.Text;
             bool ok = validationsPictures(newPicture);
             if (ok)

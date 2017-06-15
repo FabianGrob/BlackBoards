@@ -3,6 +3,7 @@ namespace BlackBoards
 {
     public abstract class User
     {
+        public int ID { get; set; }
         private string name;
         private string lastName;
         private string email;

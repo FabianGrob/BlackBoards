@@ -19,6 +19,8 @@ namespace BlackBoardsTest
             Coordinate origin = new Coordinate();
             aSetUpPicture.Origin = origin;
             aSetUpPicture.Description = "Example Description";
+            aSetUpPicture.ID = 3;
+            aSetUpPicture.ImgPath = "defaultPath";
             return aSetUpPicture;
         }
         [TestMethod]
@@ -39,21 +41,19 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestIsPicture()
         {
-            Picture aPic = new Picture();
+            Picture aPic = this.setUpPicture();
             Assert.IsTrue(aPic.IsPicture());
         }
         [TestMethod]
         public void TestIsPictureItem()
         {
-            Item aPic = new Picture();
+            Item aPic = this.setUpPicture();
             Assert.IsTrue(aPic.IsPicture());
         }
         [TestMethod]
         public void TestPictureNotEquals()
         {
-            Picture aPic = new Picture();
-            aPic.Dimension = new Dimension(1, 1);
-            aPic.Comments = new List<Comment>();
+            Picture aPic = this.setUpPicture();
             Coordinate origin = new Coordinate();
             aPic.Origin = origin;
             origin.XAxis = 10;
@@ -62,10 +62,18 @@ namespace BlackBoardsTest
             Assert.IsFalse(result);
         }
         [TestMethod]
+        public void TestPictureValidationReturn()
+        {
+            Picture aPic = this.setUpPicture();
+            ValidationReturn validationResult = aPic.IsValid();
+            bool result = validationResult.Validation;
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
         public void TestPictureValidationReturnFalse()
         {
             Picture aPic = this.setUpPicture();
-            aPic.Img = null;
+            aPic.ImgPath = "";
             ValidationReturn validationResult = aPic.IsValid();
             bool result = validationResult.Validation;
             Assert.IsFalse(result);
@@ -74,7 +82,7 @@ namespace BlackBoardsTest
         public void TestPictureValidationReturnFalseMessageImage()
         {
             Picture aPic = this.setUpPicture();
-            aPic.Img = null;
+            aPic.ImgPath = "";
             ValidationReturn validationResult = aPic.IsValid();
             bool result = validationResult.Message.Equals("No se ha cargado ninguna foto.");
             Assert.IsTrue(result);

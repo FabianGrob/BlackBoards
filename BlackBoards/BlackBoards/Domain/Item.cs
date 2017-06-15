@@ -9,6 +9,7 @@ namespace BlackBoards
 {
     public abstract class Item
     {
+        public int ID { get; set; }
         private Dimension dimension;
         private List<Comment> comments;
         private Coordinate origin;

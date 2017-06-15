@@ -8,6 +8,7 @@ namespace BlackBoards.Domain
 {
     public class EstablishedScoreTeam
     {
+        public int ID { get; set; }
         private Team team;
         private Score score;
         public EstablishedScoreTeam()
