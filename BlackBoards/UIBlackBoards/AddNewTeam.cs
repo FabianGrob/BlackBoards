@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using BlackBoards.Domain.BlackBoards;
 
 namespace UIBlackBoards
 {
@@ -58,67 +59,64 @@ namespace UIBlackBoards
             }
             return userList;
         }
-        public bool validations(string name, string description, string cantMaxUsers, List<User> userList)
+        public ValidationReturn stringNumeric(string aString)
         {
-            bool allValidationsOk = true;
-            if (name.Length == 0)
+            ValidationReturn validation = new ValidationReturn(true, "OK");
+            int n;
+            if (int.TryParse(aString, out n) == false)
             {
-                allValidationsOk = false;
-                MessageBox.Show("El nombre ingresado es vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
+                validation.RedefineValues(false, "La cantidad de usuarios maxima no puede tener letras.");
             }
-            if (description.Length == 0)
+            return validation;
+        }
+        ValidationReturn addNewItem(string teamName, string description, int maxUsers, List<User> members, List<BlackBoard> blackBoards)
+        {
+            ValidationReturn validation = new ValidationReturn(false, "El equipo ha sido ingresado");
+            AdminHandler handler = new AdminHandler((Admin)logged);
+            ValidationReturn added = handler.CreateTeam(teamName, description, maxUsers, members, blackBoards, theRepository);
+            return added;
+        }
+        private ValidationReturn validationNewItem()
+        {
+            List<User> members = getSelectedUsers(listBoxSelectedUsers);
+            string teamName = textBoxName.Text;
+            string description = richTextBoxDescription.Text;
+            int maxUsers = Int32.Parse(textBoxCantMaxUsers.Text);
+            List<BlackBoard> blackBoards = new List<BlackBoard>();
+            Team newTeam = new Team();
+            newTeam.Name = teamName;
+            newTeam.Members = members;
+            newTeam.MaxUsers = maxUsers;
+            newTeam.Boards = blackBoards;
+            newTeam.Description = description;
+            ValidationReturn validation = newTeam.IsValid();
+            bool isValid = validation.Validation;
+            if (isValid)
             {
-                allValidationsOk = false;
-                MessageBox.Show("La descripcion ingresada es vacia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
+                validation = addNewItem(teamName, description, maxUsers, members, blackBoards);
             }
-            if (cantMaxUsers.Length == 0)
+            bool wasAdded = validation.Validation;
+            if (wasAdded)
             {
-                allValidationsOk = false;
-                MessageBox.Show("La cantidad de usuarios maxima es vacia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
+                MessageBox.Show(validation.Message, "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                panelContainer.Controls.Clear();
             }
             else
             {
-                int n;
-                if (int.TryParse(cantMaxUsers, out n) == false)
-                {
-                    allValidationsOk = false;
-                    MessageBox.Show("La cantidad de usuarios maxima no puede tener letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return allValidationsOk;
-                }
+                MessageBox.Show(validation.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (userList.Count == 0)
-            {
-                allValidationsOk = false;
-                MessageBox.Show("No se seleccino ningun usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return allValidationsOk;
-            }
-            return allValidationsOk;
+            return validation;
         }
-
         private void buttonCreateTeam_Click(object sender, EventArgs e)
         {
-            bool validationsOk = validations(textBoxName.Text, richTextBoxDescription.Text, textBoxCantMaxUsers.Text, getSelectedUsers(listBoxSelectedUsers));
-            if (validationsOk)
+            ValidationReturn stringValidation = stringNumeric(textBoxCantMaxUsers.Text);
+            if (stringValidation.Validation)
             {
-                List<User> members = getSelectedUsers(listBoxSelectedUsers);
-                string teamName = textBoxName.Text;
-                string description = richTextBoxDescription.Text;
-                int maxUsers = Int32.Parse(textBoxCantMaxUsers.Text);
-                List<BlackBoard> blackBoards = new List<BlackBoard>();
-                AdminHandler handler = new AdminHandler((Admin)logged);
-                bool existingTeam = handler.CreateTeam(teamName, description, maxUsers, members, blackBoards, theRepository);
-                if (!existingTeam)
-                {
-                    MessageBox.Show("El equipo ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("El equipo ha sido ingresado.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    panelContainer.Controls.Clear();
-                }
+                ValidationReturn validation = validationNewItem();
+            }
+            else
+            {
+                MessageBox.Show(stringValidation.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

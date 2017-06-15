@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,7 +78,6 @@ namespace BlackBoards
                 this.maxUsers = value;
             }
         }
-
         public List<User> Members
         {
             get
@@ -129,14 +129,50 @@ namespace BlackBoards
             }
             return this.Name.Equals(anotherTeam.Name);
         }
-        public bool isValid()
+        private bool validName()
         {
-            bool valid = true;
-            if (this.MaxUsers < this.Members.Count || this.Name.Length == 0 || this.Description.Length == 0 || this.MaxUsers == 0 || this.Members.Count == 0)
+            return (this.name.Length >= 0);
+        }
+        private bool validDescription()
+        {
+            return (this.description.Length >= 0);
+        }
+        private bool validMaxUsers()
+        {
+            return (this.maxUsers > 0);
+        }
+        private bool validMembers()
+        {
+            return (this.members.Count > 0);
+        }
+        private bool validCantOfMembers()
+        {
+            return (this.members.Count <= this.maxUsers);
+        }
+        public ValidationReturn IsValid()
+        {
+            ValidationReturn validation = new ValidationReturn(true, "OK");
+            if (!this.validName())
             {
-                valid = false;
+                validation.RedefineValues(false, "El nombre ingresado es vacio.");
             }
-            return valid;
+            if (!this.validDescription())
+            {
+                validation.RedefineValues(false, "La descripcion ingresada es vacia.");
+            }
+            if (!this.validMaxUsers())
+            {
+                validation.RedefineValues(false, "La cantidad maxima de usuarios no puede ser menor a 1.");
+            }
+            if (!this.validMembers())
+            {
+                validation.RedefineValues(false, "No se seleccionaron usuarios.");
+            }
+            if (!this.validCantOfMembers())
+            {
+                validation.RedefineValues(false, "El equipo alcanzo la cantidad maxima de usuarios.");
+            }
+            return validation;
         }
         public override string ToString()
         {

@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain.BlackBoards;
 using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -51,8 +52,8 @@ namespace BlackBoardsTest.HandlerTests
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             //assertion
-           handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-            bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count==0;
+            handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
+            bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 0;
             Assert.IsTrue(result);
         }
         [TestMethod]
@@ -101,11 +102,11 @@ namespace BlackBoardsTest.HandlerTests
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             //assertion
-             handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
+            handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
             bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 1;
             Assert.IsTrue(result);
         }
-         [TestMethod]
+        [TestMethod]
         public void TestCreateAdminCheckTwoAdmins()
         {
             //instance
@@ -118,7 +119,7 @@ namespace BlackBoardsTest.HandlerTests
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             //assertion
-             handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
+            handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
             handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
             bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 1;
             Assert.IsTrue(result);
@@ -233,7 +234,7 @@ namespace BlackBoardsTest.HandlerTests
             string password = "aPassword";
             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
             //assertion
-            bool result =handler.DeleteUser(email,repository);
+            bool result = handler.DeleteUser(email, repository);
             Assert.IsTrue(result);
 
         }
@@ -263,14 +264,14 @@ namespace BlackBoardsTest.HandlerTests
             //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
-            AdminHandler handler = new AdminHandler(anAdmin);    
+            AdminHandler handler = new AdminHandler(anAdmin);
             string name = "aNewName";
             string lastName = "aLastName";
             string email = "AnEmail";
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             User userToDelete = new Collaborator(name, lastName, email, birthDate, password);
-            handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);   
+            handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
             string aName = "testName";
             string description = "testDescription";
             int maximumUsers = 10;
@@ -278,8 +279,8 @@ namespace BlackBoardsTest.HandlerTests
             members.Add(userToDelete);
             List<BlackBoard> boards = new List<BlackBoard>();
             Team aTeam = new Team(name, new DateTime(), description, maximumUsers, members, boards);
-            TeamHandler teamHandler = new TeamHandler(aTeam);       
-            handler.CreateTeam(aName, description, maximumUsers, members, boards, repository);                     
+            TeamHandler teamHandler = new TeamHandler(aTeam);
+            handler.CreateTeam(aName, description, maximumUsers, members, boards, repository);
             handler.DeleteUser(email, repository);
             //assertion
             bool result = repository.TeamList.Count == 0;
@@ -300,7 +301,7 @@ namespace BlackBoardsTest.HandlerTests
             User userToDelete = new Collaborator(name, lastName, email, birthDate, password);
             User anotherUser = new Collaborator(name, lastName, email + "Diferrent", birthDate, password);
             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-            handler.CreateCollaborator(name, lastName, email+"Diferrent", birthDate, password, repository);
+            handler.CreateCollaborator(name, lastName, email + "Diferrent", birthDate, password, repository);
             string aName = "testName";
             string description = "testDescription";
             int maximumUsers = 10;
@@ -325,7 +326,7 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(anAdmin);
             string email = "AnEmail";
             //assertion
-            bool result =handler.DeleteUser(email, repository);
+            bool result = handler.DeleteUser(email, repository);
             Assert.IsFalse(result);
 
         }
@@ -347,12 +348,13 @@ namespace BlackBoardsTest.HandlerTests
             members.Add(col2);
             members.Add(col3);
             members.Add(anAdmin);
-            string name= "TEAM A";
-            string description="Default Team Description";
+            string name = "TEAM A";
+            string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
             //assertion
-            bool result = handler.CreateTeam(name,description,maxUsers,members, new List<BlackBoard>(),repository);
+            ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            bool result = validation.Validation;
             Assert.IsTrue(result);
 
         }
@@ -397,7 +399,8 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(anAdmin);
             handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
             //assertion
-            bool result = handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository); ;
+            ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
+            bool result = validation.Validation;
             result = result && repository.TeamList.Count == 1;
             Assert.IsFalse(result);
 
@@ -418,19 +421,20 @@ namespace BlackBoardsTest.HandlerTests
             members.Add(col1);
             members.Add(col2);
             members.Add(col3);
-            members.Add(anAdmin);           
+            members.Add(anAdmin);
             string name = "TEAM A";
             string description = "Default Team Description";
             int maxUsers = 0;
             AdminHandler handler = new AdminHandler(anAdmin);
             //assertion
-            bool result = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            bool result = validation.Validation;
             Assert.IsFalse(result);
 
         }
         [TestMethod]
         public void TestCreateTeamIncorrectlyOverSized()
-        { 
+        {
             //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
@@ -454,7 +458,8 @@ namespace BlackBoardsTest.HandlerTests
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
             //assertion
-            bool result = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            bool result = validation.Validation;
             Assert.IsFalse(result);
 
         }
@@ -487,10 +492,10 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             bool result = repository.TeamList.Count == 0;
             Assert.IsTrue(result);
-
         }
         [TestMethod]
-        public void TestModifyTeamCorrectly() {
+        public void TestModifyTeamCorrectly()
+        {
             //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
@@ -508,7 +513,7 @@ namespace BlackBoardsTest.HandlerTests
             string newName = "TEAMB";
             int newMaxUsers = 5;
             //assertion
-            bool result =handler.ModifyTeam(name,newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
+            bool result = handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
             Assert.IsTrue(result);
 
         }
@@ -582,7 +587,7 @@ namespace BlackBoardsTest.HandlerTests
             int newMaxUsers = 5;
             handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
             //assertion
-            bool result = repository.TeamList.ElementAt(0).Name.Equals(name) && repository.TeamList.ElementAt(0).MaxUsers== maxUsers;
+            bool result = repository.TeamList.ElementAt(0).Name.Equals(name) && repository.TeamList.ElementAt(0).MaxUsers == maxUsers;
             Assert.IsTrue(result);
 
         }
@@ -631,7 +636,7 @@ namespace BlackBoardsTest.HandlerTests
             string name = "TEAM A";
             AdminHandler handler = new AdminHandler(anAdmin);
             //assertion
-            bool result =handler.DeleteTeam(name, repository);
+            bool result = handler.DeleteTeam(name, repository);
             Assert.IsFalse(result);
         }
         [TestMethod]
