@@ -78,7 +78,6 @@ namespace BlackBoards
                 this.maxUsers = value;
             }
         }
-
         public List<User> Members
         {
             get
@@ -130,31 +129,46 @@ namespace BlackBoards
             }
             return this.Name.Equals(anotherTeam.Name);
         }
+        private bool validName()
+        {
+            return (this.name.Length >= 0);
+        }
+        private bool validDescription()
+        {
+            return (this.description.Length >= 0);
+        }
+        private bool validMaxUsers()
+        {
+            return (this.maxUsers > 0);
+        }
+        private bool validMembers()
+        {
+            return (this.members.Count > 0);
+        }
+        private bool validCantOfMembers()
+        {
+            return (this.members.Count <= this.maxUsers);
+        }
         public ValidationReturn IsValid()
         {
             ValidationReturn validation = new ValidationReturn(true, "OK");
-            if (this.name.Length == 0)
+            if (!this.validName())
             {
                 validation.RedefineValues(false, "El nombre ingresado es vacio.");
             }
-            if (this.description.Length == 0)
+            if (!this.validDescription())
             {
                 validation.RedefineValues(false, "La descripcion ingresada es vacia.");
             }
-            if (this.maxUsers <= 0)
+            if (!this.validMaxUsers())
             {
                 validation.RedefineValues(false, "La cantidad maxima de usuarios no puede ser menor a 1.");
             }
-
-            if (this.members.Count == 0)
+            if (!this.validMembers())
             {
                 validation.RedefineValues(false, "No se seleccionaron usuarios.");
             }
-            if (this.members.Count == 0)
-            {
-                validation.RedefineValues(false, "No se seleccionaron usuarios.");
-            }
-            if (this.members.Count > this.maxUsers)
+            if (!this.validCantOfMembers())
             {
                 validation.RedefineValues(false, "El equipo alcanzo la cantidad maxima de usuarios.");
             }
