@@ -45,7 +45,7 @@ namespace UIBlackBoards
                     //controlToAdd = 
 
                     actualControl.SizeMode = PictureBoxSizeMode.StretchImage;
-                    actualControl.Image = itemToAdd.Img;
+                    actualControl.Image = itemToAdd.Img();
                     actualControl.SetBounds(itemToAdd.Origin.XAxis, itemToAdd.Origin.YAxis, itemToAdd.Dimension.Width, itemToAdd.Dimension.Height);
                     controlToAdd = actualControl;
                 }
