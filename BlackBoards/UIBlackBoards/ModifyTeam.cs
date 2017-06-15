@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using BlackBoards.Domain.BlackBoards;
 
 namespace UIBlackBoards
 {
@@ -42,19 +43,41 @@ namespace UIBlackBoards
             textBoxCantMaxUsers.Text = team.MaxUsers + "";
         }
 
+        private bool isInListBox(User user, ListBox listBoxSelectedUsers)
+        {
+            return (listBoxSelectedUsers.Items.Contains(user));
+        }
+        public List<User> getSelectedUsers(ListBox listBoxSelectedUsers)
+        {
+            List<User> userList = new List<User>();
+            foreach (User actualUser in theRepository.UserList)
+            {
+                if (isInListBox(actualUser, listBoxSelectedUsers))
+                {
+                    userList.Add(actualUser);
+                }
+            }
+            return userList;
+        }
         private void buttonModifyTeam_Click(object sender, EventArgs e)
         {
-            AddNewTeam validations = new AddNewTeam(logged, theRepository, panelContainer);
-            bool validationsOk = validations.validations(textBoxName.Text, richTextBoxDescription.Text, textBoxCantMaxUsers.Text, validations.getSelectedUsers(listBoxSelectedUsers));
+            List<User> members = getSelectedUsers(listBoxSelectedUsers);
+            string teamName = textBoxName.Text;
+            string description = richTextBoxDescription.Text;
+            int maxUsers = Int32.Parse(textBoxCantMaxUsers.Text);
+            List<BlackBoard> blackBoards = new List<BlackBoard>();
+            Team newTeam = new Team();
+            newTeam.Name = teamName;
+            newTeam.Members = members;
+            newTeam.MaxUsers = maxUsers;
+            newTeam.Boards = blackBoards;
+            newTeam.Description = description;
+            ValidationReturn validation = newTeam.IsValid();
+            bool validationsOk = validation.Validation;
             if (validationsOk)
             {
-                List<User> members = validations.getSelectedUsers(listBoxSelectedUsers);
-                string teamName = textBoxName.Text;
-                string description = richTextBoxDescription.Text;
-                int maxUsers = Int32.Parse(textBoxCantMaxUsers.Text);
-                List<BlackBoard> blackBoards = team.Boards;
-                AdminHandler handler = new AdminHandler((Admin)logged);
 
+                AdminHandler handler = new AdminHandler((Admin)logged);
                 bool existingTeam = handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, theRepository);
                 if (!existingTeam)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,9 +78,10 @@ namespace BlackBoards.Handlers
             }
             return deleted;
         }
-        public bool CreateTeam(string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, Repository theRepository)
+
+        public ValidationReturn CreateTeam(string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, Repository theRepository)
         {
-            bool added = false;
+            ValidationReturn added = new ValidationReturn(false, "El equipo ya existe");
             RepositoryHandler repHandler = new RepositoryHandler(theRepository);
             Team newTeam = new Team();
             newTeam.Name = name;
@@ -88,11 +90,11 @@ namespace BlackBoards.Handlers
             newTeam.Members = members;
             newTeam.Boards = boards;
             newTeam.CreationDate = DateTime.Today;
-            bool teamValid = newTeam.isValid();
-            if (teamValid && !repHandler.TeamAlreadyExists(name))
+            if (!repHandler.TeamAlreadyExists(name) && newTeam.IsValid().Validation)
             {
                 repHandler.AddTeam(newTeam);
-                added = true;
+                added.Validation = true;
+                added.Message = "El equipo ha sido ingresado.";
             }
             return added;
         }
@@ -101,11 +103,11 @@ namespace BlackBoards.Handlers
             bool modified = false;
             RepositoryHandler handler = new RepositoryHandler(theRepository);
             Team abstractTeam = new Team(name, DateTime.Today, description, maxUsers, members, boards);
-            bool validModifications = abstractTeam.isValid();
+            ValidationReturn validModifications = abstractTeam.IsValid();
             Team oldTeam = new Team();
             oldTeam.Name = oldName;
             bool teamExists = theRepository.TeamList.Contains(oldTeam);
-            if (validModifications && teamExists && (!handler.TeamAlreadyExists(name) || oldName.Equals(name)))
+            if (validModifications.Validation && teamExists && (!handler.TeamAlreadyExists(name) || oldName.Equals(name)))
             {
                 Team toModificate = handler.GetSpecificTeam(oldName);
                 modified = true;

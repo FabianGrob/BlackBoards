@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -129,14 +130,35 @@ namespace BlackBoards
             }
             return this.Name.Equals(anotherTeam.Name);
         }
-        public bool isValid()
+        public ValidationReturn IsValid()
         {
-            bool valid = true;
-            if (this.MaxUsers < this.Members.Count || this.Name.Length == 0 || this.Description.Length == 0 || this.MaxUsers == 0 || this.Members.Count == 0)
+            ValidationReturn validation = new ValidationReturn(true, "OK");
+            if (this.name.Length == 0)
             {
-                valid = false;
+                validation.RedefineValues(false, "El nombre ingresado es vacio.");
             }
-            return valid;
+            if (this.description.Length == 0)
+            {
+                validation.RedefineValues(false, "La descripcion ingresada es vacia.");
+            }
+            if (this.maxUsers <= 0)
+            {
+                validation.RedefineValues(false, "La cantidad maxima de usuarios no puede ser menor a 1.");
+            }
+
+            if (this.members.Count == 0)
+            {
+                validation.RedefineValues(false, "No se seleccionaron usuarios.");
+            }
+            if (this.members.Count == 0)
+            {
+                validation.RedefineValues(false, "No se seleccionaron usuarios.");
+            }
+            if (this.members.Count > this.maxUsers)
+            {
+                validation.RedefineValues(false, "El equipo alcanzo la cantidad maxima de usuarios.");
+            }
+            return validation;
         }
         public override string ToString()
         {
