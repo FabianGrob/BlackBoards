@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using System;
 using System.Collections.Generic;
 
 namespace BlackBoards
@@ -22,7 +23,6 @@ namespace BlackBoards
             this.LastName = "Default lastname";
             this.Email = "Default email";
             this.BirthDate = DateTime.Now;
-          
             this.Password = "Default password";
           //  this.teams = new List<Team>();
         }
@@ -102,6 +102,21 @@ namespace BlackBoards
             }
 
             return (this.Email.Equals(anotherUser.Email));
+        }
+
+
+        private bool validEmail()
+        {
+            return (this.email.Length > 0);
+        }
+        public ValidationReturn IsValid()
+        {
+            ValidationReturn validation = new ValidationReturn(true,"OK");
+            if (!this.validEmail())
+            {
+                validation.RedefineValues(false, "No se ha introducido un correo");
+            }
+            return validation;
         }
         public override string ToString()
         {

@@ -61,7 +61,27 @@ namespace Persistance
             }
 
         }
-            
-           
-    }
+        public void Empty()
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    List<User> users = dbContext.users.ToList();
+                    foreach (User actualUser in users)
+                    {
+                        User toDelete = dbContext.users.Find(actualUser.ID);
+                        dbContext.users.Remove(toDelete);
+                    }
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error en la base de datos. Imposible vaciar valores de variables");
+            }
+        }
+
+
+        }
 }

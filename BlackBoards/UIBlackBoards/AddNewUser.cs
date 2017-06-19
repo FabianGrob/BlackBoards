@@ -75,11 +75,11 @@ namespace UIBlackBoards
 
                 if (isAdmin)
                 {
-                    created = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, theRepository);
+                    //created = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, theRepository);
                 }
                 else
                 {
-                    created = adminHandler.CreateCollaborator(name, lastName, email, birthDate, fstPass, theRepository);
+                    //created = adminHandler.CreateCollaborator(name, lastName, email, birthDate, fstPass);
 
                 }
                 if (created)
