@@ -17,7 +17,7 @@ namespace BlackBoardsTest.HandlerTests
         public void Initialize(UserPersistance userContext) {
             User u = new Admin();
             u.ID = 1;
-            u.Email = "testEmail1@email.com";
+            u.Email = "generatedEmail@email.com";
             userContext.AddUser(u);
         }
         public void CleanDB(UserPersistance userContext) {
@@ -688,7 +688,7 @@ namespace BlackBoardsTest.HandlerTests
             Initialize(userContext);
             Admin adm = new Admin();
             AdminHandler handler = new AdminHandler(adm);
-            User created = new Collaborator("testCollaborator", "thisIsATest", "testEmail1@email.com", DateTime.Now, "testPassword");
+            User created = new Collaborator("testCollaborator", "thisIsATest", "generatedEmail@email.com", DateTime.Now, "testPassword");
             ValidationReturn added=handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.password,userContext);        
             CleanDB(userContext);
             //assertion
@@ -702,12 +702,14 @@ namespace BlackBoardsTest.HandlerTests
             Initialize(userContext);
             Admin adm = new Admin();
             AdminHandler handler = new AdminHandler(adm);
-            User created = new Collaborator("testCollaborator", "thisIsATest", "testEmail1@email.com", DateTime.Now, "testPassword");
+            User created = new Collaborator("testCollaborator", "thisIsATest", "test@email", DateTime.Now, "testPassword");
             handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.password, userContext);
-            ValidationReturn deleted = handler.DeleteUser(created);
+            created.ID = handler.getIdUserByEmail(created,userContext);
+            ValidationReturn deleted = handler.DeleteUser(created,userContext);
+            bool exists = userContext.Exists(created);
             CleanDB(userContext);
             //assertion
-            Assert.IsFalse(deleted.Validation);
+            Assert.IsTrue(deleted.Validation && !exists);
         }
 
     }

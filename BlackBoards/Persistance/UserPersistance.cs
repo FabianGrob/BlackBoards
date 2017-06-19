@@ -23,7 +23,7 @@ namespace Persistance
             catch (Exception)
             {
                 Console.WriteLine("Error");
-               // throw new DeviceException("Error en la base de datos. Imposible agregar dispositivo");
+                // throw new DeviceException("Error en la base de datos. Imposible agregar dispositivo");
             }
 
         }
@@ -57,7 +57,24 @@ namespace Persistance
             }
             catch (Exception ex)
             {
+                string error = ex.InnerException.ToString();
                 Console.WriteLine("Error de base de datos: No se pudo eliminar el cliente.");
+            }
+
+        }
+        private User getUser(int id)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    return dbContext.users.Find(id);
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error de base de datos: No se pudo eliminar el cliente.");
+                return new Admin();
             }
 
         }
@@ -82,6 +99,28 @@ namespace Persistance
             }
         }
 
-
+        public int IDByEmail(string email)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    List<User> users = dbContext.users.ToList();
+                    foreach (User actualUser in users)
+                    {
+                        if (actualUser.Email.Equals(email))
+                        {
+                            return actualUser.ID;
+                        }
+                    }
+                    return -1;
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error en la base de datos. Imposible vaciar valores de variables");
+                return -1;
+            }
         }
+    }
 }

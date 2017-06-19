@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201706190047272_migration1.Designer.cs">
       <DependentUpon>201706190047272_migration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706190505480_AdminAdd.cs" />
+    <Compile Include="Migrations\201706190505480_AdminAdd.Designer.cs">
+      <DependentUpon>201706190505480_AdminAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UserPersistance.cs" />
@@ -73,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706190047272_migration1.resx">
       <DependentUpon>201706190047272_migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706190505480_AdminAdd.resx">
+      <DependentUpon>201706190505480_AdminAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
