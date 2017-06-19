@@ -38,10 +38,8 @@ namespace BlackBoards
             }
             return validation;
         }
-        public ValidationReturn CreateCollaborator(string name, string lastName, string email, DateTime birthDate, string password)
+        public ValidationReturn CreateCollaborator(string name, string lastName, string email, DateTime birthDate, string password, UserPersistance userContext)
         {
-           
-            UserPersistance userContext = new UserPersistance();
             Collaborator aCollaborator = new Collaborator(name, lastName, email, birthDate, password);
             ValidationReturn validation = this.ExistsUser(aCollaborator, userContext);
             bool canAdd = !validation.Validation;

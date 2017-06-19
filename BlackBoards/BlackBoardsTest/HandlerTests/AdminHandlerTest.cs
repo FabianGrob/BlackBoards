@@ -666,28 +666,32 @@ namespace BlackBoardsTest.HandlerTests
           //  Assert.IsFalse(result);
         }
         [TestMethod]
-        public void testDBAddUser()
+        public void TestDBAddUser()
         {
+            //instance
             UserPersistance userContext = new UserPersistance();
             Initialize(userContext);
             Admin adm = new Admin();
             AdminHandler handler = new AdminHandler(adm);
             User created = new Collaborator("testCollaborator", "thisIsATest", "test@email", DateTime.Now, "testPassword");
-            handler.CreateCollaborator(created.Name,created.LastName,created.Email,created.BirthDate,created.password);
+            handler.CreateCollaborator(created.Name,created.LastName,created.Email,created.BirthDate,created.password,userContext);
             bool exists = userContext.Exists(created);
             CleanDB(userContext);
+            //assertion
             Assert.IsTrue(exists);
         }
         [TestMethod]
-        public void testDBAddSameUser()
+        public void TestDBAddSameUser()
         {
+            //instance
             UserPersistance userContext = new UserPersistance();
             Initialize(userContext);
             Admin adm = new Admin();
             AdminHandler handler = new AdminHandler(adm);
             User created = new Collaborator("testCollaborator", "thisIsATest", "testEmail1@email.com", DateTime.Now, "testPassword");
-            ValidationReturn added=handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.password);        
+            ValidationReturn added=handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.password,userContext);        
             CleanDB(userContext);
+            //assertion
             Assert.IsFalse(added.Validation);
         }
     }
