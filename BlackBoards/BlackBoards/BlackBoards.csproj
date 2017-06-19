@@ -62,18 +62,10 @@
     <Compile Include="Domain\Score.cs" />
     <Compile Include="Domain\ScoreUserInTeam.cs" />
     <Compile Include="Domain\ValidationReturn.cs" />
-    <Compile Include="Handlers\AdminHandler.cs" />
-    <Compile Include="Handlers\BlackBoardHandler.cs" />
-    <Compile Include="Handlers\CommentHandler.cs" />
-    <Compile Include="Handlers\ItemHandler.cs" />
-    <Compile Include="Handlers\RepositoryHandler.cs" />
-    <Compile Include="Handlers\TeamHandler.cs" />
-    <Compile Include="Handlers\TextBoxHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\TextBox.cs" />
     <Compile Include="Domain\User.cs" />
-    <Compile Include="Handlers\UserHandler.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -94,7 +86,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

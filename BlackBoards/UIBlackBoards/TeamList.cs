@@ -57,7 +57,7 @@ namespace UIBlackBoards
             {
                 Team selectedTeam = (Team)listBoxTeams.SelectedItem;
                 AdminHandler handler = new AdminHandler((Admin)logged);
-                bool hasDeletedTheTeam = handler.DeleteTeam(selectedTeam.Name, theRepository);
+                bool hasDeletedTheTeam = false;// handler.DeleteTeam(selectedTeam.Name, theRepository);
                 if (hasDeletedTheTeam)
                 {
                     MessageBox.Show("Equipo " + selectedTeam.Name + " borrado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -48,7 +48,7 @@ namespace UIBlackBoards
                 }
                 else
                 {
-                    adminHandler.DeleteUser(selectedUser.Email, theRepository);
+                   // adminHandler.DeleteUser(selectedUser.Email, theRepository);
                     MessageBox.Show("Se elimino el usuario " + selectedUser.Email + " correctamente", "Realizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     panelContainer.Controls.Clear();
                 }

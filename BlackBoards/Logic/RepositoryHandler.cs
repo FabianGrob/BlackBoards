@@ -242,10 +242,10 @@ namespace BlackBoards.Handlers
             return filtered;
         }
         private void LoadUsers(AdminHandler admHandler) {
-            admHandler.CreateCollaborator("Roberto", "Gonzales", "rGonzales@testEmail.com", DateTime.Today, "password", this.Repository);
-            admHandler.CreateCollaborator("Rodrigo", "Rodriguez", "rodriguezRodrigo@testEmail.com", DateTime.Today, "password", this.Repository);
-            admHandler.CreateCollaborator("Alberto", "Gomez", "AlbertoG@testEmail.com", DateTime.Today, "password", this.Repository);
-            admHandler.CreateAdmin("Maria", "Fernandez", "mraFernandez@testEmail.com", DateTime.Today, "password", this.Repository);
+           // admHandler.CreateCollaborator("Roberto", "Gonzales", "rGonzales@testEmail.com", DateTime.Today, "password", this.Repository);
+           // admHandler.CreateCollaborator("Rodrigo", "Rodriguez", "rodriguezRodrigo@testEmail.com", DateTime.Today, "password", this.Repository);
+           // admHandler.CreateCollaborator("Alberto", "Gomez", "AlbertoG@testEmail.com", DateTime.Today, "password", this.Repository);
+           // admHandler.CreateAdmin("Maria", "Fernandez", "mraFernandez@testEmail.com", DateTime.Today, "password", this.Repository);
         }
         private void loadTeams(AdminHandler admHandler,Admin secondAdm) {
             //creataTing First Team
@@ -253,12 +253,12 @@ namespace BlackBoards.Handlers
             membersA.Add(this.getSepcificUser("rGonzales@testEmail.com"));
             membersA.Add(this.getSepcificUser("rodriguezRodrigo@testEmail.com"));
             membersA.Add(admHandler.Admin);          
-            admHandler.CreateTeam("Equipo A", "Equipo de prueba", 4, membersA, new List<BlackBoard>(), this.Repository);
+          //  admHandler.CreateTeam("Equipo A", "Equipo de prueba", 4, membersA, new List<BlackBoard>(), this.Repository);
             //creating Second Team
             List<User> membersB = new List<User>();
             membersB.Add(this.getSepcificUser("rGonzales@testEmail.com"));
             membersB.Add(secondAdm);
-            admHandler.CreateTeam("Equipo B", "Equipo de prueba", 3, membersB, new List<BlackBoard>(), this.Repository);
+          //  admHandler.CreateTeam("Equipo B", "Equipo de prueba", 3, membersB, new List<BlackBoard>(), this.Repository);
         }
         private void LoadBoards(UserHandler handlerAdm,UserHandler handlerSndAdm ){           
             BlackBoard boardA = new BlackBoard("Trabajo Empresa", "Es una pizarra de prueba", new Domain.Dimension(600, 500), new List<Item>(), handlerAdm.User);

@@ -78,7 +78,7 @@ namespace UIBlackBoards
             {
 
                 AdminHandler handler = new AdminHandler((Admin)logged);
-                bool existingTeam = handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, theRepository);
+                bool existingTeam = false;// handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, theRepository);
                 if (!existingTeam)
                 {
                     MessageBox.Show("El equipo ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

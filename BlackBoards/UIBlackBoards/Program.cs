@@ -1,4 +1,4 @@
-﻿using BlackBoards.Handlers;
+﻿using BlackBoards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +34,8 @@ namespace BlackBoards
             AdminHandler handler = new AdminHandler(anAdmin);
             List<User> userList = new List<User>();
             userList.Add(anAdmin);
-            handler.CreateTeam("GeneratedTeam","GeneratedDescription",3,userList,new List<BlackBoard>(),theRepository);
-            UserHandler handlerUser = new UserHandler(anAdmin);
+           // handler.CreateTeam("GeneratedTeam","GeneratedDescription",3,userList,new List<BlackBoard>(),theRepository);
+           // UserHandler handlerUser = new UserHandler(anAdmin);
             BlackBoard blackBoard = new BlackBoard();
             blackBoard.Name = "GeneratedBlackBoard";
             blackBoard.Dimension.Height = 350;
@@ -47,8 +47,8 @@ namespace BlackBoards
             textBox.Font = "Arial";
             textBox.FontSize = 20;
             textBox.Content = "GeneratedText";
-            handlerUser.CreateBlackBoard(theRepository.TeamList.ElementAt(0),blackBoard);
-            handlerUser.AddItemToBlackBoard(blackBoard,textBox);
+         //   handlerUser.CreateBlackBoard(theRepository.TeamList.ElementAt(0),blackBoard);
+         //   handlerUser.AddItemToBlackBoard(blackBoard,textBox);
 
             LogIn window = new LogIn(theRepository);
             Application.Run(new LogIn(theRepository));

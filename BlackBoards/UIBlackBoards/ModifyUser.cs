@@ -61,7 +61,7 @@ namespace UIBlackBoards
             bool valid = a.isValid(email, fstPass, sndPass, name, lastName, birthDate);
             if (valid)
             {
-                bool modified = adminHandler.ModifyUser(userToModify.Email, name, lastName, email, birthDate, fstPass, theRepository);
+                bool modified = false;// adminHandler.ModifyUser(userToModify.Email, name, lastName, email, birthDate, fstPass, theRepository);
                 if (!modified)
                 {
                     MessageBox.Show("El email nuevo ya esta registrado como otro usuario", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);

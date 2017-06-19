@@ -8,7 +8,7 @@ namespace BlackBoards
             this.Name = "Default name";
             this.LastName = "Default last name";
             this.Email = "Default email";
-            this.BirthDate = new DateTime();
+            this.BirthDate = DateTime.Now;
             this.Password = "Default password";
         }
         public Admin(String name, String lastName, String email, DateTime birthDate, String password)

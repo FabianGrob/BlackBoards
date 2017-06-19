@@ -1,7 +1,8 @@
-﻿using BlackBoards;
+﻿
+using BlackBoards;
 using BlackBoards.Domain;
-using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Persistance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace BlackBoardsTest
     [TestClass]
     public class UserHandlerTest
     {
+       
         [TestMethod]
         public void TestUserHandlerBuilder()
         {
@@ -133,7 +135,7 @@ namespace BlackBoardsTest
             anotherUser.Password = adminPassword;
             Repository repository = new Repository();
             AdminHandler adminHandler = new AdminHandler(anotherUser);
-            adminHandler.CreateAdmin(adminName,adminLastName,adminEmail,adminDate,adminPassword, repository);
+           // adminHandler.CreateAdmin(adminName,adminLastName,adminEmail,adminDate,adminPassword, repository);
             UserHandler userHandler = new UserHandler(u);
             UserHandler anotherUserHandler = new UserHandler(anotherUser);
             Team aTeam = new Team();
@@ -581,5 +583,6 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(result);
         }
+        
     }  
 }

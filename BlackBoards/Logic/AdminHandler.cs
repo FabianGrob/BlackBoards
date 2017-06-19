@@ -1,11 +1,10 @@
-﻿using BlackBoards.Domain.BlackBoards;
+﻿using BlackBoards;
+using BlackBoards.Domain.BlackBoards;
+using Persistance;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BlackBoards.Handlers
+namespace BlackBoards
 {
     public class AdminHandler
     {
@@ -25,29 +24,36 @@ namespace BlackBoards.Handlers
                 this.admin = value;
             }
         }
-        public bool CreateCollaborator(string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository)
+        private ValidationReturn ExistsUser(User anUser, UserPersistance userContext)
+        {
+            ValidationReturn validation = new ValidationReturn();
+            bool exists = userContext.Exists(anUser);
+            if (!exists)
+            {
+                validation.RedefineValues(false, "El usuario no existe");
+            }
+            else
+            {
+                validation.RedefineValues(true, "El usuario existe");
+            }
+            return validation;
+        }
+        public ValidationReturn CreateCollaborator(string name, string lastName, string email, DateTime birthDate, string password, UserPersistance userContext)
         {
             Collaborator aCollaborator = new Collaborator(name, lastName, email, birthDate, password);
-            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
-            bool canRegister = !repHandler.UserAlreadyExists(aCollaborator);
-            if (canRegister)
+            ValidationReturn validation = this.ExistsUser(aCollaborator, userContext);
+            bool canAdd = !validation.Validation;
+            if (canAdd)
             {
-                repHandler.AddUser(aCollaborator);
+                userContext.AddUser(aCollaborator);
+                validation.Message = "El usuario se ha creado con exito";
             }
-            return canRegister;
+            validation.Validation = canAdd;
+            return validation;
         }
-        public bool CreateAdmin(string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository)
-        {
-            Admin anAdmin = new Admin(name, lastName, email, birthDate, password);
-            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
-            bool canRegister = !repHandler.UserAlreadyExists(anAdmin);
-            if (canRegister)
-            {
-                repHandler.AddAdmin(anAdmin);
-            }
-            return canRegister;
-        }
-
+        /*
+       
+        
         public bool ModifyUser(string lookUpEmail, string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository)
         {
             bool modified = false;
@@ -132,6 +138,7 @@ namespace BlackBoards.Handlers
             }
             return deleted;
         }
+        */
     }
 }
 
