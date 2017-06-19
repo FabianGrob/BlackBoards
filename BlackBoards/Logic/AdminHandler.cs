@@ -69,22 +69,31 @@ namespace BlackBoards
                 modified = true;
             }
             return modified;
-        }
-        public bool DeleteUser(string email, Repository repository)
+        }*/
+        public ValidationReturn DeleteUser(User toDelete, UserPersistance userContext)
         {
-            bool deleted = false;
-            RepositoryHandler repHandler = new RepositoryHandler(repository);
-            User u = new Admin();
-            u.Email = email;
-            bool doesUserExists = repHandler.UserAlreadyExists(u);
-            if (doesUserExists)
+            ValidationReturn deleted = new ValidationReturn(false, "El usuario no existe");
+
+            ValidationReturn exists = this.ExistsUser(toDelete, userContext);
+            if (exists.Validation)
             {
-                repHandler.DeleteUser(email);
-                deleted = true;
+                userContext.Delete(toDelete);
+                deleted.Validation = true;
+                deleted.Message = "deleted";
             }
             return deleted;
         }
-
+        public int getIdUserByEmail(User anUser, UserPersistance userContext)
+        {
+            int idUser = -1; //-1 means user is not in the db
+            ValidationReturn exists = this.ExistsUser(anUser, userContext);
+            if (exists.Validation)
+            {
+                idUser = userContext.IDByEmail(anUser.Email);
+            }
+            return idUser;
+        }
+        /*
         public ValidationReturn CreateTeam(string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, Repository theRepository)
         {
             ValidationReturn added = new ValidationReturn(false, "El equipo ya existe");

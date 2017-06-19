@@ -28,7 +28,7 @@ namespace Persistance
             //throw new UnintentionalCodeFirstException();
         }
         public DbSet<User> users { get; set; }
-       // public virtual DbSet<Admin> admins { get; set; }
+        public DbSet<Admin> admins { get; set; }
        // public virtual DbSet<Team> teams { get; set; }
         
 
