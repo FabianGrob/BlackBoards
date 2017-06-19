@@ -708,9 +708,56 @@ namespace BlackBoardsTest.HandlerTests
             ValidationReturn deleted = handler.DeleteUser(created,userContext);
             bool exists = userContext.Exists(created);
             CleanDB(userContext);
+            bool result = deleted.Validation && !exists;
             //assertion
-            Assert.IsTrue(deleted.Validation && !exists);
+            Assert.IsTrue(result);
         }
-
+        [TestMethod]
+        public void TestDBAddUserAdmin()
+        {
+            //instance
+            UserPersistance userContext = new UserPersistance();
+            Initialize(userContext);
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            User created = new Admin("testAdmin", "thisIsATest", "testAdmin@email", DateTime.Now, "testPassword");
+            handler.CreateAdmin(created.Name, created.LastName, created.Email, created.BirthDate, created.password, userContext);
+            bool exists = userContext.Exists(created);
+            CleanDB(userContext);
+            //assertion
+            Assert.IsTrue(exists);
+        }
+        [TestMethod]
+        public void TestDBAddSameAdmin()
+        {
+            //instance
+            UserPersistance userContext = new UserPersistance();
+            Initialize(userContext);
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            User created = new Admin("testCollaborator", "thisIsATest", "generatedEmail@email.com", DateTime.Now, "testPassword");
+            ValidationReturn added = handler.CreateAdmin(created.Name, created.LastName, created.Email, created.BirthDate, created.password, userContext);
+            CleanDB(userContext);
+            //assertion
+            Assert.IsFalse(added.Validation);
+        }
+        [TestMethod]
+        public void TestDBDeleteUserAdmin()
+        {
+            //instance
+            UserPersistance userContext = new UserPersistance();
+            Initialize(userContext);
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            User created = new Admin("testAdmin", "thisIsATest", "testAdmin@email", DateTime.Now, "testPassword");
+            handler.CreateAdmin(created.Name, created.LastName, created.Email, created.BirthDate, created.password, userContext);
+            created.ID = handler.getIdUserByEmail(created, userContext);
+            ValidationReturn deleted = handler.DeleteUser(created, userContext);
+            bool exists = userContext.Exists(created);
+            CleanDB(userContext);
+            bool result = deleted.Validation && !exists;
+            //assertion
+            Assert.IsTrue(result);
+        }
     }
 }
