@@ -694,5 +694,21 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             Assert.IsFalse(added.Validation);
         }
+        [TestMethod]
+        public void TestDBDeleteUserCollaborator()
+        {
+            //instance
+            UserPersistance userContext = new UserPersistance();
+            Initialize(userContext);
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            User created = new Collaborator("testCollaborator", "thisIsATest", "testEmail1@email.com", DateTime.Now, "testPassword");
+            handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.password, userContext);
+            ValidationReturn deleted = handler.DeleteUser(created);
+            CleanDB(userContext);
+            //assertion
+            Assert.IsFalse(deleted.Validation);
+        }
+
     }
 }
