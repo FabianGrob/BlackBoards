@@ -17,6 +17,7 @@ namespace BlackBoards
         private User creatorUser;
         private DateTime creationDate;
         private DateTime lastModificationDate;
+        public virtual Team team { get; set; }
 
         public BlackBoard()
         {

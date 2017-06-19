@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBoardsTest", "BlackBoa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIBlackBoards", "UIBlackBoards\UIBlackBoards.csproj", "{EE561AB0-2A89-4024-A736-C9B36DBF1653}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Persistance\Persistance.csproj", "{46BEE0DA-BD98-4273-97F1-018BA18D7D1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EE561AB0-2A89-4024-A736-C9B36DBF1653}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE561AB0-2A89-4024-A736-C9B36DBF1653}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE561AB0-2A89-4024-A736-C9B36DBF1653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46BEE0DA-BD98-4273-97F1-018BA18D7D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46BEE0DA-BD98-4273-97F1-018BA18D7D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46BEE0DA-BD98-4273-97F1-018BA18D7D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46BEE0DA-BD98-4273-97F1-018BA18D7D1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

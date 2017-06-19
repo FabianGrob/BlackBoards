@@ -14,8 +14,8 @@ namespace BlackBoards
         private string description;
         private DateTime creationDate;
         private int maxUsers;
-        private List<User> members;
-        private List<BlackBoard> boards;
+        public virtual List<User> members { set; get; }
+        public virtual List<BlackBoard> boards { set; get; }
         public Team()
         {
             this.name = "Default name";

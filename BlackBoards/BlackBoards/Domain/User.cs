@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace BlackBoards
 {
     public abstract class User
@@ -8,15 +10,21 @@ namespace BlackBoards
         private string lastName;
         private string email;
         private DateTime birthDate;
-        private string password;
+        
+        public string password;
+       // public virtual List<Team> teams { get; set; }
         // [Obsolete("constructor only usable by EntityFramework", true)]
         public User()
         {
+           
+            this.ID = 1;
             this.Name = "Default name";
             this.LastName = "Default lastname";
             this.Email = "Default email";
-            this.BirthDate = new DateTime();
+            this.BirthDate = DateTime.Now;
+          
             this.Password = "Default password";
+          //  this.teams = new List<Team>();
         }
         public User(string name, string lastName, string email, DateTime birthDate, string password)
         {

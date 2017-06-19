@@ -36,7 +36,11 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIB
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.exe
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\UIBlackBoards.pdb
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\EntityFramework.dll
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\EntityFramework.xml
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csprojResolveAssemblyReference.cache
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewBlackBoard.resources
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewItem.resources
