@@ -39,7 +39,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error de base de datos: No se pudo determinar si el cliente existe.");
+                Console.WriteLine("Error de base de datos: No se pudo determinar si el usuario existe.");
                 return false;
             }
         }

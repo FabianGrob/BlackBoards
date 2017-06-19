@@ -51,6 +51,21 @@ namespace BlackBoards
             validation.Validation = canAdd;
             return validation;
         }
+
+
+        public ValidationReturn CreateAdmin(string name, string lastName, string email, DateTime birthDate, string password, AdminPersistance adminrContext)
+        {
+            Admin anAdmin = new Admin(name,lastName,email,birthDate,password);
+            ValidationReturn validation = this.ExistsUser(anAdmin, adminrContext);
+            bool canAdd = !validation.Validation;
+            if (canAdd)
+            {          
+                adminrContext.AddAdmin(anAdmin);
+                validation.Message = "El usuario se ha creado con exito";
+            }
+            validation.Validation = canAdd;
+            return validation;
+        }
         /*
        
         
@@ -70,16 +85,28 @@ namespace BlackBoards
             }
             return modified;
         }*/
-        public ValidationReturn DeleteUser(User toDelete, UserPersistance userContext)
+        private ValidationReturn isAdmin(User anUser, AdminPersistance adminContext) {
+            ValidationReturn isAnAdmin = new ValidationReturn(false, "El usuario no es un administador");
+            if (adminContext.ExistsAdmin(anUser))
+            {
+                isAnAdmin.RedefineValues(true,"El usuario es un Administrador");                
+            }
+            return isAnAdmin;
+        }
+        public ValidationReturn DeleteUser(User toDelete, AdminPersistance adminContext)
         {
             ValidationReturn deleted = new ValidationReturn(false, "El usuario no existe");
 
-            ValidationReturn exists = this.ExistsUser(toDelete, userContext);
+            ValidationReturn exists = this.ExistsUser(toDelete, adminContext);
             if (exists.Validation)
             {
-                userContext.Delete(toDelete);
+                adminContext.Delete(toDelete);
                 deleted.Validation = true;
                 deleted.Message = "deleted";
+                if (this.isAdmin(toDelete, adminContext).Validation)
+                {
+                    adminContext.DeleteAdmin(toDelete as Admin);
+                }
             }
             return deleted;
         }
