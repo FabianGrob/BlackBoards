@@ -35,164 +35,47 @@ namespace BlackBoardsTest.HandlerTests
             bool result = admin.Equals(handler.Admin);
             Assert.IsTrue(result);
         }
-        /*  [TestMethod]
-          public void TestCreateCollaboratorCorrectly()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              //assertion
-              bool result = handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-              Assert.IsTrue(result);
-          }
-          [TestMethod]
-          public void TestCreateCollaboratorCheck()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              //assertion
-              handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-              bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 0;
-              Assert.IsTrue(result);
-          }
-          [TestMethod]
-          public void TestCreateCollaboratorIncorrectly()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-              //assertion
-              bool result = handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-              Assert.IsFalse(result);
-          }
-          [TestMethod]
-          public void TestCreateAdminCorrectly()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              //assertion
-              bool result = handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
-              Assert.IsTrue(result);
-          }
-          [TestMethod]
-          public void TestCreateAdminCheck()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              //assertion
-              handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
-              bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 1;
-              Assert.IsTrue(result);
-          }
-          [TestMethod]
-          public void TestCreateAdminCheckTwoAdmins()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              //assertion
-              handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
-              handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
-              bool result = repository.UserList.Count == 1 && repository.AdministratorList.Count == 1;
-              Assert.IsTrue(result);
-          }
-          [TestMethod]
-          public void TestCreateAdminIncorrectly()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
-              //assertion
-              bool result = handler.CreateAdmin(name, lastName, email, birthDate, password, repository);
-              Assert.IsFalse(result);
-          }
-          [TestMethod]
-          public void TestModifyUserCorrectly()
-          {
-              //instance
-              Repository repository = new Repository();
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-              string modEmail = "AModifiedEmail";
-              //assertion
-              bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
-              Assert.IsTrue(result);
+        /*
+           [TestMethod]
+           public void TestModifyUserCorrectly()
+           {
+               //instance
+               Repository repository = new Repository();
+               Admin anAdmin = new Admin();
+               AdminHandler handler = new AdminHandler(anAdmin);
+               string name = "aNewName";
+               string lastName = "aLastName";
+               string email = "AnEmail";
+               DateTime birthDate = DateTime.Today;
+               string password = "aPassword";
+               handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
+               string modEmail = "AModifiedEmail";
+               //assertion
+               bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
+               Assert.IsTrue(result);
 
-          }
-          [TestMethod]
-          public void TestModifyUserCheck()
-          {
-              //instance
-              Repository repository = new Repository();
-              RepositoryHandler repHandler = new RepositoryHandler(repository);
-              Admin anAdmin = new Admin();
-              AdminHandler handler = new AdminHandler(anAdmin);
-              string name = "aNewName";
-              string lastName = "aLastName";
-              string email = "AnEmail";
-              DateTime birthDate = DateTime.Today;
-              string password = "aPassword";
-              handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-              string modEmail = "AModifiedEmail";
-              handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
-              //assertion
-              bool result = repHandler.getSepcificUser(modEmail).Name.Equals(name);
-              Assert.IsTrue(result);
+           }
+           [TestMethod]
+           public void TestModifyUserCheck()
+           {
+               //instance
+               Repository repository = new Repository();
+               RepositoryHandler repHandler = new RepositoryHandler(repository);
+               Admin anAdmin = new Admin();
+               AdminHandler handler = new AdminHandler(anAdmin);
+               string name = "aNewName";
+               string lastName = "aLastName";
+               string email = "AnEmail";
+               DateTime birthDate = DateTime.Today;
+               string password = "aPassword";
+               handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
+               string modEmail = "AModifiedEmail";
+               handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
+               //assertion
+               bool result = repHandler.getSepcificUser(modEmail).Name.Equals(name);
+               Assert.IsTrue(result);
 
-          }*/
+           }*/
 
         [TestMethod]
         public void TestModifyUserDoesntExists()
@@ -763,5 +646,59 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void TestModifyUserCorrectly()
+        {
+            //instance
+            AdminPersistance adminContext = new AdminPersistance();
+            Initialize(adminContext);
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+
+            string modEmail = "AModifiedEmail";
+            bool modified = handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, adminContext);
+            CleanDB(adminContext);
+
+            Assert.IsTrue(modified);
+
+        }
+        [TestMethod]
+        public void TestModifyUserCorrectlyCheck()
+        {
+            //instance
+            AdminPersistance adminContext = new AdminPersistance();
+            Initialize(adminContext);
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+
+            string modEmail = "AModifiedEmail";
+            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, adminContext);
+            CleanDB(adminContext);
+            User oldUser = new Admin();
+            oldUser.Email = "generatedEmail@email.com";
+            bool existsOld = adminContext.Exists(oldUser);
+            bool result = !existsOld;
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestModifyUserCorrectlyCheckNew()
+        {
+            //instance
+            AdminPersistance adminContext = new AdminPersistance();
+            Initialize(adminContext);
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+
+            string modEmail = "AModifiedEmail";
+            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, adminContext);
+            CleanDB(adminContext);
+            User oldUser = new Admin();
+            oldUser.Email = modEmail;
+            bool existsNew = adminContext.Exists(oldUser);
+            Assert.IsTrue(existsNew);
+
+        }
+
     }
 }
