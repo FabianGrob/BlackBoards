@@ -33,6 +33,7 @@ namespace BlackBoards
         {
             TeamHandler teamHandler = new TeamHandler(aTeam);
             aBlackBoard.CreatorUser = this.User;
+            
             bool userInTeam = teamHandler.IsUserInTeam(this.user);
             if (userInTeam)
             {

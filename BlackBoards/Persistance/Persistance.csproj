@@ -86,6 +86,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="BlackBoardPersistance.cs" />
     <Compile Include="TeamPersistance.cs" />
+    <Compile Include="TextBoxPersistance.cs" />
     <Compile Include="UserPersistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Migrations\201706190016469_InitialCreate.resx">

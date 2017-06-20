@@ -69,7 +69,7 @@ namespace Persistance
                 throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Elemento ");
             }
         }
-        private Item GetItem(int id)
+        public Item GetItem(int id)
         {
             try
             {
