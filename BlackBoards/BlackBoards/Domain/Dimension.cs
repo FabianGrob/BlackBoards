@@ -10,6 +10,11 @@ namespace BlackBoards.Domain
     {
         private int width;
         private int heigth;
+        public Dimension()
+        {
+            this.width = 350;
+            this.heigth = 350;
+        }
         public Dimension(int aWidth, int aHeigth)
         {
             this.width = aWidth;

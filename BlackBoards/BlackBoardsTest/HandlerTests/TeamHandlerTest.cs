@@ -1,7 +1,9 @@
 ﻿using BlackBoards;
 using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Persistance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,14 @@ namespace BlackBoardsTest.HandlerTests
     [TestClass]
     public class TeamHandlerTest
     {
+        public void CleanDB(BlackBoardPersistance blackBoardContext)
+        {
+            blackBoardContext.Empty();
+        }
+        public void setUp(Team aTeam,BlackBoardPersistance blackBoardContext)
+        {
+            TeamHandler handler = new TeamHandler(aTeam);
+        }
         [TestMethod]
         public void TestTeamHandlerBuilder()
         {
@@ -28,37 +38,45 @@ namespace BlackBoardsTest.HandlerTests
         public void TestTeamHandlerAddBlackBoardValid()
         {
             //instance
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             Team aTeam = new Team();
-            TeamHandler handler = new TeamHandler(aTeam);
+            this.setUp(aTeam,blackBoardContext);
             BlackBoard board = new BlackBoard();
+            TeamHandler handler = new TeamHandler(aTeam);
+            ValidationReturn validation = handler.AddBlackBoard(board, blackBoardContext);
             //assertion
-            bool result = handler.AddBlackBoard(board);
+            bool result = blackBoardContext.Exists(board);
+            CleanDB(blackBoardContext);
             Assert.IsTrue(result);
-
         }
         public void TestTeamHandlerAddBlackBoardInValid()
         {
             //instance
             Team aTeam = new Team();
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             board.Dimension = new Dimension(-1, -1);
             //assertion
-            bool result = handler.AddBlackBoard(board);
-            Assert.IsFalse(result);
+            ValidationReturn result = handler.AddBlackBoard(board, blackBoardContext);
+            CleanDB(blackBoardContext);
+            Assert.IsFalse(result.Validation);
 
         }
         [TestMethod]
-        public void TestTeamHandlerAddBlackBoardInValid0()
+        public void TestTeamHandlerAddBlackBoardInvalid()
         {
             //instance
             Team aTeam = new Team();
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+           
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
             board.Dimension = new Dimension(0, 0);
             //assertion
-            bool result = handler.AddBlackBoard(board);
-            Assert.IsFalse(result);
+            ValidationReturn result = handler.AddBlackBoard(board, blackBoardContext);
+            
+            Assert.IsFalse(result.Validation);
 
         }
         [TestMethod]
@@ -68,9 +86,11 @@ namespace BlackBoardsTest.HandlerTests
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
-            bool added = handler.AddBlackBoard(board);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            ValidationReturn validationAdded = handler.AddBlackBoard(board, blackBoardContext);
             //assertion
-            added = added && handler.Team.Boards.Contains(board);
+            bool added = validationAdded.Validation && blackBoardContext.Exists(board);
+            CleanDB(blackBoardContext);
             Assert.IsTrue(added);
 
         }
@@ -81,11 +101,12 @@ namespace BlackBoardsTest.HandlerTests
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
-            handler.AddBlackBoard(board);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            handler.AddBlackBoard(board,blackBoardContext);
             //assertion
-            bool removed =handler.RemoveBlackBoard(board);
-            Assert.IsTrue(removed && handler.Team.Boards.Count == 0);
-
+            ValidationReturn removed = handler.RemoveBlackBoard(board,blackBoardContext);
+            CleanDB(blackBoardContext);
+            Assert.IsTrue(removed.Validation && handler.Team.Boards.Count == 0);
         }
         [TestMethod]
         public void TestModifyBlackBoardValid() {
@@ -93,11 +114,13 @@ namespace BlackBoardsTest.HandlerTests
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
-            handler.AddBlackBoard(board);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            handler.AddBlackBoard(board,blackBoardContext);
             User creatorUser = new Admin();
             BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(60,60) , new List < Item > (),creatorUser);
             //assertion
             bool modified = handler.ModifyBlackBoard(board, newBoard);
+            CleanDB(blackBoardContext);
             Assert.IsTrue(modified);
         }
         [TestMethod]
@@ -107,21 +130,24 @@ namespace BlackBoardsTest.HandlerTests
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
-            handler.AddBlackBoard(board);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            handler.AddBlackBoard(board,blackBoardContext);
             User creatorUser = new Admin();
             BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(2,2), new List<Item>(),creatorUser);
             //assertion
             bool modified = handler.ModifyBlackBoard(board, newBoard);
+            CleanDB(blackBoardContext);
             Assert.IsFalse(modified);
         }
         [TestMethod]
         public void TestModifyBlackBoardItems()
         {
             //instance
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             Team aTeam = new Team();
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
-            handler.AddBlackBoard(board);
+            handler.AddBlackBoard(board,blackBoardContext);
             Item txtbx = new TextBox();
             User creatorUser = new Admin();
             BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(5, 5), new List<Item>(),creatorUser);
@@ -129,6 +155,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.ModifyBlackBoard(board, newBoard);
             //assertion
             bool hasItem = handler.Team.getSpecificBlackBoard(board).ItemList.Contains(txtbx);
+            CleanDB(blackBoardContext);
             Assert.IsTrue(hasItem);
         }
         [TestMethod]
@@ -226,4 +253,5 @@ namespace BlackBoardsTest.HandlerTests
             Assert.IsFalse(result);
         }
     }
+
 }

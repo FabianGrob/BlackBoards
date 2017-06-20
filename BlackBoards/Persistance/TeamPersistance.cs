@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using Persistance.PersistanceException;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,59 +23,56 @@ namespace Persistance
             }
             catch (Exception)
             {
-                Console.WriteLine("Error");
-                // throw new DeviceException("Error en la base de datos. Imposible agregar dispositivo");
+                throw new PersistanceTeamException("Error en la base de datos. Imposible agregar equipo");
             }
 
         }
-        public bool Exists(User anUser)
+        public bool Exists(Team aTeam)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    List<User> users = dbContext.users.ToList<User>();
-                    return users.Contains(anUser);
+                    List<Team> teams = dbContext.teams.ToList<Team>();
+                    return teams.Contains(aTeam);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error de base de datos: No se pudo determinar si el cliente existe.");
+                throw new PersistanceTeamException("Error de base de datos: No se pudo determinar si el equipo existe.");
                 return false;
             }
         }
-        public void Delete(User anUser)
+        public void Delete(Team aTeam)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
 
-                    dbContext.users.Attach(anUser);
-                    dbContext.Entry(anUser).State = EntityState.Deleted;
+                    dbContext.teams.Attach(aTeam);
+                    dbContext.Entry(aTeam).State = EntityState.Deleted;
                     dbContext.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                string error = ex.InnerException.ToString();
-                Console.WriteLine("Error de base de datos: No se pudo eliminar el cliente.");
+                throw new PersistanceTeamException("Error de base de datos: No se pudo eliminar el equipo.");
             }
-
         }
-        private User getUser(int id)
+        private Team getTeam(int id)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    return dbContext.users.Find(id);
+                    return dbContext.teams.Find(id);
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine("Error de base de datos: No se pudo eliminar el cliente.");
-                return new Admin();
+                throw new PersistanceTeamException("Error de base de datos: No se pudo obtener el equipo.");
+                return new Team();
             }
 
         }
@@ -84,33 +82,33 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    List<User> users = dbContext.users.ToList();
-                    foreach (User actualUser in users)
+                    List<Team> users = dbContext.teams.ToList();
+                    foreach (Team actualTeam in users)
                     {
-                        User toDelete = dbContext.users.Find(actualUser.ID);
-                        dbContext.users.Remove(toDelete);
+                        Team toDelete = dbContext.teams.Find(actualTeam.IDTeam);
+                        dbContext.teams.Remove(toDelete);
                     }
                     dbContext.SaveChanges();
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine("Error en la base de datos. Imposible vaciar valores de variables");
+                throw new PersistanceTeamException("Error en la base de datos. Imposible vaciar valores de variables");
             }
         }
 
-        public int IDByEmail(string email)
+        public int IDByName(string name)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    List<User> users = dbContext.users.ToList();
-                    foreach (User actualUser in users)
+                    List<Team> teams = dbContext.teams.ToList();
+                    foreach (Team actualTeam in teams)
                     {
-                        if (actualUser.Email.Equals(email))
+                        if (actualTeam.Name.Equals(name))
                         {
-                            return actualUser.ID;
+                            return actualTeam.IDTeam;
                         }
                     }
                     return -1;
@@ -118,7 +116,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                Console.WriteLine("Error en la base de datos. Imposible vaciar valores de variables");
+                throw new PersistanceTeamException("Error en la base de datos. Imposible obtener id de equipo");
                 return -1;
             }
         }

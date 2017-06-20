@@ -14,7 +14,7 @@ namespace BlackBoardsTest
     [TestClass]
     public class UserHandlerTest
     {
-       
+       /*
         [TestMethod]
         public void TestUserHandlerBuilder()
         {
@@ -583,6 +583,6 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(result);
         }
-        
+        */
     }  
 }

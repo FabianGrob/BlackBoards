@@ -80,8 +80,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersistanceException\PersistanceItemException.cs" />
+    <Compile Include="PersistanceException\PersistanceTeamException.cs" />
+    <Compile Include="PersistanceException\PersistanceBlackBoardException.cs" />
     <Compile Include="PersistanceException\PersistanceUserException.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="BlackBoardPersistance.cs" />
     <Compile Include="TeamPersistance.cs" />
     <Compile Include="UserPersistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
