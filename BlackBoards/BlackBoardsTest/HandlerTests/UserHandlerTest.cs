@@ -59,6 +59,10 @@ namespace BlackBoardsTest
         /*
          [TestMethod]
          public void TestUserHandlerBuilder()
+=======
+        /*
+         [TestMethod]
+         public void TestUserHandlerBuilder()
          {
              //instance
              User u = new Collaborator();
@@ -366,10 +370,177 @@ namespace BlackBoardsTest
          }
          [TestMethod]
          public void TestInvalidResizeItemBlackBoard()
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
          {
              //instance
              User u = new Collaborator();
              UserHandler userHandler = new UserHandler(u);
+<<<<<<< HEAD
+             bool result = u.Equals(userHandler.User);
+             //assertion
+             Assert.IsTrue(result);
+
+         }
+         [TestMethod]
+         public void TestCreateBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.CreateBlackBoard(aTeam,blackBoard);
+             bool result = aTeam.Boards.Count == 1;
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestCreateBlackBoardBool()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             bool result = userHandler.CreateBlackBoard(aTeam, blackBoard);
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestCreateBlackBoardUserNotInTeam()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             bool result = aTeam.Boards.Count == 1;
+             //assertion
+             Assert.IsFalse(result);
+         }
+         [TestMethod]
+         public void TestRemoveBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             Repository repository = new Repository();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             userHandler.RemoveBlackBoard(aTeam, blackBoard,repository);
+             bool result = aTeam.Boards.Count == 0;
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestRemoveBlackBoardBool()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();    
+             Repository repository = new Repository();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             bool result = userHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestRemoveNoCreatorUserBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             u.Email = "userCreator@gmail.com";
+             User anotherUser = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             UserHandler anotherUserHandler = new UserHandler(anotherUser);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             aTeam.Members.Add(anotherUser);
+             BlackBoard blackBoard = new BlackBoard();
+             Repository repository = new Repository();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             bool result = anotherUserHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
+             //assertion
+             Assert.IsFalse(result);
+         }
+         [TestMethod]
+         public void TestRemoveNoCreatorAdminUserBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             u.Email = "userCreator@gmail.com";
+             Admin anotherUser = new Admin();
+             string adminName = "FirstName";
+             string adminLastName = "LastName";
+             string adminEmail = "admin@test.com";
+             DateTime adminDate = new DateTime();
+             string adminPassword = "password";
+             anotherUser.Name = adminName;
+             anotherUser.LastName = adminLastName;
+             anotherUser.Email = adminEmail;
+             anotherUser.BirthDate = adminDate;
+             anotherUser.Password = adminPassword;
+             Repository repository = new Repository();
+             AdminHandler adminHandler = new AdminHandler(anotherUser);
+            // adminHandler.CreateAdmin(adminName,adminLastName,adminEmail,adminDate,adminPassword, repository);
+             UserHandler userHandler = new UserHandler(u);
+             UserHandler anotherUserHandler = new UserHandler(anotherUser);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             bool result = anotherUserHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestRemoveInvalidBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             Repository repository = new Repository();
+             bool result = userHandler.RemoveBlackBoard(aTeam, blackBoard, repository);
+             //assertion
+             Assert.IsFalse(result);
+         }
+         [TestMethod]
+         public void TestAddItemToBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             bool result = blackBoard.ItemList.Count == 1;
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestAddInvalidItemToBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+             Dimension invalidDimension = new Dimension(600,7);
+             item.Dimension = invalidDimension;
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             bool result = blackBoard.ItemList.Count == 1;
+=======
              Item item = new TextBox();
              Dimension newDimension = new Dimension(999, 9);
              BlackBoard blackBoard = new BlackBoard();
@@ -379,6 +550,224 @@ namespace BlackBoardsTest
              bool result = blackBoard.ItemList.Count == 1;
              if (result)
              {
+                 result = blackBoard.ItemList.ElementAt(0).Dimension == newDimension;
+             }
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+             //assertion
+             Assert.IsFalse(result);
+         }
+         [TestMethod]
+<<<<<<< HEAD
+         public void TestRemoveItemBlackBoard()
+=======
+         public void TestResizeItemBlackBoardBool()
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+<<<<<<< HEAD
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             userHandler.RemoveItemBlackBoard(blackBoard, item);
+             bool result = blackBoard.ItemList.Count == 0;
+=======
+             Dimension newDimension = new Dimension(3, 3);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             bool result = userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+<<<<<<< HEAD
+         public void TestRemoveItemBlackBoardBool()
+=======
+         public void TestInvalidResizeItemBlackBoardBool()
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+<<<<<<< HEAD
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);  
+             bool result = userHandler.RemoveItemBlackBoard(blackBoard, item);
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestRemoveInvalidItemBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+             Item anotherItem = new TextBox();
+             Dimension newDimension = new Dimension(2, 2);
+             item.Dimension = newDimension;
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             userHandler.RemoveItemBlackBoard(blackBoard, anotherItem);
+             bool result = blackBoard.ItemList.Count == 1;
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestModifyBlackBoardBool()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             BlackBoard updateBlackBoard = new BlackBoard();
+             updateBlackBoard.Name = "different name"; 
+             bool result = userHandler.ModifyBlackBoard(aTeam, blackBoard, updateBlackBoard);
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestModifyBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             BlackBoard updateBlackBoard = new BlackBoard();
+             updateBlackBoard.Name = "different name";
+             userHandler.ModifyBlackBoard(aTeam,blackBoard,updateBlackBoard);
+             bool result = updateBlackBoard.Equals(aTeam.Boards.ElementAt(0));
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestModifyInvalidBlackBoardBool()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             BlackBoard updateBlackBoard = new BlackBoard();
+             updateBlackBoard.Name = "different name";
+             Dimension invalidDimension = new Dimension(1,1);
+             updateBlackBoard.Dimension = invalidDimension;           
+             bool result = userHandler.ModifyBlackBoard(aTeam, blackBoard, updateBlackBoard);
+             //assertion
+             Assert.IsFalse(result);
+         }
+         [TestMethod]
+         public void TestModifyInvalidBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Team aTeam = new Team();
+             aTeam.Members.Add(u);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.CreateBlackBoard(aTeam, blackBoard);
+             BlackBoard updateBlackBoard = new BlackBoard();
+             updateBlackBoard.Name = "different name";
+             Dimension invalidDimension = new Dimension(1, 1);
+             updateBlackBoard.Dimension = invalidDimension;
+             userHandler.ModifyBlackBoard(aTeam, blackBoard, updateBlackBoard);
+             bool result = updateBlackBoard.Equals(aTeam.Boards.ElementAt(0));
+=======
+             Dimension newDimension = new Dimension(999, 9);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             bool result = userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+             //assertion
+             Assert.IsFalse(result);
+         }
+         [TestMethod]
+<<<<<<< HEAD
+         public void TestResizeItemBlackBoard()
+=======
+         public void TestMoveItemBlackBoard()
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+<<<<<<< HEAD
+             Dimension newDimension = new Dimension(2, 2);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+=======
+             Coordinate newCoordinate = new Coordinate(2, 2);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+
+             bool result = blackBoard.ItemList.Count == 1;
+             if (result)
+             {
+<<<<<<< HEAD
+                 result = blackBoard.ItemList.ElementAt(0).Dimension == newDimension;
+=======
+                 result = blackBoard.ItemList.ElementAt(0).Origin == newCoordinate;
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+             }
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+<<<<<<< HEAD
+         public void TestInvalidResizeItemBlackBoard()
+=======
+         public void TestMoveItemBlackBoardBool()
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+<<<<<<< HEAD
+             Dimension newDimension = new Dimension(999, 9);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             userHandler.ResizeItemBlackBoard(blackBoard, item, newDimension);
+=======
+             Coordinate newCoordinate = new Coordinate(3, 3);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             bool result = userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+             //assertion
+             Assert.IsTrue(result);
+         }
+         [TestMethod]
+         public void TestInvalidMoveItemBlackBoard()
+         {
+             //instance
+             User u = new Collaborator();
+             UserHandler userHandler = new UserHandler(u);
+             Item item = new TextBox();
+             Coordinate newCoordinate = new Coordinate(9999, 9);
+             BlackBoard blackBoard = new BlackBoard();
+             userHandler.AddItemToBlackBoard(blackBoard, item);
+             userHandler.MoveItemBlackBoard(blackBoard, item, newCoordinate);
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
+
+             bool result = blackBoard.ItemList.Count == 1;
+             if (result)
+             {
+<<<<<<< HEAD
                  result = blackBoard.ItemList.ElementAt(0).Dimension == newDimension;
              }
              //assertion
@@ -461,6 +850,8 @@ namespace BlackBoardsTest
              bool result = blackBoard.ItemList.Count == 1;
              if (result)
              {
+=======
+>>>>>>> feature/FuncionalidadesHandlerAdminConBD
                  result = blackBoard.ItemList.ElementAt(0).Origin == newCoordinate;
              }
              //assertion

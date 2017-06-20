@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using Persistance.PersistanceException;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,7 +23,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                Console.WriteLine("Error");
+                throw new PersistanceAdminException("Error en la base de datos: no se pudo registrar el administrador");
             }
 
         }
@@ -37,7 +38,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error de base de datos: No se pudo determinar si el administrador existe.");
+                throw new PersistanceAdminException("Error de base de datos: No se pudo determinar si el administrador existe.");
                 return false;
             }
         }
@@ -56,7 +57,7 @@ namespace Persistance
             catch (Exception ex)
             {
                 string error = ex.InnerException.ToString();
-                Console.WriteLine("Error de base de datos: No se pudo eliminar el cliente.");
+                throw new PersistanceAdminException("Error en la base de datos. Imposible vaciar valores del admin");
             }
 
         }

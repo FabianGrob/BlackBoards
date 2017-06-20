@@ -19,11 +19,12 @@ namespace BlackBoardsTest.HandlerTests
             AdminPersistance adminContext = new AdminPersistance();
             Admin u = new Admin();
             AdminHandler handler = new AdminHandler(u);
-            handler.CreateAdmin("generatedName", "generatedLastName", "generatedEmail@email.com", DateTime.Now, "generatedPassword",adminContext);
+            handler.CreateAdmin("generatedName", "generatedLastName", "generatedEmail@email.com", DateTime.Now, "generatedPassword", adminContext);
         }
-        public void CleanDB(UserPersistance userContext)
+        public void CleanDB(UserPersistance userContext, TeamPersistance teamPersistance)
         {
             userContext.Empty();
+            teamPersistance.Empty();
         }
         [TestMethod]
         public void TestAdminHandlerBuilder()
@@ -225,61 +226,54 @@ namespace BlackBoardsTest.HandlerTests
             //Assert.IsFalse(result);
 
         }
-        [TestMethod]
-        public void TestCreateTeamCorrectly()
-        {
-            //instance
-            Repository repository = new Repository();
-            Admin anAdmin = new Admin();
-            anAdmin.Name = "Admin";
-            List<User> members = new List<User>();
-            Collaborator col1 = new Collaborator();
-            col1.Name = "Collaborator1";
-            Collaborator col2 = new Collaborator();
-            col1.Name = "Collaborator2";
-            Collaborator col3 = new Collaborator();
-            col1.Name = "Collaborator3";
-            members.Add(col1);
-            members.Add(col2);
-            members.Add(col3);
-            members.Add(anAdmin);
-            string name = "TEAM A";
-            string description = "Default Team Description";
-            int maxUsers = 4;
-            AdminHandler handler = new AdminHandler(anAdmin);
-            //assertion
-            // ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
-            // bool result = validation.Validation;
-            // Assert.IsTrue(result);
 
-        }
         [TestMethod]
         public void TestCreateTeamCheck()
         {
+            //cleanDB
+            CleanDB(new UserPersistance(), new TeamPersistance());
             //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
+            anAdmin.Email = "tadmin@tadmin";
             List<User> members = new List<User>();
             Collaborator col1 = new Collaborator();
             col1.Name = "Collaborator1";
+            col1.Email = "tcol@col";
             Collaborator col2 = new Collaborator();
-            col1.Name = "Collaborator2";
+            col2.Name = "Collaborator2";
+            col2.Email = "tcol@col2";
             Collaborator col3 = new Collaborator();
-            col1.Name = "Collaborator3";
+            col3.Name = "Collaborator3";
+            col3.Email = "tcol@col3";
+            Admin anotherAdmin = new Admin();
+            AdminHandler hA = new AdminHandler(anotherAdmin);
+            AdminPersistance ap = new AdminPersistance();
+            hA.CreateAdmin(anAdmin.Name, anAdmin.LastName, anAdmin.Email, anAdmin.BirthDate, anAdmin.passwordUser, ap);
+            hA.CreateCollaborator(col1.Name, col1.LastName, col1.Email, col1.BirthDate, col1.passwordUser, ap);
+            hA.CreateCollaborator(col2.Name, col2.LastName, col2.Email, col2.BirthDate, col2.passwordUser, ap);
+            hA.CreateCollaborator(col3.Name, col3.LastName, col3.Email, col3.BirthDate, col3.passwordUser, ap);
+            anAdmin = ap.GetUserByEmail(anAdmin.Email) as Admin;
+            col1 = ap.GetUserByEmail(col1.Email) as Collaborator;
+            col2 = ap.GetUserByEmail(col2.Email) as Collaborator;
+            col3 = ap.GetUserByEmail(col3.Email) as Collaborator;
             members.Add(col1);
             members.Add(col2);
             members.Add(col3);
             members.Add(anAdmin);
-            string name = "TEAM A";
+            string name = "TEAM Z";
             string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
-            // handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            TeamPersistance teamContext = new TeamPersistance();
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
+            int idCreatedTeam = teamContext.IDByName(name);
+            bool result = teamContext.GetMembersById(idCreatedTeam).Count == 4;
+            UserPersistance userContext = new UserPersistance();
+            CleanDB(userContext, teamContext);
             //assertion
-            //  bool result = repository.TeamList.ElementAt(0).Members.Count == 4;
-            //  Assert.IsTrue(result);
-
+            Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestCreateTeamSameName()
@@ -561,7 +555,8 @@ namespace BlackBoardsTest.HandlerTests
             User created = new Collaborator("testCollaborator", "thisIsATest", "test@email", DateTime.Now, "testPassword");
             handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.passwordUser, userContext);
             bool exists = userContext.Exists(created);
-            CleanDB(userContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(userContext, teamContext);
             //assertion
             Assert.IsTrue(exists);
         }
@@ -575,7 +570,8 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(adm);
             User created = new Collaborator("testCollaborator", "thisIsATest", "generatedEmail@email.com", DateTime.Now, "testPassword");
             ValidationReturn added = handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.passwordUser, userContext);
-            CleanDB(userContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(userContext, teamContext);
             //assertion
             Assert.IsFalse(added.Validation);
         }
@@ -592,8 +588,9 @@ namespace BlackBoardsTest.HandlerTests
             created.ID = handler.getIdUserByEmail(created, adminContext);
             ValidationReturn deleted = handler.DeleteUser(created, adminContext);
             bool exists = adminContext.Exists(created);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             bool result = deleted.Validation && !exists;
-            CleanDB(adminContext);
             //assertion
             Assert.IsTrue(result);
         }
@@ -608,7 +605,8 @@ namespace BlackBoardsTest.HandlerTests
             User created = new Admin("testAdmin", "thisIsATest", "testAdmin@email", DateTime.Now, "testPassword");
             handler.CreateAdmin(created.Name, created.LastName, created.Email, created.BirthDate, created.passwordUser, adminContext);
             bool exists = adminContext.Exists(created);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             //assertion
             Assert.IsTrue(exists);
         }
@@ -622,7 +620,8 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(adm);
             User created = new Admin("testCollaborator", "thisIsATest", "generatedEmail@email.com", DateTime.Now, "testPassword");
             ValidationReturn added = handler.CreateAdmin(created.Name, created.LastName, created.Email, created.BirthDate, created.passwordUser, adminContext);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             //assertion
             Assert.IsFalse(added.Validation);
         }
@@ -637,7 +636,8 @@ namespace BlackBoardsTest.HandlerTests
             User created = new Admin("testAdmin", "thisIsATest", "testAdmin@email", DateTime.Now, "testPassword");
             handler.CreateAdmin(created.Name, created.LastName, created.Email, created.BirthDate, created.passwordUser, adminContext);
             bool exists = adminContext.Exists(created);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             //assertion
             Assert.IsTrue(exists);
         }
@@ -651,7 +651,8 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(anAdmin);
             string modEmail = "AModifiedEmail";
             bool modified = handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, "modifiedPassword", adminContext);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             //assertion
             Assert.IsTrue(modified);
         }
@@ -666,7 +667,8 @@ namespace BlackBoardsTest.HandlerTests
 
             string modEmail = "AModifiedEmail";
             handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, "modifiedPassword", adminContext);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             User oldUser = new Admin();
             oldUser.Email = "generatedEmail@email.com";
             bool existsOld = adminContext.Exists(oldUser);
@@ -683,11 +685,12 @@ namespace BlackBoardsTest.HandlerTests
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
             string modEmail = "AModifiedEmail";
-            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now,"modifiedPassword", adminContext);
+            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, "modifiedPassword", adminContext);
             User oldUser = new Admin();
             oldUser.Email = modEmail;
             bool existsNew = adminContext.Exists(oldUser);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             //assertion
             Assert.IsTrue(existsNew);
         }
@@ -701,7 +704,8 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(anAdmin);
             string modEmail = "AModifiedEmail";
             bool modified = handler.ModifyUser("NoEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, "modifiedPassword", adminContext);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             //assertion
             Assert.IsFalse(modified);
         }
@@ -718,7 +722,8 @@ namespace BlackBoardsTest.HandlerTests
             User oldUser = new Admin();
             oldUser.Email = modEmail;
             bool existsNew = adminContext.Exists(oldUser);
-            CleanDB(adminContext);
+            TeamPersistance teamContext = new TeamPersistance();
+            CleanDB(adminContext, teamContext);
             //assertion
             Assert.IsFalse(existsNew);
         }

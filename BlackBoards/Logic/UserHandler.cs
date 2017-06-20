@@ -32,13 +32,12 @@ namespace BlackBoards
         public bool CreateBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
             TeamHandler teamHandler = new TeamHandler(aTeam);
-            aBlackBoard.CreatorUser = this.User;
-            
+            aBlackBoard.CreatorUser = this.User;     
             bool userInTeam = teamHandler.IsUserInTeam(this.user);
             if (userInTeam)
             {
                 BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-                ValidationReturn validation = teamHandler.AddBlackBoard(aBlackBoard,blackBoardContext);
+                ValidationReturn validation = teamHandler.AddBlackBoard(aBlackBoard,blackBoardContext, this.user);
                 bool isABlackBoardValid = validation.Validation;
                 return isABlackBoardValid;
             }
