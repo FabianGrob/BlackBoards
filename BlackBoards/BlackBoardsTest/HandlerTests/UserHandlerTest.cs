@@ -14,15 +14,32 @@ namespace BlackBoardsTest
     [TestClass]
     public class UserHandlerTest
     {
-        public void Initialize() {
+       /* public void Initialize() {
             AdminPersistance adminContext = new AdminPersistance();
+            BlackBoardPersistance bBContext = new BlackBoardPersistance();
+            ItemPersistance itemContext = new ItemPersistance();
+            TeamPersistance teamContext = new TeamPersistance();
             Admin u = new Admin();
             AdminHandler handler = new AdminHandler(u);
             handler.CreateAdmin("generatedName", "generatedLastName", "generatedEmail@email.com", DateTime.Now, "generatedPassword", adminContext);
+            BlackBoard board = new BlackBoard("generatedBoard", "thisIsAGeneratedBoard", new Dimension(350, 350), new List<Item>(), u);
+            List<User> member = new List<User>();
+            member.Add(u);
+            Team aTeam = new Team("generatedTeam", DateTime.Now, "thisIsATestTeam", 10, member, new List<BlackBoard>());
+            teamContext.AddTeam(aTeam);
+            UserHandler userHandler = new UserHandler(u);
+            userHandler.CreateBlackBoard(teamContext., board);
+            bBContext.AddBlackBoard(board);
         }
         public void CleanDB(UserPersistance userContext)
         {
+            BlackBoardPersistance bBContext = new BlackBoardPersistance();
+            ItemPersistance itemContext = new ItemPersistance();
+            TeamPersistance teamCOntext = new TeamPersistance();
             userContext.Empty();
+            bBContext.Empty();
+            itemContext.Empty();
+            teamCOntext.Empty();
         }
         [TestMethod]
         public void TestAddItemToBlackBoard()
@@ -37,6 +54,8 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result);
         }
+
+        */
         /*
          [TestMethod]
          public void TestUserHandlerBuilder()
