@@ -226,12 +226,12 @@ namespace BlackBoardsTest.HandlerTests
             //Assert.IsFalse(result);
 
         }
-              
+
         [TestMethod]
         public void TestCreateTeamCheck()
         {
+            //cleanDB
             CleanDB(new UserPersistance(), new TeamPersistance());
-
             //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
@@ -254,31 +254,26 @@ namespace BlackBoardsTest.HandlerTests
             hA.CreateCollaborator(col1.Name, col1.LastName, col1.Email, col1.BirthDate, col1.passwordUser, ap);
             hA.CreateCollaborator(col2.Name, col2.LastName, col2.Email, col2.BirthDate, col2.passwordUser, ap);
             hA.CreateCollaborator(col3.Name, col3.LastName, col3.Email, col3.BirthDate, col3.passwordUser, ap);
-            
-            anAdmin=ap.GetUserByEmail(anAdmin.Email) as Admin;
+            anAdmin = ap.GetUserByEmail(anAdmin.Email) as Admin;
             col1 = ap.GetUserByEmail(col1.Email) as Collaborator;
             col2 = ap.GetUserByEmail(col2.Email) as Collaborator;
             col3 = ap.GetUserByEmail(col3.Email) as Collaborator;
-            
             members.Add(col1);
             members.Add(col2);
             members.Add(col3);
             members.Add(anAdmin);
-
-
             string name = "TEAM Z";
             string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
             TeamPersistance teamContext = new TeamPersistance();
             handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
-            //assertion
-            int idCreatedTeam = teamContext.IDByName(name);        
+            int idCreatedTeam = teamContext.IDByName(name);
             bool result = teamContext.GetMembersById(idCreatedTeam).Count == 4;
             UserPersistance userContext = new UserPersistance();
             CleanDB(userContext, teamContext);
+            //assertion
             Assert.IsTrue(result);
-
         }
         [TestMethod]
         public void TestCreateTeamSameName()
