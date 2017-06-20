@@ -119,26 +119,39 @@ namespace BlackBoards
             }
             return idUser;
         }
-        /*
-        public ValidationReturn CreateTeam(string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, Repository theRepository)
+        
+        public ValidationReturn CreateTeam(string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, TeamPersistance teamContext)
         {
             ValidationReturn added = new ValidationReturn(false, "El equipo ya existe");
-            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
             Team newTeam = new Team();
             newTeam.Name = name;
             newTeam.Description = description;
             newTeam.MaxUsers = maxUsers;
             newTeam.Members = members;
             newTeam.Boards = boards;
-            newTeam.CreationDate = DateTime.Today;
-            if (!repHandler.TeamAlreadyExists(name) && newTeam.IsValid().Validation)
+            newTeam.CreationDate = DateTime.Today;            
+            if (!teamContext.Exists(newTeam) && newTeam.IsValid().Validation)
             {
-                repHandler.AddTeam(newTeam);
+                teamContext.AddTeam(newTeam);
                 added.Validation = true;
                 added.Message = "El equipo ha sido ingresado.";
             }
             return added;
         }
+        public ValidationReturn DeleteTeam(string name, TeamPersistance teamContext)
+        {
+            ValidationReturn validation = new ValidationReturn(false,"El equipo no ha sido eliminado.");
+            int lookUpIdTeam = teamContext.IDByName(name);
+            Team lookUpTeam = teamContext.GetTeam(lookUpIdTeam);
+            bool teamAlreadyExists = teamContext.Exists(lookUpTeam);
+            if (teamAlreadyExists)
+            {
+                teamContext.Delete(lookUpTeam);
+                validation.RedefineValues(true,"El equipo ha sido eliminado.");
+            }
+            return validation;
+        }
+        /*
         public bool ModifyTeam(string oldName, string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, Repository theRepository)
         {
             bool modified = false;
@@ -160,19 +173,7 @@ namespace BlackBoards
             }
             return modified;
         }
-        public bool DeleteTeam(string name, Repository theRepository)
-        {
-            bool deleted = false;
-            RepositoryHandler handler = new RepositoryHandler(theRepository);
-            bool teamAlreadyExists = handler.TeamAlreadyExists(name);
-            if (teamAlreadyExists)
-            {
-                Team toDelete = handler.GetSpecificTeam(name);
-                theRepository.TeamList.Remove(toDelete);
-                deleted = true;
-            }
-            return deleted;
-        }
+      
         */
     }
 }

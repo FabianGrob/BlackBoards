@@ -120,5 +120,21 @@ namespace Persistance
                 return -1;
             }
         }
+
+        public Team GetTeam(int id)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    return dbContext.teams.Find(id);
+                }
+            }
+            catch (Exception)
+            {
+                throw new PersistanceUserException("Error de base de datos: No se pudo obtener el equipo.");
+                return new Team();
+            }
+        }
     }
 }
