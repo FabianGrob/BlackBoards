@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="AdminPersistance.cs" />
     <Compile Include="BlackBoardsContext.cs" />
+    <Compile Include="ItemPersistance.cs" />
     <Compile Include="Migrations\201706190016469_InitialCreate.cs" />
     <Compile Include="Migrations\201706190016469_InitialCreate.Designer.cs">
       <DependentUpon>201706190016469_InitialCreate.cs</DependentUpon>
@@ -78,6 +79,7 @@
       <DependentUpon>201706192316576_DeleteColumnBlackBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PersistanceException\PersistanceItemException.cs" />
     <Compile Include="PersistanceException\PersistanceUserException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="TeamPersistance.cs" />
