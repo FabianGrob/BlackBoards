@@ -66,7 +66,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Elemento ");
+                throw new PersistanceItemException("Error en la base de datos. Imposible Modificar el Elemento ");
             }
         }
         public Item GetItem(int id)
@@ -80,7 +80,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error de base de datos: No se pudo obtener el Elemento.");
+                throw new PersistanceItemException("Error de base de datos: No se pudo obtener el Elemento.");
 
             }
         }
@@ -101,7 +101,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error en la base de datos. Imposible vaciar valores de elementos");
+                throw new PersistanceItemException("Error en la base de datos. Imposible vaciar valores de elementos");
             }
         }
         public bool Exists(Item anItem)
@@ -116,7 +116,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceUserException("Error de base de datos: No se pudo determinar si el elemento existe.");
+                throw new PersistanceItemException("Error de base de datos: No se pudo determinar si el elemento existe.");
             }
         }
     }

@@ -69,7 +69,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Elemento ");
+                throw new PersistanceItemException("Error en la base de datos. Imposible Modificar el Elemento ");
             }
         }
     }
