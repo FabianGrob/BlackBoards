@@ -651,7 +651,7 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(anAdmin);
 
             string modEmail = "AModifiedEmail";
-            bool modified = handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, adminContext);
+            bool modified = handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, "modifiedPassword", adminContext);
             CleanDB(adminContext);
 
             Assert.IsTrue(modified);
@@ -667,14 +667,14 @@ namespace BlackBoardsTest.HandlerTests
             AdminHandler handler = new AdminHandler(anAdmin);
 
             string modEmail = "AModifiedEmail";
-            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, adminContext);
+            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, "modifiedPassword", adminContext);
             CleanDB(adminContext);
             User oldUser = new Admin();
             oldUser.Email = "generatedEmail@email.com";
             bool existsOld = adminContext.Exists(oldUser);
             bool result = !existsOld;
             Assert.IsTrue(result);
-
+            
         }
         [TestMethod]
         public void TestModifyUserCorrectlyCheckNew()
@@ -684,13 +684,12 @@ namespace BlackBoardsTest.HandlerTests
             Initialize(adminContext);
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
-
             string modEmail = "AModifiedEmail";
-            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, adminContext);
-            CleanDB(adminContext);
+            handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now,"modifiedPassword", adminContext);
             User oldUser = new Admin();
             oldUser.Email = modEmail;
             bool existsNew = adminContext.Exists(oldUser);
+            CleanDB(adminContext);
             Assert.IsTrue(existsNew);
 
         }
