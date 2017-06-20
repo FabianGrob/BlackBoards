@@ -13,7 +13,7 @@ namespace BlackBoardsTest.HandlersTests
     [TestClass]
     public class BlackBoardHandlerTest
     {
-        [TestMethod]
+      /*  [TestMethod]
         public void TestCreateBlackBoard()
         {
             //instance variables
@@ -210,7 +210,7 @@ namespace BlackBoardsTest.HandlersTests
             }
             //assert
             Assert.IsFalse(result);
-        }
+        }*/
 
     }
 }

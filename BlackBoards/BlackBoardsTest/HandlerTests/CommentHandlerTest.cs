@@ -14,7 +14,7 @@ namespace BlackBoardsTest.HandlersTests
     [TestClass]
     public class CommentHandlerTest
     {
-        [TestMethod]
+       /* [TestMethod]
         public void TestCreateComment()
         {
             User anUser = new Admin();
@@ -70,6 +70,6 @@ namespace BlackBoardsTest.HandlersTests
             commentHandler.ResolveComment(anUser);
             bool result = commentHandler.ResolveComment(anotherUser); 
             Assert.IsFalse(result);
-        }
+        }*/
     }
 }

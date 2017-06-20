@@ -592,8 +592,8 @@ namespace BlackBoardsTest.HandlerTests
             created.ID = handler.getIdUserByEmail(created, adminContext);
             ValidationReturn deleted = handler.DeleteUser(created, adminContext);
             bool exists = adminContext.Exists(created);
-            CleanDB(adminContext);
             bool result = deleted.Validation && !exists;
+            CleanDB(adminContext);
             //assertion
             Assert.IsTrue(result);
         }

@@ -13,7 +13,7 @@ namespace BlackBoardsTest.HandlerTests
     [TestClass]
     public class ItemHandlerTest
     {
-        [TestMethod]
+      /*  [TestMethod]
         public void ItemHandlerBuilder() {
             //instance
             Item anItem = new TextBox();
@@ -193,7 +193,7 @@ namespace BlackBoardsTest.HandlerTests
         }
 
 
-
+    */
 
     }
 }
