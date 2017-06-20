@@ -1,6 +1,8 @@
 ﻿using BlackBoards.Domain.BlackBoards;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +11,11 @@ namespace BlackBoards.Domain
 {
     public class Connection
     {
-        public int ID { get; set; }
-        private Item from;
-        private Item to;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IDConnection { get; set; }
+        public virtual Item from { get; set; }
+        public virtual Item to { get; set; }
         private DirectionType direction;
         private string name;
         private string description;

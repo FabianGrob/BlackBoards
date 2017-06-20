@@ -1,6 +1,9 @@
-﻿using BlackBoards.Domain.BlackBoards;
+﻿using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +12,17 @@ namespace BlackBoards
 {
     public class Team
     {
-        public int ID { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IDTeam { get; set; }
         private string name;
         private string description;
         private DateTime creationDate;
         private int maxUsers;
         public virtual List<User> members { set; get; }
         public virtual List<BlackBoard> boards { set; get; }
+        public virtual EstablishedScoreTeam establishedScore { set; get; }
+        public virtual List<ScoreUserInTeam> scoresOfUsers { get; set; }
         public Team()
         {
             this.name = "Default name";
