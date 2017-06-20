@@ -17,6 +17,10 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    foreach (User actualUser in team.members)
+                    {
+                        dbContext.users.Attach(actualUser);
+                    }
                     dbContext.teams.Add(team);
                     dbContext.SaveChanges();
                 }
@@ -136,5 +140,22 @@ namespace Persistance
                 return new Team();
             }
         }
+       
+        public List<User> GetMembersById(int id)
+        {
+            using (BlackBoardsContext dbContext = new BlackBoardsContext())
+            {
+                List<Team> allTeams = dbContext.teams.ToList();
+                foreach (Team actualTeam in allTeams)
+                {
+                    if (actualTeam.IDTeam == id)
+                    {
+                        return actualTeam.Members;
+                    }
+                }
+                return new List<User>();
+            }
+        }
+        
     }
 }

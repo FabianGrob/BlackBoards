@@ -26,11 +26,12 @@ namespace BlackBoards.Handlers
                 this.team = value;
             }
         }
-        public ValidationReturn AddBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext) {
+        public ValidationReturn AddBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext, User creatorUser) {
             bool valid = aBoard.isValid();
             bool notExists = !this.team.doesBlackBoardExists(aBoard);
             bool validBlackBoard = valid && notExists;
             aBoard.teamBelongs = this.team;
+            aBoard.CreatorUser = creatorUser;
             if (validBlackBoard)
             {
                 blackBoardContext.AddBlackBoard(aBoard);

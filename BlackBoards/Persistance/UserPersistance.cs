@@ -119,7 +119,7 @@ namespace Persistance
                 return -1;
             }
         }
-        private User GetUserByEmail(string lookUpEmail)
+        public User GetUserByEmail(string lookUpEmail)
         {
             return this.GetUser(this.IDByEmail(lookUpEmail));
         }
