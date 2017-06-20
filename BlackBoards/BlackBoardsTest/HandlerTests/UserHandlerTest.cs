@@ -14,6 +14,16 @@ namespace BlackBoardsTest
     [TestClass]
     public class UserHandlerTest
     {
+        public void Initialize() {
+            AdminPersistance adminContext = new AdminPersistance();
+            Admin u = new Admin();
+            AdminHandler handler = new AdminHandler(u);
+            handler.CreateAdmin("generatedName", "generatedLastName", "generatedEmail@email.com", DateTime.Now, "generatedPassword", adminContext);
+        }
+        public void CleanDB(UserPersistance userContext)
+        {
+            userContext.Empty();
+        }
         [TestMethod]
         public void TestAddItemToBlackBoard()
         {

@@ -17,7 +17,11 @@ namespace BlackBoardsTest.HandlerTests
     {
         public void CleanDB(BlackBoardPersistance blackBoardContext)
         {
+            TeamPersistance teamContext = new TeamPersistance();
+            UserPersistance userContext = new UserPersistance();
             blackBoardContext.Empty();
+            teamContext.Empty();
+            userContext.Empty();
         }
         public void setUp(Team aTeam,BlackBoardPersistance blackBoardContext)
         {
