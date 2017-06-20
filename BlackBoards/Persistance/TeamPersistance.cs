@@ -1,5 +1,4 @@
 ﻿using BlackBoards;
-using Persistance.PersistanceException;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace Persistance
 {
-    public class UserPersistance
+    public class TeamPersistance
     {
-        public void AddUser(User user)
+        public void AddTeam(Team team)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    dbContext.users.Add(user);
+                    dbContext.teams.Add(team);
                     dbContext.SaveChanges();
                 }
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error en la base de datos. Imposible agregar usuario");
+                Console.WriteLine("Error");
+                // throw new DeviceException("Error en la base de datos. Imposible agregar dispositivo");
             }
 
         }
@@ -39,7 +39,8 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceUserException("Error de base de datos: No se pudo determinar si el usuario existe.");
+                Console.WriteLine("Error de base de datos: No se pudo determinar si el cliente existe.");
+                return false;
             }
         }
         public void Delete(User anUser)
@@ -56,7 +57,8 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceUserException("Error de base de datos: No se pudo eliminar el usuario.");
+                string error = ex.InnerException.ToString();
+                Console.WriteLine("Error de base de datos: No se pudo eliminar el cliente.");
             }
 
         }
@@ -71,9 +73,10 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error de base de datos: No se pudo obtener el usuario.");
+                Console.WriteLine("Error de base de datos: No se pudo eliminar el cliente.");
                 return new Admin();
             }
+
         }
         public void Empty()
         {
@@ -92,7 +95,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error en la base de datos. Imposible vaciar valores de usuario");
+                Console.WriteLine("Error en la base de datos. Imposible vaciar valores de variables");
             }
         }
 
@@ -115,7 +118,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceUserException("Error en la base de datos. Imposible obtener id del usuario con email: " + email);
+                Console.WriteLine("Error en la base de datos. Imposible vaciar valores de variables");
                 return -1;
             }
         }

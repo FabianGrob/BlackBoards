@@ -674,7 +674,7 @@ namespace BlackBoardsTest.HandlerTests
             Admin adm = new Admin();
             AdminHandler handler = new AdminHandler(adm);
             User created = new Collaborator("testCollaborator", "thisIsATest", "test@email", DateTime.Now, "testPassword");
-            handler.CreateCollaborator(created.Name,created.LastName,created.Email,created.BirthDate,created.password,userContext);
+            handler.CreateCollaborator(created.Name,created.LastName,created.Email,created.BirthDate,created.passwordUser,userContext);
             bool exists = userContext.Exists(created);
             CleanDB(userContext);
             //assertion
@@ -689,7 +689,7 @@ namespace BlackBoardsTest.HandlerTests
             Admin adm = new Admin();
             AdminHandler handler = new AdminHandler(adm);
             User created = new Collaborator("testCollaborator", "thisIsATest", "generatedEmail@email.com", DateTime.Now, "testPassword");
-            ValidationReturn added=handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.password,userContext);        
+            ValidationReturn added=handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.passwordUser,userContext);        
             CleanDB(userContext);
             //assertion
             Assert.IsFalse(added.Validation);
@@ -703,7 +703,7 @@ namespace BlackBoardsTest.HandlerTests
             Admin adm = new Admin();
             AdminHandler handler = new AdminHandler(adm);
             User created = new Collaborator("testCollaborator", "thisIsATest", "test@email", DateTime.Now, "testPassword");
-            handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.password, userContext);
+            handler.CreateCollaborator(created.Name, created.LastName, created.Email, created.BirthDate, created.passwordUser, userContext);
             created.ID = handler.getIdUserByEmail(created,userContext);
             ValidationReturn deleted = handler.DeleteUser(created,userContext);
             bool exists = userContext.Exists(created);

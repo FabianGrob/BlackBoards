@@ -19,7 +19,7 @@ namespace BlackBoardsTest
             Coordinate origin = new Coordinate();
             aSetUpPicture.Origin = origin;
             aSetUpPicture.Description = "Example Description";
-            aSetUpPicture.ID = 3;
+            aSetUpPicture.IDItem = 3;
             aSetUpPicture.ImgPath = "defaultPath";
             return aSetUpPicture;
         }

@@ -1,30 +1,36 @@
-﻿using BlackBoards.Domain.BlackBoards;
+﻿using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlackBoards
 {
     public abstract class User
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        private string name;
-        private string lastName;
-        private string email;
-        private DateTime birthDate;
-        
-        public string password;
-       // public virtual List<Team> teams { get; set; }
+        private string nameUser;
+        private string lastNameUser;
+        private string emailUser;
+        private DateTime birthDateUser;
+        public string passwordUser;
+        public virtual List<Team> belongInteams { get; set; }
+        public virtual List<Comment> createdComments { get; set; }
+        public virtual List<Comment> resolvedComments { get; set; }
+        public virtual List<ScoreUserInTeam> scoresInTeams { get; set; }
         // [Obsolete("constructor only usable by EntityFramework", true)]
         public User()
-        {
-           
+        {         
             this.ID = 1;
             this.Name = "Default name";
             this.LastName = "Default lastname";
             this.Email = "Default email";
             this.BirthDate = DateTime.Now;
             this.Password = "Default password";
-          //  this.teams = new List<Team>();
+            this.belongInteams = new List<Team>();
         }
         public User(string name, string lastName, string email, DateTime birthDate, string password)
         {
@@ -38,55 +44,55 @@ namespace BlackBoards
         {
             get
             {
-                return this.name;
+                return this.nameUser;
             }
             set
             {
-                this.name = value;
+                this.nameUser = value;
             }
         }
         public string LastName
         {
             get
             {
-                return this.lastName;
+                return this.lastNameUser;
             }
             set
             {
-                this.lastName = value;
+                this.lastNameUser = value;
             }
         }
         public string Email
         {
             get
             {
-                return this.email;
+                return this.emailUser;
             }
             set
             {
-                this.email = value;
+                this.emailUser = value;
             }
         }
         public DateTime BirthDate
         {
             get
             {
-                return this.birthDate;
+                return this.birthDateUser;
             }
             set
             {
-                this.birthDate = value;
+                this.birthDateUser = value;
             }
         }
         public string Password
         {
             get
             {
-                return this.password;
+                return this.passwordUser;
             }
             set
             {
-                this.password = value;
+                this.passwordUser = value;
             }
         }
         public override bool Equals(object anUser)
@@ -107,7 +113,7 @@ namespace BlackBoards
 
         private bool validEmail()
         {
-            return (this.email.Length > 0);
+            return (this.emailUser.Length > 0);
         }
         public ValidationReturn IsValid()
         {
@@ -120,7 +126,7 @@ namespace BlackBoards
         }
         public override string ToString()
         {
-            return this.email;
+            return this.emailUser;
         }
     }
 }

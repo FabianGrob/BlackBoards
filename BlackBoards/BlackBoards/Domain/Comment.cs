@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,17 +10,22 @@ namespace BlackBoards
 {
     public class Comment
     {
-        public int ID { get; set; }
-        private User commentingUser;
-        private User resolvingUser;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IDComment { get; set; }
+        public virtual User commentingUser { get; set; }
+        public virtual User resolvingUser { get; set; }
         private DateTime commentingDate;
         private DateTime resolvingDate;
         private string writtenComment;
+        public Nullable <int> commentingUserID { get; set; }
+        public Nullable<int> resolvingUserID { get; set; }
+        public virtual Item itemBelong { get; set; }
         public Comment()
         {
             this.CommentingUser = new Admin();
             this.ResolvingUser = new Admin();
-            this.CommentingDate = new DateTime();
+            this.CommentingDate = DateTime.Now;
             this.ResolvingDate = DateTime.MaxValue;
             this.WrittenComment = "Default written comment";
         }

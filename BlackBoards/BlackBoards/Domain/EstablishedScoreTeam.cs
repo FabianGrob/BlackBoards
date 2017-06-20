@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,23 +10,25 @@ namespace BlackBoards.Domain
 {
     public class EstablishedScoreTeam
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        private Team team;
+        public virtual Team teamScore { get; set; }
         private Score score;
         public EstablishedScoreTeam()
         {
-            this.team = new Team();
+            this.teamScore = new Team();
             this.score = new Score();
         }
         public Team Team
         {
             get
             {
-                return this.team;
+                return this.teamScore;
             }
             set
             {
-                this.team = value;
+                this.teamScore = value;
             }
         }
         public Score Score
@@ -40,7 +44,7 @@ namespace BlackBoards.Domain
         }
         private bool IsOfTeam(Team team)
         {
-            return this.team.Equals(team);
+            return this.teamScore.Equals(team);
         }
         public override bool Equals(object aEstablishedScoreTeam)
         {

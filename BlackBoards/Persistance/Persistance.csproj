@@ -68,8 +68,18 @@
     <Compile Include="Migrations\201706190505480_AdminAdd.Designer.cs">
       <DependentUpon>201706190505480_AdminAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706192207099_FullDB.cs" />
+    <Compile Include="Migrations\201706192207099_FullDB.Designer.cs">
+      <DependentUpon>201706192207099_FullDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706192316576_DeleteColumnBlackBoard.cs" />
+    <Compile Include="Migrations\201706192316576_DeleteColumnBlackBoard.Designer.cs">
+      <DependentUpon>201706192316576_DeleteColumnBlackBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PersistanceException\PersistanceUserException.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="TeamPersistance.cs" />
     <Compile Include="UserPersistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Migrations\201706190016469_InitialCreate.resx">
@@ -80,6 +90,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706190505480_AdminAdd.resx">
       <DependentUpon>201706190505480_AdminAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706192207099_FullDB.resx">
+      <DependentUpon>201706192207099_FullDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706192316576_DeleteColumnBlackBoard.resx">
+      <DependentUpon>201706192316576_DeleteColumnBlackBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
