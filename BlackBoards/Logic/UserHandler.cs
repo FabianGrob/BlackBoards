@@ -1,5 +1,7 @@
 ﻿using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using BlackBoards.Handlers;
+using Persistance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +36,9 @@ namespace BlackBoards
             bool userInTeam = teamHandler.IsUserInTeam(this.user);
             if (userInTeam)
             {
-                bool isABlackBoardValid = teamHandler.AddBlackBoard(aBlackBoard);
+                BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+                ValidationReturn validation = teamHandler.AddBlackBoard(aBlackBoard,blackBoardContext);
+                bool isABlackBoardValid = validation.Validation;
                 return isABlackBoardValid;
             }
             return userInTeam;
@@ -52,13 +56,15 @@ namespace BlackBoards
         }
         public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard, Repository aRepository)
         {
+
             RepositoryHandler repositoryHandler = new RepositoryHandler(aRepository);
             bool userAdmin = repositoryHandler.IsUserAnAdmin(User.Email);
             if (aBlackBoard.CreatorUser.Equals(this.user) || userAdmin)
             {
                 TeamHandler teamHandler = new TeamHandler(aTeam);
-                bool wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard);
-                return wasRemoved;
+                BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+                ValidationReturn wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard,blackBoardContext);
+                return wasRemoved.Validation;
             }
             return false;
         }

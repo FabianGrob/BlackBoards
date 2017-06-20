@@ -72,10 +72,10 @@ namespace BlackBoardsTest.HandlerTests
            
             TeamHandler handler = new TeamHandler(aTeam);
             BlackBoard board = new BlackBoard();
-            board.Dimension = new Dimension(500, 500);
+            board.Dimension = new Dimension(0, 0);
             //assertion
             ValidationReturn result = handler.AddBlackBoard(board, blackBoardContext);
-            CleanDB(blackBoardContext);
+            
             Assert.IsFalse(result.Validation);
 
         }

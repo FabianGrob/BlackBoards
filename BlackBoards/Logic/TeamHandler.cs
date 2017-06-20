@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using Persistance;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,23 +26,27 @@ namespace BlackBoards.Handlers
                 this.team = value;
             }
         }
-        public bool AddBlackBoard(BlackBoard aBoard) {
+        public ValidationReturn AddBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext) {
             bool valid = aBoard.isValid();
             bool notExists = !this.team.doesBlackBoardExists(aBoard);
-            if (valid && notExists)
+            bool validBlackBoard = valid && notExists;
+            aBoard.teamBelongs = this.team;
+            if (validBlackBoard)
             {
-                this.Team.Boards.Add(aBoard);
+                blackBoardContext.AddBlackBoard(aBoard);
             }
-            return valid && notExists;
+            ValidationReturn validation = new ValidationReturn(validBlackBoard, "");
+            return validation;
         }
-        public bool RemoveBlackBoard(BlackBoard aBoard) {
-            bool exists = this.Team.Boards.Contains(aBoard);
+        public ValidationReturn RemoveBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext) {
+            bool exists = blackBoardContext.Exists(aBoard);
+            ValidationReturn validation = new ValidationReturn(exists,"No se ha podido eliminar el pizarron.");
             if (exists)
             {
-                this.Team.Boards.Remove(aBoard);
+                blackBoardContext.Delete(aBoard);
+                validation.Message = "El pizarron se ha borrado con exito.";
             }
-            return exists;
-            
+            return validation;
         }
         public bool ModifyBlackBoard(BlackBoard oldBoard, BlackBoard newBoard)
         {
@@ -63,7 +69,6 @@ namespace BlackBoards.Handlers
                 this.Team.Members.Add(anUser);
                 added = true;
             }
-
             return added;
         }
         public bool RemoveMember(User anUser) {
