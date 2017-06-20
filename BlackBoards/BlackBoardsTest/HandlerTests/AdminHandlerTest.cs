@@ -649,11 +649,10 @@ namespace BlackBoardsTest.HandlerTests
             Initialize(adminContext);
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
-
             string modEmail = "AModifiedEmail";
             bool modified = handler.ModifyUser("generatedEmail@email.com", "nameMoified", "lastNameMoified", modEmail, DateTime.Now, "modifiedPassword", adminContext);
             CleanDB(adminContext);
-
+            //assertion
             Assert.IsTrue(modified);
 
         }
@@ -673,6 +672,7 @@ namespace BlackBoardsTest.HandlerTests
             oldUser.Email = "generatedEmail@email.com";
             bool existsOld = adminContext.Exists(oldUser);
             bool result = !existsOld;
+            ///assertion
             Assert.IsTrue(result);
             
         }
@@ -690,6 +690,7 @@ namespace BlackBoardsTest.HandlerTests
             oldUser.Email = modEmail;
             bool existsNew = adminContext.Exists(oldUser);
             CleanDB(adminContext);
+            //assertion
             Assert.IsTrue(existsNew);
 
         }
