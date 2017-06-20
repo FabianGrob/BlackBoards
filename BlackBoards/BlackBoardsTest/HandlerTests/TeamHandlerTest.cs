@@ -64,7 +64,7 @@ namespace BlackBoardsTest.HandlerTests
 
         }
         [TestMethod]
-        public void TestTeamHandlerAddBlackBoardInValid0()
+        public void TestTeamHandlerAddBlackBoardInvalid()
         {
             //instance
             Team aTeam = new Team();
