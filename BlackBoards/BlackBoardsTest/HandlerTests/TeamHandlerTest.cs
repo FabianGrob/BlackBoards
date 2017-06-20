@@ -17,7 +17,11 @@ namespace BlackBoardsTest.HandlerTests
     {
         public void CleanDB(BlackBoardPersistance blackBoardContext)
         {
+            TeamPersistance teamContext = new TeamPersistance();
+            UserPersistance userContext = new UserPersistance();
             blackBoardContext.Empty();
+            teamContext.Empty();
+            userContext.Empty();
         }
         public void setUp(Team aTeam,BlackBoardPersistance blackBoardContext)
         {
@@ -75,7 +79,7 @@ namespace BlackBoardsTest.HandlerTests
             board.Dimension = new Dimension(0, 0);
             //assertion
             ValidationReturn result = handler.AddBlackBoard(board, blackBoardContext);
-            
+            CleanDB(blackBoardContext);
             Assert.IsFalse(result.Validation);
 
         }
@@ -160,17 +164,20 @@ namespace BlackBoardsTest.HandlerTests
         }
         [TestMethod]
         public void TestAddMemberCorrectly() {
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             //instance
             Team aTeam = new Team();
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
             //assertion
             bool result = handler.AddMember(admin);
+            CleanDB(blackBoardContext);
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestAddMemberCheckExistance()
         {
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             //instance
             Team aTeam = new Team();
             User admin = new Admin();
@@ -178,18 +185,21 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddMember(admin);
             //assertion
             bool result = handler.Team.Members.Contains(admin) && handler.Team.Members.Count==1;
+            CleanDB(blackBoardContext);
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestAddMemberExists()
         {
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             //instance
             Team aTeam = new Team();
             User admin = new Admin();
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
             //assertion
-            bool result = handler.AddMember(admin); ;
+            bool result = handler.AddMember(admin);
+            CleanDB(blackBoardContext);
             Assert.IsFalse(result);
         }
         [TestMethod]

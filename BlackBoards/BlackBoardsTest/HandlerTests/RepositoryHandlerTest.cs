@@ -12,7 +12,7 @@ namespace BlackBoardsTest.HandlerTests
     [TestClass]
     public class RepositoryHandlerTest
     {
-        [TestMethod]
+       /* [TestMethod]
         public void TestRepositoryHandler() {
             List<Team> teams = new List<Team>();
             List<User> users = new List<User>();
@@ -252,6 +252,6 @@ namespace BlackBoardsTest.HandlerTests
             bool addedBoards = handler.GetSpecificTeam("Equipo A").Boards.Count > 0 && handler.GetSpecificTeam("Equipo B").Boards.Count > 0;
             //assertion
             Assert.IsTrue(addedBoards);
-        }
+        }*/
     }
 }
