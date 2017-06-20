@@ -66,25 +66,24 @@ namespace BlackBoards
             validation.Validation = canAdd;
             return validation;
         }
-        /*
+        
        
         
-        public bool ModifyUser(string lookUpEmail, string name, string lastName, string email, DateTime birthDate, string password, Repository theRepository)
+       public bool ModifyUser(string lookUpEmail, string name, string lastName, string newEmail, DateTime birthDate, string password,AdminPersistance adminContext)
         {
             bool modified = false;
             User anUser = new Collaborator(name, lastName, lookUpEmail, birthDate, password);
-            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
-            bool doesUserExists = repHandler.UserAlreadyExists(anUser);
+            bool doesUserExists = adminContext.Exists(anUser);
             User modUser = new Collaborator();
-            modUser.Email = email;
-            bool userWithNewEmailValid = !theRepository.UserList.Contains(modUser) || lookUpEmail.Equals(email);
+            modUser.Email = newEmail;
+            bool userWithNewEmailValid = !adminContext.Exists(modUser) || lookUpEmail.Equals(newEmail);
             if (doesUserExists && userWithNewEmailValid)
             {
-                repHandler.ModifyUser(lookUpEmail, name, lastName, email, birthDate, password);
+                adminContext.ModifyUser(lookUpEmail, name, lastName, newEmail, birthDate, password);
                 modified = true;
             }
             return modified;
-        }*/
+        } 
         private ValidationReturn isAdmin(User anUser, AdminPersistance adminContext) {
             ValidationReturn isAnAdmin = new ValidationReturn(false, "El usuario no es un administador");
             if (adminContext.ExistsAdmin(anUser))

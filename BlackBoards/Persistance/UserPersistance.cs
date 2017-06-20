@@ -60,7 +60,7 @@ namespace Persistance
             }
 
         }
-        private User getUser(int id)
+        private User GetUser(int id)
         {
             try
             {
@@ -117,6 +117,38 @@ namespace Persistance
             {
                 throw new PersistanceUserException("Error en la base de datos. Imposible obtener id del usuario con email: " + email);
                 return -1;
+            }
+        }
+        private User GetUserByEmail(string lookUpEmail)
+        {
+            return this.GetUser(this.IDByEmail(lookUpEmail));
+        }
+        public void ModifyUser(string lookUpEmail, string name, string lastName, string newEmail, DateTime birthDate, string password)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    User anUser = new Collaborator();
+                    anUser.Email = lookUpEmail;
+                    if (this.Exists(anUser))
+                    {
+                        User anotherUser = this.GetUserByEmail(lookUpEmail);
+                        anotherUser.Name = name;
+                        anotherUser.Email = newEmail;
+                        anotherUser.LastName = lastName;
+                        anotherUser.BirthDate = birthDate;
+                        anotherUser.passwordUser = password;
+                        dbContext.users.Attach(anotherUser);
+                        dbContext.Entry(anotherUser).State = EntityState.Modified;
+                        dbContext.SaveChanges();
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el usuario " + lookUpEmail);
             }
         }
     }
