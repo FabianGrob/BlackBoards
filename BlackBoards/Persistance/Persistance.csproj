@@ -79,6 +79,7 @@
       <DependentUpon>201706192316576_DeleteColumnBlackBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PersistanceException\PersistanceCommentException.cs" />
     <Compile Include="PersistanceException\PersistanceItemException.cs" />
     <Compile Include="PersistanceException\PersistanceAdminException.cs" />
     <Compile Include="PersistanceException\PersistanceTeamException.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="BlackBoardPersistance.cs" />
     <Compile Include="TeamPersistance.cs" />
+    <Compile Include="CommentPersistance.cs" />
     <Compile Include="TextBoxPersistance.cs" />
     <Compile Include="UserPersistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
