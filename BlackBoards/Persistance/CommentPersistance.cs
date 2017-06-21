@@ -17,14 +17,19 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    dbContext.users.Attach(aComment.commentingUser);
-                    dbContext.users.Attach(aComment.resolvingUser);
-                    dbContext.items.Attach(aComment.itemBelong);
+                    UserPersistance userContext = new UserPersistance();
+                    User resolvingUser = userContext.GetUserByEmail(aComment.resolvingUser.Email);
+                    dbContext.users.Attach(resolvingUser);
+                    User commentingUser = userContext.GetUserByEmail(aComment.commentingUser.Email);
+                    dbContext.users.Attach(commentingUser);
+                    ItemPersistance itemContext = new ItemPersistance();
+                    Item itemBelongs = itemContext.GetItem(aComment.itemBelong.IDItem);
+                    dbContext.items.Attach(itemBelongs);
                     dbContext.comments.Add(aComment);
                     dbContext.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new PersistanceCommentException("Error en la base de datos. Imposible agregar el Comentario");
             }
@@ -60,7 +65,7 @@ namespace Persistance
                     dbContext.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new PersistanceCommentException("Error en la base de datos. Imposible vaciar valores de comentarios.");
             }
@@ -89,7 +94,7 @@ namespace Persistance
                     return dbContext.comments.Find(id);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new PersistanceCommentException("Error de base de datos: No se pudo obtener el Comentario.");
 
