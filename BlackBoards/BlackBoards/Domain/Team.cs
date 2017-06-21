@@ -107,9 +107,17 @@ namespace BlackBoards
                 this.boards = value;
             }
         }
+        private bool EmptyBlackBoard()
+        {
+            return (this.boards != null || this.boards.Count > 0);
+        }
         public bool doesBlackBoardExists(BlackBoard aBoard)
         {
-            return this.boards.Contains(aBoard);
+            if (this.EmptyBlackBoard())
+            {
+                return this.boards.Contains(aBoard);
+            }
+            return false;
         }
         public BlackBoard getSpecificBlackBoard(BlackBoard aBoard)
         {

@@ -64,30 +64,15 @@ namespace Persistance
                 throw new PersistanceTeamException("Error de base de datos: No se pudo eliminar el equipo.");
             }
         }
-        private Team getTeam(int id)
-        {
-            try
-            {
-                using (BlackBoardsContext dbContext = new BlackBoardsContext())
-                {
-                    return dbContext.teams.Find(id);
-                }
-            }
-            catch (Exception)
-            {
-                throw new PersistanceTeamException("Error de base de datos: No se pudo obtener el equipo.");
-                return new Team();
-            }
 
-        }
         public void Empty()
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    List<Team> users = dbContext.teams.ToList();
-                    foreach (Team actualTeam in users)
+                    List<Team> teams = dbContext.teams.ToList();
+                    foreach (Team actualTeam in teams)
                     {
                         Team toDelete = dbContext.teams.Find(actualTeam.IDTeam);
                         dbContext.teams.Remove(toDelete);
@@ -140,7 +125,7 @@ namespace Persistance
                 return new Team();
             }
         }
-       
+
         public List<User> GetMembersById(int id)
         {
             using (BlackBoardsContext dbContext = new BlackBoardsContext())
@@ -156,6 +141,28 @@ namespace Persistance
                 return new List<User>();
             }
         }
-        
+        public List<BlackBoard> GetBlackBoardsById(int id)
+        {
+            using (BlackBoardsContext dbContext = new BlackBoardsContext())
+            {
+                List<Team> allTeams = dbContext.teams.ToList();
+                foreach (Team actualTeam in allTeams)
+                {
+                    if (actualTeam.IDTeam == id)
+                    {
+                        if (actualTeam.boards.Count > 0)
+                        {
+                            return actualTeam.boards;
+                        }
+                    }
+                }
+                return new List<BlackBoard>();
+            }
+        }
+        public Team GetTeamByName(string name)
+        {
+            return this.GetTeam(this.IDByName(name));
+        }
+
     }
 }

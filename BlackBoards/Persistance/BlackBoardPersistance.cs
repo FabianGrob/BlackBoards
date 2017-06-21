@@ -17,14 +17,15 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    dbContext.teams.Attach(blackBoard.teamBelongs);
                     dbContext.users.Attach(blackBoard.CreatorUser);
+                    dbContext.teams.Attach(blackBoard.teamBelongs);
                     dbContext.blackBoards.Add(blackBoard);
                     dbContext.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                
                 throw new PersistanceBlackBoardException("Error en la base de datos. Imposible agregar pizarron");
             }
 
