@@ -394,7 +394,9 @@ namespace BlackBoardsTest.HandlerTests
             CleanDB(userContext, new TeamPersistance());
             //assertion
             Assert.IsTrue(result);
-        }/*
+        }
+        
+        /*
         [TestMethod]
         public void TestModifyTeamCheckWrong()
         {

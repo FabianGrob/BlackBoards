@@ -51,8 +51,6 @@ namespace BlackBoards
             validation.Validation = canAdd;
             return validation;
         }
-
-
         public ValidationReturn CreateAdmin(string name, string lastName, string email, DateTime birthDate, string password, AdminPersistance adminrContext)
         {
             Admin anAdmin = new Admin(name, lastName, email, birthDate, password);
@@ -66,9 +64,6 @@ namespace BlackBoards
             validation.Validation = canAdd;
             return validation;
         }
-
-
-
         public bool ModifyUser(string lookUpEmail, string name, string lastName, string newEmail, DateTime birthDate, string password, AdminPersistance adminContext)
         {
             bool modified = false;
