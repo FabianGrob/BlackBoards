@@ -330,6 +330,7 @@ namespace BlackBoardsTest.HandlerTests
         {
             //instance
             UserPersistance userContext = new UserPersistance();
+            CleanDB(userContext, new TeamPersistance());
             Initialize(userContext);
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
@@ -353,9 +354,10 @@ namespace BlackBoardsTest.HandlerTests
             int newMaxUsers = 5;
             members.Remove(col1);
             handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), teamContext);
-            Team teamToLookingUp = teamContext.GetTeamByName(name);
+            Team teamToLookingUp = teamContext.GetTeamByName(newName);
             //assertion
             bool result = teamToLookingUp.MaxUsers == 5;
+            CleanDB(userContext,new TeamPersistance());
             Assert.IsTrue(result);
         }
         [TestMethod]

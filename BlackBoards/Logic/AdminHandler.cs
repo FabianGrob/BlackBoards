@@ -55,21 +55,21 @@ namespace BlackBoards
 
         public ValidationReturn CreateAdmin(string name, string lastName, string email, DateTime birthDate, string password, AdminPersistance adminrContext)
         {
-            Admin anAdmin = new Admin(name,lastName,email,birthDate,password);
+            Admin anAdmin = new Admin(name, lastName, email, birthDate, password);
             ValidationReturn validation = this.ExistsUser(anAdmin, adminrContext);
             bool canAdd = !validation.Validation;
             if (canAdd)
-            {          
+            {
                 adminrContext.AddAdmin(anAdmin);
                 validation.Message = "El usuario se ha creado con exito";
             }
             validation.Validation = canAdd;
             return validation;
         }
-        
-       
-        
-       public bool ModifyUser(string lookUpEmail, string name, string lastName, string newEmail, DateTime birthDate, string password,AdminPersistance adminContext)
+
+
+
+        public bool ModifyUser(string lookUpEmail, string name, string lastName, string newEmail, DateTime birthDate, string password, AdminPersistance adminContext)
         {
             bool modified = false;
             User anUser = new Collaborator(name, lastName, lookUpEmail, birthDate, password);
@@ -83,12 +83,13 @@ namespace BlackBoards
                 modified = true;
             }
             return modified;
-        } 
-        private ValidationReturn isAdmin(User anUser, AdminPersistance adminContext) {
+        }
+        private ValidationReturn isAdmin(User anUser, AdminPersistance adminContext)
+        {
             ValidationReturn isAnAdmin = new ValidationReturn(false, "El usuario no es un administador");
             if (adminContext.ExistsAdmin(anUser))
             {
-                isAnAdmin.RedefineValues(true,"El usuario es un Administrador");                
+                isAnAdmin.RedefineValues(true, "El usuario es un Administrador");
             }
             return isAnAdmin;
         }
@@ -119,7 +120,6 @@ namespace BlackBoards
             }
             return idUser;
         }
-        
         public ValidationReturn CreateTeam(string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, TeamPersistance teamContext)
         {
             ValidationReturn added = new ValidationReturn(false, "El equipo ya existe");
@@ -129,7 +129,7 @@ namespace BlackBoards
             newTeam.MaxUsers = maxUsers;
             newTeam.members = members;
             newTeam.boards = boards;
-            newTeam.CreationDate = DateTime.Today;            
+            newTeam.CreationDate = DateTime.Today;
             if (!teamContext.Exists(newTeam) && newTeam.IsValid().Validation)
             {
                 teamContext.AddTeam(newTeam);
@@ -140,41 +140,41 @@ namespace BlackBoards
         }
         public ValidationReturn DeleteTeam(string name, TeamPersistance teamContext)
         {
-            ValidationReturn validation = new ValidationReturn(false,"El equipo no ha sido eliminado.");
+            ValidationReturn validation = new ValidationReturn(false, "El equipo no ha sido eliminado.");
             int lookUpIdTeam = teamContext.IDByName(name);
             Team lookUpTeam = teamContext.GetTeam(lookUpIdTeam);
             bool teamAlreadyExists = teamContext.Exists(lookUpTeam);
             if (teamAlreadyExists)
             {
                 teamContext.Delete(lookUpTeam);
-                validation.RedefineValues(true,"El equipo ha sido eliminado.");
+                validation.RedefineValues(true, "El equipo ha sido eliminado.");
             }
             return validation;
         }
-        /*
-        public bool ModifyTeam(string oldName, string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, Repository theRepository)
+        public ValidationReturn ModifyTeam(string oldName, string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, TeamPersistance teamContext)
         {
             bool modified = false;
-            RepositoryHandler handler = new RepositoryHandler(theRepository);
             Team abstractTeam = new Team(name, DateTime.Today, description, maxUsers, members, boards);
             ValidationReturn validModifications = abstractTeam.IsValid();
-            Team oldTeam = new Team();
-            oldTeam.Name = oldName;
-            bool teamExists = theRepository.TeamList.Contains(oldTeam);
-            if (validModifications.Validation && teamExists && (!handler.TeamAlreadyExists(name) || oldName.Equals(name)))
+            int id = teamContext.IDByName(oldName);
+            Team oldTeam = teamContext.GetTeam(id);
+            Team toModificate = teamContext.GetTeam(id);
+            toModificate.Name = name;
+            bool teamExists = teamContext.Exists(oldTeam);
+            if (validModifications.Validation && teamExists && (!teamContext.Exists(toModificate) || oldName.Equals(name)))
             {
-                Team toModificate = handler.GetSpecificTeam(oldName);
+                toModificate = teamContext.GetTeamByName(oldName);
                 modified = true;
                 toModificate.Name = name;
                 toModificate.Description = description;
                 toModificate.MaxUsers = maxUsers;
-                toModificate.Members = members;
-                toModificate.Boards = boards;
+                toModificate.members = members;
+                toModificate.boards = boards;
+                teamContext.ModifyTeam(toModificate, oldTeam);
+                validModifications.Message = "El equipo ha sido modificado";
             }
-            return modified;
+            return validModifications;
         }
-      
-        */
     }
 }
 
