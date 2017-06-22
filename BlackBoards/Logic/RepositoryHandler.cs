@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BlackBoards.Handlers
 {
-   public class RepositoryHandler
+    public class RepositoryHandler
     {
         private Repository repository;
-
-        public RepositoryHandler(Repository theRepository) {
+        public RepositoryHandler(Repository theRepository)
+        {
             this.repository = theRepository;
         }
         public Repository Repository
@@ -25,7 +25,8 @@ namespace BlackBoards.Handlers
             }
         }
 
-        public void AddUser(User anUser) {
+        public void AddUser(User anUser)
+        {
             this.repository.UserList.Add(anUser);
         }
         public void AddAdmin(Admin anAdmin)
@@ -33,13 +34,16 @@ namespace BlackBoards.Handlers
             this.repository.AdministratorList.Add(anAdmin);
             this.AddUser(anAdmin);
         }
-        public void AddTeam(Team aTeam) {
+        public void AddTeam(Team aTeam)
+        {
             this.repository.TeamList.Add(aTeam);
         }
-        public bool UserAlreadyExists(User anUser) {
+        public bool UserAlreadyExists(User anUser)
+        {
             return this.repository.UserList.Contains(anUser);
         }
-        public bool TeamAlreadyExists(Team aTeam) {
+        public bool TeamAlreadyExists(Team aTeam)
+        {
             return this.repository.TeamList.Contains(aTeam);
         }
         public List<Team> getUserTeams(User user)
@@ -55,9 +59,11 @@ namespace BlackBoards.Handlers
             }
             return userTeams;
         }
-        public User getSepcificUser(string lookUpEmail) {
+        public User getSepcificUser(string lookUpEmail)
+        {
             User u = null;
-            foreach (User user in this.Repository.UserList) {
+            foreach (User user in this.Repository.UserList)
+            {
                 if (user.Email.Equals(lookUpEmail))
                 {
                     u = user;
@@ -65,7 +71,8 @@ namespace BlackBoards.Handlers
             }
             return u;
         }
-        public void ModifyUser(string lookUpEmail, string name, string lastName, string email, DateTime birthDate, string password) {
+        public void ModifyUser(string lookUpEmail, string name, string lastName, string email, DateTime birthDate, string password)
+        {
             User mod = this.getSepcificUser(lookUpEmail);
             mod.Name = name;
             mod.LastName = lastName;
@@ -74,7 +81,7 @@ namespace BlackBoards.Handlers
             mod.Password = password;
             if (IsUserAnAdmin(lookUpEmail))
             {
-               mod= this.GetSpecificAdmin(lookUpEmail);
+                mod = this.GetSpecificAdmin(lookUpEmail);
                 mod.Name = name;
                 mod.LastName = lastName;
                 mod.Email = email;
@@ -82,9 +89,11 @@ namespace BlackBoards.Handlers
                 mod.Password = password;
             }
         }
-        public bool IsUserAnAdmin(string lookUpEmail) {
+        public bool IsUserAnAdmin(string lookUpEmail)
+        {
             bool isAnAdmin = false;
-            foreach (Admin admin in this.Repository.AdministratorList) {
+            foreach (Admin admin in this.Repository.AdministratorList)
+            {
                 if (admin.Email.Equals(lookUpEmail))
                 {
                     isAnAdmin = true;
@@ -92,7 +101,8 @@ namespace BlackBoards.Handlers
             }
             return isAnAdmin;
         }
-        private Admin GetSpecificAdmin(string lookUpEmail) {
+        private Admin GetSpecificAdmin(string lookUpEmail)
+        {
             Admin admin = null;
             foreach (Admin actualAdmin in this.Repository.AdministratorList)
             {
@@ -110,10 +120,11 @@ namespace BlackBoards.Handlers
                 if (actualTeam.members.Contains(delete))
                 {
                     actualTeam.members.Remove(delete);
-                } 
+                }
             }
         }
-        public void DeleteUser(string email) {
+        public void DeleteUser(string email)
+        {
             User delete = this.getSepcificUser(email);
             DeleteUsersFromTeams(delete);
             this.Repository.UserList.Remove(delete);
@@ -124,9 +135,11 @@ namespace BlackBoards.Handlers
             }
             CleanEmptyTeams();
         }
-        public Team GetSpecificTeam(string name) {
+        public Team GetSpecificTeam(string name)
+        {
             Team teamToReturn = null;
-            foreach (Team actualTeam in this.Repository.TeamList) {
+            foreach (Team actualTeam in this.Repository.TeamList)
+            {
                 if (actualTeam.Name.Equals(name))
                 {
                     teamToReturn = actualTeam;
@@ -134,14 +147,16 @@ namespace BlackBoards.Handlers
             }
             return teamToReturn;
         }
-        public bool TeamAlreadyExists(string name) {
+        public bool TeamAlreadyExists(string name)
+        {
             bool exists = false;
-            foreach (Team actualTeam in this.Repository.TeamList) {
+            foreach (Team actualTeam in this.Repository.TeamList)
+            {
                 if (actualTeam.Name.Equals(name))
                 {
                     exists = true;
                 }
-              }
+            }
             return exists;
         }
         private void RemoveTeamFromRepository(Team teamToDelete)
@@ -159,7 +174,7 @@ namespace BlackBoards.Handlers
         {
             List<Team> teamsToDelete = new List<Team>();
             foreach (Team actualTeam in this.Repository.TeamList)
-            {   
+            {
                 TeamHandler actualTeamHandler = new TeamHandler(actualTeam);
                 if (!actualTeamHandler.HasAnyMember())
                 {
@@ -178,14 +193,15 @@ namespace BlackBoards.Handlers
                 User user = getSepcificUser(lookUpEmail);
                 return user.Password.Equals(password);
             }
-            else return false;    
+            else return false;
         }
-        public List<Comment> resolvedCommentsByUser(User anUser) {
+        public List<Comment> resolvedCommentsByUser(User anUser)
+        {
             List<Comment> resolvedCommentsUser = new List<Comment>();
             List<Team> teamsUserMember = this.getUserTeams(anUser);
 
             List<Item> allItemsInTeamsUser = new List<Item>();
-            foreach (Team actualTeam in teamsUserMember )
+            foreach (Team actualTeam in teamsUserMember)
             {
                 foreach (BlackBoard board in actualTeam.boards)
                 {
@@ -197,14 +213,14 @@ namespace BlackBoards.Handlers
                             {
                                 resolvedCommentsUser.Add(actualComment);
                             }
-
                         }
                     }
                 }
             }
             return resolvedCommentsUser;
         }
-        public List<Comment> filterCreationDate(List<Comment> comments,DateTime creationDate) {
+        public List<Comment> filterCreationDate(List<Comment> comments, DateTime creationDate)
+        {
             List<Comment> filtered = new List<Comment>();
             foreach (Comment actualComment in comments)
             {
@@ -227,7 +243,6 @@ namespace BlackBoards.Handlers
                 }
             }
             return filtered;
-
         }
         public List<Comment> filterCommentingUser(List<Comment> comments, User commentingUser)
         {
@@ -241,32 +256,28 @@ namespace BlackBoards.Handlers
             }
             return filtered;
         }
-        private void LoadUsers(AdminHandler admHandler) {
-           // admHandler.CreateCollaborator("Roberto", "Gonzales", "rGonzales@testEmail.com", DateTime.Today, "password", this.Repository);
-           // admHandler.CreateCollaborator("Rodrigo", "Rodriguez", "rodriguezRodrigo@testEmail.com", DateTime.Today, "password", this.Repository);
-           // admHandler.CreateCollaborator("Alberto", "Gomez", "AlbertoG@testEmail.com", DateTime.Today, "password", this.Repository);
-           // admHandler.CreateAdmin("Maria", "Fernandez", "mraFernandez@testEmail.com", DateTime.Today, "password", this.Repository);
+        private void LoadUsers(AdminHandler admHandler)
+        {
         }
-        private void loadTeams(AdminHandler admHandler,Admin secondAdm) {
-            //creataTing First Team
+        private void loadTeams(AdminHandler admHandler, Admin secondAdm)
+        {
             List<User> membersA = new List<User>();
             membersA.Add(this.getSepcificUser("rGonzales@testEmail.com"));
             membersA.Add(this.getSepcificUser("rodriguezRodrigo@testEmail.com"));
-            membersA.Add(admHandler.Admin);          
-          //  admHandler.CreateTeam("Equipo A", "Equipo de prueba", 4, membersA, new List<BlackBoard>(), this.Repository);
-            //creating Second Team
+            membersA.Add(admHandler.Admin);
             List<User> membersB = new List<User>();
             membersB.Add(this.getSepcificUser("rGonzales@testEmail.com"));
             membersB.Add(secondAdm);
-          //  admHandler.CreateTeam("Equipo B", "Equipo de prueba", 3, membersB, new List<BlackBoard>(), this.Repository);
         }
-        private void LoadBoards(UserHandler handlerAdm,UserHandler handlerSndAdm ){           
+        private void LoadBoards(UserHandler handlerAdm, UserHandler handlerSndAdm)
+        {
             BlackBoard boardA = new BlackBoard("Trabajo Empresa", "Es una pizarra de prueba", new Domain.Dimension(600, 500), new List<Item>(), handlerAdm.User);
             handlerAdm.CreateBlackBoard(this.GetSpecificTeam("Equipo A"), boardA);
             BlackBoard boardB = new BlackBoard("Trabajo Escritorio", "Es una pizarra de prueba", new Domain.Dimension(600, 500), new List<Item>(), handlerSndAdm.User);
             handlerSndAdm.CreateBlackBoard(this.GetSpecificTeam("Equipo B"), boardB);
         }
-        public bool loadTestData() {
+        public bool loadTestData()
+        {
             bool generated = false;
             if (!this.repository.TestData)
             {

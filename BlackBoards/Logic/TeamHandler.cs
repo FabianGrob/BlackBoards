@@ -11,8 +11,8 @@ namespace BlackBoards.Handlers
     public class TeamHandler
     {
         private Team team;
-
-        public TeamHandler(Team aTeam) {
+        public TeamHandler(Team aTeam)
+        {
             this.team = aTeam;
         }
         public Team Team
@@ -26,22 +26,24 @@ namespace BlackBoards.Handlers
                 this.team = value;
             }
         }
-        public ValidationReturn AddBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext, User creatorUser) {
+        public ValidationReturn AddBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext, User creatorUser)
+        {
             bool valid = aBoard.isValid();
             bool notExists = !this.team.doesBlackBoardExists(aBoard);
             bool validBlackBoard = valid && notExists;
             aBoard.teamBelongs = this.team;
             if (validBlackBoard)
             {
-                blackBoardContext.AddBlackBoard(aBoard,creatorUser);
+                blackBoardContext.AddBlackBoard(aBoard, creatorUser);
             }
             ValidationReturn validation = new ValidationReturn(validBlackBoard, "");
             return validation;
         }
-        public ValidationReturn RemoveBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext) {
+        public ValidationReturn RemoveBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext)
+        {
             TeamPersistance teamContext = new TeamPersistance();
             bool exists = blackBoardContext.Exists(aBoard);
-            ValidationReturn validation = new ValidationReturn(exists,"No se ha podido eliminar el pizarron.");
+            ValidationReturn validation = new ValidationReturn(exists, "No se ha podido eliminar el pizarron.");
             if (exists)
             {
                 blackBoardContext.Delete(aBoard);
@@ -51,18 +53,18 @@ namespace BlackBoards.Handlers
         }
         public bool ModifyBlackBoard(BlackBoard oldBoard, BlackBoard newBoard)
         {
-
             BlackBoardHandler handler = new BlackBoardHandler(oldBoard);
             bool modified = false;
-            bool exists =this.Team.boards.Contains(oldBoard);
+            bool exists = this.Team.boards.Contains(oldBoard);
             if (exists && newBoard.isValid())
             {
-                handler.Modify(newBoard.Name,newBoard.Description,newBoard.Dimension);
+                handler.Modify(newBoard.Name, newBoard.Description, newBoard.Dimension);
                 modified = true;
             }
             return modified;
         }
-        public bool AddMember(User anUser) {
+        public bool AddMember(User anUser)
+        {
             bool added = false;
             bool userNotMember = !this.Team.members.Contains(anUser);
             if (userNotMember)
@@ -72,7 +74,8 @@ namespace BlackBoards.Handlers
             }
             return added;
         }
-        public bool RemoveMember(User anUser) {
+        public bool RemoveMember(User anUser)
+        {
             bool removed = false;
             bool userMember = this.Team.members.Contains(anUser);
             if (userMember)
@@ -82,7 +85,8 @@ namespace BlackBoards.Handlers
             }
             return removed;
         }
-        public bool IsUserInTeam(User anUser) {
+        public bool IsUserInTeam(User anUser)
+        {
             return this.Team.members.Contains(anUser);
         }
         public bool HasAnyMember()

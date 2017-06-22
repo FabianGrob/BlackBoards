@@ -9,7 +9,6 @@ namespace BlackBoards.Handlers
     public class TextBoxHandler
     {
         private TextBox textBox;
-
         public TextBoxHandler(TextBox aTextBox) {
             this.textBox = aTextBox;
         }
