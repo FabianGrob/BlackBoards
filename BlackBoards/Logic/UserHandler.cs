@@ -56,7 +56,7 @@ namespace BlackBoards
         }
         public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard, Repository aRepository)
         {
-
+            
             RepositoryHandler repositoryHandler = new RepositoryHandler(aRepository);
             bool userAdmin = repositoryHandler.IsUserAnAdmin(User.Email);
             if (aBlackBoard.creatorUser.Equals(this.user) || userAdmin)

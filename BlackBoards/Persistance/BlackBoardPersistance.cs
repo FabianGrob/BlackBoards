@@ -60,7 +60,7 @@ namespace Persistance
                 throw new PersistanceBlackBoardException("Error de base de datos: No se pudo eliminar el pizarron.");
             }
         }
-        private BlackBoard GetBlackBoard(int id)
+        public BlackBoard GetBlackBoard(int id)
         {
             try
             {
