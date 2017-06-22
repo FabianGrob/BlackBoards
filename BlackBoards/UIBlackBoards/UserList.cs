@@ -66,7 +66,7 @@ namespace UIBlackBoards
             {
                 User selectedUser = (User)listBoxAllUsers.SelectedItem;
                 panelContainer.Controls.Clear();
-                UserControl modifyUser = new ModifyUser(logged, theRepository, panelContainer, selectedUser);
+                UserControl modifyUser = new ModifyUser(logged.Email, theRepository, panelContainer, selectedUser);
                 panelContainer.Controls.Add(modifyUser);
             }
         }

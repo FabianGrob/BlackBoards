@@ -14,11 +14,11 @@ namespace UIBlackBoards
 {
     public partial class ModifyUser : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
         private User userToModify;
-        public ModifyUser(User anUser, Repository aRepository, Panel container, User modifyingUser)
+        public ModifyUser(string anUser, Repository aRepository, Panel container, User modifyingUser)
         {
             InitializeComponent();
             logged = anUser;
@@ -56,21 +56,17 @@ namespace UIBlackBoards
             string name = textBoxName.Text;
             string lastName = textBoxLastN.Text;
             DateTime birthDate = dateTimePicker.Value;
-            AddNewUser a = new AddNewUser(logged, theRepository, panelContainer);
-            AdminHandler adminHandler = new AdminHandler((Admin)logged);
-            bool valid = a.isValid(email, fstPass, sndPass, name, lastName, birthDate);
-            if (valid)
+            Facade facade = new Facade();
+            BlackBoards.Domain.BlackBoards.ValidationReturn validation = facade.modifyUser(logged, email, fstPass, name, lastName, birthDate);
+            if (validation.Validation)
             {
-                bool modified = false;// adminHandler.ModifyUser(userToModify.Email, name, lastName, email, birthDate, fstPass, theRepository);
-                if (!modified)
-                {
-                    MessageBox.Show("El email nuevo ya esta registrado como otro usuario", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("Usuario modificado correctamente", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    panelContainer.Controls.Clear();
-                }
+                MessageBox.Show("Usuario modificado correctamente", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                panelContainer.Controls.Clear();
+            }
+            else
+            {
+                MessageBox.Show("El email nuevo ya esta registrado como otro usuario", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
     }

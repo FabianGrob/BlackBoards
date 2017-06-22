@@ -18,12 +18,11 @@ namespace Persistance
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
                     dbContext.teams.Attach(blackBoard.teamBelongs);
-                    dbContext.users.Attach(blackBoard.creatorUser);
                     dbContext.blackBoards.Add(blackBoard);
                     dbContext.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new PersistanceBlackBoardException("Error en la base de datos. Imposible agregar pizarron");
             }
@@ -67,7 +66,8 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    return dbContext.blackBoards.Find(id);
+                    BlackBoard completeBlackBoard = dbContext.blackBoards.Include(bb => bb.creatorUser).Include(bb => bb.itemList).Include(bb => bb.teamBelongs).FirstOrDefault(bb => bb.IDBlackBoard == id);
+                    return completeBlackBoard;
                 }
             }
             catch (Exception)

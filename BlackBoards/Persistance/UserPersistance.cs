@@ -66,13 +66,13 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    return dbContext.users.Find(id);
+                    User completeUser = dbContext.users.Include(u => u.belongInteams).Include(u => u.createdComments).Include(u => u.resolvedComments).Include(u => u.scoresInTeams).FirstOrDefault(u => u.ID == id);
+                    return completeUser;
                 }
             }
             catch (Exception)
             {
                 throw new PersistanceUserException("Error de base de datos: No se pudo obtener el usuario.");
-                return new Admin();
             }
         }
         public void Empty()

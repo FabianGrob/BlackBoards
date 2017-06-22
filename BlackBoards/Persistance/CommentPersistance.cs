@@ -91,7 +91,8 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    return dbContext.comments.Find(id);
+                    Comment completeComent = dbContext.comments.Include(c => c.commentingUser).Include(c => c.itemBelong).Include(c => c.resolvingUser).FirstOrDefault(c => c.IDComment == id);
+                    return completeComent;
                 }
             }
             catch (Exception ex)

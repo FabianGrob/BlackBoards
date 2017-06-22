@@ -58,9 +58,9 @@
     <Compile Include="AdminPersistance.cs" />
     <Compile Include="BlackBoardsContext.cs" />
     <Compile Include="ItemPersistance.cs" />
-    <Compile Include="Migrations\201706220232560_DataBase.cs" />
-    <Compile Include="Migrations\201706220232560_DataBase.Designer.cs">
-      <DependentUpon>201706220232560_DataBase.cs</DependentUpon>
+    <Compile Include="Migrations\201706220656530_DB.cs" />
+    <Compile Include="Migrations\201706220656530_DB.Designer.cs">
+      <DependentUpon>201706220656530_DB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersistanceException\PersistanceCommentException.cs" />
@@ -77,8 +77,8 @@
     <Compile Include="TextBoxPersistance.cs" />
     <Compile Include="UserPersistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Migrations\201706220232560_DataBase.resx">
-      <DependentUpon>201706220232560_DataBase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706220656530_DB.resx">
+      <DependentUpon>201706220656530_DB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

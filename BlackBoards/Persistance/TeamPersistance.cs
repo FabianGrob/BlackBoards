@@ -64,13 +64,14 @@ namespace Persistance
                 throw new PersistanceTeamException("Error de base de datos: No se pudo eliminar el equipo.");
             }
         }
-        private Team getTeam(int id)
+        public Team GetTeam(int id)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    return dbContext.teams.Find(id);
+                    Team completeTeam = dbContext.teams.Include(t => t.boards).Include(t => t.members).Include(t => t.scoresOfUsers).Include(t => t.EstablishedScoreTeam).FirstOrDefault(t => t.IDTeam == id);
+                    return completeTeam;
                 }
             }
             catch (Exception)
@@ -125,22 +126,8 @@ namespace Persistance
             }
         }
 
-        public Team GetTeam(int id)
-        {
-            try
-            {
-                using (BlackBoardsContext dbContext = new BlackBoardsContext())
-                {
-                    return dbContext.teams.Find(id);
-                }
-            }
-            catch (Exception)
-            {
-                throw new PersistanceUserException("Error de base de datos: No se pudo obtener el equipo.");
-                return new Team();
-            }
-        }
-       
+      
+
         public List<User> GetMembersById(int id)
         {
             using (BlackBoardsContext dbContext = new BlackBoardsContext())
@@ -156,6 +143,9 @@ namespace Persistance
                 return new List<User>();
             }
         }
-        
+        public Team GetTeamByName(string name) {
+            return this.GetTeam(this.IDByName(name));
+        }
+
     }
 }

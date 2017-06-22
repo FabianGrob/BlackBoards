@@ -21,7 +21,27 @@ namespace Persistance
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>()
+              .HasMany<Team>(s => s.belongInteams)
+              .WithMany(c => c.members)
+              .Map(cs =>
+              {
+                  cs.MapLeftKey("IDUser");
+                  cs.MapRightKey("IDTeam");
+                  cs.ToTable("Members");
+              });
+            modelBuilder.Entity<ScoreUserInTeam>()
+                .HasRequired<Team>(s => s.theTeam) // BlackBoard entity requires Team 
+                .WithMany(s => s.scoresOfUsers)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<BlackBoard>()
+                  .HasRequired<Team>(s => s.teamBelongs) // BlackBoard entity requires Team 
+                  .WithMany(s => s.boards)
+                  .WillCascadeOnDelete(false);
+            modelBuilder.Entity<EstablishedScoreTeam>()
+                              .HasRequired<Team>(s => s.teamScore) // Mark Address property optional in Student entity
+                              .WithRequiredDependent(ad => ad.EstablishedScoreTeam); // mark Student property as required in StudentAddress entity. Cannot save StudentAddress without Stude
+            base.OnModelCreating(modelBuilder);
         }
         public DbSet<User> users { get; set; }
         public DbSet<Team> teams { get; set; }
