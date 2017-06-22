@@ -127,8 +127,8 @@ namespace BlackBoards
             newTeam.Name = name;
             newTeam.Description = description;
             newTeam.MaxUsers = maxUsers;
-            newTeam.Members = members;
-            newTeam.Boards = boards;
+            newTeam.members = members;
+            newTeam.boards = boards;
             newTeam.CreationDate = DateTime.Today;            
             if (!teamContext.Exists(newTeam) && newTeam.IsValid().Validation)
             {

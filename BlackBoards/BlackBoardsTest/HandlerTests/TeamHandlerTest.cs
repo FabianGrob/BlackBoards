@@ -118,7 +118,7 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             ValidationReturn removed = handler.RemoveBlackBoard(board,blackBoardContext);
             CleanDB(blackBoardContext);
-            Assert.IsTrue(removed.Validation && handler.Team.Boards.Count == 0);
+            Assert.IsTrue(removed.Validation && handler.Team.boards.Count == 0);
         }
         [TestMethod]
         public void TestModifyBlackBoardValid() {
@@ -197,7 +197,7 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
             //assertion
-            bool result = handler.Team.Members.Contains(admin) && handler.Team.Members.Count==1;
+            bool result = handler.Team.members.Contains(admin) && handler.Team.members.Count==1;
             CleanDB(blackBoardContext);
             Assert.IsTrue(result);
         }
@@ -237,7 +237,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddMember(admin);
             handler.RemoveMember(admin);
             //assertion
-            bool result = handler.Team.Members.Count == 0;
+            bool result = handler.Team.members.Count == 0;
             Assert.IsTrue(result);
 
         }

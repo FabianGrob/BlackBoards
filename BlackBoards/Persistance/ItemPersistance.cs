@@ -61,7 +61,6 @@ namespace Persistance
                         dbContext.Entry(anotherItem).State = EntityState.Modified;
                         dbContext.SaveChanges();
                     }
-
                 }
             }
             catch (Exception)
@@ -75,7 +74,7 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    return dbContext.items.Find(id);
+                    return dbContext.items.Include(t => t.comments).Include(t => t.blackBoardBelongs).FirstOrDefault(t => t.IDItem == id);
                 }
             }
             catch (Exception)

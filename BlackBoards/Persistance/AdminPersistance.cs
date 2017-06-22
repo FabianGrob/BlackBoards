@@ -17,7 +17,7 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    dbContext.admins.Add(anAdmin);
+                    dbContext.users.Add(anAdmin);
                     dbContext.SaveChanges();
                 }
             }
@@ -32,8 +32,10 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    List<User> admins = dbContext.admins.ToList<User>();
-                    return admins.Contains(anUser);
+                    List<User> users = dbContext.users.ToList<User>();
+                    bool existsAdmin = users.Contains(anUser);
+
+                    return (anUser is Admin && existsAdmin);
                 }
             }
             catch (Exception ex)
@@ -49,7 +51,7 @@ namespace Persistance
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
 
-                    dbContext.admins.Attach(anAdmin);
+                    dbContext.users.Attach(anAdmin);
                     dbContext.Entry(anAdmin).State = EntityState.Deleted;
                     dbContext.SaveChanges();
                 }

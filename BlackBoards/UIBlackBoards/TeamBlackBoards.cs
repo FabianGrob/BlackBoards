@@ -25,10 +25,10 @@ namespace UIBlackBoards
             panelContainer = container;
             actualTeam = aTeam;
             dateTimePicker.Value = DateTime.Today;
-            List<BlackBoard> boardsToShow = actualTeam.Boards;
+            List<BlackBoard> boardsToShow = actualTeam.boards;
             foreach (BlackBoard actualBoard in boardsToShow)
             {
-                string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.ItemList.Count;
+                string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.itemList.Count;
 
                 listBoxBoards.Items.Add(line);
             }
@@ -43,13 +43,13 @@ namespace UIBlackBoards
             else
             {
                 DateTime date = dateTimePicker.Value;
-                List<BlackBoard> boardsToShow = actualTeam.Boards;
+                List<BlackBoard> boardsToShow = actualTeam.boards;
                 listBoxBoards.Items.Clear();
                 foreach (BlackBoard actualBoard in boardsToShow)
                 {
                     if (date.Equals(actualBoard.CreationDate))
                     {
-                        string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.ItemList.Count;
+                        string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.itemList.Count;
                         listBoxBoards.Items.Add(line);
                     }
 
@@ -61,11 +61,11 @@ namespace UIBlackBoards
 
         private void buttonShowAll_Click(object sender, EventArgs e)
         {
-            List<BlackBoard> boardsToShow = actualTeam.Boards;
+            List<BlackBoard> boardsToShow = actualTeam.boards;
             listBoxBoards.Items.Clear();
             foreach (BlackBoard actualBoard in boardsToShow)
             {
-                string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad elementos: " + actualBoard.ItemList.Count;
+                string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad elementos: " + actualBoard.itemList.Count;
 
                 listBoxBoards.Items.Add(line);
             }

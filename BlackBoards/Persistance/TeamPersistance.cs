@@ -150,7 +150,7 @@ namespace Persistance
                 {
                     if (actualTeam.IDTeam == id)
                     {
-                        return actualTeam.Members;
+                        return actualTeam.members;
                     }
                 }
                 return new List<User>();

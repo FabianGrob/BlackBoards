@@ -40,7 +40,7 @@ namespace BlackBoards.Handlers
             BlackBoard fakeBlackBoard = new BlackBoard();
             fakeBlackBoard.Dimension = BlackBoard.Dimension;
             bool canModify = true;
-            foreach (Item actualItem in BlackBoard.ItemList)
+            foreach (Item actualItem in BlackBoard.itemList)
             {
                 BlackBoardHandler fakeHandler = new BlackBoardHandler(fakeBlackBoard);
                 if (fakeHandler.ItemOutOfBands(actualItem, actualItem.Origin))
@@ -68,17 +68,17 @@ namespace BlackBoards.Handlers
             bool itemFitsInBlackBoard = ItemOutOfBands(aItem, aItem.Origin);
             if (itemFitsInBlackBoard)
             {
-                this.blackBoard.ItemList.Add(aItem);
+                this.blackBoard.itemList.Add(aItem);
             }
             return itemFitsInBlackBoard;
         }
 
         public bool RemoveItem(Item aItem)
         {
-            bool existsItemInList = blackBoard.ItemList.Contains(aItem);
+            bool existsItemInList = blackBoard.itemList.Contains(aItem);
             if (existsItemInList)
             {
-                this.blackBoard.ItemList.Remove(aItem);
+                this.blackBoard.itemList.Remove(aItem);
 
             }
             return existsItemInList;

@@ -28,7 +28,7 @@ namespace BlackBoardsTest
             anotherBoard.Name = name;
             anotherBoard.Description = description;
             anotherBoard.Dimension = aDimension;
-            anotherBoard.ItemList = itemList;
+            anotherBoard.itemList = itemList;
             //assert
             Assert.IsTrue(aBoard.Equals(anotherBoard));
         }

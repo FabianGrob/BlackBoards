@@ -18,47 +18,23 @@ namespace BlackBoards
         private DateTime commentingDate;
         private DateTime resolvingDate;
         private string writtenComment;
-        public Nullable <int> commentingUserID { get; set; }
-        public Nullable<int> resolvingUserID { get; set; }
         public virtual Item itemBelong { get; set; }
         public Comment()
         {
-            this.CommentingUser = new Admin();
-            this.ResolvingUser = new Admin();
+            this.commentingUser = new Admin();
+            this.resolvingUser = new Admin();
             this.CommentingDate = DateTime.Now;
             this.ResolvingDate = DateTime.MaxValue;
             this.WrittenComment = "Default written comment";
         }
         public Comment(User commentingUser, User resolvingUser, DateTime commentingDate, DateTime resolvingDate, string writtenComment)
         {
-            this.CommentingUser = commentingUser;
-            this.ResolvingUser = resolvingUser;
+            this.commentingUser = commentingUser;
+            this.resolvingUser = resolvingUser;
             this.CommentingDate = commentingDate;
             this.ResolvingDate = resolvingDate;
             this.WrittenComment = writtenComment;
-        }
-        public User CommentingUser
-        {
-            get
-            {
-                return this.commentingUser;
-            }
-            set
-            {
-                this.commentingUser = value;
-            }
-        }
-        public User ResolvingUser
-        {
-            get
-            {
-                return this.resolvingUser;
-            }
-            set
-            {
-                this.resolvingUser = value;
-            }
-        }
+        }  
         public DateTime CommentingDate
         {
             get
@@ -107,8 +83,8 @@ namespace BlackBoards
             {
                 return false;
             }
-            bool dateEquals = this.ResolvingDate.Equals(anotherComment.ResolvingDate) && this.CommentingDate.Equals(anotherComment.CommentingDate);
-            bool userEquals = this.ResolvingUser.Equals(anotherComment.ResolvingUser) && this.CommentingUser.Equals(anotherComment.CommentingUser);
+            bool dateEquals = this.resolvingDate.Equals(anotherComment.resolvingDate) && this.commentingDate.Equals(anotherComment.commentingDate);
+            bool userEquals = this.resolvingUser.Equals(anotherComment.resolvingUser) && this.commentingUser.Equals(anotherComment.commentingUser);
             bool writtenCommentEquals = this.WrittenComment.Equals(anotherComment.WrittenComment);
             return (dateEquals && userEquals && writtenCommentEquals);
         }

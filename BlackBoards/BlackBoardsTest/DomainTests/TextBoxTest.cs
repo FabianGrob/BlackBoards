@@ -32,7 +32,7 @@ namespace BlackBoardsTest
             TextBox aTextBox = new TextBox();
             aTextBox.Dimension = new Dimension(1, 2);
             List<Comment> comments = new List<Comment>();
-            aTextBox.Comments = comments;
+            aTextBox.comments = comments;
             Coordinate origin = new Coordinate();
             aTextBox.Origin = origin;
             aTextBox.Content = "TestContent";

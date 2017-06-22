@@ -35,7 +35,7 @@ namespace UIBlackBoards
         }
         private void loadControls()
         {
-            foreach (Item actualItem in actualBlackBoard.ItemList)
+            foreach (Item actualItem in actualBlackBoard.itemList)
             {
                 Control controlToAdd;
                 if (actualItem.IsPicture())
@@ -86,7 +86,7 @@ namespace UIBlackBoards
                 int y = aControl.Bounds.Y;
                 int height = aControl.Bounds.Height;
                 int width = aControl.Bounds.Width;
-                Item actualItem = actualBlackBoard.ItemList.ElementAt(indexItems);
+                Item actualItem = actualBlackBoard.itemList.ElementAt(indexItems);
                 actualItem.Dimension.Height = height;
                 actualItem.Dimension.Width = width;
                 actualItem.Origin.XAxis = x;

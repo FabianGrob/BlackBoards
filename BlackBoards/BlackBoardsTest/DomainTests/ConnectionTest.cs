@@ -30,13 +30,13 @@ namespace BlackBoardsTest.DomainTests
         {
             //instance
             Connection connection = this.setUp();
-            TextBox from = new TextBox(connection.From as TextBox);
-            TextBox to = new TextBox(connection.To as TextBox);
+            TextBox from = new TextBox(connection.from as TextBox);
+            TextBox to = new TextBox(connection.to as TextBox);
             DirectionType direction = DirectionType.nonDirected;
             //assertion
             bool sameName = connection.Name.Equals("testingConnection");
             bool sameDesccription = connection.Description.Equals("this is a test");
-            bool sameItems = from.Equals(connection.From) && to.Equals(connection.To);
+            bool sameItems = from.Equals(connection.from) && to.Equals(connection.to);
             bool sameDirection = direction == connection.Direction;
             bool result = sameName && sameDesccription && sameItems && sameDirection;
             Assert.IsTrue(result);
@@ -46,13 +46,13 @@ namespace BlackBoardsTest.DomainTests
         {
             //instance
             Connection connection = this.setUp();
-            TextBox from = new TextBox(connection.From as TextBox);
-            TextBox to = new TextBox(connection.From as TextBox);
+            TextBox from = new TextBox(connection.from as TextBox);
+            TextBox to = new TextBox(connection.from as TextBox);
             DirectionType direction = DirectionType.nonDirected;
             //assertion
             bool sameName = connection.Name.Equals("testingConnection");
             bool sameDesccription = connection.Description.Equals("this is a test");
-            bool sameItems = from.Equals(connection.From) && to.Equals(connection.To);
+            bool sameItems = from.Equals(connection.from) && to.Equals(connection.to);
             bool sameDirection = direction == connection.Direction;
             bool result = sameName && sameDesccription && sameItems && sameDirection;
             Assert.IsFalse(result);
@@ -91,7 +91,7 @@ namespace BlackBoardsTest.DomainTests
         {
             //instance
             Connection connection = this.setUp();
-            connection.To = new TextBox(connection.From as TextBox);
+            connection.to = new TextBox(connection.from as TextBox);
             //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
@@ -101,7 +101,7 @@ namespace BlackBoardsTest.DomainTests
         {
             //instance
             Connection connection = this.setUp();
-            connection.To = null;
+            connection.to = null;
             //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
@@ -111,7 +111,7 @@ namespace BlackBoardsTest.DomainTests
         {
             //instance
             Connection connection = this.setUp();
-            connection.From = null;
+            connection.from = null;
             //assertion
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);

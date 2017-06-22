@@ -25,7 +25,7 @@ namespace UIBlackBoards
             theRepository = aRepository;
             panelContainer = container;
             team = teamToAddBlackBoard;
-            foreach (BlackBoard actualBoard in team.Boards)
+            foreach (BlackBoard actualBoard in team.boards)
             {
                 listBoxBlackBoards.Items.Add(actualBoard);
             }

@@ -18,8 +18,7 @@ namespace BlackBoards
         public virtual BlackBoard blackBoardBelongs { get; set; }
         public virtual List<Comment> comments { get; set; }
         private Coordinate origin;
-        public virtual Connection from { get; set; }
-        public virtual Connection to { get; set; }
+        public virtual Connection connect { get; set; }
 
         public Dimension Dimension
         {
@@ -30,17 +29,6 @@ namespace BlackBoards
             set
             {
                 this.dimension = value;
-            }
-        }
-        public List<Comment> Comments
-        {
-            get
-            {
-                return this.comments;
-            }
-            set
-            {
-                this.comments = value;
             }
         }
         public Coordinate Origin
@@ -63,7 +51,7 @@ namespace BlackBoards
             bool validComment = aComment.IsValid();
             if (validComment)
             {
-                this.Comments.Add(aComment);
+                this.comments.Add(aComment);
             }
             return validComment;
         }

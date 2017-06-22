@@ -107,9 +107,9 @@ namespace BlackBoards.Handlers
         {
             foreach (Team actualTeam in this.Repository.TeamList)
             {
-                if (actualTeam.Members.Contains(delete))
+                if (actualTeam.members.Contains(delete))
                 {
-                    actualTeam.Members.Remove(delete);
+                    actualTeam.members.Remove(delete);
                 } 
             }
         }
@@ -187,13 +187,13 @@ namespace BlackBoards.Handlers
             List<Item> allItemsInTeamsUser = new List<Item>();
             foreach (Team actualTeam in teamsUserMember )
             {
-                foreach (BlackBoard board in actualTeam.Boards)
+                foreach (BlackBoard board in actualTeam.boards)
                 {
-                    foreach (Item actualItem in board.ItemList)
+                    foreach (Item actualItem in board.itemList)
                     {
-                        foreach (Comment actualComment in actualItem.Comments)
+                        foreach (Comment actualComment in actualItem.comments)
                         {
-                            if (actualComment.ResolvingUser.Equals(anUser))
+                            if (actualComment.resolvingUser.Equals(anUser))
                             {
                                 resolvedCommentsUser.Add(actualComment);
                             }
@@ -234,7 +234,7 @@ namespace BlackBoards.Handlers
             List<Comment> filtered = new List<Comment>();
             foreach (Comment actualComment in comments)
             {
-                if (commentingUser.Equals(actualComment.CommentingUser))
+                if (commentingUser.Equals(actualComment.commentingUser))
                 {
                     filtered.Add(actualComment);
                 }

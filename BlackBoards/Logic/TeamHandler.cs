@@ -31,7 +31,7 @@ namespace BlackBoards.Handlers
             bool notExists = !this.team.doesBlackBoardExists(aBoard);
             bool validBlackBoard = valid && notExists;
             aBoard.teamBelongs = this.team;
-            aBoard.CreatorUser = creatorUser;
+            aBoard.creatorUser = creatorUser;
             if (validBlackBoard)
             {
                 blackBoardContext.AddBlackBoard(aBoard);
@@ -54,7 +54,7 @@ namespace BlackBoards.Handlers
 
             BlackBoardHandler handler = new BlackBoardHandler(oldBoard);
             bool modified = false;
-            bool exists =this.Team.Boards.Contains(oldBoard);
+            bool exists =this.Team.boards.Contains(oldBoard);
             if (exists && newBoard.isValid())
             {
                 handler.Modify(newBoard.Name,newBoard.Description,newBoard.Dimension);
@@ -64,30 +64,30 @@ namespace BlackBoards.Handlers
         }
         public bool AddMember(User anUser) {
             bool added = false;
-            bool userNotMember = !this.Team.Members.Contains(anUser);
+            bool userNotMember = !this.Team.members.Contains(anUser);
             if (userNotMember)
             {
-                this.Team.Members.Add(anUser);
+                this.Team.members.Add(anUser);
                 added = true;
             }
             return added;
         }
         public bool RemoveMember(User anUser) {
             bool removed = false;
-            bool userMember = this.Team.Members.Contains(anUser);
+            bool userMember = this.Team.members.Contains(anUser);
             if (userMember)
             {
-                this.Team.Members.Remove(anUser);
+                this.Team.members.Remove(anUser);
                 removed = true;
             }
             return removed;
         }
         public bool IsUserInTeam(User anUser) {
-            return this.Team.Members.Contains(anUser);
+            return this.Team.members.Contains(anUser);
         }
         public bool HasAnyMember()
         {
-            return !(this.Team.Members.Count == 0);
+            return !(this.Team.members.Count == 0);
         }
     }
 }

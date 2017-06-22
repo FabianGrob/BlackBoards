@@ -12,7 +12,7 @@ namespace BlackBoards
 {
     public class Team
     {
-        [Key]
+        [Key, ForeignKey("EstablishedScoreTeam")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IDTeam { get; set; }
         private string name;
@@ -21,7 +21,7 @@ namespace BlackBoards
         private int maxUsers;
         public virtual List<User> members { set; get; }
         public virtual List<BlackBoard> boards { set; get; }
-        public virtual EstablishedScoreTeam establishedScore { set; get; }
+        public virtual EstablishedScoreTeam EstablishedScoreTeam { set; get; }
         public virtual List<ScoreUserInTeam> scoresOfUsers { get; set; }
         public Team()
         {
@@ -84,29 +84,7 @@ namespace BlackBoards
             {
                 this.maxUsers = value;
             }
-        }
-        public List<User> Members
-        {
-            get
-            {
-                return this.members;
-            }
-            set
-            {
-                this.members = value;
-            }
-        }
-        public List<BlackBoard> Boards
-        {
-            get
-            {
-                return this.boards;
-            }
-            set
-            {
-                this.boards = value;
-            }
-        }
+        } 
         public bool doesBlackBoardExists(BlackBoard aBoard)
         {
             return this.boards.Contains(aBoard);

@@ -18,7 +18,7 @@ namespace Persistance
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
                     dbContext.teams.Attach(blackBoard.teamBelongs);
-                    dbContext.users.Attach(blackBoard.CreatorUser);
+                    dbContext.users.Attach(blackBoard.creatorUser);
                     dbContext.blackBoards.Add(blackBoard);
                     dbContext.SaveChanges();
                 }
