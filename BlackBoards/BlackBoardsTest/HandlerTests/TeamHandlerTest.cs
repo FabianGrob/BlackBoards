@@ -230,7 +230,6 @@ namespace BlackBoardsTest.HandlerTests
             newBoard.Description = "modifiedDescription";
             bool modified = userHandler.ModifyBlackBoard(teamContext.GetTeamByName(creatorTeam.Name), board, newBoard);
             //assertion
-
             CleanDB(blackBoardContext);
             Assert.IsTrue(modified);
         }
@@ -262,7 +261,6 @@ namespace BlackBoardsTest.HandlerTests
             userHandler.ModifyBlackBoard(teamContext.GetTeamByName(creatorTeam.Name), board, newBoard);
             bool checkModified = blackBoardContext.Exists(newBoard);
             //assertion
-
             CleanDB(blackBoardContext);
             Assert.IsTrue(checkModified);
         }
@@ -294,7 +292,6 @@ namespace BlackBoardsTest.HandlerTests
             BlackBoard notExisting = new BlackBoard("Not existing board", "", new Dimension(350, 350), new List<Item>(), creatorUser);
             bool modified = userHandler.ModifyBlackBoard(teamContext.GetTeamByName(creatorTeam.Name), notExisting, newBoard);
             //assertion
-
             CleanDB(blackBoardContext);
             Assert.IsFalse(modified);
         }/*

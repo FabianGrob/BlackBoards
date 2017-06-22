@@ -82,7 +82,6 @@ namespace Persistance
             catch (Exception)
             {
                 throw new PersistanceBlackBoardException("Error de base de datos: No se pudo obtener el pizarron.");
-                return new BlackBoard();
             }
 
         }
