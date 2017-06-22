@@ -31,15 +31,15 @@ namespace BlackBoards.Handlers
             bool notExists = !this.team.doesBlackBoardExists(aBoard);
             bool validBlackBoard = valid && notExists;
             aBoard.teamBelongs = this.team;
-            aBoard.creatorUser = creatorUser;
             if (validBlackBoard)
             {
-                blackBoardContext.AddBlackBoard(aBoard);
+                blackBoardContext.AddBlackBoard(aBoard,creatorUser);
             }
             ValidationReturn validation = new ValidationReturn(validBlackBoard, "");
             return validation;
         }
         public ValidationReturn RemoveBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext) {
+            TeamPersistance teamContext = new TeamPersistance();
             bool exists = blackBoardContext.Exists(aBoard);
             ValidationReturn validation = new ValidationReturn(exists,"No se ha podido eliminar el pizarron.");
             if (exists)

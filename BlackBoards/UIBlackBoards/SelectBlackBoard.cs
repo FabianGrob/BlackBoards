@@ -58,8 +58,8 @@ namespace UIBlackBoards
             if (hasSelectedABlackBoard())
             {
                 BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
-                // UserHandler handler = new UserHandler(logged);
-                bool hasDeletedTheTeam = true;// handler.RemoveBlackBoard(team, selectedBlackBoard, theRepository);
+                bool hasDeletedTheTeam = false;// handler.RemoveBlackBoard(team, selectedBlackBoard, theRepository);
+
                 if (hasDeletedTheTeam)
                 {
                     MessageBox.Show("Pizarron " + selectedBlackBoard.Name + " borrado con exito.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);

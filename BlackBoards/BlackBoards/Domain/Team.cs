@@ -40,6 +40,7 @@ namespace BlackBoards
             this.maxUsers = maximumUsers;
             this.members = someMembers;
             this.boards = someBoards;
+
         }
         public string Name
         {

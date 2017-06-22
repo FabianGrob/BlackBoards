@@ -33,11 +33,11 @@ namespace Persistance
             modelBuilder.Entity<ScoreUserInTeam>()
                 .HasRequired<Team>(s => s.theTeam) // BlackBoard entity requires Team 
                 .WithMany(s => s.scoresOfUsers)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
             modelBuilder.Entity<BlackBoard>()
                   .HasRequired<Team>(s => s.teamBelongs) // BlackBoard entity requires Team 
                   .WithMany(s => s.boards)
-                  .WillCascadeOnDelete(false);
+                  .WillCascadeOnDelete(true);
             modelBuilder.Entity<EstablishedScoreTeam>()
                               .HasRequired<Team>(s => s.teamScore) // Mark Address property optional in Student entity
                               .WithRequiredDependent(ad => ad.EstablishedScoreTeam); // mark Student property as required in StudentAddress entity. Cannot save StudentAddress without Stude

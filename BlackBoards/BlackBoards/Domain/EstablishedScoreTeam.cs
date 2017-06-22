@@ -17,10 +17,13 @@ namespace BlackBoards.Domain
         public Score score { get; set; }
         public EstablishedScoreTeam()
         {
-            this.teamScore = new Team();
+        }
+        public EstablishedScoreTeam(Team aTeam)
+        {
+            this.teamScore = aTeam;
             this.score = new Score();
         }
-       
+
         private bool IsOfTeam(Team team)
         {
             return this.teamScore.Equals(team);
