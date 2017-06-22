@@ -54,11 +54,11 @@ namespace BlackBoards.Handlers
         }
         private void AddResolvingUser(User anUser)
         {
-            this.comment.ResolvingUser = anUser;
+            this.comment.resolvingUser = anUser;
         }
         private void AddCommentingUser(User anUser)
         {
-            this.comment.CommentingUser = anUser;
+            this.comment.commentingUser = anUser;
         }
         private void AddCommentingDate(DateTime aDate)
         {

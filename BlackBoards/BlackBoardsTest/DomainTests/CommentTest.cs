@@ -23,8 +23,8 @@ namespace BlackBoardsTest
             Comment aComment = new Comment(commentingUser, resolvingUser, commentingDate, resolvingDate, comment);
 
             Comment otherComment = new Comment();
-            otherComment.CommentingUser = commentingUser;
-            otherComment.ResolvingUser = resolvingUser;
+            otherComment.commentingUser = commentingUser;
+            otherComment.resolvingUser = resolvingUser;
             otherComment.CommentingDate = commentingDate;
             otherComment.ResolvingDate = resolvingDate;
             otherComment.WrittenComment = comment;
@@ -38,14 +38,14 @@ namespace BlackBoardsTest
             Admin resolvingUser = new Admin("nameResolvingTest", "lastNameResolvingTest", "emailResolvingTest", new DateTime(), "passwordResolvingTest");
             Admin commentingUser = new Admin("nameCommentingTest", "lastNameCommentingTest", "emailCommentingTest", new DateTime(), "passwordCommentingTest");
             Comment aComment = new Comment();
-            aComment.CommentingUser = commentingUser;
-            aComment.ResolvingUser = resolvingUser;
+            aComment.commentingUser = commentingUser;
+            aComment.resolvingUser = resolvingUser;
             aComment.CommentingDate = DateTime.MinValue; 
             aComment.ResolvingDate = DateTime.MinValue;
             aComment.WrittenComment = "CommentTest";
             Comment otherComment = new Comment();
-            otherComment.CommentingUser = commentingUser;
-            otherComment.ResolvingUser = resolvingUser;
+            otherComment.commentingUser = commentingUser;
+            otherComment.resolvingUser = resolvingUser;
             otherComment.CommentingDate = DateTime.MaxValue; 
             otherComment.ResolvingDate = DateTime.MaxValue;
             otherComment.WrittenComment = "CommentTest";

@@ -13,7 +13,7 @@ namespace Persistance.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706220220095_DataBase"; }
+            get { return "201706220232560_DataBase"; }
         }
         
         string IMigrationMetadata.Source
