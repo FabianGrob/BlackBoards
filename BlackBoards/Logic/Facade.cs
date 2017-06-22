@@ -87,5 +87,40 @@ namespace System
             return validation;
         }
         #endregion Team
+        #region Team
+        public ValidationReturn newBlackBoard(string logged, Team aTeam, BlackBoard aBlackBoard)
+        {
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo usuario.");
+            UserPersistance userContext = new UserPersistance();
+            User user = userContext.GetUserByEmail(logged) as User;
+            UserHandler userHandler = new UserHandler(user);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            validation.Validation = userHandler.CreateBlackBoard(aTeam, aBlackBoard);
+            return validation;
+        }
+        public ValidationReturn modifyBlackBoard(string logged, Team aTeam, BlackBoard newBlackBoard)
+        {
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo usuario.");
+            UserPersistance userContext = new UserPersistance();
+            User user = userContext.GetUserByEmail(logged) as User;
+            UserHandler userHandler = new UserHandler(user);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard oldBlackBoard = new BlackBoard();
+            //BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(newBlackBoard.Name);
+            validation.Validation = userHandler.ModifyBlackBoard(aTeam, oldBlackBoard, newBlackBoard);
+            return validation;
+        }
+        public ValidationReturn deleteBlackBoard(string logged, string name)
+        {
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo usuario.");
+            UserPersistance userContext = new UserPersistance();
+            User user = userContext.GetUserByEmail(logged) as User;
+            UserHandler userHandler = new UserHandler(user);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            //BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(newBlackBoard.Name);
+            //validation.Validation = userHandler.RemoveBlackBoard(oldBlackBoard);
+            return validation;
+        }
+        #endregion Team
     }
 }
