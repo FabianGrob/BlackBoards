@@ -30,7 +30,6 @@ namespace Persistance
             {
                 throw new PersistanceBlackBoardException("Error en la base de datos. Imposible agregar pizarron");
             }
-
         }
         public bool Exists(BlackBoard aBlackBoard)
         {

@@ -316,6 +316,7 @@ namespace BlackBoardsTest.HandlerTests
         }*/
         [TestMethod]
         public void TestAddMemberCorrectly() {
+            CleanDB(new BlackBoardPersistance());
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             //instance
             Team aTeam = new Team();
@@ -363,6 +364,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddMember(admin);
             //assertion
             bool result = handler.RemoveMember(admin);
+            CleanDB(new BlackBoardPersistance());
             Assert.IsTrue(result);
 
         }
@@ -375,6 +377,7 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
             handler.AddMember(admin);
             handler.RemoveMember(admin);
+            CleanDB(new BlackBoardPersistance());
             //assertion
             bool result = handler.Team.members.Count == 0;
             Assert.IsTrue(result);
@@ -389,6 +392,7 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
            //assertion
             bool result =  handler.RemoveMember(admin);
+            CleanDB(new BlackBoardPersistance());
             Assert.IsFalse(result);
 
         }
@@ -401,6 +405,7 @@ namespace BlackBoardsTest.HandlerTests
             handler.AddMember(admin);
             //assertion
             bool result = handler.IsUserInTeam(admin);
+            CleanDB(new BlackBoardPersistance());
             Assert.IsTrue(result);
         }
         [TestMethod]
@@ -412,6 +417,7 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler handler = new TeamHandler(aTeam);
             //assertion
             bool result = handler.IsUserInTeam(admin);
+            CleanDB(new BlackBoardPersistance());
             Assert.IsFalse(result);
         }
     }

@@ -17,13 +17,14 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    dbContext.blackBoards.Attach(aTextBox.blackBoardBelongs);
                     dbContext.items.Add(aTextBox);
                     dbContext.SaveChanges();
                 }
             }
             catch (Exception)
             {
-                throw new PersistanceItemException("Error en la base de datos. Imposible agregar el Elemento");
+                throw new PersistanceItemException("Error en la base de datos. Imposible agregar el cuadro de texto");
             }
 
         }
@@ -41,7 +42,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceItemException("Error de base de datos: No se pudo eliminar el Elemento.");
+                throw new PersistanceItemException("Error de base de datos: No se pudo eliminar el cuadro de texto.");
             }
 
         }
@@ -64,12 +65,11 @@ namespace Persistance
                         dbContext.Entry(anotherTextBox).State = EntityState.Modified;
                         dbContext.SaveChanges();
                     }
-
                 }
             }
             catch (Exception)
             {
-                throw new PersistanceItemException("Error en la base de datos. Imposible Modificar el Elemento ");
+                throw new PersistanceItemException("Error en la base de datos. Imposible Modificar el cuadro de texto ");
             }
         }
     }

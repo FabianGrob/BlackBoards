@@ -11,20 +11,25 @@ namespace Persistance
 {
     public class CommentPersistance
     {
-        public void AddComment(Comment aComment)
+        public void AddComment(User creatorUser, DateTime date, string message, Item iteam)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    Comment aComment = new Comment();
                     UserPersistance userContext = new UserPersistance();
-                    User resolvingUser = userContext.GetUserByEmail(aComment.resolvingUser.Email);
-                    dbContext.users.Attach(resolvingUser);
-                    User commentingUser = userContext.GetUserByEmail(aComment.commentingUser.Email);
-                    dbContext.users.Attach(commentingUser);
+                    User commenting = dbContext.users.Where(t => t.ID == creatorUser.ID).Include(u => u.createdComments).FirstOrDefault();
+                    aComment.commentingUser = commenting;
+                    User resolving = dbContext.users.Where(t => t.ID == creatorUser.ID).Include(u => u.createdComments).FirstOrDefault();
+                    aComment.resolvingUser = resolving;
+                    aComment.WrittenComment = message;
+                    aComment.CommentingDate = date;
+                    aComment.itemBelong = iteam;
                     ItemPersistance itemContext = new ItemPersistance();
-                    Item itemBelongs = itemContext.GetItem(aComment.itemBelong.IDItem);
-                    dbContext.items.Attach(itemBelongs);
+                    Item itemBelongs = dbContext.items.Where(t => t.IDItem == aComment.itemBelong.IDItem).Include(u => u.comments).FirstOrDefault();
+                    aComment.itemBelong = itemBelongs;
+                    aComment.ResolvingDate = aComment.CommentingDate.AddDays(-1);
                     dbContext.comments.Add(aComment);
                     dbContext.SaveChanges();
                 }
@@ -40,6 +45,11 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    UserPersistance userContext = new UserPersistance();
+                    User commenting = dbContext.users.Where(t => t.ID == aComment.commentingUser.ID).Include(u => u.createdComments).FirstOrDefault();
+                    ItemPersistance itemContext = new ItemPersistance();
+                    Item itemBelongs = dbContext.items.Where(t => t.IDItem == aComment.itemBelong.IDItem).Include(u => u.comments).FirstOrDefault();
+                    User resolving = dbContext.users.Where(t => t.ID == aComment.resolvingUser.ID).Include(u => u.createdComments).FirstOrDefault();
                     dbContext.comments.Attach(aComment);
                     dbContext.Entry(aComment).State = EntityState.Deleted;
                     dbContext.SaveChanges();
@@ -107,19 +117,14 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-
-                    if (this.Exists(aComment))
-                    {
-                        Comment anotherComment = this.GetComment(aComment.IDComment);
-                        dbContext.comments.Attach(anotherComment);
-                        UserPersistance userContext = new UserPersistance();
-                        User resolvingUser = userContext.GetUserByEmail(aComment.resolvingUser.Email);
-                        anotherComment.resolvingUser = resolvingUser;
-                        dbContext.users.Attach(anotherComment.resolvingUser);
-                        anotherComment.ResolvingDate = DateTime.Now;
-                        dbContext.Entry(anotherComment).State = EntityState.Modified;
-                        dbContext.SaveChanges();
-                    }
+                    UserPersistance userContext = new UserPersistance();
+                    Comment anotherComment = dbContext.comments.Where(t => t.IDComment == aComment.IDComment).FirstOrDefault();
+                    anotherComment.resolvingUser = aComment.resolvingUser;
+                    anotherComment.ResolvingDate = aComment.ResolvingDate;
+                    User resolving = dbContext.users.Where(t => t.ID == aComment.resolvingUser.ID).Include(u => u.resolvedComments).FirstOrDefault();
+                    dbContext.comments.Attach(anotherComment);
+                    dbContext.Entry(anotherComment).State = EntityState.Modified;
+                    dbContext.SaveChanges();
                 }
             }
             catch (Exception)

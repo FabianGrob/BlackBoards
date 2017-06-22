@@ -17,6 +17,7 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    dbContext.blackBoards.Attach(anItem.blackBoardBelongs);
                     dbContext.items.Add(anItem);
                     dbContext.SaveChanges();
                 }
@@ -25,7 +26,6 @@ namespace Persistance
             {
                 throw new PersistanceItemException("Error en la base de datos. Imposible agregar el Elemento");
             }
-
         }
         public void Delete(Item anItem)
         {
@@ -33,7 +33,6 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-
                     dbContext.items.Attach(anItem);
                     dbContext.Entry(anItem).State = EntityState.Deleted;
                     dbContext.SaveChanges();
@@ -43,7 +42,6 @@ namespace Persistance
             {
                 throw new PersistanceItemException("Error de base de datos: No se pudo eliminar el Elemento.");
             }
-
         }
         public void ModifyItem(Item anItem)
         {

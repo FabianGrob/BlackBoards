@@ -13,7 +13,6 @@ namespace BlackBoards
     public class UserHandler
     {
         private User user;
-
         public UserHandler(User anUser)
         {
             this.user = anUser;
@@ -31,13 +30,15 @@ namespace BlackBoards
         }
         public bool CreateBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
-            TeamHandler teamHandler = new TeamHandler(aTeam);
-            aBlackBoard.creatorUser = this.User;     
+            TeamPersistance teamContext = new TeamPersistance();
+            Team fullTeam = teamContext.GetTeamByName(aTeam.Name);
+            TeamHandler teamHandler = new TeamHandler(fullTeam);
+            aBlackBoard.creatorUser = this.User;
             bool userInTeam = teamHandler.IsUserInTeam(this.user);
             if (userInTeam)
             {
                 BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-                ValidationReturn validation = teamHandler.AddBlackBoard(aBlackBoard,blackBoardContext, this.user);
+                ValidationReturn validation = teamHandler.AddBlackBoard(aBlackBoard, blackBoardContext, this.user);
                 bool isABlackBoardValid = validation.Validation;
                 return isABlackBoardValid;
             }
@@ -62,11 +63,11 @@ namespace BlackBoards
             {
                 TeamHandler teamHandler = new TeamHandler(aTeam);
                 BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-                wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard,blackBoardContext);
+                wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard, blackBoardContext);
             }
             return wasRemoved;
         }
-        public bool AddItemToBlackBoard(BlackBoard aBlackBoard, Item aItem)
+        public ValidationReturn AddItemToBlackBoard(BlackBoard aBlackBoard, Item aItem)
         {
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
             return blackBoardHandler.AddItem(aItem);
@@ -86,17 +87,19 @@ namespace BlackBoards
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
             return blackBoardHandler.MoveItem(aItem, newCoordinates);
         }
-        public bool CreateNewComment(Item aItem, string newComment)
+        public ValidationReturn CreateNewComment(Item aItem, string newComment)
         {
-            CommentHandler commentHandler = new CommentHandler();
-            commentHandler.CreateComment(User, newComment);
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido crear el comentario");
             ItemHandler itemHandler = new ItemHandler(aItem);
-            return itemHandler.AddComment(commentHandler.Comment);
+            validation = itemHandler.AddComment(this.user, newComment);
+            return validation;
         }
-        public bool ResolveComment(Comment aComment)
+        public ValidationReturn ResolveComment(Comment aComment)
         {
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido resolver el comentario");
             CommentHandler commentHandler = new CommentHandler(aComment);
-            return commentHandler.ResolveComment(User);
+            validation = commentHandler.ResolveComment(User);
+            return validation;
         }
     }
 }
