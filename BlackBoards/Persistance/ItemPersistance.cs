@@ -43,10 +43,6 @@ namespace Persistance
                 throw new PersistanceItemException("Error de base de datos: No se pudo eliminar el Elemento.");
             }
         }
-
-
-
-
         public void ModifyItem(Item anItem)
         {
             try
