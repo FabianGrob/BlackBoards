@@ -54,7 +54,6 @@ namespace BlackBoardsTest.HandlerTests
                //assertion
                bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
                Assert.IsTrue(result);
-
            }
            [TestMethod]
            public void TestModifyUserCheck()
@@ -75,7 +74,6 @@ namespace BlackBoardsTest.HandlerTests
                //assertion
                bool result = repHandler.getSepcificUser(modEmail).Name.Equals(name);
                Assert.IsTrue(result);
-
            }*/
 
         [TestMethod]
@@ -331,24 +329,33 @@ namespace BlackBoardsTest.HandlerTests
         public void TestModifyTeamCheck()
         {
             //instance
-            Repository repository = new Repository();
+            UserPersistance userContext = new UserPersistance();
+            Initialize(userContext);
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
+            anAdmin.Email = "Admin@Test";
             List<User> members = new List<User>();
             Collaborator col1 = new Collaborator();
             col1.Name = "Collaborator1";
+            col1.Email = "Collaborator@Test";
+            TeamPersistance teamContext = new TeamPersistance();
+            AdminPersistance adminContext = new AdminPersistance();
+            adminContext.AddUser(col1);
+            adminContext.AddUser(anAdmin);
             members.Add(col1);
             members.Add(anAdmin);
             string name = "TEAM A";
             string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
-            // handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
             string newName = "TEAMB";
             int newMaxUsers = 5;
-            // handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
+            members.Remove(col1);
+            handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), teamContext);
+            Team teamToLookingUp = teamContext.GetTeamByName(name);
             //assertion
-            bool result = repository.TeamList.ElementAt(0).MaxUsers == 5 && repository.TeamList.ElementAt(0).Name.Equals(newName);
+            bool result = teamToLookingUp.MaxUsers == 5;
             Assert.IsTrue(result);
         }
         [TestMethod]
@@ -373,7 +380,7 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             // bool result = handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
             // Assert.IsFalse(result);
-        }
+        }/*
         [TestMethod]
         public void TestModifyTeamCheckWrong()
         {
@@ -390,14 +397,15 @@ namespace BlackBoardsTest.HandlerTests
             string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
-            // handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            TeamPersistance teamContext = new TeamPersistance();
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
             string newName = "";
             int newMaxUsers = 5;
-            //  handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
+            handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), teamContext);
             //assertion
             bool result = repository.TeamList.ElementAt(0).Name.Equals(name) && repository.TeamList.ElementAt(0).MaxUsers == maxUsers;
             Assert.IsTrue(result);
-        }
+        }*/
         [TestMethod]
         public void TestDeleteTeamCorrectly()
         {
