@@ -50,7 +50,7 @@ namespace System
             validation.Message = validEmail.Message;
             return validation;
         }
-        public ValidationReturn modifyUser(string oldEmail,string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
+        public ValidationReturn modifyUser(string oldEmail, string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido modificar el usuario.");
             AdminPersistance adminContext = new AdminPersistance();
@@ -84,7 +84,7 @@ namespace System
                 Team completeActualTeam = teamContext.GetTeamByName(actualTeam.Name);
                 if (completeActualTeam.members.Count == 0)
                 {
-                    adminHandler.DeleteTeam(completeActualTeam.Name,teamContext);
+                    adminHandler.DeleteTeam(completeActualTeam.Name, teamContext);
                     cleanTeams = true;
                 }
             }
@@ -92,7 +92,7 @@ namespace System
             {
                 validation.Message = "Tambien se borraron equipos que quedaron vacios";
             }
-            
+
             return validation;
         }
         public List<User> GetAllUSersInDB()
@@ -123,7 +123,8 @@ namespace System
             User anUser = userContext.GetUserByEmail(email);
             return anUser is Admin;
         }
-        public List<Team> GetTeamsBelongs(string email) {
+        public List<Team> GetTeamsBelongs(string email)
+        {
             UserPersistance userContext = new UserPersistance();
             return userContext.GetUserByEmail(email).belongInteams;
         }
@@ -172,15 +173,13 @@ namespace System
             validation.Validation = userHandler.CreateBlackBoard(aTeam, aBlackBoard);
             return validation;
         }
-        public ValidationReturn modifyBlackBoard(string logged, Team aTeam, BlackBoard newBlackBoard)
+        public ValidationReturn modifyBlackBoard(string logged, Team aTeam, BlackBoard newBlackBoard,BlackBoard oldBlackBoard)
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo usuario.");
             UserPersistance userContext = new UserPersistance();
             User user = userContext.GetUserByEmail(logged) as User;
             UserHandler userHandler = new UserHandler(user);
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-            BlackBoard oldBlackBoard = new BlackBoard();
-            //BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(newBlackBoard.Name);
             validation.Validation = userHandler.ModifyBlackBoard(aTeam, oldBlackBoard, newBlackBoard);
             return validation;
         }
@@ -191,19 +190,22 @@ namespace System
             User user = userContext.GetUserByEmail(logged) as User;
             UserHandler userHandler = new UserHandler(user);
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-            //BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(newBlackBoard.Name);
-            //validation.Validation = userHandler.RemoveBlackBoard(oldBlackBoard);
+            BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(name);
+            validation = userHandler.RemoveBlackBoard(oldBlackBoard.teamBelongs,oldBlackBoard);
             return validation;
         }
-        public List<Team> GetAllTeamsInDB() {
+        public List<Team> GetAllTeamsInDB()
+        {
             TeamPersistance teamContext = new TeamPersistance();
             return teamContext.GetAllTeams();
         }
-        public Team GetSpecificTeam(string name) {
+        public Team GetSpecificTeam(string name)
+        {
             TeamPersistance teamContext = new TeamPersistance();
             return teamContext.GetTeamByName(name);
         }
-        public List<BlackBoard> GetBoardsFromTeam(Team aTeam) {
+        public List<BlackBoard> GetBoardsFromTeam(Team aTeam)
+        {
             TeamPersistance teamContext = new TeamPersistance();
             return teamContext.GetBoardsFromSpecificTeam(aTeam);
         }

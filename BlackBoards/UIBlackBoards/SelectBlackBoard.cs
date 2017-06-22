@@ -60,9 +60,9 @@ namespace UIBlackBoards
         {
             if (hasSelectedABlackBoard())
             {
-                BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
-                bool hasDeletedTheTeam = false;// handler.RemoveBlackBoard(team, selectedBlackBoard, theRepository);
-
+                BlackBoardPersistance bbcontext = new BlackBoardPersistance();
+                BlackBoard selectedBlackBoard = bbcontext.GetBlackBoardByName(((BlackBoard)listBoxBlackBoards.SelectedItem).Name);
+                bool hasDeletedTheTeam = theFacade.deleteBlackBoard(logged, selectedBlackBoard.Name).Validation;
                 if (hasDeletedTheTeam)
                 {
                     MessageBox.Show("Pizarron " + selectedBlackBoard.Name + " borrado con exito.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);

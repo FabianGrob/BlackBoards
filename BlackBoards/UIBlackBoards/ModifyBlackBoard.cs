@@ -42,17 +42,18 @@ namespace UIBlackBoards
             bool validationsOk = doValidations.validations(textBoxName.Text, richTextBoxDescription.Text, textBoxHeight.Text, textBoxWidth.Text);
             if (validationsOk)
             {
+                BlackBoardPersistance bbContext = new BlackBoardPersistance();
                 string blackBoardName = textBoxName.Text;
                 string description = richTextBoxDescription.Text;
                 int height = Int32.Parse(textBoxHeight.Text);
                 int width = Int32.Parse(textBoxWidth.Text);
+                BlackBoard toModify = bbContext.GetBlackBoardByName(oldBlackBoard.Name);
                 BlackBoard newBlackBoard = new BlackBoard();
                 newBlackBoard.Name = blackBoardName;
                 newBlackBoard.Description = description;
                 newBlackBoard.Dimension.Height = height;
                 newBlackBoard.Dimension.Width = width;
-                // UserHandler uHandler = new UserHandler(logged);
-                bool existingBlackBoard = true;//uHandler.ModifyBlackBoard(team, oldBlackBoard, newBlackBoard);
+                bool existingBlackBoard = theFacade.modifyBlackBoard(logged,team,newBlackBoard,toModify).Validation;
                 if (!existingBlackBoard)
                 {
                     MessageBox.Show("El pizarron ingresado ya existe, o se le ingreso un tamaño pequeño / grande (El Ancho debe estar entre 50 y 750 y el Alto entre 50 y 500). * Los elementos del pizarron deben caber en las nuevas dimensiones del mismo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
