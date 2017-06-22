@@ -35,7 +35,7 @@ namespace UIBlackBoards
         private void button1_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
-            UserControl addUser = new AddNewUser(logged, theRepository, panelContainer);
+            UserControl addUser = new AddNewUser(logged.Email, theRepository, panelContainer);
             panelContainer.Controls.Add(addUser);
         }
 

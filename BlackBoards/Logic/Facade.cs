@@ -34,9 +34,14 @@ namespace System
             validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
             return validation;
         }
-        public void BajaCliente(string nombre, string contrasena, int cedula, string mail)
+        public ValidationReturn modifyUser(string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
         {
-
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido modificar el usuario.");
+            AdminPersistance adminContext = new AdminPersistance();
+            Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
+            AdminHandler adminHandler = new AdminHandler(loggedAdmin);
+            validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
+            return validation;
         }
         #endregion User
     }
