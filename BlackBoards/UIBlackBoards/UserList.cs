@@ -16,16 +16,16 @@ namespace UIBlackBoards
     public partial class UserList : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public UserList(string anUser, Repository aRepository, Panel container)
+        public UserList(string anUser, Facade facade, Panel container)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-
-            foreach (User actualUser in theRepository.UserList)
+            List<User> allUsers = theFacade.GetAllUSersInDB();
+            foreach (User actualUser in allUsers)
             {
                 listBoxAllUsers.Items.Add(actualUser);
             }
@@ -66,9 +66,10 @@ namespace UIBlackBoards
             }
             else
             {
-                User selectedUser = (User)listBoxAllUsers.SelectedItem;
+                User choosedUser = (User)listBoxAllUsers.SelectedItem;
+                User selectedUser = theFacade.GetSpecificUser(choosedUser.Email);
                 panelContainer.Controls.Clear();
-                UserControl modifyUser = new ModifyUser(logged, theRepository, panelContainer, selectedUser);
+                UserControl modifyUser = new ModifyUser(logged, theFacade, panelContainer, selectedUser);
                 panelContainer.Controls.Add(modifyUser);
             }
         }

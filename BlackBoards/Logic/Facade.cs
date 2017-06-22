@@ -11,7 +11,7 @@ namespace System
 {
     public class Facade
     {
-        public Facade(string modelo = "AdministradorContextoPruebas")
+        public Facade()
         {
             BlackBoardsContext context = new BlackBoardsContext();
         }
@@ -52,6 +52,38 @@ namespace System
             User userToDelete = adminContext.GetUserByEmail(email);
             validation = adminHandler.DeleteUser(userToDelete, adminContext);
             return validation;
+        }
+        public List<User> GetAllUSersInDB()
+        {
+            UserPersistance userContext = new UserPersistance();
+            return userContext.allUsers();
+        }
+        public ValidationReturn CanLogWithUser(string email, string password)
+        {
+            ValidationReturn validate = new ValidationReturn(false, "contraseña inválida");
+            UserPersistance userContext = new UserPersistance();
+            User loggingUser = userContext.GetUserByEmail(email);
+            validate.Validation = loggingUser.Password.Equals(password);
+            if (validate.Validation)
+            {
+                validate.Message = "Datos correctamente ingresados";
+            }
+            return validate;
+        }
+        public User GetSpecificUser(string email)
+        {
+            UserPersistance userContext = new UserPersistance();
+            return userContext.GetUserByEmail(email);
+        }
+        public bool isUserAdmin(string email)
+        {
+            UserPersistance userContext = new UserPersistance();
+            User anUser = userContext.GetUserByEmail(email);
+            return anUser is Admin;
+        }
+        public List<Team> GetTeamsBelongs(string email) {
+            UserPersistance userContext = new UserPersistance();
+            return userContext.GetUserByEmail(email).belongInteams;
         }
         #endregion User
 
@@ -120,6 +152,18 @@ namespace System
             //BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(newBlackBoard.Name);
             //validation.Validation = userHandler.RemoveBlackBoard(oldBlackBoard);
             return validation;
+        }
+        public List<Team> GetAllTeamsInDB() {
+            TeamPersistance teamContext = new TeamPersistance();
+            return teamContext.GetAllTeams();
+        }
+        public Team GetSpecificTeam(string name) {
+            TeamPersistance teamContext = new TeamPersistance();
+            return teamContext.GetTeamByName(name);
+        }
+        public List<BlackBoard> GetBoardsFromTeam(Team aTeam) {
+            TeamPersistance teamContext = new TeamPersistance();
+            return teamContext.GetBoardsFromSpecificTeam(aTeam);
         }
         #endregion Team
     }

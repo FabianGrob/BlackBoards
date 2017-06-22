@@ -10,23 +10,24 @@ using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
 using BlackBoards.Domain.BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class ModifyTeam : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
         private Team team;
-        public ModifyTeam(string anUser, Repository aRepository, Panel container, Team teamToModify)
+        public ModifyTeam(string anUser, Facade facade, Panel container, Team teamToModify)
         {
             InitializeComponent();
             team = teamToModify;
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            foreach (User actualUser in theRepository.UserList)
+            foreach (User actualUser in theFacade.GetAllUSersInDB())
             {
                 TeamHandler handler = new TeamHandler(teamToModify);
                 if (handler.IsUserInTeam(actualUser))
@@ -50,7 +51,7 @@ namespace UIBlackBoards
         public List<User> getSelectedUsers(ListBox listBoxSelectedUsers)
         {
             List<User> userList = new List<User>();
-            foreach (User actualUser in theRepository.UserList)
+            foreach (User actualUser in theFacade.GetAllUSersInDB())
             {
                 if (isInListBox(actualUser, listBoxSelectedUsers))
                 {
@@ -77,8 +78,9 @@ namespace UIBlackBoards
             if (validationsOk)
             {
 
-                //AdminHandler handler = new AdminHandler((Admin)logged);
-                bool existingTeam = false;// handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, theRepository);
+                AdminHandler handler = new AdminHandler(theFacade.GetSpecificUser(logged) as Admin);
+                TeamPersistance teamContext = new TeamPersistance();
+                bool existingTeam =  handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, teamContext).Validation;
                 if (!existingTeam)
                 {
                     MessageBox.Show("El equipo ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

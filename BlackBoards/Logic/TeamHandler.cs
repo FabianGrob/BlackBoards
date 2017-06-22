@@ -84,7 +84,9 @@ namespace BlackBoards.Handlers
             return removed;
         }
         public bool IsUserInTeam(User anUser) {
-            return this.Team.members.Contains(anUser);
+            TeamPersistance teamContext = new TeamPersistance();
+            Team completeActualTeam = teamContext.GetTeamByName(this.Team.Name);
+            return completeActualTeam.members.Contains(anUser);
         }
         public bool HasAnyMember()
         {

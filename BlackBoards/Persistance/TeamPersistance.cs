@@ -178,7 +178,7 @@ namespace Persistance
                         dbContext.teams.Attach(anotherTeam);
                         dbContext.Entry(anotherTeam).State = EntityState.Modified;
                         dbContext.SaveChanges();
-                        updateMembers(anotherTeam,aTeam.members);
+                        updateMembers(anotherTeam, aTeam.members);
                     }
                 }
             }
@@ -193,6 +193,17 @@ namespace Persistance
             {
                 return dbContext.blackBoards.ToList<BlackBoard>();
             }
+        }
+        public List<Team> GetAllTeams()
+        {
+            using (BlackBoardsContext dbContext = new BlackBoardsContext())
+            {
+                return dbContext.teams.ToList<Team>();
+            }
+        }
+        public List<BlackBoard> GetBoardsFromSpecificTeam(Team aTeam) {
+            Team completeTeam = this.GetTeamByName(aTeam.Name);
+            return completeTeam.boards;
         }
     }
 }

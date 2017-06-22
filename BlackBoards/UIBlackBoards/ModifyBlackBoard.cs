@@ -8,24 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class ModifyBlackBoard : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
         private Team team;
         private BlackBoard oldBlackBoard;
-        public ModifyBlackBoard(string anUser, Repository aRepository, Panel container, Team teamToModifyBlackBoard, BlackBoard oBlackBoard)
+        public ModifyBlackBoard(string anUser, Facade facade, Panel container, Team teamToModifyBlackBoard, BlackBoard oBlackBoard)
         {
+            TeamPersistance teamContext = new TeamPersistance();
+            BlackBoardPersistance blackBoardCOntext = new BlackBoardPersistance();
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            team = teamToModifyBlackBoard;
-            oldBlackBoard = oBlackBoard;
+            team = teamContext.GetTeamByName(teamToModifyBlackBoard.Name);
+            oldBlackBoard = blackBoardCOntext.GetBlackBoardByName(oBlackBoard.Name);
             textBoxName.Text = oldBlackBoard.Name;
             textBoxWidth.Text = oldBlackBoard.Dimension.Width + "";
             textBoxHeight.Text = oldBlackBoard.Dimension.Height + "";
@@ -34,7 +37,7 @@ namespace UIBlackBoards
 
         private void buttonModifiyBlackBoard_Click(object sender, EventArgs e)
         {
-            AddNewBlackBoard doValidations = new AddNewBlackBoard(logged, theRepository, panelContainer, team);
+            AddNewBlackBoard doValidations = new AddNewBlackBoard(logged, theFacade, panelContainer, team);
 
             bool validationsOk = doValidations.validations(textBoxName.Text, richTextBoxDescription.Text, textBoxHeight.Text, textBoxWidth.Text);
             if (validationsOk)

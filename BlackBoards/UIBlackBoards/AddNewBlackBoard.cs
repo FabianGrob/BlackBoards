@@ -8,22 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class AddNewBlackBoard : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
         private Team team;
-        public AddNewBlackBoard(string anUser, Repository aRepository, Panel container, Team teamToAddBlackBoard)
+        public AddNewBlackBoard(string anUser, Facade facade, Panel container, Team teamToAddBlackBoard)
         {
+            TeamPersistance teamContext = new TeamPersistance();
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            team = teamToAddBlackBoard;
+            team = teamContext.GetTeamByName(teamToAddBlackBoard.Name);
         }
 
         private void AddNewBlackBoard_Load(object sender, EventArgs e)
@@ -86,6 +88,7 @@ namespace UIBlackBoards
             bool validationsOk = validations(textBoxName.Text, richTextBoxDescription.Text, textBoxHeight.Text, textBoxWidth.Text);
             if (validationsOk)
             {
+                UserPersistance userCOntext = new UserPersistance();
                 string blackBoardName = textBoxName.Text;
                 string description = richTextBoxDescription.Text;
                 int height = Int32.Parse(textBoxHeight.Text);
@@ -95,8 +98,8 @@ namespace UIBlackBoards
                 newBlackBoard.Description = description;
                 newBlackBoard.Dimension.Height = height;
                 newBlackBoard.Dimension.Width = width;
-                //UserHandler uHandler = new UserHandler(logged);
-                bool existingBlackBoard = true;//uHandler.CreateBlackBoard(team, newBlackBoard);
+                UserHandler uHandler = new UserHandler(userCOntext.GetUserByEmail(logged));
+                bool existingBlackBoard = uHandler.CreateBlackBoard(team, newBlackBoard);
                 if (!existingBlackBoard)
                 {
                     MessageBox.Show("El pizarron ingresado ya existe, o se le ingreso un tamaño pequeño/grande (El Ancho debe estar entre 50 y 750 y el Alto entre 50 y 500).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

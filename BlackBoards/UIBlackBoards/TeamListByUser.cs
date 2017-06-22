@@ -9,22 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class TeamListByUser : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public TeamListByUser(string anUser, Repository aRepository, Panel container)
+        public TeamListByUser(string anUser, Facade facade, Panel container)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            RepositoryHandler rHandler = new RepositoryHandler(aRepository);
-            List<Team> listOfTeamsByUser = new List<Team>();//rHandler.getUserTeams(logged);
+            
+            List<Team> listOfTeamsByUser = theFacade.GetTeamsBelongs(logged);
             foreach (Team actualteam in listOfTeamsByUser)
             {
                 listBoxTeams.Items.Add(actualteam);
@@ -44,7 +45,7 @@ namespace UIBlackBoards
             {
                 Team selectedTeam = (Team)listBoxTeams.SelectedItem;
                 panelContainer.Controls.Clear();
-                UserControl addNewBlackBoardWindow = new AddNewBlackBoard(logged, theRepository, panelContainer, selectedTeam);
+                UserControl addNewBlackBoardWindow = new AddNewBlackBoard(logged, theFacade, panelContainer, selectedTeam);
                 panelContainer.Controls.Add(addNewBlackBoardWindow);
             }
             else
@@ -57,9 +58,10 @@ namespace UIBlackBoards
         {
             if (hasSelectedATeam())
             {
-                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
+                TeamPersistance teamContext = new TeamPersistance();
+                Team selectedTeam = teamContext.GetTeamByName(((Team)listBoxTeams.SelectedItem).Name);
                 panelContainer.Controls.Clear();
-                UserControl selectBlackBoard = new SelectBlackBoard(logged, theRepository, panelContainer, selectedTeam);
+                UserControl selectBlackBoard = new SelectBlackBoard(logged, theFacade, panelContainer, selectedTeam);
                 panelContainer.Controls.Add(selectBlackBoard);
             }
             else

@@ -15,13 +15,13 @@ namespace UIBlackBoards
     public partial class AddNewUser : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public AddNewUser(string anUser, Repository aRepository, Panel container)
+        public AddNewUser(string anUser, Facade facade, Panel container)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
             dateTimePicker.Value = DateTime.Today;
         }
@@ -38,11 +38,11 @@ namespace UIBlackBoards
             BlackBoards.Domain.BlackBoards.ValidationReturn validation;
             if (isAdmin)
             {
-                validation = facade.newUser(logged, email, fstPass, name, lastName, birthDate);
+                validation = facade.newAdmin(logged, email, fstPass, name, lastName, birthDate);
             }
             else
             {
-                validation = facade.newAdmin(logged, email, fstPass, name, lastName, birthDate);
+                validation = facade.newUser(logged, email, fstPass, name, lastName, birthDate);
             }
             if (validation.Validation)
             {
@@ -51,7 +51,7 @@ namespace UIBlackBoards
             }
             else
             {
-                MessageBox.Show(validation.Message, "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(validation.Message, "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
