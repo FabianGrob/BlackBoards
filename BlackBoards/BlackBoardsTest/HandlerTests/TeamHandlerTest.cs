@@ -122,9 +122,9 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestRemoveBlackBoard()
         {
+            //instance
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             CleanDB(blackBoardContext);
-            //instance
             AdminPersistance adminContext = new AdminPersistance();
             TeamPersistance teamContext = new TeamPersistance();
             Admin adm = new Admin();
@@ -139,18 +139,18 @@ namespace BlackBoardsTest.HandlerTests
             TeamHandler teamHandler = new TeamHandler(creatorTeam);
             teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
             UserHandler uHandler = new UserHandler(adm);
-            //assertion
-            board =blackBoardContext.GetBlackBoardByName(board.Name);
+            board = blackBoardContext.GetBlackBoardByName(board.Name);
             ValidationReturn removed = uHandler.RemoveBlackBoard(creatorTeam, board);
             CleanDB(blackBoardContext);
+            //assertion
             Assert.IsTrue(removed.Validation);
         }
         [TestMethod]
         public void TestRemoveBlackBoardCheck()
         {
+            //instance
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             CleanDB(blackBoardContext);
-            //instance
             AdminPersistance adminContext = new AdminPersistance();
             TeamPersistance teamContext = new TeamPersistance();
             Admin adm = new Admin();
@@ -160,16 +160,17 @@ namespace BlackBoardsTest.HandlerTests
             User creatorUser = adminContext.GetUserByEmail("creator@User.com");
             List<User> member = new List<User>();
             member.Add(creatorUser);
-            handler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
+            AdminHandler newHandler = new AdminHandler(creatorUser as Admin);
+            newHandler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
             Team creatorTeam = teamContext.GetTeamByName("teamTest");
             TeamHandler teamHandler = new TeamHandler(creatorTeam);
             teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
             UserHandler uHandler = new UserHandler(adm);
-            //assertion
             board = blackBoardContext.GetBlackBoardByName(board.Name);
             ValidationReturn removed = uHandler.RemoveBlackBoard(creatorTeam, board);
             Team compare = teamContext.GetTeamByName(teamHandler.Team.Name);
             CleanDB(blackBoardContext);
+            //assertion
             Assert.IsTrue(compare.boards.Count == 0);
         }
         [TestMethod]

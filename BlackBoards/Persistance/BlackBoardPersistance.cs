@@ -11,13 +11,16 @@ namespace Persistance
 {
     public class BlackBoardPersistance
     {
-        public void AddBlackBoard(BlackBoard blackBoard)
+        public void AddBlackBoard(BlackBoard blackBoard, User creatorUser)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    UserPersistance userContext = new UserPersistance();
                     dbContext.teams.Attach(blackBoard.teamBelongs);
+                    User creator = dbContext.users.Where(u => u.ID == creatorUser.ID).Include(u => u.belongInteams).FirstOrDefault();
+                    blackBoard.creatorUser = creator;
                     dbContext.blackBoards.Add(blackBoard);
                     dbContext.SaveChanges();
                 }
@@ -50,18 +53,11 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    TeamPersistance teamContext = new TeamPersistance();
                     ItemPersistance itemContext = new ItemPersistance();
                     foreach (Item actualItem in aBlackBoard.itemList)
                     {
                         itemContext.Delete(actualItem);
                     }
-                    Team teamWhichBelongs = teamContext.GetTeamByName(aBlackBoard.teamBelongs.Name);
-                    teamWhichBelongs.boards.Remove(aBlackBoard);
-                    aBlackBoard.teamBelongs = teamWhichBelongs;
-
-                    dbContext.teams.Attach(teamWhichBelongs);
-                    dbContext.Entry(teamWhichBelongs).State = EntityState.Modified;
                     dbContext.blackBoards.Attach(aBlackBoard);
                     dbContext.Entry(aBlackBoard).State = EntityState.Deleted;
                     dbContext.SaveChanges();

@@ -31,10 +31,9 @@ namespace BlackBoards.Handlers
             bool notExists = !this.team.doesBlackBoardExists(aBoard);
             bool validBlackBoard = valid && notExists;
             aBoard.teamBelongs = this.team;
-            aBoard.creatorUser = creatorUser;
             if (validBlackBoard)
             {
-                blackBoardContext.AddBlackBoard(aBoard);
+                blackBoardContext.AddBlackBoard(aBoard,creatorUser);
             }
             ValidationReturn validation = new ValidationReturn(validBlackBoard, "");
             return validation;
@@ -45,9 +44,6 @@ namespace BlackBoards.Handlers
             ValidationReturn validation = new ValidationReturn(exists,"No se ha podido eliminar el pizarron.");
             if (exists)
             {
-               /* Team removedBB = teamContext.GetTeamByName(this.Team.Name);
-                removedBB.boards.Remove(aBoard);
-                teamContext.ModifyTeam(removedBB);*/
                 blackBoardContext.Delete(aBoard);
                 validation.Message = "El pizarron se ha borrado con exito.";
             }
