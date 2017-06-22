@@ -9,21 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class TeamList : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public TeamList(string anUser, Repository aRepository, Panel container)
+        public TeamList(string anUser, Facade facade, Panel container)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            foreach (Team actualteam in theRepository.TeamList)
+            foreach (Team actualteam in theFacade.GetAllTeamsInDB())
             {
                 listBoxTeams.Items.Add(actualteam);
             }
@@ -40,9 +41,9 @@ namespace UIBlackBoards
         {
             if (hasSelectedATeam())
             {
-                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
+                Team selectedTeam = theFacade.GetSpecificTeam(((Team)listBoxTeams.SelectedItem).Name);
                 panelContainer.Controls.Clear();
-                UserControl modifyTeamWindow = new ModifyTeam(logged, theRepository, panelContainer, selectedTeam);
+                UserControl modifyTeamWindow = new ModifyTeam(logged, theFacade, panelContainer, selectedTeam);
                 panelContainer.Controls.Add(modifyTeamWindow);
             }
             else
@@ -53,11 +54,12 @@ namespace UIBlackBoards
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
+            TeamPersistance teamContext = new TeamPersistance();
+            UserPersistance userContext = new UserPersistance();
             if (hasSelectedATeam())
             {
-                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
-               // AdminHandler handler = new AdminHandler((Admin)logged);
-                bool hasDeletedTheTeam = false;// handler.DeleteTeam(selectedTeam.Name, theRepository);
+                Team selectedTeam = teamContext.GetTeamByName(((Team)listBoxTeams.SelectedItem).Name);
+                bool hasDeletedTheTeam = theFacade.deleteTeam(logged,selectedTeam.Name).Validation;
                 if (hasDeletedTheTeam)
                 {
                     MessageBox.Show("Equipo " + selectedTeam.Name + " borrado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);

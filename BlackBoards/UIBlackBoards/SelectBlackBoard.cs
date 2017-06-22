@@ -9,22 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class SelectBlackBoard : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
         private Team team;
-        public SelectBlackBoard(string anUser, Repository aRepository, Panel container, Team teamToAddBlackBoard)
+        public SelectBlackBoard(string anUser, Facade facade, Panel container, Team teamToAddBlackBoard)
         {
+            TeamPersistance teamContext = new TeamPersistance();
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            team = teamToAddBlackBoard;
+            team = teamContext.GetTeamByName(teamToAddBlackBoard.Name);
             foreach (BlackBoard actualBoard in team.boards)
             {
                 listBoxBlackBoards.Items.Add(actualBoard);
@@ -42,9 +44,10 @@ namespace UIBlackBoards
         {
             if (hasSelectedABlackBoard())
             {
-                BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
+                BlackBoardPersistance bbcontext = new BlackBoardPersistance();
+                BlackBoard selectedBlackBoard = bbcontext.GetBlackBoardByName(((BlackBoard)listBoxBlackBoards.SelectedItem).Name);
                 panelContainer.Controls.Clear();
-                UserControl selectBlackBoard = new ModifyBlackBoard(logged, theRepository, panelContainer, team, selectedBlackBoard);
+                UserControl selectBlackBoard = new ModifyBlackBoard(logged, theFacade, panelContainer, team, selectedBlackBoard);
                 panelContainer.Controls.Add(selectBlackBoard);
             }
             else
@@ -57,9 +60,9 @@ namespace UIBlackBoards
         {
             if (hasSelectedABlackBoard())
             {
-                BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
-                bool hasDeletedTheTeam = false;// handler.RemoveBlackBoard(team, selectedBlackBoard, theRepository);
-
+                BlackBoardPersistance bbcontext = new BlackBoardPersistance();
+                BlackBoard selectedBlackBoard = bbcontext.GetBlackBoardByName(((BlackBoard)listBoxBlackBoards.SelectedItem).Name);
+                bool hasDeletedTheTeam = theFacade.deleteBlackBoard(logged, selectedBlackBoard.Name).Validation;
                 if (hasDeletedTheTeam)
                 {
                     MessageBox.Show("Pizarron " + selectedBlackBoard.Name + " borrado con exito.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -82,8 +85,8 @@ namespace UIBlackBoards
             {
                 BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
                 this.Visible = false;
-                VisualizeBoard newVi = new VisualizeBoard(selectedBlackBoard, logged, theRepository);
-                newVi.Visible = true;
+                //VisualizeBoard newVi = new VisualizeBoard(selectedBlackBoard, logged, theFacade);
+                //newVi.Visible = true;
             }
         }
     }

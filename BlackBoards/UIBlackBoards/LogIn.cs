@@ -9,17 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards.Handlers;
+using BlackBoards.Domain.BlackBoards;
 
 namespace UIBlackBoards
 {
     public partial class LogIn : Form
     {
-        private Repository theRepository;
-        public LogIn(Repository aRepository)
+        private Facade theFacade;
+        public LogIn(Facade facade)
         {
             InitializeComponent();
-            theRepository = aRepository;
-            foreach (User actualUser in theRepository.UserList) {
+            theFacade = facade;
+            List<User> allUsers = facade.GetAllUSersInDB();
+            foreach (User actualUser in allUsers) {
                 comboBoxUsers.Items.Add(actualUser);
             }
             textBoxPassword.PasswordChar = '*';
@@ -29,7 +31,6 @@ namespace UIBlackBoards
 
         private void start_Click(object sender, EventArgs e)
         {
-            RepositoryHandler repHandler = new RepositoryHandler(theRepository);
            
            User selectedUser = (User)comboBoxUsers.SelectedItem;
             if (selectedUser == null)
@@ -40,10 +41,11 @@ namespace UIBlackBoards
             {
                 string posibleEmail = (string)selectedUser.Email;
                 string posiblePassword = textBoxPassword.Text;
-                if (repHandler.CheckPassword(posibleEmail, posiblePassword))
+                ValidationReturn canLogIn = theFacade.CanLogWithUser(posibleEmail, posiblePassword);
+                if (canLogIn.Validation)
                 {
-                    User entering = repHandler.getSepcificUser(posibleEmail);
-                    MainMenu window =new MainMenu(entering.Email,theRepository);
+                    User entering = theFacade.GetSpecificUser(selectedUser.Email);
+                    MainMenu window =new MainMenu(entering.Email,theFacade);
                     window.Visible = true;
                     this.Visible = false;
                 }

@@ -11,7 +11,7 @@ namespace System
 {
     public class Facade
     {
-        public Facade(string modelo = "AdministradorContextoPruebas")
+        public Facade()
         {
             BlackBoardsContext context = new BlackBoardsContext();
         }
@@ -22,7 +22,15 @@ namespace System
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
-            validation = adminHandler.CreateCollaborator(name, lastName, email, birthDate, fstPass, adminContext);
+            User u = new Admin();
+            u.Email = email;
+            ValidationReturn validEmail = u.IsValid();
+            if (validEmail.Validation)
+            {
+                validation = adminHandler.CreateCollaborator(name, lastName, email, birthDate, fstPass, adminContext);
+                validation.Message = "Colaborador creado con exito";
+            }
+            validation.Message = validEmail.Message;
             return validation;
         }
         public ValidationReturn newAdmin(string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
@@ -31,27 +39,94 @@ namespace System
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
-            validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
+            User u = new Admin();
+            u.Email = email;
+            ValidationReturn validEmail = u.IsValid();
+            if (validEmail.Validation)
+            {
+                validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
+                validation.Message = "Administrador creado con exito";
+            }
+            validation.Message = validEmail.Message;
             return validation;
         }
-        public ValidationReturn modifyUser(string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
+        public ValidationReturn modifyUser(string oldEmail, string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido modificar el usuario.");
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
-            validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
+            User u = new Admin();
+            u.Email = email;
+            ValidationReturn validEmail = u.IsValid();
+            if (validEmail.Validation)
+            {
+                validation.Validation = adminHandler.ModifyUser(oldEmail, name, lastName, email, birthDate, fstPass, adminContext);
+                validation.Message = "Usuario modificado con exito";
+
+            }
+            validation.Message = validEmail.Message;
             return validation;
         }
         public ValidationReturn deleteUser(string emailAdmin, string email)
         {
+            TeamPersistance teamContext = new TeamPersistance();
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido eliminar el usuario.");
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
             User userToDelete = adminContext.GetUserByEmail(email);
+            List<Team> belongingTeams = adminContext.GetBelongingTeams(userToDelete);
             validation = adminHandler.DeleteUser(userToDelete, adminContext);
+            bool cleanTeams = false;
+            foreach (Team actualTeam in belongingTeams)
+            {
+                Team completeActualTeam = teamContext.GetTeamByName(actualTeam.Name);
+                if (completeActualTeam.members.Count == 0)
+                {
+                    adminHandler.DeleteTeam(completeActualTeam.Name, teamContext);
+                    cleanTeams = true;
+                }
+            }
+            if (cleanTeams)
+            {
+                validation.Message = "Tambien se borraron equipos que quedaron vacios";
+            }
+
             return validation;
+        }
+        public List<User> GetAllUSersInDB()
+        {
+            UserPersistance userContext = new UserPersistance();
+            return userContext.allUsers();
+        }
+        public ValidationReturn CanLogWithUser(string email, string password)
+        {
+            ValidationReturn validate = new ValidationReturn(false, "contraseña inválida");
+            UserPersistance userContext = new UserPersistance();
+            User loggingUser = userContext.GetUserByEmail(email);
+            validate.Validation = loggingUser.Password.Equals(password);
+            if (validate.Validation)
+            {
+                validate.Message = "Datos correctamente ingresados";
+            }
+            return validate;
+        }
+        public User GetSpecificUser(string email)
+        {
+            UserPersistance userContext = new UserPersistance();
+            return userContext.GetUserByEmail(email);
+        }
+        public bool isUserAdmin(string email)
+        {
+            UserPersistance userContext = new UserPersistance();
+            User anUser = userContext.GetUserByEmail(email);
+            return anUser is Admin;
+        }
+        public List<Team> GetTeamsBelongs(string email)
+        {
+            UserPersistance userContext = new UserPersistance();
+            return userContext.GetUserByEmail(email).belongInteams;
         }
         #endregion User
 
@@ -98,15 +173,13 @@ namespace System
             validation.Validation = userHandler.CreateBlackBoard(aTeam, aBlackBoard);
             return validation;
         }
-        public ValidationReturn modifyBlackBoard(string logged, Team aTeam, BlackBoard newBlackBoard)
+        public ValidationReturn modifyBlackBoard(string logged, Team aTeam, BlackBoard newBlackBoard,BlackBoard oldBlackBoard)
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo usuario.");
             UserPersistance userContext = new UserPersistance();
             User user = userContext.GetUserByEmail(logged) as User;
             UserHandler userHandler = new UserHandler(user);
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-            BlackBoard oldBlackBoard = new BlackBoard();
-            //BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(newBlackBoard.Name);
             validation.Validation = userHandler.ModifyBlackBoard(aTeam, oldBlackBoard, newBlackBoard);
             return validation;
         }
@@ -117,9 +190,24 @@ namespace System
             User user = userContext.GetUserByEmail(logged) as User;
             UserHandler userHandler = new UserHandler(user);
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-            //BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(newBlackBoard.Name);
-            //validation.Validation = userHandler.RemoveBlackBoard(oldBlackBoard);
+            BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(name);
+            validation = userHandler.RemoveBlackBoard(oldBlackBoard.teamBelongs,oldBlackBoard);
             return validation;
+        }
+        public List<Team> GetAllTeamsInDB()
+        {
+            TeamPersistance teamContext = new TeamPersistance();
+            return teamContext.GetAllTeams();
+        }
+        public Team GetSpecificTeam(string name)
+        {
+            TeamPersistance teamContext = new TeamPersistance();
+            return teamContext.GetTeamByName(name);
+        }
+        public List<BlackBoard> GetBoardsFromTeam(Team aTeam)
+        {
+            TeamPersistance teamContext = new TeamPersistance();
+            return teamContext.GetBoardsFromSpecificTeam(aTeam);
         }
         #endregion Team
     }

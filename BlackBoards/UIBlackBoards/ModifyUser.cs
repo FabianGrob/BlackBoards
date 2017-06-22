@@ -9,20 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class ModifyUser : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
         private User userToModify;
-        public ModifyUser(string anUser, Repository aRepository, Panel container, User modifyingUser)
+        public ModifyUser(string anUser, Facade facade, Panel container, User modifyingUser)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
             userToModify = modifyingUser;
 
@@ -50,14 +51,15 @@ namespace UIBlackBoards
 
         private void buttonModify_Click_1(object sender, EventArgs e)
         {
+            UserPersistance userContext = new UserPersistance();
+            User willModify = userContext.GetUserByEmail(userToModify.Email);
             string email = textBoxEmail.Text;
             string fstPass = textBoxFstPass.Text;
             string sndPass = textBoxSndPass.Text;
             string name = textBoxName.Text;
             string lastName = textBoxLastN.Text;
             DateTime birthDate = dateTimePicker.Value;
-            Facade facade = new Facade();
-            BlackBoards.Domain.BlackBoards.ValidationReturn validation = facade.modifyUser(logged, email, fstPass, name, lastName, birthDate);
+            BlackBoards.Domain.BlackBoards.ValidationReturn validation = theFacade.modifyUser(willModify.Email,logged, email, fstPass, name, lastName, birthDate);
             if (validation.Validation)
             {
                 MessageBox.Show("Usuario modificado correctamente", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Information);

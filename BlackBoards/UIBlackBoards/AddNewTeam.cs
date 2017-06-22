@@ -16,15 +16,16 @@ namespace UIBlackBoards
     public partial class AddNewTeam : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public AddNewTeam(string anUser, Repository aRepository, Panel container)
+        public AddNewTeam(string anUser, Facade aFacade, Panel container)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = aFacade;
             panelContainer = container;
-            foreach (User actualUser in theRepository.UserList)
+            List<User> allUsers = theFacade.GetAllUSersInDB();
+            foreach (User actualUser in allUsers)
             {
                 listBoxAllUsers.Items.Add(actualUser);
             }
@@ -50,7 +51,7 @@ namespace UIBlackBoards
         public List<User> getSelectedUsers(ListBox listBoxSelectedUsers)
         {
             List<User> userList = new List<User>();
-            foreach (User actualUser in theRepository.UserList)
+            foreach (User actualUser in theFacade.GetAllUSersInDB())
             {
                 if (isInListBox(actualUser, listBoxSelectedUsers))
                 {
@@ -84,10 +85,9 @@ namespace UIBlackBoards
             newTeam.Description = description;
             ValidationReturn validation = newTeam.IsValid();
             bool isValid = validation.Validation;
-            Facade facade = new Facade();
             if (isValid)
             {
-                validation = facade.newTeam(logged, teamName, description, maxUsers, members, blackBoards);
+                validation = theFacade.newTeam(logged, teamName, description, maxUsers, members, blackBoards);
             }
             bool wasAdded = validation.Validation;
             if (wasAdded)

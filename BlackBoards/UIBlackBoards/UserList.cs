@@ -10,22 +10,23 @@ using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
 using BlackBoards.Domain.BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class UserList : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public UserList(string anUser, Repository aRepository, Panel container)
+        public UserList(string anUser, Facade facade, Panel container)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-
-            foreach (User actualUser in theRepository.UserList)
+            List<User> allUsers = theFacade.GetAllUSersInDB();
+            foreach (User actualUser in allUsers)
             {
                 listBoxAllUsers.Items.Add(actualUser);
             }
@@ -41,10 +42,10 @@ namespace UIBlackBoards
             }
             else
             {
-                User selectedUser = (User)listBoxAllUsers.SelectedItem;
+                UserPersistance userContext = new UserPersistance();
+                User selectedUser = userContext.GetUserByEmail(((User)listBoxAllUsers.SelectedItem).Email);
                 ValidationReturn validation = new ValidationReturn(false, "No se ha podido elminar el usuario seleccionado");
-                Facade facade = new Facade();
-                validation = facade.deleteUser(logged, selectedUser.Email);
+                validation = theFacade.deleteUser(logged, selectedUser.Email);
                 if (validation.Validation)
                 {
                     MessageBox.Show(validation.Message, "Realizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -66,9 +67,10 @@ namespace UIBlackBoards
             }
             else
             {
-                User selectedUser = (User)listBoxAllUsers.SelectedItem;
+                User choosedUser = (User)listBoxAllUsers.SelectedItem;
+                User selectedUser = theFacade.GetSpecificUser(choosedUser.Email);
                 panelContainer.Controls.Clear();
-                UserControl modifyUser = new ModifyUser(logged, theRepository, panelContainer, selectedUser);
+                UserControl modifyUser = new ModifyUser(logged, theFacade, panelContainer, selectedUser);
                 panelContainer.Controls.Add(modifyUser);
             }
         }

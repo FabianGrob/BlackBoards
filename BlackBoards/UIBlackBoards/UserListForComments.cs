@@ -8,21 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class UserListForComments : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public UserListForComments(string anUser, Repository aRepository, Panel container)
+        public UserListForComments(string anUser, Facade facade, Panel container)
         {
+            UserPersistance userContext = new UserPersistance();
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            foreach (User actualUser in theRepository.UserList)
+            foreach (User actualUser in theFacade.GetAllUSersInDB())
             {
                 listBoxAllUsers.Items.Add(actualUser);
             }
@@ -38,10 +40,11 @@ namespace UIBlackBoards
             }
             else
             {
-                User selectedUser = (User)listBoxAllUsers.SelectedItem;
+                UserPersistance userContext = new UserPersistance();
+                User selectedUser = userContext.GetUserByEmail(((User)listBoxAllUsers.SelectedItem).Name);
                 panelContainer.Controls.Clear();
-                UserControl resolvedComments = new ResolvedCommentsByUser(logged, theRepository, panelContainer, selectedUser);
-                panelContainer.Controls.Add(resolvedComments);
+                //UserControl resolvedComments = new ResolvedCommentsByUser(logged, theFacade, panelContainer, selectedUser);
+                //panelContainer.Controls.Add(resolvedComments);
             }
         }
     }

@@ -150,5 +150,17 @@ namespace Persistance
                 throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el usuario " + lookUpEmail);
             }
         }
+        public List<User> allUsers()
+        {
+            using (BlackBoardsContext dbContext = new BlackBoardsContext())
+            {
+                return dbContext.users.ToList<User>();
+            }
+        }
+        public List<Team> GetBelongingTeams(User anUser)
+        {
+            User completeUser = this.GetUserByEmail(anUser.Email);
+            return completeUser.belongInteams;
+        }
     }
 }

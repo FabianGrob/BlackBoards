@@ -8,24 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class TeamBlackBoards : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
         private Team actualTeam;
-        public TeamBlackBoards(string anUser, Repository aRepository, Panel container, Team aTeam)
+        public TeamBlackBoards(string anUser, Facade facade, Panel container, Team aTeam)
         {
             InitializeComponent();
+            TeamPersistance teamContext = new TeamPersistance();
+            UserPersistance userContext = new UserPersistance();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            actualTeam = aTeam;
+            actualTeam = teamContext.GetTeamByName(aTeam.Name);
             dateTimePicker.Value = DateTime.Today;
-            List<BlackBoard> boardsToShow = actualTeam.boards;
+            List<BlackBoard> boardsToShow = theFacade.GetBoardsFromTeam(actualTeam);
             foreach (BlackBoard actualBoard in boardsToShow)
             {
                 string line = "Equipo creador: " + actualTeam + "Fecha creación: " + actualBoard.CreationDate + " Última modificación: " + actualBoard.LastModificationDate + " Cantidad de elementos: " + actualBoard.itemList.Count;

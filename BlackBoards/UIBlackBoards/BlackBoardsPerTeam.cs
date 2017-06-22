@@ -8,21 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
     public partial class BlackBoardsPerTeam : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
-        public BlackBoardsPerTeam(string anUser, Repository aRepository, Panel container)
+        public BlackBoardsPerTeam(string anUser, Facade facade, Panel container)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
-            foreach (Team actualteam in theRepository.TeamList)
+            foreach (Team actualteam in theFacade.GetAllTeamsInDB())
             {
                 listBoxTeams.Items.Add(actualteam);
             }
@@ -32,9 +33,10 @@ namespace UIBlackBoards
         {
             if (listBoxTeams.SelectedIndex != -1)
             {
-                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
+                TeamPersistance teamContext = new TeamPersistance();
+                Team selectedTeam = teamContext.GetTeamByName(((Team)listBoxTeams.SelectedItem).Name);
                 panelContainer.Controls.Clear();
-                TeamBlackBoards content = new TeamBlackBoards(logged, theRepository, panelContainer,selectedTeam);
+                TeamBlackBoards content = new TeamBlackBoards(logged, theFacade, panelContainer,selectedTeam);
                 panelContainer.Controls.Add(content);
             }
             else {

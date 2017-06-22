@@ -97,7 +97,7 @@ namespace BlackBoards
             {
                 adminContext.Delete(toDelete);
                 deleted.Validation = true;
-                deleted.Message = "deleted";
+                deleted.Message = "Usuario eliminado correctamente.";
                 if (this.isAdmin(toDelete, adminContext).Validation)
                 {
                     adminContext.DeleteAdmin(toDelete as Admin);
