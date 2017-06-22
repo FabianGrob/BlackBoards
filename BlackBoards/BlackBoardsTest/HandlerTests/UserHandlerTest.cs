@@ -25,7 +25,7 @@ namespace BlackBoardsTest
             Admin u = new Admin();
             AdminHandler handler = new AdminHandler(u);
             handler.CreateAdmin("generatedName", "generatedLastName", "generatedEmail@email.com", DateTime.Now, "generatedPassword", adminContext);
-            User generatedUser=adminContext.GetUserByEmail("generatedEmail@email.com");
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
             BlackBoard board = new BlackBoard("generatedBoard", "thisIsAGeneratedBoard", new Dimension(350, 350), new List<Item>(), u);
             List<User> member = new List<User>();
             member.Add(generatedUser);
@@ -266,13 +266,18 @@ namespace BlackBoardsTest
             BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
             TextBox textBox = new TextBox();
             textBox.blackBoardBelongs = generatedBlackBoard;
-            textBox.Font = "Arial";
-            textBox.FontSize = 12;
+            //textBox.Font = "Arial";
+           // textBox.FontSize = 12;
+
             textBox.Content = "ThisIsATest";
             handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
             TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
             handler.CreateNewComment(theItem, "testComment");
-            ValidationReturn result = handler.CreateNewComment(theItem, "testComment");
+            ItemPersistance itemContext = new ItemPersistance();
+
+            TextBox fullItem = itemContext.GetItem(theItem.IDItem) as TextBox;
+            Comment theComment = fullItem.comments.ElementAt(0);
+            ValidationReturn result = handler.ResolveComment(theComment);
             CleanDB(new UserPersistance());
             //assertion
             Assert.IsTrue(result.Validation);

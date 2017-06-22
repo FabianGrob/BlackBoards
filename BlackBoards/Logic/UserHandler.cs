@@ -94,10 +94,12 @@ namespace BlackBoards
             validation = itemHandler.AddComment(this.user, newComment);
             return validation;
         }
-        public bool ResolveComment(Comment aComment)
+        public ValidationReturn ResolveComment(Comment aComment)
         {
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido resolver el comentario");
             CommentHandler commentHandler = new CommentHandler(aComment);
-            return commentHandler.ResolveComment(User);
+            validation = commentHandler.ResolveComment(User);
+            return validation;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlackBoards.Domain.BlackBoards;
+using Persistance;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,21 +38,23 @@ namespace BlackBoards.Handlers
             this.AddResolvingDate(DateTime.MaxValue);
             Admin admin = new Admin();
             this.AddResolvingUser(admin);
-
         }
-        public bool ResolveComment(User anUser)
+        public ValidationReturn ResolveComment(User anUser)
         {
-            bool canResolveComment = !(this.WasResolved());
-            if (canResolveComment)
+            ValidationReturn canResolveComment = new ValidationReturn(false,"El comentario ya esta resuelto.");
+            canResolveComment.Validation = !(this.WasResolved());
+            if (canResolveComment.Validation)
             {
-                this.AddResolvingUser(anUser);
-                this.AddResolvingDate(DateTime.Today);
+                CommentPersistance commentContext = new CommentPersistance();
+                this.comment.resolvingUser = anUser;
+                this.comment.ResolvingDate = DateTime.Now;
+                commentContext.ResolveComment(this.comment);
             }
             return canResolveComment;
         }
-        private bool WasResolved()
+        public bool WasResolved()
         {
-            return !(this.Comment.ResolvingDate.Equals(DateTime.MaxValue));
+            return !(this.Comment.ResolvingDate.CompareTo(this.Comment.CommentingDate)<=0);
         }
         private void AddResolvingUser(User anUser)
         {
@@ -72,6 +76,5 @@ namespace BlackBoards.Handlers
         {
             this.comment.WrittenComment = commentToAdd;
         }
-
     }
 }
