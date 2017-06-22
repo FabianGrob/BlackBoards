@@ -14,11 +14,11 @@ namespace UIBlackBoards
     public partial class SelectItemToDelete : UserControl
     {
         private BlackBoard actualBlackBoard;
-        private User logged;
+        private string logged;
         private Panel panelContainer;
         private Panel boardContainer;
         private Repository theRepository;
-        public SelectItemToDelete(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer, Repository aRepository)
+        public SelectItemToDelete(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Repository aRepository)
         {
             InitializeComponent();
             actualBlackBoard = aBoard;
@@ -52,8 +52,8 @@ namespace UIBlackBoards
             if (hasSelected())
             {
                 Item selectedItem = (Item)listBoxItems.SelectedItem;
-                UserHandler handler = new UserHandler(logged);
-                handler.RemoveItemBlackBoard(actualBlackBoard, selectedItem);
+                //UserHandler handler = new UserHandler(logged);
+                //handler.RemoveItemBlackBoard(actualBlackBoard, selectedItem);
                 boardContainer.Controls.Clear();
                 VisualizeBlackBoard visualize = new VisualizeBlackBoard(actualBlackBoard, logged, boardContainer);
                 boardContainer.Controls.Add(visualize);

@@ -14,17 +14,17 @@ namespace UIBlackBoards
 {
     public partial class TeamListByUser : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
-        public TeamListByUser(User anUser, Repository aRepository, Panel container)
+        public TeamListByUser(string anUser, Repository aRepository, Panel container)
         {
             InitializeComponent();
             logged = anUser;
             theRepository = aRepository;
             panelContainer = container;
             RepositoryHandler rHandler = new RepositoryHandler(aRepository);
-            List<Team> listOfTeamsByUser = rHandler.getUserTeams(logged);
+            List<Team> listOfTeamsByUser = new List<Team>();//rHandler.getUserTeams(logged);
             foreach (Team actualteam in listOfTeamsByUser)
             {
                 listBoxTeams.Items.Add(actualteam);

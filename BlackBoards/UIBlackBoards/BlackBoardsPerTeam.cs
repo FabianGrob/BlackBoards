@@ -13,10 +13,10 @@ namespace UIBlackBoards
 {
     public partial class BlackBoardsPerTeam : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
-        public BlackBoardsPerTeam(User anUser, Repository aRepository, Panel container)
+        public BlackBoardsPerTeam(string anUser, Repository aRepository, Panel container)
         {
             InitializeComponent();
             logged = anUser;

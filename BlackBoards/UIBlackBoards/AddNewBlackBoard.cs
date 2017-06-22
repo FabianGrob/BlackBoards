@@ -13,11 +13,11 @@ namespace UIBlackBoards
 {
     public partial class AddNewBlackBoard : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
         private Team team;
-        public AddNewBlackBoard(User anUser, Repository aRepository, Panel container, Team teamToAddBlackBoard)
+        public AddNewBlackBoard(string anUser, Repository aRepository, Panel container, Team teamToAddBlackBoard)
         {
             InitializeComponent();
             logged = anUser;
@@ -95,8 +95,8 @@ namespace UIBlackBoards
                 newBlackBoard.Description = description;
                 newBlackBoard.Dimension.Height = height;
                 newBlackBoard.Dimension.Width = width;
-                UserHandler uHandler = new UserHandler(logged);
-                bool existingBlackBoard = uHandler.CreateBlackBoard(team, newBlackBoard);
+                //UserHandler uHandler = new UserHandler(logged);
+                bool existingBlackBoard = true;//uHandler.CreateBlackBoard(team, newBlackBoard);
                 if (!existingBlackBoard)
                 {
                     MessageBox.Show("El pizarron ingresado ya existe, o se le ingreso un tamaño pequeño/grande (El Ancho debe estar entre 50 y 750 y el Alto entre 50 y 500).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -321,6 +321,10 @@
       <Project>{95DBE74C-5D9B-4F78-A171-45B5178CB395}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Persistance\Persistance.csproj">
+      <Project>{46BEE0DA-BD98-4273-97F1-018BA18D7D1A}</Project>
+      <Name>Persistance</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

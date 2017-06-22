@@ -14,10 +14,10 @@ namespace UIBlackBoards
 {
     public partial class TeamList : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
-        public TeamList(User anUser, Repository aRepository, Panel container)
+        public TeamList(string anUser, Repository aRepository, Panel container)
         {
             InitializeComponent();
             logged = anUser;
@@ -56,7 +56,7 @@ namespace UIBlackBoards
             if (hasSelectedATeam())
             {
                 Team selectedTeam = (Team)listBoxTeams.SelectedItem;
-                AdminHandler handler = new AdminHandler((Admin)logged);
+               // AdminHandler handler = new AdminHandler((Admin)logged);
                 bool hasDeletedTheTeam = false;// handler.DeleteTeam(selectedTeam.Name, theRepository);
                 if (hasDeletedTheTeam)
                 {

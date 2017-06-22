@@ -14,12 +14,12 @@ namespace UIBlackBoards
 {
     public partial class ResolvedCommentsByUser : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
         private User selectedUser;
         private List<Comment> resolved;
-        public ResolvedCommentsByUser(User anUser, Repository aRepository, Panel container, User selected)
+        public ResolvedCommentsByUser(string anUser, Repository aRepository, Panel container, User selected)
         {
             InitializeComponent();
             logged = anUser;
