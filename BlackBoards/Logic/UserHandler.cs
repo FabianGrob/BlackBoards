@@ -54,19 +54,17 @@ namespace BlackBoards
             }
             return userInTeam;
         }
-        public bool RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard, Repository aRepository)
+        public ValidationReturn RemoveBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
-            
-            RepositoryHandler repositoryHandler = new RepositoryHandler(aRepository);
-            bool userAdmin = repositoryHandler.IsUserAnAdmin(User.Email);
-            if (aBlackBoard.creatorUser.Equals(this.user) || userAdmin)
+            ValidationReturn wasRemoved = new ValidationReturn(false, "El usuario no es ni creador del pizarrón ni administrador.");
+            bool isUserAdmin = this.User is Admin;
+            if (aBlackBoard.creatorUser.Equals(this.user) || isUserAdmin)
             {
                 TeamHandler teamHandler = new TeamHandler(aTeam);
                 BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-                ValidationReturn wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard,blackBoardContext);
-                return wasRemoved.Validation;
+                wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard,blackBoardContext);
             }
-            return false;
+            return wasRemoved;
         }
         public bool AddItemToBlackBoard(BlackBoard aBlackBoard, Item aItem)
         {

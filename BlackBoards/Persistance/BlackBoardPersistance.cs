@@ -50,6 +50,18 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    TeamPersistance teamContext = new TeamPersistance();
+                    ItemPersistance itemContext = new ItemPersistance();
+                    foreach (Item actualItem in aBlackBoard.itemList)
+                    {
+                        itemContext.Delete(actualItem);
+                    }
+                    Team teamWhichBelongs = teamContext.GetTeamByName(aBlackBoard.teamBelongs.Name);
+                    teamWhichBelongs.boards.Remove(aBlackBoard);
+                    aBlackBoard.teamBelongs = teamWhichBelongs;
+
+                    dbContext.teams.Attach(teamWhichBelongs);
+                    dbContext.Entry(teamWhichBelongs).State = EntityState.Modified;
                     dbContext.blackBoards.Attach(aBlackBoard);
                     dbContext.Entry(aBlackBoard).State = EntityState.Deleted;
                     dbContext.SaveChanges();
@@ -120,6 +132,10 @@ namespace Persistance
                 throw new PersistanceBlackBoardException("Error en la base de datos. Imposible obtener id del pizarron");
                 return -1;
             }
+        }
+        public BlackBoard GetBlackBoardByName(string name)
+        {
+            return this.GetBlackBoard(this.IDByBlackBoard(name));
         }
     }
 }

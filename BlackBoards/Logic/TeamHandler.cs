@@ -40,10 +40,14 @@ namespace BlackBoards.Handlers
             return validation;
         }
         public ValidationReturn RemoveBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext) {
+            TeamPersistance teamContext = new TeamPersistance();
             bool exists = blackBoardContext.Exists(aBoard);
             ValidationReturn validation = new ValidationReturn(exists,"No se ha podido eliminar el pizarron.");
             if (exists)
             {
+               /* Team removedBB = teamContext.GetTeamByName(this.Team.Name);
+                removedBB.boards.Remove(aBoard);
+                teamContext.ModifyTeam(removedBB);*/
                 blackBoardContext.Delete(aBoard);
                 validation.Message = "El pizarron se ha borrado con exito.";
             }

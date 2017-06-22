@@ -140,10 +140,37 @@ namespace BlackBoardsTest.HandlerTests
             teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
             UserHandler uHandler = new UserHandler(adm);
             //assertion
-            board =blackBoardContext.GetBoardByName(board.Name);
-            ValidationReturn removed = uHandler.RemoveBlackBoard(board,blackBoardContext);
+            board =blackBoardContext.GetBlackBoardByName(board.Name);
+            ValidationReturn removed = uHandler.RemoveBlackBoard(creatorTeam, board);
             CleanDB(blackBoardContext);
-            Assert.IsTrue(removed.Validation && teamHandler.Team.boards.Count == 0);
+            Assert.IsTrue(removed.Validation);
+        }
+        [TestMethod]
+        public void TestRemoveBlackBoardCheck()
+        {
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            CleanDB(blackBoardContext);
+            //instance
+            AdminPersistance adminContext = new AdminPersistance();
+            TeamPersistance teamContext = new TeamPersistance();
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            BlackBoard board = new BlackBoard();
+            handler.CreateAdmin("creatorUser", "creator", "creator@User.com", DateTime.Now, "123", adminContext);
+            User creatorUser = adminContext.GetUserByEmail("creator@User.com");
+            List<User> member = new List<User>();
+            member.Add(creatorUser);
+            handler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
+            Team creatorTeam = teamContext.GetTeamByName("teamTest");
+            TeamHandler teamHandler = new TeamHandler(creatorTeam);
+            teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
+            UserHandler uHandler = new UserHandler(adm);
+            //assertion
+            board = blackBoardContext.GetBlackBoardByName(board.Name);
+            ValidationReturn removed = uHandler.RemoveBlackBoard(creatorTeam, board);
+            Team compare = teamContext.GetTeamByName(teamHandler.Team.Name);
+            CleanDB(blackBoardContext);
+            Assert.IsTrue(compare.boards.Count == 0);
         }
         [TestMethod]
         public void TestModifyBlackBoardValid() {

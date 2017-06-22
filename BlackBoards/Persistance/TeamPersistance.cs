@@ -146,6 +146,33 @@ namespace Persistance
         public Team GetTeamByName(string name) {
             return this.GetTeam(this.IDByName(name));
         }
+        public void ModifyTeam(Team aTeam) {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                   
+                    if (this.Exists(aTeam))
+                    {
+                        Team anotherTeam = this.GetTeamByName(aTeam.Name);
+                        anotherTeam.Name = aTeam.Name;
+                        anotherTeam.boards = aTeam.boards;
+                        anotherTeam.Description = aTeam.Description;
+                        anotherTeam.EstablishedScoreTeam = aTeam.EstablishedScoreTeam;
+                        anotherTeam.members = aTeam.members;
+                        anotherTeam.scoresOfUsers = aTeam.scoresOfUsers;
+                        dbContext.teams.Attach(anotherTeam);
+                        dbContext.Entry(anotherTeam).State = EntityState.Modified;
+                        dbContext.SaveChanges();
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Equipo " );
+            }
+        }
 
     }
 }
