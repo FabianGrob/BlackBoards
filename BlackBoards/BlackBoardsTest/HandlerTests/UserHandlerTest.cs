@@ -57,7 +57,7 @@ namespace BlackBoardsTest
 
         }
         [TestMethod]
-        public void TestAddItemToBlackBoard()
+        public void TestAddTextBox()
         {
             //instance
             Initialize();
@@ -76,7 +76,8 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result.Validation);
         }
-    
+
+        
         /* 
 
          */
