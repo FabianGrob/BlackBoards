@@ -10,7 +10,6 @@ namespace Persistance.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Persistance.BlackBoardsContext";
         }
 
         protected override void Seed(Persistance.BlackBoardsContext context)

@@ -27,7 +27,7 @@ namespace UIBlackBoards
             panelContainer = container;
             boardContainer = aBoardContainer;
             theRepository = aRepository;
-            foreach (Comment aComment in anItem.Comments)
+            foreach (Comment aComment in anItem.comments)
             {
                 listBoxComments.Items.Add(aComment);
             }
@@ -54,7 +54,7 @@ namespace UIBlackBoards
                 }
                 else
                 {
-                    MessageBox.Show("El comentario ya estaba resuelto por: " + selectedComment.ResolvingUser, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El comentario ya estaba resuelto por: " + selectedComment.resolvingUser, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

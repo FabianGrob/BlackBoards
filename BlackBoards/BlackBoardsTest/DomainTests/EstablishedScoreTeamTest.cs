@@ -25,8 +25,8 @@ namespace BlackBoardsTest
             List<User> members = new List<User>();
             List<BlackBoard> boards = new List<BlackBoard>();
             Team newTeam = new Team(name, creationDate, description, maximumUsers, members, boards);
-            newEstablishedScoreTeam.Team = newTeam;
-            newEstablishedScoreTeam.Score = newScore;
+            newEstablishedScoreTeam.teamScore = newTeam;
+            newEstablishedScoreTeam.score = newScore;
             return newEstablishedScoreTeam;
         }
         [TestMethod]

@@ -14,34 +14,13 @@ namespace BlackBoards.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public virtual Team teamScore { get; set; }
-        private Score score;
+        public Score score { get; set; }
         public EstablishedScoreTeam()
         {
             this.teamScore = new Team();
             this.score = new Score();
         }
-        public Team Team
-        {
-            get
-            {
-                return this.teamScore;
-            }
-            set
-            {
-                this.teamScore = value;
-            }
-        }
-        public Score Score
-        {
-            get
-            {
-                return this.score;
-            }
-            set
-            {
-                this.score = value;
-            }
-        }
+       
         private bool IsOfTeam(Team team)
         {
             return this.teamScore.Equals(team);
@@ -57,7 +36,7 @@ namespace BlackBoards.Domain
             {
                 return false;
             }
-            return this.IsOfTeam(anotherEstablishedScoreTeam.Team);
+            return this.IsOfTeam(anotherEstablishedScoreTeam.teamScore);
         }
     }
 }

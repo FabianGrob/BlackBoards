@@ -31,7 +31,7 @@ namespace BlackBoardsTest
             aPic.Dimension = new Dimension(1, 1);
             Coordinate origin = new Coordinate();
             aPic.Origin = origin;
-            aPic.Comments = comments;
+            aPic.comments = comments;
             string proyectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
             string defualtImagePath = proyectPath + "\\Images\\default.jpg";
             Picture anotherPic = new Picture(new Dimension(1, 1), comments, origin);

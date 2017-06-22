@@ -29,9 +29,9 @@ namespace BlackBoardsTest
             DateTime birthDate = new DateTime();
             String password = "testPassword";
             User newUser = new Admin(name, lastName, email, birthDate, password);
-            scoreUserInTeamTest.Team = newTeam;
+            scoreUserInTeamTest.theTeam = newTeam;
             scoreUserInTeamTest.Score = newScore;
-            scoreUserInTeamTest.User = newUser;
+            scoreUserInTeamTest.theUser = newUser;
             return scoreUserInTeamTest;
         }
         [TestMethod]

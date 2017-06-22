@@ -15,14 +15,14 @@ namespace BlackBoards
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IDBlackBoard { get; set; }
         public virtual List<Item> itemList { get; set; }
+        public virtual Team teamBelongs { get; set; }
+        public virtual User creatorUser { get; set; }
         private string name;
         private string description;
         private Dimension dimension;
-        private User creatorUser;
+        
         private DateTime creationDate;
         private DateTime lastModificationDate;
-        public virtual Team teamBelongs { get; set; }
-
         public BlackBoard()
         {
             this.name = "Default name";
@@ -74,29 +74,6 @@ namespace BlackBoards
             set
             {
                 this.dimension = value;
-            }
-        }
-
-        public List<Item> ItemList
-        {
-            get
-            {
-                return this.itemList;
-            }
-            set
-            {
-                this.itemList = value;
-            }
-        }
-        public User CreatorUser
-        {
-            get
-            {
-                return this.creatorUser;
-            }
-            set
-            {
-                this.creatorUser = value;
             }
         }
         public DateTime CreationDate

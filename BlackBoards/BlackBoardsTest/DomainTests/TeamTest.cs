@@ -26,8 +26,8 @@ namespace BlackBoardsTest
             otherTeam.CreationDate = creationDate;
             otherTeam.Description = description;
             otherTeam.MaxUsers = maximumUsers;
-            otherTeam.Members = members;
-            otherTeam.Boards = boards;
+            otherTeam.members = members;
+            otherTeam.boards = boards;
             Assert.IsTrue(aTeam.Equals(otherTeam));
         }
         [TestMethod]

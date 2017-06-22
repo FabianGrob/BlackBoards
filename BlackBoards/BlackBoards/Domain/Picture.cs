@@ -17,7 +17,7 @@ namespace BlackBoards
         public Picture()
         {
             this.Dimension = new Dimension(50, 50);
-            this.Comments = new List<Comment>();
+            this.comments = new List<Comment>();
             this.Origin = new Coordinate();
             this.description = "default description";
             this.imgPath = "";
@@ -55,7 +55,7 @@ namespace BlackBoards
         public Picture(Dimension aDimension, List<Comment> someComments, Coordinate anOrigin)
         {
             this.Dimension = aDimension;
-            this.Comments = someComments;
+            this.comments = someComments;
             this.Origin = anOrigin;
         }
         private string getDefaultPicturePath()
@@ -77,7 +77,7 @@ namespace BlackBoards
             }
             bool sameDimensions = this.Dimension.Equals(anotherPicture.Dimension);
             bool sameOrigin = this.Origin == anotherPicture.Origin;
-            bool sameComments = this.Comments.Equals(anotherPicture.Comments);
+            bool sameComments = this.comments.Equals(anotherPicture.comments);
             return sameDimensions && sameComments && sameComments;
         }
 

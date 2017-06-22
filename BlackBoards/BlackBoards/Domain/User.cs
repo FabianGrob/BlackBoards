@@ -21,7 +21,6 @@ namespace BlackBoards
         public virtual List<Comment> createdComments { get; set; }
         public virtual List<Comment> resolvedComments { get; set; }
         public virtual List<ScoreUserInTeam> scoresInTeams { get; set; }
-        // [Obsolete("constructor only usable by EntityFramework", true)]
         public User()
         {         
             this.ID = 1;
@@ -31,6 +30,9 @@ namespace BlackBoards
             this.BirthDate = DateTime.Now;
             this.Password = "Default password";
             this.belongInteams = new List<Team>();
+            this.createdComments = new List<Comment>();
+            this.resolvedComments = new List<Comment>();
+            this.scoresInTeams = new List<ScoreUserInTeam>();
         }
         public User(string name, string lastName, string email, DateTime birthDate, string password)
         {
@@ -39,6 +41,10 @@ namespace BlackBoards
             this.Email = email;
             this.BirthDate = birthDate;
             this.Password = password;
+            this.belongInteams = new List<Team>();
+            this.createdComments = new List<Comment>();
+            this.resolvedComments = new List<Comment>();
+            this.scoresInTeams = new List<ScoreUserInTeam>();
         }
         public string Name
         {
@@ -109,8 +115,6 @@ namespace BlackBoards
 
             return (this.Email.Equals(anotherUser.Email));
         }
-
-
         private bool validEmail()
         {
             return (this.emailUser.Length > 0);

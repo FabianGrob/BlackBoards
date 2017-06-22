@@ -14,7 +14,9 @@ namespace BlackBoards.Domain
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IDConnection { get; set; }
+        [Column("Id_From")]
         public virtual Item from { get; set; }
+        [Column("Id_To")]
         public virtual Item to { get; set; }
         private DirectionType direction;
         private string name;
@@ -27,28 +29,6 @@ namespace BlackBoards.Domain
             this.name = aName;
             this.description = aDescripton;
             this.direction = aDirection;
-        }
-        public Item From
-        {
-            get
-            {
-                return this.from;
-            }
-            set
-            {
-                this.from = value;
-            }
-        }
-        public Item To
-        {
-            get
-            {
-                return this.to;
-            }
-            set
-            {
-                this.to = value;
-            }
         }
         public string Description
         {
@@ -85,11 +65,11 @@ namespace BlackBoards.Domain
         }
         private bool IsAnyItemNull()
         {
-            return this.From == null || this.To == null;
+            return this.from == null || this.to == null;
         }
         private bool ItemsAreTheSame()
         {
-            return this.To.Equals(this.From);
+            return this.to.Equals(this.from);
         }
         private bool IsNameShort()
         {

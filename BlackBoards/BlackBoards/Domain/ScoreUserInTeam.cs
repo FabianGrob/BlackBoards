@@ -16,34 +16,6 @@ namespace BlackBoards.Domain
         public virtual Team theTeam { get; set; }
         public virtual User theUser { get; set; }
         private Score score;
-        public ScoreUserInTeam()
-        {
-            this.theTeam = new Team();
-            this.theUser = new Admin();
-            this.score = new Score();
-        }
-        public Team Team
-        {
-            get
-            {
-                return this.theTeam;
-            }
-            set
-            {
-                this.theTeam = value;
-            }
-        }
-        public User User
-        {
-            get
-            {
-                return this.theUser;
-            }
-            set
-            {
-                this.theUser = value;
-            }
-        }
         public Score Score
         {
             get
@@ -79,8 +51,8 @@ namespace BlackBoards.Domain
                 return false;
             }
             bool scoreEquals = this.IsThisScore(otherScoreUserInTeam.Score);
-            bool teamEquals = this.IsOfTeam(otherScoreUserInTeam.Team);
-            bool userEquals = this.IsOfUser(otherScoreUserInTeam.User);
+            bool teamEquals = this.IsOfTeam(otherScoreUserInTeam.theTeam);
+            bool userEquals = this.IsOfUser(otherScoreUserInTeam.theUser);
             return (scoreEquals && teamEquals && userEquals);
         }
     }
