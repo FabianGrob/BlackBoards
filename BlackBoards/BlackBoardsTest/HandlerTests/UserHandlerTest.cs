@@ -57,7 +57,6 @@ namespace BlackBoardsTest
             bool result = u.Equals(userHandler.User);
             //assertion
             Assert.IsTrue(result);
-
         }
         [TestMethod]
         public void TestAddTextBox()
