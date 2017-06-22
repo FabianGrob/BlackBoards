@@ -18,13 +18,11 @@ namespace BlackBoardsTest
             //variables instance
             int xAxis = 3;
             int yAxis = 3;
-
             //objects instance
             Coordinate aCoordinate = new Coordinate(xAxis, yAxis);
             Coordinate otherCoordinate = new Coordinate();
             otherCoordinate.XAxis = xAxis;
             otherCoordinate.YAxis = yAxis;
-            
             //assert
             Assert.IsTrue(aCoordinate.Equals(otherCoordinate));
         }
@@ -37,11 +35,9 @@ namespace BlackBoardsTest
             int yAxisValue1 = 3;
             int xAxisValue2 = 5;
             int yAxisValue2 = 3;
-
             //objects instance
             Coordinate aCoordinate = new Coordinate(xAxisValue1, yAxisValue1);
             Coordinate otherCoordinate = new Coordinate(xAxisValue2, yAxisValue2);
-
             //asserts
             Assert.IsFalse(aCoordinate.Equals(otherCoordinate));
         }

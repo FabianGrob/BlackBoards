@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace BlackBoardsTest
 {
     [TestClass]
-    public class UserHandlerTest
+    public class ScoreCalculatorTest
     {
         public void Initialize()
         {
@@ -57,7 +57,6 @@ namespace BlackBoardsTest
             bool result = u.Equals(userHandler.User);
             //assertion
             Assert.IsTrue(result);
-
         }
         [TestMethod]
         public void TestAddTextBox()

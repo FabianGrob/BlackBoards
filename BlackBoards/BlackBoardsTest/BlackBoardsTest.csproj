@@ -72,7 +72,6 @@
     <Compile Include="HandlerTests\CommentHandlerTest.cs" />
     <Compile Include="HandlerTests\ItemHandlerTest.cs" />
     <Compile Include="HandlerTests\TextBoxHandlerTest.cs" />
-    <Compile Include="HandlerTests\RepositoryHandlerTest.cs" />
     <Compile Include="HandlerTests\TeamHandlerTest.cs" />
     <Compile Include="HandlerTests\UserHandlerTest.cs" />
     <Compile Include="DomainTests\BlackBoardTest.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="DomainTests\TeamTest.cs" />
     <Compile Include="DomainTests\TextBoxTest.cs" />
     <Compile Include="DomainTests\UserTest.cs" />
+    <Compile Include="ScoresCalculatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlackBoards\BlackBoards.csproj">

@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="AdminPersistance.cs" />
     <Compile Include="BlackBoardsContext.cs" />
+    <Compile Include="EstablishedScoreTeamPersistance.cs" />
     <Compile Include="ItemPersistance.cs" />
     <Compile Include="Migrations\201706220656530_DB.cs" />
     <Compile Include="Migrations\201706220656530_DB.Designer.cs">
@@ -67,6 +68,7 @@
       <DependentUpon>201706220902552_newMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PersistanceException\PersistanceScoresException.cs" />
     <Compile Include="PersistanceException\PersistanceCommentException.cs" />
     <Compile Include="PersistanceException\PersistanceItemException.cs" />
     <Compile Include="PersistanceException\PersistanceAdminException.cs" />

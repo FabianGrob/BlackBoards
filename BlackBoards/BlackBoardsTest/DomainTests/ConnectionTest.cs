@@ -116,6 +116,5 @@ namespace BlackBoardsTest.DomainTests
             bool result = connection.isValid().Validation;
             Assert.IsFalse(result);
         }
-
     }
 }

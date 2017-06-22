@@ -15,6 +15,16 @@ namespace System
         {
             BlackBoardsContext context = new BlackBoardsContext();
         }
+
+        public void createFirstUser()
+        {
+            List<User> allUsers = this.GetAllUSersInDB();
+            if (allUsers.Count == 0)
+            {
+                this.newAdmin("logged@logged", "admin@admin", "admin", "Administrador", "", DateTime.Now);
+            }
+        }
+
         #region User
         public ValidationReturn newUser(string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
         {
@@ -37,7 +47,7 @@ namespace System
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo administrador.");
             AdminPersistance adminContext = new AdminPersistance();
-            Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
+            Admin loggedAdmin = new Admin();
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
             User u = new Admin();
             u.Email = email;
@@ -68,7 +78,22 @@ namespace System
             validation.Message = validEmail.Message;
             return validation;
         }
+
+        private bool sameUser(string emailAdmin, string email)
+        {
+            return (emailAdmin.Equals(email));
+        }
+
         public ValidationReturn deleteUser(string emailAdmin, string email)
+        {
+            ValidationReturn validation = new ValidationReturn(false,"No se puede eliminar a si mismo");
+            if(!sameUser(emailAdmin,email))
+            {
+                validation = this.ereaseUser(emailAdmin, email);
+            }
+            return validation;
+        }
+        private ValidationReturn ereaseUser(string emailAdmin, string email)
         {
             TeamPersistance teamContext = new TeamPersistance();
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido eliminar el usuario.");

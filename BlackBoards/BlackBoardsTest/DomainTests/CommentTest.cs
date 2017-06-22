@@ -19,16 +19,13 @@ namespace BlackBoardsTest
             DateTime commentingDate = new DateTime();
             DateTime resolvingDate = new DateTime();
             String comment = "testComment";
-
             Comment aComment = new Comment(commentingUser, resolvingUser, commentingDate, resolvingDate, comment);
-
             Comment otherComment = new Comment();
             otherComment.commentingUser = commentingUser;
             otherComment.resolvingUser = resolvingUser;
             otherComment.CommentingDate = commentingDate;
             otherComment.ResolvingDate = resolvingDate;
             otherComment.WrittenComment = comment;
-      
             Assert.IsTrue(aComment.Equals(otherComment));
         }
 
@@ -49,7 +46,6 @@ namespace BlackBoardsTest
             otherComment.CommentingDate = DateTime.MaxValue; 
             otherComment.ResolvingDate = DateTime.MaxValue;
             otherComment.WrittenComment = "CommentTest";
-
             Assert.IsFalse(aComment.Equals(otherComment));
         }
     }

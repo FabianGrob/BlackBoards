@@ -30,6 +30,23 @@ namespace BlackBoards.Domain
             this.addComment = addComment;
             this.solveComment = solveComment;
         }
+        public int CalculateScore(Score anotherScore)
+        {
+            this.TimesScores(anotherScore);
+            return this.SumOfScores();
+        }
+        private int SumOfScores()
+        {
+            return this.createBlackBoard + this.deleteBlackBoard + this.addItem + this.addComment + this.solveComment;
+        }
+        private void TimesScores(Score anotherScore)
+        {
+            this.createBlackBoard= this.createBlackBoard*anotherScore.createBlackBoard;
+            this.deleteBlackBoard = this.deleteBlackBoard * anotherScore.deleteBlackBoard;
+            this.addItem = this.addItem * anotherScore.addItem;
+            this.addComment = this.addComment * anotherScore.addComment;
+            this.solveComment = this.solveComment * anotherScore.solveComment;
+        }
         public int CreateBlackBoard
         {
             get

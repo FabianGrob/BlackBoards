@@ -41,6 +41,7 @@
     <Compile Include="BlackBoardHandler.cs" />
     <Compile Include="CommentHandler.cs" />
     <Compile Include="Facade.cs" />
+    <Compile Include="ScoresCalculator.cs" />
     <Compile Include="ItemHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="RepositoryHandler.cs" />

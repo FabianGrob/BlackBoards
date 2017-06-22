@@ -117,11 +117,11 @@ namespace BlackBoards
         }
         private bool validName()
         {
-            return (this.name.Length >= 0);
+            return (this.name.Length > 0);
         }
         private bool validDescription()
         {
-            return (this.description.Length >= 0);
+            return (this.description.Length > 0);
         }
         private bool validMaxUsers()
         {

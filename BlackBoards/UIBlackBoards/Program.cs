@@ -10,20 +10,13 @@ namespace BlackBoards
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-           // Application.EnableVisualStyles();
-           // Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new LogIn());
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Facade theFacade = new Facade();
-
+            theFacade.createFirstUser();
             LogIn window = new LogIn(theFacade);
             Application.Run(new LogIn(theFacade));
         }

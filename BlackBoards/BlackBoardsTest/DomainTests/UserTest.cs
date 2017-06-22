@@ -15,9 +15,7 @@ namespace BlackBoardsTest
             Assert.IsTrue(true);
          
         }
-
         private TestContext testContextInstance;
-
         public TestContext TestContext
         {
             get
@@ -29,7 +27,5 @@ namespace BlackBoardsTest
                 testContextInstance = value;
             }
         }
-       
-    
     }
 }
