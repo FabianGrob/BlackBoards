@@ -13,7 +13,6 @@ namespace BlackBoards
     public class UserHandler
     {
         private User user;
-
         public UserHandler(User anUser)
         {
             this.user = anUser;
@@ -34,12 +33,12 @@ namespace BlackBoards
             TeamPersistance teamContext = new TeamPersistance();
             Team fullTeam = teamContext.GetTeamByName(aTeam.Name);
             TeamHandler teamHandler = new TeamHandler(fullTeam);
-            aBlackBoard.creatorUser = this.User;     
+            aBlackBoard.creatorUser = this.User;
             bool userInTeam = teamHandler.IsUserInTeam(this.user);
             if (userInTeam)
             {
                 BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-                ValidationReturn validation = teamHandler.AddBlackBoard(aBlackBoard,blackBoardContext, this.user);
+                ValidationReturn validation = teamHandler.AddBlackBoard(aBlackBoard, blackBoardContext, this.user);
                 bool isABlackBoardValid = validation.Validation;
                 return isABlackBoardValid;
             }
@@ -64,7 +63,7 @@ namespace BlackBoards
             {
                 TeamHandler teamHandler = new TeamHandler(aTeam);
                 BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-                wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard,blackBoardContext);
+                wasRemoved = teamHandler.RemoveBlackBoard(aBlackBoard, blackBoardContext);
             }
             return wasRemoved;
         }
