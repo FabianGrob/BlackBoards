@@ -137,7 +137,7 @@ namespace BlackBoards
         }
         public ValidationReturn IsValid()
         {
-            ValidationReturn validation = new ValidationReturn(true, "OK");
+            ValidationReturn validation = new ValidationReturn(true, "Todos los datos son válidos");
             if (!this.validName())
             {
                 validation.RedefineValues(false, "El nombre ingresado es vacio.");
@@ -157,6 +157,10 @@ namespace BlackBoards
             if (!this.validCantOfMembers())
             {
                 validation.RedefineValues(false, "El equipo alcanzo la cantidad maxima de usuarios.");
+            }
+            if (this.maxUsers<this.members.Count)
+            {
+                validation.RedefineValues(false, "Hay mas usuarios que la cantidad maxima de usuarios");
             }
             return validation;
         }

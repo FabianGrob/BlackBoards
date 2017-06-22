@@ -22,7 +22,15 @@ namespace System
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
-            validation = adminHandler.CreateCollaborator(name, lastName, email, birthDate, fstPass, adminContext);
+            User u = new Admin();
+            u.Email = email;
+            ValidationReturn validEmail = u.IsValid();
+            if (validEmail.Validation)
+            {
+                validation = adminHandler.CreateCollaborator(name, lastName, email, birthDate, fstPass, adminContext);
+                validation.Message = "Colaborador creado con exito";
+            }
+            validation.Message = validEmail.Message;
             return validation;
         }
         public ValidationReturn newAdmin(string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
@@ -31,7 +39,15 @@ namespace System
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
-            validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
+            User u = new Admin();
+            u.Email = email;
+            ValidationReturn validEmail = u.IsValid();
+            if (validEmail.Validation)
+            {
+                validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
+                validation.Message = "Administrador creado con exito";
+            }
+            validation.Message = validEmail.Message;
             return validation;
         }
         public ValidationReturn modifyUser(string oldEmail,string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
@@ -40,7 +56,16 @@ namespace System
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
-            validation.Validation = adminHandler.ModifyUser(oldEmail,name,lastName, email, birthDate, fstPass, adminContext);
+            User u = new Admin();
+            u.Email = email;
+            ValidationReturn validEmail = u.IsValid();
+            if (validEmail.Validation)
+            {
+                validation.Validation = adminHandler.ModifyUser(oldEmail, name, lastName, email, birthDate, fstPass, adminContext);
+                validation.Message = "Usuario modificado con exito";
+
+            }
+            validation.Message = validEmail.Message;
             return validation;
         }
         public ValidationReturn deleteUser(string emailAdmin, string email)

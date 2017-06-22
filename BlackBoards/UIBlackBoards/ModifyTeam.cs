@@ -80,7 +80,7 @@ namespace UIBlackBoards
 
                 AdminHandler handler = new AdminHandler(theFacade.GetSpecificUser(logged) as Admin);
                 TeamPersistance teamContext = new TeamPersistance();
-                bool existingTeam =  handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, teamContext).Validation;
+                bool existingTeam = handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, teamContext).Validation;
                 if (!existingTeam)
                 {
                     MessageBox.Show("El equipo ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -91,8 +91,11 @@ namespace UIBlackBoards
                     panelContainer.Controls.Clear();
                 }
             }
+            if (!validationsOk)
+            {
+                MessageBox.Show(validation.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
             int selectedIndex = listBoxAllUsers.SelectedIndex;
