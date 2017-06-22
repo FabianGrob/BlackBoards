@@ -7,13 +7,13 @@ namespace Persistance.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DataBase : IMigrationMetadata
+    public sealed partial class DB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DataBase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706220232560_DataBase"; }
+            get { return "201706220656530_DB"; }
         }
         
         string IMigrationMetadata.Source

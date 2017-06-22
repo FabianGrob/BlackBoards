@@ -3,7 +3,7 @@ namespace Persistance.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DataBase : DbMigration
+    public partial class DB : DbMigration
     {
         public override void Up()
         {
@@ -18,14 +18,14 @@ namespace Persistance.Migrations
                         Dimension_Height = c.Int(nullable: false),
                         CreationDate = c.DateTime(nullable: false),
                         LastModificationDate = c.DateTime(nullable: false),
-                        teamBelongs_IDTeam = c.Int(),
                         creatorUser_ID = c.Int(),
+                        teamBelongs_IDTeam = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.IDBlackBoard)
-                .ForeignKey("dbo.Teams", t => t.teamBelongs_IDTeam)
                 .ForeignKey("dbo.Users", t => t.creatorUser_ID)
-                .Index(t => t.teamBelongs_IDTeam)
-                .Index(t => t.creatorUser_ID);
+                .ForeignKey("dbo.Teams", t => t.teamBelongs_IDTeam)
+                .Index(t => t.creatorUser_ID)
+                .Index(t => t.teamBelongs_IDTeam);
             
             CreateTable(
                 "dbo.Users",
@@ -51,9 +51,7 @@ namespace Persistance.Migrations
                         CreationDate = c.DateTime(nullable: false),
                         MaxUsers = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.IDTeam)
-                .ForeignKey("dbo.EstablishedScoreTeams", t => t.IDTeam)
-                .Index(t => t.IDTeam);
+                .PrimaryKey(t => t.IDTeam);
             
             CreateTable(
                 "dbo.EstablishedScoreTeams",
@@ -66,7 +64,9 @@ namespace Persistance.Migrations
                         score_AddComment = c.Int(nullable: false),
                         score_SolveComment = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Teams", t => t.ID)
+                .Index(t => t.ID);
             
             CreateTable(
                 "dbo.ScoreUserInTeams",
@@ -78,7 +78,7 @@ namespace Persistance.Migrations
                         Score_AddItem = c.Int(nullable: false),
                         Score_AddComment = c.Int(nullable: false),
                         Score_SolveComment = c.Int(nullable: false),
-                        theTeam_IDTeam = c.Int(),
+                        theTeam_IDTeam = c.Int(nullable: false),
                         theUser_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.IDScoreUserInTeam)
@@ -155,22 +155,23 @@ namespace Persistance.Migrations
                 .Index(t => t.to_IDItem);
             
             CreateTable(
-                "dbo.TeamUsers",
+                "dbo.Members",
                 c => new
                     {
-                        Team_IDTeam = c.Int(nullable: false),
-                        User_ID = c.Int(nullable: false),
+                        IDUser = c.Int(nullable: false),
+                        IDTeam = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Team_IDTeam, t.User_ID })
-                .ForeignKey("dbo.Teams", t => t.Team_IDTeam, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.User_ID, cascadeDelete: true)
-                .Index(t => t.Team_IDTeam)
-                .Index(t => t.User_ID);
+                .PrimaryKey(t => new { t.IDUser, t.IDTeam })
+                .ForeignKey("dbo.Users", t => t.IDUser, cascadeDelete: true)
+                .ForeignKey("dbo.Teams", t => t.IDTeam, cascadeDelete: true)
+                .Index(t => t.IDUser)
+                .Index(t => t.IDTeam);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.BlackBoards", "teamBelongs_IDTeam", "dbo.Teams");
             DropForeignKey("dbo.BlackBoards", "creatorUser_ID", "dbo.Users");
             DropForeignKey("dbo.Comments", "User_ID1", "dbo.Users");
             DropForeignKey("dbo.Comments", "User_ID", "dbo.Users");
@@ -181,14 +182,13 @@ namespace Persistance.Migrations
             DropForeignKey("dbo.Comments", "itemBelong_IDItem", "dbo.Items");
             DropForeignKey("dbo.Items", "blackBoardBelongs_IDBlackBoard", "dbo.BlackBoards");
             DropForeignKey("dbo.Comments", "commentingUser_ID", "dbo.Users");
+            DropForeignKey("dbo.Members", "IDTeam", "dbo.Teams");
+            DropForeignKey("dbo.Members", "IDUser", "dbo.Users");
             DropForeignKey("dbo.ScoreUserInTeams", "theUser_ID", "dbo.Users");
             DropForeignKey("dbo.ScoreUserInTeams", "theTeam_IDTeam", "dbo.Teams");
-            DropForeignKey("dbo.TeamUsers", "User_ID", "dbo.Users");
-            DropForeignKey("dbo.TeamUsers", "Team_IDTeam", "dbo.Teams");
-            DropForeignKey("dbo.Teams", "IDTeam", "dbo.EstablishedScoreTeams");
-            DropForeignKey("dbo.BlackBoards", "teamBelongs_IDTeam", "dbo.Teams");
-            DropIndex("dbo.TeamUsers", new[] { "User_ID" });
-            DropIndex("dbo.TeamUsers", new[] { "Team_IDTeam" });
+            DropForeignKey("dbo.EstablishedScoreTeams", "ID", "dbo.Teams");
+            DropIndex("dbo.Members", new[] { "IDTeam" });
+            DropIndex("dbo.Members", new[] { "IDUser" });
             DropIndex("dbo.Connections", new[] { "to_IDItem" });
             DropIndex("dbo.Connections", new[] { "from_IDItem" });
             DropIndex("dbo.Items", new[] { "connect_IDConnection" });
@@ -200,10 +200,10 @@ namespace Persistance.Migrations
             DropIndex("dbo.Comments", new[] { "commentingUser_ID" });
             DropIndex("dbo.ScoreUserInTeams", new[] { "theUser_ID" });
             DropIndex("dbo.ScoreUserInTeams", new[] { "theTeam_IDTeam" });
-            DropIndex("dbo.Teams", new[] { "IDTeam" });
-            DropIndex("dbo.BlackBoards", new[] { "creatorUser_ID" });
+            DropIndex("dbo.EstablishedScoreTeams", new[] { "ID" });
             DropIndex("dbo.BlackBoards", new[] { "teamBelongs_IDTeam" });
-            DropTable("dbo.TeamUsers");
+            DropIndex("dbo.BlackBoards", new[] { "creatorUser_ID" });
+            DropTable("dbo.Members");
             DropTable("dbo.Connections");
             DropTable("dbo.Items");
             DropTable("dbo.Comments");
