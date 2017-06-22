@@ -31,7 +31,9 @@ namespace BlackBoards
         }
         public bool CreateBlackBoard(Team aTeam, BlackBoard aBlackBoard)
         {
-            TeamHandler teamHandler = new TeamHandler(aTeam);
+            TeamPersistance teamContext = new TeamPersistance();
+            Team fullTeam = teamContext.GetTeamByName(aTeam.Name);
+            TeamHandler teamHandler = new TeamHandler(fullTeam);
             aBlackBoard.creatorUser = this.User;     
             bool userInTeam = teamHandler.IsUserInTeam(this.user);
             if (userInTeam)
@@ -66,7 +68,7 @@ namespace BlackBoards
             }
             return wasRemoved;
         }
-        public bool AddItemToBlackBoard(BlackBoard aBlackBoard, Item aItem)
+        public ValidationReturn AddItemToBlackBoard(BlackBoard aBlackBoard, Item aItem)
         {
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
             return blackBoardHandler.AddItem(aItem);

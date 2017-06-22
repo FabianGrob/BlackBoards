@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
+using Persistance;
 
 namespace BlackBoards.Handlers
 {
@@ -43,7 +45,7 @@ namespace BlackBoards.Handlers
             foreach (Item actualItem in BlackBoard.itemList)
             {
                 BlackBoardHandler fakeHandler = new BlackBoardHandler(fakeBlackBoard);
-                if (fakeHandler.ItemOutOfBands(actualItem, actualItem.Origin))
+                if (fakeHandler.ItemOutOfBands(actualItem, actualItem.Origin).Validation)
                 {
                     canModify = false;
                 }
@@ -63,12 +65,14 @@ namespace BlackBoards.Handlers
             }
             return false;
         }
-        public bool AddItem(Item aItem)
+        public ValidationReturn AddItem(Item anItem)
         {
-            bool itemFitsInBlackBoard = ItemOutOfBands(aItem, aItem.Origin);
-            if (itemFitsInBlackBoard)
+            ValidationReturn itemFitsInBlackBoard = ItemOutOfBands(anItem, anItem.Origin);
+            if (itemFitsInBlackBoard.Validation)
             {
-                this.blackBoard.itemList.Add(aItem);
+                ItemPersistance itemContext = new ItemPersistance();
+                itemContext.AddItem(anItem);
+                itemFitsInBlackBoard.Message = "El elemento ha sido añadido";
             }
             return itemFitsInBlackBoard;
         }
@@ -86,7 +90,7 @@ namespace BlackBoards.Handlers
 
         public bool MoveItem(Item aItem, Coordinate coordinates)
         {
-            bool itemFitsInBlackBoard = ItemOutOfBands(aItem, coordinates);
+            bool itemFitsInBlackBoard = ItemOutOfBands(aItem, coordinates).Validation;
             if (itemFitsInBlackBoard)
             {
                 ItemHandler itemHandler = new ItemHandler(aItem);
@@ -117,14 +121,14 @@ namespace BlackBoards.Handlers
             }
             return itemSizeFitsInBlackBoard;
         }
-        private bool ItemOutOfBands(Item aItem, Coordinate coordinates)
+        private ValidationReturn ItemOutOfBands(Item aItem, Coordinate coordinates)
         {
             int maxXAxisValue = coordinates.XAxis + aItem.Dimension.Width;
             int maxYAxisValue = coordinates.YAxis + aItem.Dimension.Height;
-            bool itemFitsInBlackBoard = true;
+            ValidationReturn itemFitsInBlackBoard = new ValidationReturn(true, "El item se puede agregar al pizarron.");
             if (maxXAxisValue > blackBoard.Dimension.Height || maxYAxisValue > blackBoard.Dimension.Width)
             {
-                itemFitsInBlackBoard = false;
+                itemFitsInBlackBoard.RedefineValues(false, "El item no cabe en el pizarron."); ;
             }
             return itemFitsInBlackBoard;
         }
