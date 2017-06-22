@@ -76,8 +76,70 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result.Validation);
         }
+        [TestMethod]
+        public void TestAddGigantItemToBlackBoard()
+        {
+            //instance
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            TextBox textBox = new TextBox();
+            textBox.blackBoardBelongs = generatedBlackBoard;
+            textBox.Font = "Arial";
+            textBox.FontSize = 12;
+            textBox.Content = "ThisIsATest";
+            Dimension gigantDimension = new Dimension(99999, 99999);
+            textBox.Dimension = gigantDimension;
+            ValidationReturn result = handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
+            CleanDB(new UserPersistance());
+            //assertion
+            Assert.IsFalse(result.Validation);
+        }
+        [TestMethod]
+        public void testAddPicture()
+        {
+            //instance
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            Picture pic = new Picture();
+            pic.blackBoardBelongs = generatedBlackBoard;
+            pic.ImgPath = "test/path";
+            pic.Description = "testPic";
+            ValidationReturn result = handler.AddItemToBlackBoard(generatedBlackBoard, pic);
+            CleanDB(new UserPersistance());
+            //assertion
+            Assert.IsTrue(result.Validation);
+        }
+        [TestMethod]
+        public void TestAddOutOfBandsItemToBlackBoard()
+        {
+            //instance
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            Picture pic = new Picture();
+            pic.blackBoardBelongs = generatedBlackBoard;
+            pic.ImgPath = "test/path";
+            pic.Description = "testPic";
+            Coordinate outOfBandsCoordinates = new Coordinate(99999, 99999);
+            pic.Origin = outOfBandsCoordinates;
+            ValidationReturn result = handler.AddItemToBlackBoard(generatedBlackBoard, pic);
+            CleanDB(new UserPersistance());
+            //assertion
+            Assert.IsFalse(result.Validation);
+        }
+      
 
-        
         /* 
 
          */
