@@ -230,5 +230,26 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsFalse(aCoordinate.Equals(theItem.Origin));
         }
+        [TestMethod]
+        public void TestCreateComment()
+        {
+            //instance
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            TextBox textBox = new TextBox();
+            textBox.blackBoardBelongs = generatedBlackBoard;
+            textBox.Font = "Arial";
+            textBox.FontSize = 12;
+            textBox.Content = "ThisIsATest";
+            handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
+            TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
+            ValidationReturn result = handler.CreateNewComment(theItem, "testComment");
+            //assertion
+            Assert.IsTrue(aCoordinate.Equals(theItem.Origin));
+        }
     }
 }
