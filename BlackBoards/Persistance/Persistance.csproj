@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201706220656530_DB.Designer.cs">
       <DependentUpon>201706220656530_DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706220902552_newMigration.cs" />
+    <Compile Include="Migrations\201706220902552_newMigration.Designer.cs">
+      <DependentUpon>201706220902552_newMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersistanceException\PersistanceCommentException.cs" />
     <Compile Include="PersistanceException\PersistanceItemException.cs" />
@@ -79,6 +83,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Migrations\201706220656530_DB.resx">
       <DependentUpon>201706220656530_DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706220902552_newMigration.resx">
+      <DependentUpon>201706220902552_newMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

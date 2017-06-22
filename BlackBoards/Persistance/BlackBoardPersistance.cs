@@ -11,13 +11,16 @@ namespace Persistance
 {
     public class BlackBoardPersistance
     {
-        public void AddBlackBoard(BlackBoard blackBoard)
+        public void AddBlackBoard(BlackBoard blackBoard, User creatorUser)
         {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    UserPersistance userContext = new UserPersistance();
                     dbContext.teams.Attach(blackBoard.teamBelongs);
+                    User creator = dbContext.users.Where(u => u.ID == creatorUser.ID).Include(u => u.belongInteams).FirstOrDefault();
+                    blackBoard.creatorUser = creator;
                     dbContext.blackBoards.Add(blackBoard);
                     dbContext.SaveChanges();
                 }
@@ -50,6 +53,11 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    ItemPersistance itemContext = new ItemPersistance();
+                    foreach (Item actualItem in aBlackBoard.itemList)
+                    {
+                        itemContext.Delete(actualItem);
+                    }
                     dbContext.blackBoards.Attach(aBlackBoard);
                     dbContext.Entry(aBlackBoard).State = EntityState.Deleted;
                     dbContext.SaveChanges();
@@ -60,7 +68,7 @@ namespace Persistance
                 throw new PersistanceBlackBoardException("Error de base de datos: No se pudo eliminar el pizarron.");
             }
         }
-        private BlackBoard GetBlackBoard(int id)
+        public BlackBoard GetBlackBoard(int id)
         {
             try
             {
@@ -120,6 +128,10 @@ namespace Persistance
                 throw new PersistanceBlackBoardException("Error en la base de datos. Imposible obtener id del pizarron");
                 return -1;
             }
+        }
+        public BlackBoard GetBlackBoardByName(string name)
+        {
+            return this.GetBlackBoard(this.IDByBlackBoard(name));
         }
     }
 }
