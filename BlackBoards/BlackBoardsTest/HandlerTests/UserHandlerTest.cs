@@ -266,15 +266,11 @@ namespace BlackBoardsTest
             BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
             TextBox textBox = new TextBox();
             textBox.blackBoardBelongs = generatedBlackBoard;
-            //textBox.Font = "Arial";
-           // textBox.FontSize = 12;
-
             textBox.Content = "ThisIsATest";
             handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
             TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
             handler.CreateNewComment(theItem, "testComment");
             ItemPersistance itemContext = new ItemPersistance();
-
             TextBox fullItem = itemContext.GetItem(theItem.IDItem) as TextBox;
             Comment theComment = fullItem.comments.ElementAt(0);
             ValidationReturn result = handler.ResolveComment(theComment);

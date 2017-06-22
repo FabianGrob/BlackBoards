@@ -54,7 +54,7 @@ namespace BlackBoards.Handlers
         }
         public bool WasResolved()
         {
-            return !(this.Comment.ResolvingDate.CompareTo(this.Comment.CommentingDate)<=0);
+            return !(this.Comment.ResolvingDate.CompareTo(this.Comment.CommentingDate)<0);
         }
         private void AddResolvingUser(User anUser)
         {
