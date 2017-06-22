@@ -1,6 +1,7 @@
 ﻿
 using BlackBoards;
 using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Persistance;
 using System;
@@ -14,7 +15,9 @@ namespace BlackBoardsTest
     [TestClass]
     public class UserHandlerTest
     {
-       /* public void Initialize() {
+        public void Initialize()
+        {
+            CleanDB(new UserPersistance());
             AdminPersistance adminContext = new AdminPersistance();
             BlackBoardPersistance bBContext = new BlackBoardPersistance();
             ItemPersistance itemContext = new ItemPersistance();
@@ -22,40 +25,61 @@ namespace BlackBoardsTest
             Admin u = new Admin();
             AdminHandler handler = new AdminHandler(u);
             handler.CreateAdmin("generatedName", "generatedLastName", "generatedEmail@email.com", DateTime.Now, "generatedPassword", adminContext);
+            User generatedUser=adminContext.GetUserByEmail("generatedEmail@email.com");
             BlackBoard board = new BlackBoard("generatedBoard", "thisIsAGeneratedBoard", new Dimension(350, 350), new List<Item>(), u);
             List<User> member = new List<User>();
-            member.Add(u);
+            member.Add(generatedUser);
             Team aTeam = new Team("generatedTeam", DateTime.Now, "thisIsATestTeam", 10, member, new List<BlackBoard>());
             teamContext.AddTeam(aTeam);
-            UserHandler userHandler = new UserHandler(u);
-            userHandler.CreateBlackBoard(teamContext., board);
-            bBContext.AddBlackBoard(board);
+            Team generatedTeam = teamContext.GetTeamByName("generatedTeam");
+            UserHandler userHandler = new UserHandler(generatedUser);
+            userHandler.CreateBlackBoard(generatedTeam, board);
         }
         public void CleanDB(UserPersistance userContext)
         {
             BlackBoardPersistance bBContext = new BlackBoardPersistance();
             ItemPersistance itemContext = new ItemPersistance();
             TeamPersistance teamCOntext = new TeamPersistance();
-            userContext.Empty();
-            bBContext.Empty();
             itemContext.Empty();
+            bBContext.Empty();
             teamCOntext.Empty();
+            userContext.Empty();
+        }
+        [TestMethod]
+        public void TestUserHandlerBuilder()
+        {
+            //instance
+            User u = new Collaborator();
+            UserHandler userHandler = new UserHandler(u);
+            bool result = u.Equals(userHandler.User);
+            //assertion
+            Assert.IsTrue(result);
+
         }
         [TestMethod]
         public void TestAddItemToBlackBoard()
         {
             //instance
-            User u = new Collaborator();
-            UserHandler userHandler = new UserHandler(u);
-            Item item = new TextBox();
-            BlackBoard blackBoard = new BlackBoard();
-            userHandler.AddItemToBlackBoard(blackBoard, item);
-            bool result = blackBoard.ItemList.Count == 1;
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            TextBox textBox = new TextBox();
+            textBox.blackBoardBelongs = generatedBlackBoard;
+            textBox.Font = "Arial";
+            textBox.FontSize = 12;
+            textBox.Content = "ThisIsATest";
+            ValidationReturn result = handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
+            CleanDB(new UserPersistance());
             //assertion
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.Validation);
         }
+    
+        /* 
 
-        */
+         */
         /*
          [TestMethod]
          public void TestUserHandlerBuilder()
