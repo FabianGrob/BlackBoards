@@ -1,4 +1,5 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain;
 using Persistance.PersistanceException;
 using System;
 using System.Collections.Generic;
@@ -133,5 +134,32 @@ namespace Persistance
         {
             return this.GetBlackBoard(this.IDByBlackBoard(name));
         }
+        public void ModifyBlackBoard(string oldName, string name, string description, Dimension aDimension)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    BlackBoard oldBoard = new BlackBoard();
+                    oldBoard.Name = oldName;
+                    if (this.Exists(oldBoard))
+                    {
+                        BlackBoard anotherBoard = this.GetBlackBoardByName(oldBoard.Name);
+                        anotherBoard.Name = name;
+                        anotherBoard.Description = description;
+                        anotherBoard.Dimension = aDimension;
+                        dbContext.blackBoards.Attach(anotherBoard);
+                        dbContext.Entry(anotherBoard).State = EntityState.Modified;
+                        dbContext.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el pizazrrón");
+            }
+        }
+        
+
     }
 }

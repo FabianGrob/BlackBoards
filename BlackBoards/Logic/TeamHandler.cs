@@ -51,13 +51,14 @@ namespace BlackBoards.Handlers
         }
         public bool ModifyBlackBoard(BlackBoard oldBoard, BlackBoard newBoard)
         {
-
+            TeamPersistance teamContext = new TeamPersistance();
             BlackBoardHandler handler = new BlackBoardHandler(oldBoard);
             bool modified = false;
-            bool exists =this.Team.boards.Contains(oldBoard);
-            if (exists && newBoard.isValid())
+            bool sameName = oldBoard.Name == newBoard.Name;
+            bool existsAndCanChange =this.Team.boards.Contains(oldBoard) && (!teamContext.GetAllBoards().Contains(newBoard) || sameName);
+            if (existsAndCanChange && newBoard.isValid())
             {
-                handler.Modify(newBoard.Name,newBoard.Description,newBoard.Dimension);
+                handler.Modify(oldBoard.Name,newBoard.Name,newBoard.Description,newBoard.Dimension);
                 modified = true;
             }
             return modified;
