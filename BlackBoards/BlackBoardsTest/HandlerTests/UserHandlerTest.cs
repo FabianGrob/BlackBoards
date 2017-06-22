@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace BlackBoardsTest
 {
     [TestClass]
-    public class UserHandlerTest
+    public class ScoreCalculatorTest
     {
         public void Initialize()
         {
