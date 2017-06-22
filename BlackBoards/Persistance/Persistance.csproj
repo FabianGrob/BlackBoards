@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="AdminPersistance.cs" />
     <Compile Include="BlackBoardsContext.cs" />
+    <Compile Include="EstablishedScoreTeamPersistance.cs" />
     <Compile Include="ItemPersistance.cs" />
     <Compile Include="Migrations\201706220656530_DB.cs" />
     <Compile Include="Migrations\201706220656530_DB.Designer.cs">
