@@ -355,9 +355,9 @@ namespace BlackBoardsTest.HandlerTests
             members.Remove(col1);
             handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), teamContext);
             Team teamToLookingUp = teamContext.GetTeamByName(newName);
-            //assertion
             bool result = teamToLookingUp.MaxUsers == 5;
-            CleanDB(userContext,new TeamPersistance());
+            CleanDB(userContext, new TeamPersistance());
+            //assertion
             Assert.IsTrue(result);
         }
         [TestMethod]

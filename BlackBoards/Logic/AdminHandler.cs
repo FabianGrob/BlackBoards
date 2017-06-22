@@ -153,7 +153,6 @@ namespace BlackBoards
         }
         public ValidationReturn ModifyTeam(string oldName, string name, string description, int maxUsers, List<User> members, List<BlackBoard> boards, TeamPersistance teamContext)
         {
-            bool modified = false;
             Team abstractTeam = new Team(name, DateTime.Today, description, maxUsers, members, boards);
             ValidationReturn validModifications = abstractTeam.IsValid();
             int id = teamContext.IDByName(oldName);
@@ -164,7 +163,6 @@ namespace BlackBoards
             if (validModifications.Validation && teamExists && (!teamContext.Exists(toModificate) || oldName.Equals(name)))
             {
                 toModificate = teamContext.GetTeamByName(oldName);
-                modified = true;
                 toModificate.Name = name;
                 toModificate.Description = description;
                 toModificate.MaxUsers = maxUsers;
