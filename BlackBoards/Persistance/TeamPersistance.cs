@@ -29,7 +29,6 @@ namespace Persistance
             {
                 throw new PersistanceTeamException("Error en la base de datos. Imposible agregar equipo");
             }
-
         }
         public bool Exists(Team aTeam)
         {
@@ -53,7 +52,6 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-
                     dbContext.teams.Attach(aTeam);
                     dbContext.Entry(aTeam).State = EntityState.Deleted;
                     dbContext.SaveChanges();
@@ -101,7 +99,6 @@ namespace Persistance
                 throw new PersistanceTeamException("Error en la base de datos. Imposible vaciar valores de variables");
             }
         }
-
         public int IDByName(string name)
         {
             try
@@ -125,9 +122,6 @@ namespace Persistance
                 return -1;
             }
         }
-
-      
-
         public List<User> GetMembersById(int id)
         {
             using (BlackBoardsContext dbContext = new BlackBoardsContext())
@@ -143,36 +137,55 @@ namespace Persistance
                 return new List<User>();
             }
         }
-        public Team GetTeamByName(string name) {
+        public Team GetTeamByName(string name)
+        {
             return this.GetTeam(this.IDByName(name));
         }
-        public void ModifyTeam(Team aTeam) {
+        public void updateMembers(Team theTeam, List<User> updatedMembers)
+        {
             try
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                   
-                    if (this.Exists(aTeam))
+                    Team anotherTeam = dbContext.teams.Where(t => t.Name == theTeam.Name).Include(u => u.members).FirstOrDefault();
+                    anotherTeam.members = new List<User>();
+                    foreach (User actualUser in updatedMembers)
                     {
-                        Team anotherTeam = this.GetTeamByName(aTeam.Name);
-                        anotherTeam.Name = aTeam.Name;
-                        anotherTeam.boards = aTeam.boards;
-                        anotherTeam.Description = aTeam.Description;
-                        anotherTeam.EstablishedScoreTeam = aTeam.EstablishedScoreTeam;
-                        anotherTeam.members = aTeam.members;
-                        anotherTeam.scoresOfUsers = aTeam.scoresOfUsers;
-                        dbContext.teams.Attach(anotherTeam);
-                        dbContext.Entry(anotherTeam).State = EntityState.Modified;
-                        dbContext.SaveChanges();
+                        User userFromDB = dbContext.users.Where(t => t.ID == actualUser.ID).Include(u => u.belongInteams).FirstOrDefault();
+                        anotherTeam.members.Add(userFromDB);
                     }
-
+                    dbContext.Entry(anotherTeam).State = EntityState.Modified;
+                    dbContext.SaveChanges();
                 }
             }
             catch (Exception e)
             {
-                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Equipo " );
+                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Equipo ");
             }
         }
-
+        public void ModifyTeam(Team aTeam, Team oldTeam)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    if (this.Exists(oldTeam))
+                    {
+                        Team anotherTeam = dbContext.teams.Where(t => t.Name == oldTeam.Name).Include(u => u.members).FirstOrDefault();
+                        anotherTeam.Name = aTeam.Name;
+                        anotherTeam.Description = aTeam.Description;
+                        anotherTeam.MaxUsers = aTeam.MaxUsers;
+                        dbContext.teams.Attach(anotherTeam);
+                        dbContext.Entry(anotherTeam).State = EntityState.Modified;
+                        dbContext.SaveChanges();
+                        updateMembers(anotherTeam,aTeam.members);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Equipo ");
+            }
+        }
     }
 }

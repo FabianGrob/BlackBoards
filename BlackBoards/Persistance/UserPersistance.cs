@@ -143,7 +143,6 @@ namespace Persistance
                         dbContext.Entry(anotherUser).State = EntityState.Modified;
                         dbContext.SaveChanges();
                     }
-
                 }
             }
             catch (Exception)
