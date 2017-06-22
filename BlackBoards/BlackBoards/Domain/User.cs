@@ -115,9 +115,20 @@ namespace BlackBoards
 
             return (this.Email.Equals(anotherUser.Email));
         }
+        private bool IsEmail()
+        {
+            string[] splited = this.Email.Split('@');
+            bool valid = true;
+            if (!(splited.Length == 2 && splited[0].Length > 0 && splited[1].Length > 0))
+            {
+                valid = false;
+            }
+            return valid;
+        }
+        
         private bool validEmail()
         {
-            return (this.emailUser.Length > 0);
+            return (this.emailUser.Length > 0) && (this.IsEmail());
         }
         public ValidationReturn IsValid()
         {
