@@ -187,5 +187,12 @@ namespace Persistance
                 throw new PersistanceUserException("Error en la base de datos. Imposible Modificar el Equipo ");
             }
         }
+        public List<BlackBoard> GetAllBoards()
+        {
+            using (BlackBoardsContext dbContext = new BlackBoardsContext())
+            {
+                return dbContext.blackBoards.ToList<BlackBoard>();
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlackBoards.Domain;
+using Persistance;
 
 namespace BlackBoards.Handlers
 {
@@ -51,14 +52,12 @@ namespace BlackBoards.Handlers
             return canModify;
         }
 
-        public bool Modify(string aName, string aDescription, Dimension aDimension)
+        public bool Modify(string oldName,string aName, string aDescription, Dimension aDimension)
         {
             if (CanModifyTheDimension(aDimension))
             {
-                this.blackBoard.Description = aDescription;
-                this.blackBoard.Name = aName;
-                this.blackBoard.Dimension = aDimension;
-                this.blackBoard.LastModificationDate = DateTime.Today;
+                BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+                blackBoardContext.ModifyBlackBoard(oldName, aName, aDescription, aDimension);
                 return true;
             }
             return false;

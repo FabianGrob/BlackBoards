@@ -176,39 +176,125 @@ namespace BlackBoardsTest.HandlerTests
         [TestMethod]
         public void TestModifyBlackBoardValid() {
             //instance
-            Team aTeam = new Team();
-            TeamHandler handler = new TeamHandler(aTeam);
-            BlackBoard board = new BlackBoard();
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-
-            User creatorUser = new Admin();
-            creatorUser.ID = 10000;
-            ValidationReturn validation = handler.AddBlackBoard(board, blackBoardContext, creatorUser);
-            BlackBoard newBoard = new BlackBoard("newBoard","this is a test board",new Dimension(60,60) , new List < Item > (),creatorUser);
+            CleanDB(blackBoardContext);
+            AdminPersistance adminContext = new AdminPersistance();
+            TeamPersistance teamContext = new TeamPersistance();
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            BlackBoard board = new BlackBoard();
+            handler.CreateAdmin("creatorUser", "creator", "creator@User.com", DateTime.Now, "123", adminContext);
+            User creatorUser = adminContext.GetUserByEmail("creator@User.com");
+            List<User> member = new List<User>();
+            member.Add(creatorUser);
+            AdminHandler newHandler = new AdminHandler(creatorUser as Admin);
+            newHandler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
+            Team creatorTeam = teamContext.GetTeamByName("teamTest");
+            TeamHandler teamHandler = new TeamHandler(creatorTeam);
+            teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
+            UserHandler uHandler = new UserHandler(adm);
+            board = blackBoardContext.GetBlackBoardByName(board.Name);
+            UserHandler userHandler = new UserHandler(creatorUser);
+            BlackBoard newBoard = new BlackBoard(board.Name,board.Description,board.Dimension,board.itemList,board.creatorUser);
+            newBoard.Name = "modifiedddName";
+            bool modified = userHandler.ModifyBlackBoard(teamContext.GetTeamByName(creatorTeam.Name),board, newBoard);
             //assertion
-            bool modified = handler.ModifyBlackBoard(board, newBoard);
+
             CleanDB(blackBoardContext);
             Assert.IsTrue(modified);
-        }/*
+        }
+        [TestMethod]
+        public void TestModifyBlackBoardSameName()
+        {
+            //instance
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            CleanDB(blackBoardContext);
+            AdminPersistance adminContext = new AdminPersistance();
+            TeamPersistance teamContext = new TeamPersistance();
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            BlackBoard board = new BlackBoard();
+            handler.CreateAdmin("creatorUser", "creator", "creator@User.com", DateTime.Now, "123", adminContext);
+            User creatorUser = adminContext.GetUserByEmail("creator@User.com");
+            List<User> member = new List<User>();
+            member.Add(creatorUser);
+            AdminHandler newHandler = new AdminHandler(creatorUser as Admin);
+            newHandler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
+            Team creatorTeam = teamContext.GetTeamByName("teamTest");
+            TeamHandler teamHandler = new TeamHandler(creatorTeam);
+            teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
+            UserHandler uHandler = new UserHandler(adm);
+            board = blackBoardContext.GetBlackBoardByName(board.Name);
+            UserHandler userHandler = new UserHandler(creatorUser);
+            BlackBoard newBoard = new BlackBoard(board.Name, board.Description, board.Dimension, board.itemList, board.creatorUser);
+            newBoard.Description = "modifiedDescription";
+            bool modified = userHandler.ModifyBlackBoard(teamContext.GetTeamByName(creatorTeam.Name), board, newBoard);
+            //assertion
+            CleanDB(blackBoardContext);
+            Assert.IsTrue(modified);
+        }
+        [TestMethod]
+        public void TestModifyBlackBoardValidCheck()
+        {
+            //instance
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            CleanDB(blackBoardContext);
+            AdminPersistance adminContext = new AdminPersistance();
+            TeamPersistance teamContext = new TeamPersistance();
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            BlackBoard board = new BlackBoard();
+            handler.CreateAdmin("creatorUser", "creator", "creator@User.com", DateTime.Now, "123", adminContext);
+            User creatorUser = adminContext.GetUserByEmail("creator@User.com");
+            List<User> member = new List<User>();
+            member.Add(creatorUser);
+            AdminHandler newHandler = new AdminHandler(creatorUser as Admin);
+            newHandler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
+            Team creatorTeam = teamContext.GetTeamByName("teamTest");
+            TeamHandler teamHandler = new TeamHandler(creatorTeam);
+            teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
+            UserHandler uHandler = new UserHandler(adm);
+            board = blackBoardContext.GetBlackBoardByName(board.Name);
+            UserHandler userHandler = new UserHandler(creatorUser);
+            BlackBoard newBoard = new BlackBoard(board.Name, board.Description, board.Dimension, board.itemList, board.creatorUser);
+            newBoard.Name = "modifiedddName";
+            userHandler.ModifyBlackBoard(teamContext.GetTeamByName(creatorTeam.Name), board, newBoard);
+            bool checkModified = blackBoardContext.Exists(newBoard);
+            //assertion
+            CleanDB(blackBoardContext);
+            Assert.IsTrue(checkModified);
+        }
         [TestMethod]
         public void TestModifyBlackBoardInvalid()
         {
             //instance
-            Team aTeam = new Team();
-            TeamHandler handler = new TeamHandler(aTeam);
-            BlackBoard board = new BlackBoard();
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-            User creatorUser = new Admin();
-            creatorUser.ID = 10000;
-            ValidationReturn validation = handler.AddBlackBoard(board, blackBoardContext, creatorUser);
-            handler.AddBlackBoard(board,blackBoardContext);
-          
-            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(2,2), new List<Item>(),creatorUser);
+            CleanDB(blackBoardContext);
+            AdminPersistance adminContext = new AdminPersistance();
+            TeamPersistance teamContext = new TeamPersistance();
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
+            BlackBoard board = new BlackBoard();
+            handler.CreateAdmin("creatorUser", "creator", "creator@User.com", DateTime.Now, "123", adminContext);
+            User creatorUser = adminContext.GetUserByEmail("creator@User.com");
+            List<User> member = new List<User>();
+            member.Add(creatorUser);
+            AdminHandler newHandler = new AdminHandler(creatorUser as Admin);
+            newHandler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
+            Team creatorTeam = teamContext.GetTeamByName("teamTest");
+            TeamHandler teamHandler = new TeamHandler(creatorTeam);
+            teamHandler.AddBlackBoard(board, blackBoardContext, creatorUser);
+            UserHandler uHandler = new UserHandler(adm);
+            board = blackBoardContext.GetBlackBoardByName(board.Name);
+            UserHandler userHandler = new UserHandler(creatorUser);
+            BlackBoard newBoard = new BlackBoard(board.Name, board.Description, board.Dimension, board.itemList, board.creatorUser);
+            newBoard.Name = "modifiedddName";
+            BlackBoard notExisting = new BlackBoard("Not existing board", "", new Dimension(350, 350), new List<Item>(), creatorUser);
+            bool modified = userHandler.ModifyBlackBoard(teamContext.GetTeamByName(creatorTeam.Name), notExisting, newBoard);
             //assertion
-            bool modified = handler.ModifyBlackBoard(board, newBoard);
             CleanDB(blackBoardContext);
             Assert.IsFalse(modified);
-        }
+        }/*
         [TestMethod]
         public void TestModifyBlackBoardItems()
         {
