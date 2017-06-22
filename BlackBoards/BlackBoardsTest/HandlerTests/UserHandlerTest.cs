@@ -161,7 +161,53 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(aDimension.Equals(theItem.Dimension));
         }
-     
+        [TestMethod]
+        public void TestResizeItemInvalid()
+        {
+            //instance
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            TextBox textBox = new TextBox();
+            textBox.blackBoardBelongs = generatedBlackBoard;
+            textBox.Font = "Arial";
+            textBox.FontSize = 12;
+            textBox.Content = "ThisIsATest";
+            handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
+            TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
+            Dimension aDimension = new Dimension(9775, 50);
+            handler.ResizeItemBlackBoard(generatedBlackBoard, theItem, aDimension);
+            CleanDB(new UserPersistance());
+            //assertion
+            Assert.IsFalse(aDimension.Equals(theItem.Dimension));
+        }
+        [TestMethod]
+        public void TestMoveItem()
+        {
+            //instance
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            TextBox textBox = new TextBox();
+            textBox.blackBoardBelongs = generatedBlackBoard;
+            textBox.Font = "Arial";
+            textBox.FontSize = 12;
+            textBox.Content = "ThisIsATest";
+            handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
+            TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
+            Coordinate aCoordinate = new Coordinate(20, 50);
+            handler.MoveItemBlackBoard(generatedBlackBoard, theItem, aCoordinate);
+            CleanDB(new UserPersistance());
+            //assertion
+            Assert.IsTrue(aCoordinate.Equals(theItem.Origin));
+        }
+       
         /* 
 
          */
@@ -1126,5 +1172,5 @@ namespace BlackBoardsTest
              Assert.IsFalse(result);
          }
          */
-    }  
+    }
 }
