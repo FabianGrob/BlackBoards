@@ -282,7 +282,7 @@ namespace BlackBoardsTest
         [TestMethod]
         public void TestResolveCommentDate()
         {
-            
+            //instance
             Initialize();
             AdminPersistance adminContext = new AdminPersistance();
             User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
@@ -302,7 +302,7 @@ namespace BlackBoardsTest
             CommentHandler handlerComment = new CommentHandler(theComment);
             bool validation = handlerComment.WasResolved();
             CleanDB(new UserPersistance());
-           
+            //assertion
             Assert.IsTrue(validation);
         }
     }
