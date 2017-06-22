@@ -19,7 +19,6 @@ namespace BlackBoardsTest.HandlerTests
             TextBoxHandler handler = new TextBoxHandler(aTbx);
             bool result = otherTbx.Equals(handler.TextBox);
             Assert.IsTrue(result);
-
         }
     }
 }

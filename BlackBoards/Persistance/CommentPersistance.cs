@@ -117,13 +117,14 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    if (this.Exists(aComment))
-                    {
-                        UserPersistance userContext = new UserPersistance();
-                        User resolving = dbContext.users.Where(t => t.ID == aComment.resolvingUser.ID).Include(u => u.resolvedComments).FirstOrDefault();
-                        dbContext.Entry(aComment).State = EntityState.Modified;
-                        dbContext.SaveChanges();
-                    }
+                    UserPersistance userContext = new UserPersistance();
+                    Comment anotherComment = dbContext.comments.Where(t => t.IDComment == aComment.IDComment).FirstOrDefault();
+                    anotherComment.resolvingUser = aComment.resolvingUser;
+                    anotherComment.ResolvingDate = aComment.ResolvingDate;
+                    User resolving = dbContext.users.Where(t => t.ID == aComment.resolvingUser.ID).Include(u => u.resolvedComments).FirstOrDefault();
+                    dbContext.comments.Attach(anotherComment);
+                    dbContext.Entry(anotherComment).State = EntityState.Modified;
+                    dbContext.SaveChanges();
                 }
             }
             catch (Exception)

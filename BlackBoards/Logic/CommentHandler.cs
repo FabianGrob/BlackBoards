@@ -41,20 +41,23 @@ namespace BlackBoards.Handlers
         }
         public ValidationReturn ResolveComment(User anUser)
         {
-            ValidationReturn canResolveComment = new ValidationReturn(false,"El comentario ya esta resuelto.");
+            ValidationReturn canResolveComment = new ValidationReturn(false, "El comentario ya esta resuelto.");
             canResolveComment.Validation = !(this.WasResolved());
             if (canResolveComment.Validation)
             {
                 CommentPersistance commentContext = new CommentPersistance();
-                this.comment.resolvingUser = anUser;
-                this.comment.ResolvingDate = DateTime.Now;
-                commentContext.ResolveComment(this.comment);
+                if (commentContext.Exists(this.comment))
+                {
+                    this.comment.resolvingUser = anUser;
+                    this.comment.ResolvingDate = DateTime.Now;
+                    commentContext.ResolveComment(this.comment);
+                }
             }
             return canResolveComment;
         }
         public bool WasResolved()
         {
-            return !(this.Comment.ResolvingDate.CompareTo(this.Comment.CommentingDate)<0);
+            return !(this.Comment.ResolvingDate.CompareTo(this.Comment.CommentingDate) < 0);
         }
         private void AddResolvingUser(User anUser)
         {
