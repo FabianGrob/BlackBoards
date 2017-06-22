@@ -364,24 +364,36 @@ namespace BlackBoardsTest.HandlerTests
         public void TestModifyTeamIncorrectly()
         {
             //instance
-            Repository repository = new Repository();
+            UserPersistance userContext = new UserPersistance();
+            CleanDB(userContext, new TeamPersistance());
+            Initialize(userContext);
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
+            anAdmin.Email = "Admin@Test";
             List<User> members = new List<User>();
             Collaborator col1 = new Collaborator();
             col1.Name = "Collaborator1";
+            col1.Email = "Collaborator@Test";
+            TeamPersistance teamContext = new TeamPersistance();
+            AdminPersistance adminContext = new AdminPersistance();
+            adminContext.AddUser(col1);
+            adminContext.AddUser(anAdmin);
             members.Add(col1);
             members.Add(anAdmin);
             string name = "TEAM A";
             string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
-            //  handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
             string newName = "TEAMB";
             int newMaxUsers = 1;
+            Team teamToLookingUp = teamContext.GetTeamByName(name);
+            handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), teamContext);
+            Team team = teamContext.GetTeam(teamToLookingUp.IDTeam);
+            bool result = team.MaxUsers == 4;
+            CleanDB(userContext, new TeamPersistance());
             //assertion
-            // bool result = handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
-            // Assert.IsFalse(result);
+            Assert.IsTrue(result);
         }/*
         [TestMethod]
         public void TestModifyTeamCheckWrong()
