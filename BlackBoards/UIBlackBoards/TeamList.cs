@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using Persistance;
 
 namespace UIBlackBoards
 {
@@ -53,10 +54,12 @@ namespace UIBlackBoards
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
+            TeamPersistance teamContext = new TeamPersistance();
+            UserPersistance userContext = new UserPersistance();
             if (hasSelectedATeam())
             {
-                Team selectedTeam = (Team)listBoxTeams.SelectedItem;
-                bool hasDeletedTheTeam = false;
+                Team selectedTeam = teamContext.GetTeamByName(((Team)listBoxTeams.SelectedItem).Name);
+                bool hasDeletedTheTeam = theFacade.deleteTeam(logged,selectedTeam.Name).Validation;
                 if (hasDeletedTheTeam)
                 {
                     MessageBox.Show("Equipo " + selectedTeam.Name + " borrado con exito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
