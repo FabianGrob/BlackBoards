@@ -294,26 +294,7 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             CleanDB(blackBoardContext);
             Assert.IsFalse(modified);
-        }/*
-        [TestMethod]
-        public void TestModifyBlackBoardItems()
-        {
-            //instance
-            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-            Team aTeam = new Team();
-            TeamHandler handler = new TeamHandler(aTeam);
-            BlackBoard board = new BlackBoard();
-            handler.AddBlackBoard(board,blackBoardContext);
-            Item txtbx = new TextBox();
-            User creatorUser = new Admin();
-            BlackBoard newBoard = new BlackBoard("newBoard", "this is a test board", new Dimension(5, 5), new List<Item>(),creatorUser);
-            board.ItemList.Add(txtbx);
-            handler.ModifyBlackBoard(board, newBoard);
-            //assertion
-            bool hasItem = handler.Team.getSpecificBlackBoard(board).ItemList.Contains(txtbx);
-            CleanDB(blackBoardContext);
-            Assert.IsTrue(hasItem);
-        }*/
+        }
         [TestMethod]
         public void TestAddMemberCorrectly() {
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
@@ -394,24 +375,61 @@ namespace BlackBoardsTest.HandlerTests
         }
         [TestMethod]
         public void TestIsUserInTeamTrue() {
+            TeamPersistance teammContext = new TeamPersistance();
+            UserPersistance userContext = new UserPersistance();
+            CleanDB(new BlackBoardPersistance());
             //instance
-            Team aTeam = new Team();
-            User admin = new Admin();
-            TeamHandler handler = new TeamHandler(aTeam);
-            handler.AddMember(admin);
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            anAdmin.Email = "tadmin@tadmin";
+            List<User> members = new List<User>();
+            Admin anotherAdmin = new Admin();
+            AdminHandler hA = new AdminHandler(anotherAdmin);
+            AdminPersistance ap = new AdminPersistance();
+            hA.CreateAdmin(anAdmin.Name, anAdmin.LastName, anAdmin.Email, anAdmin.BirthDate, anAdmin.passwordUser, ap);
+            User containsThisUser = userContext.GetUserByEmail(anAdmin.Email);
+            members.Add(containsThisUser);
+            string name = "TEAM Z";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            TeamPersistance teamContext = new TeamPersistance();
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
+            Team aTeam = teammContext.GetTeamByName(name);
+            TeamHandler teamHandler = new TeamHandler(aTeam);
             //assertion
-            bool result = handler.IsUserInTeam(admin);
+            bool result = teamHandler.IsUserInTeam(containsThisUser);
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void TestIsUserInTeamFalse()
         {
+            TeamPersistance teammContext = new TeamPersistance();
+            UserPersistance userContext = new UserPersistance();
+            CleanDB(new BlackBoardPersistance());
             //instance
-            Team aTeam = new Team();
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            anAdmin.Name = "Admin";
+            anAdmin.Email = "tadmin@tadmin";
+            List<User> members = new List<User>();
+            Admin anotherAdmin = new Admin();
+            AdminHandler hA = new AdminHandler(anotherAdmin);
+            AdminPersistance ap = new AdminPersistance();
+            hA.CreateAdmin(anAdmin.Name, anAdmin.LastName, anAdmin.Email, anAdmin.BirthDate, anAdmin.passwordUser, ap);
+            members.Add(userContext.GetUserByEmail(anAdmin.Email));
+            string name = "TEAM Z";
+            string description = "Default Team Description";
+            int maxUsers = 4;
+            AdminHandler handler = new AdminHandler(anAdmin);
+            TeamPersistance teamContext = new TeamPersistance();
+            handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
+            Team aTeam = teammContext.GetTeamByName(name);
             User admin = new Admin();
-            TeamHandler handler = new TeamHandler(aTeam);
+            TeamHandler teamHandler = new TeamHandler(aTeam);
             //assertion
-            bool result = handler.IsUserInTeam(admin);
+            bool result = teamHandler.IsUserInTeam(admin);
             Assert.IsFalse(result);
         }
     }

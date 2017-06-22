@@ -34,13 +34,13 @@ namespace System
             validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
             return validation;
         }
-        public ValidationReturn modifyUser(string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
+        public ValidationReturn modifyUser(string oldEmail,string emailAdmin, string email, string fstPass, string name, string lastName, DateTime birthDate)
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido modificar el usuario.");
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
-            validation = adminHandler.CreateAdmin(name, lastName, email, birthDate, fstPass, adminContext);
+            validation.Validation = adminHandler.ModifyUser(oldEmail,name,lastName, email, birthDate, fstPass, adminContext);
             return validation;
         }
         public ValidationReturn deleteUser(string emailAdmin, string email)

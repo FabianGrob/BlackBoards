@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using Persistance;
 
 namespace UIBlackBoards
 {
@@ -50,13 +51,15 @@ namespace UIBlackBoards
 
         private void buttonModify_Click_1(object sender, EventArgs e)
         {
+            UserPersistance userContext = new UserPersistance();
+            User willModify = userContext.GetUserByEmail(userToModify.Email);
             string email = textBoxEmail.Text;
             string fstPass = textBoxFstPass.Text;
             string sndPass = textBoxSndPass.Text;
             string name = textBoxName.Text;
             string lastName = textBoxLastN.Text;
             DateTime birthDate = dateTimePicker.Value;
-            BlackBoards.Domain.BlackBoards.ValidationReturn validation = theFacade.modifyUser(logged, email, fstPass, name, lastName, birthDate);
+            BlackBoards.Domain.BlackBoards.ValidationReturn validation = theFacade.modifyUser(willModify.Email,logged, email, fstPass, name, lastName, birthDate);
             if (validation.Validation)
             {
                 MessageBox.Show("Usuario modificado correctamente", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
