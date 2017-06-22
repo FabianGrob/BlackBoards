@@ -19,7 +19,7 @@ namespace BlackBoards
         private string description;
         private DateTime creationDate;
         private int maxUsers;
-        public virtual List<User> members { set; get; }
+        public virtual List<User> members { set { this.members = value; } get { return this.members; } }
         public virtual List<BlackBoard> boards { set; get; }
         public virtual EstablishedScoreTeam establishedScore { set; get; }
         public virtual List<ScoreUserInTeam> scoresOfUsers { get; set; }

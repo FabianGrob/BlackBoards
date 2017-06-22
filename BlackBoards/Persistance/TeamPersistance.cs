@@ -17,7 +17,7 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    foreach (User actualUser in team.members)
+                    foreach (User actualUser in team.Members)
                     {
                         dbContext.users.Attach(actualUser);
                     }
@@ -116,7 +116,12 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
-                    return dbContext.teams.Find(id);
+                    Team lookUpTeam = dbContext.teams.Find(id);
+                   /* Team returningTeam = new Team();
+                    returningTeam.IDTeam = lookUpTeam.IDTeam;
+                    returningTeam.members = this.GetMembersById(id);*/
+
+                    return lookUpTeam;
                 }
             }
             catch (Exception)
@@ -163,6 +168,64 @@ namespace Persistance
         {
             return this.GetTeam(this.IDByName(name));
         }
+        public void ModifyTeam(Team aTeam, List<User> members, List<BlackBoard> boards)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
 
+                    if (this.Exists(aTeam))
+                    {
+
+                        Team attachedTeam = this.GetTeam(aTeam.IDTeam);
+                        attachedTeam.IDTeam = aTeam.IDTeam;
+                        attachedTeam.Members = members;
+                        attachedTeam.boards = boards;
+                        attachedTeam.MaxUsers = aTeam.MaxUsers;
+                        attachedTeam.Name = aTeam.Name;
+                        
+                        
+                        dbContext.teams.Attach(attachedTeam);
+                        dbContext.Entry(attachedTeam).State = EntityState.Modified;
+                        dbContext.SaveChanges();
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new PersistanceItemException("Error en la base de datos. Imposible Modificar el Elemento ");
+            }
+        }
+        public Team TeamWhichContainsBB(BlackBoard aBlackBoard)
+        {
+            try
+            {
+                using (BlackBoardsContext dbContext = new BlackBoardsContext())
+                {
+                    Team container = new Team();
+                    container.Name = "InvalidTeam";
+                    List<Team> teams = dbContext.teams.ToList<Team>();
+                    foreach (Team actualTeam in teams)
+                    {
+                        if (this.GetBlackBoardsById(actualTeam.IDTeam).Contains(aBlackBoard))
+                        {
+                            container = actualTeam;
+                        }
+
+                    }
+                    return container;
+
+                }
+            }
+            catch (Exception)
+            {
+                throw new PersistanceItemException("Error en la base de datos. Imposible Modificar el Elemento ");
+            }
+
+            }
+        }
     }
-}
+
+

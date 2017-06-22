@@ -14,7 +14,6 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\Ent
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.csprojResolveAssemblyReference.cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.dll
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.pdb
-C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.csprojResolveAssemblyReference.cache
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoardsTest.dll.config
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoardsTest.dll
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\BlackBoardsTest.pdb
@@ -28,5 +27,6 @@ C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\L
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\Persistance.pdb
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\EntityFramework.xml
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.csprojResolveAssemblyReference.cache
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.dll
 C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoardsTest\obj\Debug\BlackBoardsTest.pdb

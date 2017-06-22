@@ -54,10 +54,23 @@ namespace BlackBoards.Handlers
         }
         public ValidationReturn RemoveBlackBoard(BlackBoard aBoard, BlackBoardPersistance blackBoardContext)
         {
+            TeamPersistance teamContext = new TeamPersistance();
+            aBoard = blackBoardContext.GetBlackBoardByName(aBoard.Name);
+
             bool exists = blackBoardContext.Exists(aBoard);
             ValidationReturn validation = new ValidationReturn(exists, "No se ha podido eliminar el pizarron.");
             if (exists)
             {
+                Team creatorTeam = teamContext.TeamWhichContainsBB(aBoard);
+                Team creatorTeamToContext = new Team();
+                creatorTeamToContext.IDTeam = creatorTeam.IDTeam;
+                creatorTeamToContext.Name = creatorTeam.Name;
+                creatorTeamToContext.IDTeam = creatorTeam.IDTeam;
+                List<BlackBoard> bBoards = teamContext.GetBlackBoardsById(creatorTeam.IDTeam);
+                List<User> teamMembers = teamContext.GetMembersById(creatorTeam.IDTeam);
+                bBoards.Remove(aBoard);
+                creatorTeam.boards = bBoards;
+                teamContext.ModifyTeam(creatorTeam,teamMembers,bBoards);
                 blackBoardContext.Delete(aBoard);
                 validation.Message = "El pizarron se ha borrado con exito.";
             }

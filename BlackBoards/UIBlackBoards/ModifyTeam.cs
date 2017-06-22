@@ -68,7 +68,7 @@ namespace UIBlackBoards
             List<BlackBoard> blackBoards = new List<BlackBoard>();
             Team newTeam = new Team();
             newTeam.Name = teamName;
-            newTeam.Members = members;
+            newTeam.members = members;
             newTeam.MaxUsers = maxUsers;
             newTeam.Boards = blackBoards;
             newTeam.Description = description;

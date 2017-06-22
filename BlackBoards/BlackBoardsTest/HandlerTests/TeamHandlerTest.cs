@@ -132,17 +132,25 @@ namespace BlackBoardsTest.HandlerTests
         {
             //hacerlo mediante create Blackboard
             //instance
-            Team aTeam = new Team();
-            TeamHandler handler = new TeamHandler(aTeam);
+            AdminPersistance adminContext = new AdminPersistance();
+            TeamPersistance teamContext = new TeamPersistance();
+            Admin adm = new Admin();
+            AdminHandler handler = new AdminHandler(adm);
             BlackBoard board = new BlackBoard();
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
-            User creatorUser = new Admin();
-            creatorUser.ID = 10000;
-            ValidationReturn validation = handler.AddBlackBoard(board, blackBoardContext, creatorUser);
+            handler.CreateAdmin("creatorUser", "creator", "creator@User.com", DateTime.Now, "123", adminContext);
+            User creatorUser = adminContext.GetUserByEmail("creator@User.com");
+            List<User> member = new List<User>();
+            member.Add(creatorUser);
+            handler.CreateTeam("teamTest", "thisIsATest", 10, member, new List<BlackBoard>(), teamContext);
+            Team creatorTeam = teamContext.GetTeamByName("teamTest");
+            TeamHandler teamhandler = new TeamHandler(creatorTeam);
+            ValidationReturn validation = teamhandler.AddBlackBoard(board, blackBoardContext, creatorUser);
             //assertion
-            ValidationReturn removed = handler.RemoveBlackBoard(board,blackBoardContext);
+            ValidationReturn removed = teamhandler.RemoveBlackBoard(board,blackBoardContext);
             CleanDB(blackBoardContext);
-            Assert.IsTrue(removed.Validation && handler.Team.Boards.Count == 0);
+            bool noBBsInTeam = teamContext.GetTeamByName(creatorTeam.Name).Members.Count == 0;
+            Assert.IsTrue(removed.Validation && noBBsInTeam);
         }
         [TestMethod]
         public void TestModifyBlackBoardValid() {
