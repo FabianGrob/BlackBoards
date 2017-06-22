@@ -70,12 +70,29 @@ namespace System
         }
         public ValidationReturn deleteUser(string emailAdmin, string email)
         {
+            TeamPersistance teamContext = new TeamPersistance();
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido eliminar el usuario.");
             AdminPersistance adminContext = new AdminPersistance();
             Admin loggedAdmin = adminContext.GetUserByEmail(emailAdmin) as Admin;
             AdminHandler adminHandler = new AdminHandler(loggedAdmin);
             User userToDelete = adminContext.GetUserByEmail(email);
+            List<Team> belongingTeams = adminContext.GetBelongingTeams(userToDelete);
             validation = adminHandler.DeleteUser(userToDelete, adminContext);
+            bool cleanTeams = false;
+            foreach (Team actualTeam in belongingTeams)
+            {
+                Team completeActualTeam = teamContext.GetTeamByName(actualTeam.Name);
+                if (completeActualTeam.members.Count == 0)
+                {
+                    adminHandler.DeleteTeam(completeActualTeam.Name,teamContext);
+                    cleanTeams = true;
+                }
+            }
+            if (cleanTeams)
+            {
+                validation.Message = "Tambien se borraron equipos que quedaron vacios";
+            }
+            
             return validation;
         }
         public List<User> GetAllUSersInDB()

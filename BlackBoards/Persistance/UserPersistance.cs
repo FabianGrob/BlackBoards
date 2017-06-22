@@ -157,6 +157,10 @@ namespace Persistance
                 return dbContext.users.ToList<User>();
             }
         }
-        
+        public List<Team> GetBelongingTeams(User anUser)
+        {
+            User completeUser = this.GetUserByEmail(anUser.Email);
+            return completeUser.belongInteams;
+        }
     }
 }

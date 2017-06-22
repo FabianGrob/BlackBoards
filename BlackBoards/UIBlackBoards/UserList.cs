@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
 using BlackBoards.Domain.BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
@@ -41,10 +42,10 @@ namespace UIBlackBoards
             }
             else
             {
-                User selectedUser = (User)listBoxAllUsers.SelectedItem;
+                UserPersistance userContext = new UserPersistance();
+                User selectedUser = userContext.GetUserByEmail(((User)listBoxAllUsers.SelectedItem).Email);
                 ValidationReturn validation = new ValidationReturn(false, "No se ha podido elminar el usuario seleccionado");
-                Facade facade = new Facade();
-                validation = facade.deleteUser(logged, selectedUser.Email);
+                validation = theFacade.deleteUser(logged, selectedUser.Email);
                 if (validation.Validation)
                 {
                     MessageBox.Show(validation.Message, "Realizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
