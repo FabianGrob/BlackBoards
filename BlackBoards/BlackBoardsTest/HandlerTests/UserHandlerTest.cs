@@ -2,6 +2,7 @@
 using BlackBoards;
 using BlackBoards.Domain;
 using BlackBoards.Domain.BlackBoards;
+using BlackBoards.Handlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Persistance;
 using System;
@@ -277,6 +278,32 @@ namespace BlackBoardsTest
             CleanDB(new UserPersistance());
             //assertion
             Assert.IsTrue(result.Validation);
+        }
+        [TestMethod]
+        public void TestResolveCommentDate()
+        {
+            
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            TextBox textBox = new TextBox();
+            textBox.blackBoardBelongs = generatedBlackBoard;
+            textBox.Content = "ThisIsATest";
+            handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
+            TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
+            handler.CreateNewComment(theItem, "testComment");
+            ItemPersistance itemContext = new ItemPersistance();
+            TextBox fullItem = itemContext.GetItem(theItem.IDItem) as TextBox;
+            Comment theComment = fullItem.comments.ElementAt(0);
+            ValidationReturn result = handler.ResolveComment(theComment);
+            CommentHandler handlerComment = new CommentHandler(theComment);
+            bool validation = handlerComment.WasResolved();
+            CleanDB(new UserPersistance());
+           
+            Assert.IsTrue(validation);
         }
     }
 }
