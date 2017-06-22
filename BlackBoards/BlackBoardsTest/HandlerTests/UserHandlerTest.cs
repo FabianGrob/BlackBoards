@@ -40,6 +40,8 @@ namespace BlackBoardsTest
             BlackBoardPersistance bBContext = new BlackBoardPersistance();
             ItemPersistance itemContext = new ItemPersistance();
             TeamPersistance teamCOntext = new TeamPersistance();
+            CommentPersistance commentContext = new CommentPersistance();
+            commentContext.Empty();
             itemContext.Empty();
             bBContext.Empty();
             teamCOntext.Empty();
@@ -248,8 +250,9 @@ namespace BlackBoardsTest
             handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
             TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
             ValidationReturn result = handler.CreateNewComment(theItem, "testComment");
+            CleanDB(new UserPersistance());
             //assertion
-            Assert.IsTrue(aCoordinate.Equals(theItem.Origin));
+            Assert.IsTrue(result.Validation);
         }
     }
 }

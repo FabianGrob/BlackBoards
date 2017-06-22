@@ -87,12 +87,12 @@ namespace BlackBoards
             BlackBoardHandler blackBoardHandler = new BlackBoardHandler(aBlackBoard);
             return blackBoardHandler.MoveItem(aItem, newCoordinates);
         }
-        public bool CreateNewComment(Item aItem, string newComment)
+        public ValidationReturn CreateNewComment(Item aItem, string newComment)
         {
-            CommentHandler commentHandler = new CommentHandler();
-            commentHandler.CreateComment(User, newComment);
+            ValidationReturn validation = new ValidationReturn(false, "No se ha podido crear el comentario");
             ItemHandler itemHandler = new ItemHandler(aItem);
-            return itemHandler.AddComment(commentHandler.Comment);
+            validation = itemHandler.AddComment(this.user, newComment);
+            return validation;
         }
         public bool ResolveComment(Comment aComment)
         {

@@ -1,4 +1,5 @@
 ﻿using BlackBoards.Domain;
+using BlackBoards.Domain.BlackBoards;
 using Persistance;
 using System;
 using System.Collections.Generic;
@@ -38,9 +39,14 @@ namespace BlackBoards.Handlers
             this.item.Dimension=newDimension;
             itemContext.ModifyItem(this.item);
         }
-        public bool AddComment(Comment aComment)
+        public ValidationReturn AddComment(User creationUser, string message)
         {
-            return this.Item.AddNewComment(aComment);
+            ValidationReturn validation = new ValidationReturn(false,"No se ha podido crear el comentario.");
+            CommentPersistance commentContext = new CommentPersistance();
+            DateTime creationDate = DateTime.Now;
+            commentContext.AddComment(creationUser,creationDate,message, this.item);
+            validation.RedefineValues(true, "Comentario creado con exito");
+            return validation;
         }
     }
 }
