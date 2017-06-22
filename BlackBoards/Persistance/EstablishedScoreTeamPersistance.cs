@@ -28,7 +28,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceCommentException("Error en la base de datos. Imposible agregar puntajes establecidos");
+                throw new PersistanceScoresException("Error en la base de datos. Imposible agregar puntajes establecidos");
             }
         }
         public void Delete(EstablishedScoreTeam scores)
@@ -45,7 +45,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceCommentException("Error de base de datos: No se pudo eliminar puntajes establecidos.");
+                throw new PersistanceScoresException("Error de base de datos: No se pudo eliminar puntajes establecidos.");
             }
         }
         public void Empty()
@@ -65,7 +65,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceCommentException("Error en la base de datos. Imposible vaciar valores de puntajes establecidos.");
+                throw new PersistanceScoresException("Error en la base de datos. Imposible vaciar valores de puntajes establecidos.");
             }
         }
         public bool Exists(EstablishedScoreTeam score)
@@ -80,7 +80,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceCommentException("Error de base de datos: No se pudo determinar si los valores de puntajes establecidos existen.");
+                throw new PersistanceScoresException("Error de base de datos: No se pudo determinar si los valores de puntajes establecidos existen.");
             }
         }
         public EstablishedScoreTeam GetEstablishedScoreTeam(int idTeam)
@@ -95,7 +95,7 @@ namespace Persistance
             }
             catch (Exception ex)
             {
-                throw new PersistanceCommentException("Error de base de datos: No se pudo obtener los valores de puntajes establecidos.");
+                throw new PersistanceScoresException("Error de base de datos: No se pudo obtener los valores de puntajes establecidos.");
 
             }
         }
@@ -115,7 +115,7 @@ namespace Persistance
             }
             catch (Exception)
             {
-                throw new PersistanceCommentException("Error en la base de datos. Imposible Modificar puntajes establecidos. ");
+                throw new PersistanceScoresException("Error en la base de datos. Imposible Modificar puntajes establecidos. ");
             }
         }
     }
