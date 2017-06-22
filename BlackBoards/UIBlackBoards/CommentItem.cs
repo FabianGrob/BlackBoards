@@ -14,12 +14,12 @@ namespace UIBlackBoards
     public partial class CommentItem : UserControl
     {
         private BlackBoard actualBlackBoard;
-        private User logged;
+        private string logged;
         private Panel panelContainer;
         private Panel boardContainer;
         private Item selectedItem;
         private Repository theRepository;
-        public CommentItem(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer, Item actualItem, Repository aRepository)
+        public CommentItem(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Item actualItem, Repository aRepository)
         {
             InitializeComponent();
             actualBlackBoard = aBoard;
@@ -39,8 +39,8 @@ namespace UIBlackBoards
             string txt = textBox1.Text;
             if (validateText(txt))
             {
-                UserHandler handler = new UserHandler(logged);
-                handler.CreateNewComment(selectedItem, txt);
+                //UserHandler handler = new UserHandler(logged);
+               // handler.CreateNewComment(selectedItem, txt);
                 panelContainer.Controls.Clear();
                 ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
                 panelContainer.Controls.Add(pwindow);

@@ -15,11 +15,11 @@ namespace UIBlackBoards
 {
     public partial class ModifyTeam : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
         private Team team;
-        public ModifyTeam(User anUser, Repository aRepository, Panel container, Team teamToModify)
+        public ModifyTeam(string anUser, Repository aRepository, Panel container, Team teamToModify)
         {
             InitializeComponent();
             team = teamToModify;
@@ -77,7 +77,7 @@ namespace UIBlackBoards
             if (validationsOk)
             {
 
-                AdminHandler handler = new AdminHandler((Admin)logged);
+                //AdminHandler handler = new AdminHandler((Admin)logged);
                 bool existingTeam = false;// handler.ModifyTeam(team.Name, teamName, description, maxUsers, members, blackBoards, theRepository);
                 if (!existingTeam)
                 {

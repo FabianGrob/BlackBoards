@@ -43,7 +43,7 @@ namespace UIBlackBoards
                 if (repHandler.CheckPassword(posibleEmail, posiblePassword))
                 {
                     User entering = repHandler.getSepcificUser(posibleEmail);
-                    MainMenu window =new MainMenu(entering,theRepository);
+                    MainMenu window =new MainMenu(entering.Email,theRepository);
                     window.Visible = true;
                     this.Visible = false;
                 }

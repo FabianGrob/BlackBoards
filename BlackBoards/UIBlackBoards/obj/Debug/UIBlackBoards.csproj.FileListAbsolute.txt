@@ -50,9 +50,9 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\Logic
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\Persistance.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\BlackBoards.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\Logic.pdb
+C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\Persistance.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\EntityFramework.xml
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\bin\Debug\Persistance.pdb
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.csprojResolveAssemblyReference.cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewBlackBoard.resources
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\UIBlackBoards\obj\Debug\UIBlackBoards.AddNewItem.resources

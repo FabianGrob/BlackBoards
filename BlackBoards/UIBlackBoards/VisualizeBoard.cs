@@ -13,10 +13,10 @@ namespace UIBlackBoards
 {
     public partial class VisualizeBoard : Form
     {
-        private User logged;
+        private string logged;
         private BlackBoard blackBoard;
         private Repository theRepository;
-        public VisualizeBoard(BlackBoard tBlackBoards, User uLogged, Repository thRepository)
+        public VisualizeBoard(BlackBoard tBlackBoards, string uLogged, Repository thRepository)
         {
             InitializeComponent();
             blackBoard = tBlackBoards;

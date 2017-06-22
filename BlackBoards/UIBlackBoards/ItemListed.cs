@@ -14,11 +14,11 @@ namespace UIBlackBoards
     public partial class ItemListed : UserControl
     {
         private BlackBoard actualBlackBoard;
-        private User logged;
+        private string logged;
         private Panel panelContainer;
         private Panel boardContainer;
         private Repository theRepository;
-        public ItemListed(BlackBoard aBoard, User anUser, Panel container, Panel boardcontainer, Repository aRepository)
+        public ItemListed(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Repository aRepository)
         {
             InitializeComponent();
             actualBlackBoard = aBoard;

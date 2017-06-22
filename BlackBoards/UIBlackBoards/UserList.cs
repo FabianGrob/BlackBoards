@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
 using BlackBoards.Handlers;
+using BlackBoards.Domain.BlackBoards;
 
 namespace UIBlackBoards
 {
     public partial class UserList : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
-        public UserList(User anUser, Repository aRepository, Panel container)
+        public UserList(string anUser, Repository aRepository, Panel container)
         {
             InitializeComponent();
             logged = anUser;
@@ -33,7 +34,6 @@ namespace UIBlackBoards
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            AdminHandler adminHandler = new AdminHandler((Admin)logged);
             int selectedIndex = listBoxAllUsers.SelectedIndex;
             if (selectedIndex == -1)
             {
@@ -42,15 +42,17 @@ namespace UIBlackBoards
             else
             {
                 User selectedUser = (User)listBoxAllUsers.SelectedItem;
-                if (selectedUser.Equals(logged))
+                ValidationReturn validation = new ValidationReturn(false, "No se ha podido elminar el usuario seleccionado");
+                Facade facade = new Facade();
+                validation = facade.deleteUser(logged, selectedUser.Email);
+                if (validation.Validation)
                 {
-                    MessageBox.Show("No se puede eliminar el usuario si está logeado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(validation.Message, "Realizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    panelContainer.Controls.Clear();
                 }
                 else
                 {
-                   // adminHandler.DeleteUser(selectedUser.Email, theRepository);
-                    MessageBox.Show("Se elimino el usuario " + selectedUser.Email + " correctamente", "Realizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    panelContainer.Controls.Clear();
+                    MessageBox.Show(validation.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -66,7 +68,7 @@ namespace UIBlackBoards
             {
                 User selectedUser = (User)listBoxAllUsers.SelectedItem;
                 panelContainer.Controls.Clear();
-                UserControl modifyUser = new ModifyUser(logged.Email, theRepository, panelContainer, selectedUser);
+                UserControl modifyUser = new ModifyUser(logged, theRepository, panelContainer, selectedUser);
                 panelContainer.Controls.Add(modifyUser);
             }
         }

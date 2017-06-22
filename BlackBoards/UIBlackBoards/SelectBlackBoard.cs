@@ -14,11 +14,11 @@ namespace UIBlackBoards
 {
     public partial class SelectBlackBoard : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
         private Team team;
-        public SelectBlackBoard(User anUser, Repository aRepository, Panel container, Team teamToAddBlackBoard)
+        public SelectBlackBoard(string anUser, Repository aRepository, Panel container, Team teamToAddBlackBoard)
         {
             InitializeComponent();
             logged = anUser;
@@ -58,8 +58,8 @@ namespace UIBlackBoards
             if (hasSelectedABlackBoard())
             {
                 BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
-                UserHandler handler = new UserHandler(logged);
-                bool hasDeletedTheTeam = handler.RemoveBlackBoard(team, selectedBlackBoard, theRepository);
+                // UserHandler handler = new UserHandler(logged);
+                bool hasDeletedTheTeam = true;// handler.RemoveBlackBoard(team, selectedBlackBoard, theRepository);
                 if (hasDeletedTheTeam)
                 {
                     MessageBox.Show("Pizarron " + selectedBlackBoard.Name + " borrado con exito.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);

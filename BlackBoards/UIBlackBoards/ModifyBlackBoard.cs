@@ -13,12 +13,12 @@ namespace UIBlackBoards
 {
     public partial class ModifyBlackBoard : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
         private Team team;
         private BlackBoard oldBlackBoard;
-        public ModifyBlackBoard(User anUser, Repository aRepository, Panel container, Team teamToModifyBlackBoard, BlackBoard oBlackBoard)
+        public ModifyBlackBoard(string anUser, Repository aRepository, Panel container, Team teamToModifyBlackBoard, BlackBoard oBlackBoard)
         {
             InitializeComponent();
             logged = anUser;
@@ -48,8 +48,8 @@ namespace UIBlackBoards
                 newBlackBoard.Description = description;
                 newBlackBoard.Dimension.Height = height;
                 newBlackBoard.Dimension.Width = width;
-                UserHandler uHandler = new UserHandler(logged);
-                bool existingBlackBoard = uHandler.ModifyBlackBoard(team, oldBlackBoard, newBlackBoard);
+                // UserHandler uHandler = new UserHandler(logged);
+                bool existingBlackBoard = true;//uHandler.ModifyBlackBoard(team, oldBlackBoard, newBlackBoard);
                 if (!existingBlackBoard)
                 {
                     MessageBox.Show("El pizarron ingresado ya existe, o se le ingreso un tamaño pequeño / grande (El Ancho debe estar entre 50 y 750 y el Alto entre 50 y 500). * Los elementos del pizarron deben caber en las nuevas dimensiones del mismo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

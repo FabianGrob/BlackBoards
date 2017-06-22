@@ -17,11 +17,11 @@ namespace UIBlackBoards
     public partial class VisualizeBlackBoard : UserControl
     {
         private BlackBoard actualBlackBoard;
-        private User logged;
+        private string logged;
         private Panel panelContainer;
         private List<Control> controls;
 
-        public VisualizeBlackBoard(BlackBoard aBoard, User anUser, Panel container)
+        public VisualizeBlackBoard(BlackBoard aBoard, string anUser, Panel container)
         {
             InitializeComponent();
             panelContainer = container;
@@ -30,8 +30,6 @@ namespace UIBlackBoards
             panelContainer.SetBounds(0, 0, actualBlackBoard.Dimension.Width, actualBlackBoard.Dimension.Height);
             controls = new List<Control>();
             loadControls();
-
-
         }
         private void loadControls()
         {

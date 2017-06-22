@@ -13,10 +13,10 @@ namespace UIBlackBoards
 {
     public partial class UserListForComments : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
-        public UserListForComments(User anUser, Repository aRepository, Panel container)
+        public UserListForComments(string anUser, Repository aRepository, Panel container)
         {
             InitializeComponent();
             logged = anUser;

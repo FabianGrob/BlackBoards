@@ -15,10 +15,10 @@ namespace UIBlackBoards
 {
     public partial class AddNewTeam : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
-        public AddNewTeam(User anUser, Repository aRepository, Panel container)
+        public AddNewTeam(string anUser, Repository aRepository, Panel container)
         {
             InitializeComponent();
             logged = anUser;
@@ -69,13 +69,6 @@ namespace UIBlackBoards
             }
             return validation;
         }
-        /*ValidationReturn addNewItem(string teamName, string description, int maxUsers, List<User> members, List<BlackBoard> blackBoards)
-        {
-            ValidationReturn validation = new ValidationReturn(false, "El equipo ha sido ingresado");
-            AdminHandler handler = new AdminHandler((Admin)logged);
-            ValidationReturn added = handler.CreateTeam(teamName, description, maxUsers, members, blackBoards, theRepository);
-            return added;
-        }*/
         private ValidationReturn validationNewItem()
         {
             List<User> members = getSelectedUsers(listBoxSelectedUsers);
@@ -91,9 +84,10 @@ namespace UIBlackBoards
             newTeam.Description = description;
             ValidationReturn validation = newTeam.IsValid();
             bool isValid = validation.Validation;
+            Facade facade = new Facade();
             if (isValid)
             {
-               // validation = addNewItem(teamName, description, maxUsers, members, blackBoards);
+                validation = facade.newTeam(logged, teamName, description, maxUsers, members, blackBoards);
             }
             bool wasAdded = validation.Validation;
             if (wasAdded)

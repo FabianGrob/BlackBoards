@@ -14,15 +14,15 @@ namespace UIBlackBoards
 {
     public partial class MainMenu : Form
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
-        public MainMenu(User anUser, Repository aRepository)
+        public MainMenu(string anUser, Repository aRepository)
         {
             InitializeComponent();
             logged = anUser;
             theRepository = aRepository;
             RepositoryHandler repHandler = new RepositoryHandler(theRepository);
-            bool isUserAdmin = repHandler.IsUserAnAdmin(logged.Email);
+            bool isUserAdmin = repHandler.IsUserAnAdmin(logged);
             buttonCreateTeam.Enabled = isUserAdmin;
             buttonModifyTeam.Enabled = isUserAdmin;
             buttonCreateUser.Enabled = isUserAdmin;
@@ -35,7 +35,7 @@ namespace UIBlackBoards
         private void button1_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
-            UserControl addUser = new AddNewUser(logged.Email, theRepository, panelContainer);
+            UserControl addUser = new AddNewUser(logged, theRepository, panelContainer);
             panelContainer.Controls.Add(addUser);
         }
 

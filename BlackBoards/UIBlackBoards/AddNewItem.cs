@@ -16,13 +16,13 @@ namespace UIBlackBoards
     {
         private Image File;
         private string FileNamePath;
-        private User logged;
+        private string logged;
         private BlackBoard blackBoard;
         private Repository theRepository;
         private Panel containerPanel;
         private Panel blackboardPanel;
 
-        public AddNewItem(User anUser, Repository aRepository, Panel container, Panel aBlackboardPanel, BlackBoard aBlackBoard)
+        public AddNewItem(string anUser, Repository aRepository, Panel container, Panel aBlackboardPanel, BlackBoard aBlackBoard)
         {
             InitializeComponent();
             logged = anUser;
@@ -79,8 +79,8 @@ namespace UIBlackBoards
             bool ok = validationsTextBox(newItem);
             if (ok)
             {
-                UserHandler handler = new UserHandler(logged);
-                handler.AddItemToBlackBoard(blackBoard, newItem);
+               // UserHandler handler = new UserHandler(logged);
+                //handler.AddItemToBlackBoard(blackBoard, newItem);
                 blackboardPanel.Controls.Clear();
                 VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel);
                 blackboardPanel.Controls.Add(visualize);
@@ -111,8 +111,8 @@ namespace UIBlackBoards
             bool ok = validationsPictures(newPicture);
             if (ok)
             {
-                UserHandler handler = new UserHandler(logged);
-                handler.AddItemToBlackBoard(blackBoard, newPicture);
+               // UserHandler handler = new UserHandler(logged);
+               // handler.AddItemToBlackBoard(blackBoard, newPicture);
                 blackboardPanel.Controls.Clear();
                 VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel);
                 blackboardPanel.Controls.Add(visualize);

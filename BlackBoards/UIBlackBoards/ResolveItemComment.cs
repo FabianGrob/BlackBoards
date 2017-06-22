@@ -15,11 +15,11 @@ namespace UIBlackBoards
     {
 
         private BlackBoard actualBlackBoard;
-        private User logged;
+        private string logged;
         private Panel panelContainer;
         private Panel boardContainer;
         private Repository theRepository;
-        public ResolveItemComment(BlackBoard aBoard, User anUser, Panel container, Panel aBoardContainer, Item anItem, Repository aRepository)
+        public ResolveItemComment(BlackBoard aBoard, string anUser, Panel container, Panel aBoardContainer, Item anItem, Repository aRepository)
         {
             InitializeComponent();
             actualBlackBoard = aBoard;
@@ -43,10 +43,10 @@ namespace UIBlackBoards
             else
             {
                 Comment selectedComment = (Comment)listBoxComments.SelectedItem;
-                UserHandler handler = new UserHandler(logged);
+                //UserHandler handler = new UserHandler(logged);
                 if (selectedComment.ResolvingDate.Equals(DateTime.MaxValue))
                 {
-                    bool resolved = handler.ResolveComment(selectedComment);
+                    bool resolved = true;// handler.ResolveComment(selectedComment);
                     MessageBox.Show("El comentario se marcó como resuelto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     panelContainer.Controls.Clear();
                     ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);

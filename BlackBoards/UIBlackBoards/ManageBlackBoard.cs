@@ -13,12 +13,12 @@ namespace UIBlackBoards
 {
     public partial class ManageBlackBoard : UserControl
     {
-        private User logged;
+        private string logged;
         private Repository theRepository;
         private Panel panelContainer;
         private Panel panelContainerBlackBoard;
         private BlackBoard blackBoard;
-        public ManageBlackBoard(User anUser, Repository aRepository, Panel container, Panel containerBlackBoard, BlackBoard aBlackBoard)
+        public ManageBlackBoard(string anUser, Repository aRepository, Panel container, Panel containerBlackBoard, BlackBoard aBlackBoard)
         {
             InitializeComponent();
             logged = anUser;
@@ -27,7 +27,6 @@ namespace UIBlackBoards
             panelContainerBlackBoard = containerBlackBoard;
             blackBoard = aBlackBoard;
         }
-
         private void buttonCreateItem_Click(object sender, EventArgs e)
         {
             AddNewItem newVisualize = new AddNewItem(logged, theRepository, panelContainer, panelContainerBlackBoard, blackBoard);
