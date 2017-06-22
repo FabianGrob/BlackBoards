@@ -91,142 +91,68 @@ namespace BlackBoardsTest.HandlerTests
             DateTime birthDate = DateTime.Today;
             string password = "aPassword";
             string modEmail = "AModifiedEmail";
+            AdminPersistance userContext = new AdminPersistance();
             //assertion
-            // bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
-            // Assert.IsFalse(result);
-
+            bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, userContext);
+            Assert.IsFalse(result);
         }
-        /* [TestMethod]
-         public void TestModifyUserAlreadyExistsEmail()
-         {
-             //instance
-             Repository repository = new Repository();
-             Admin anAdmin = new Admin();
-             AdminHandler handler = new AdminHandler(anAdmin);
-             string name = "aNewName";
-             string lastName = "aLastName";
-             string email = "AnEmail";
-             DateTime birthDate = DateTime.Today;
-             string password = "aPassword";
-             string modEmail = "AModifiedEmail";
-             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-             handler.CreateCollaborator(name, lastName, modEmail, birthDate, password, repository);
-             //assertion
-             bool result = handler.ModifyUser(email, name, lastName, modEmail, birthDate, password, repository);
-             Assert.IsFalse(result);
-
-         }
-         [TestMethod]
-         public void TestDeleteUserCorrectly()
-         {
-             //instance
-             Repository repository = new Repository();
-             Admin anAdmin = new Admin();
-             AdminHandler handler = new AdminHandler(anAdmin);
-             string name = "aNewName";
-             string lastName = "aLastName";
-             string email = "AnEmail";
-             DateTime birthDate = DateTime.Today;
-             string password = "aPassword";
-             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-             //assertion
-             bool result = handler.DeleteUser(email, repository);
-             Assert.IsTrue(result);
-
-         }
-         [TestMethod]
-         public void TestDeleteUserCheck()
-         {
-             //instance
-             Repository repository = new Repository();
-             Admin anAdmin = new Admin();
-             AdminHandler handler = new AdminHandler(anAdmin);
-             string name = "aNewName";
-             string lastName = "aLastName";
-             string email = "AnEmail";
-             DateTime birthDate = DateTime.Today;
-             string password = "aPassword";
-             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-             handler.DeleteUser(email, repository);
-             //assertion
-             bool result = repository.UserList.Count == 0;
-             Assert.IsTrue(result);
-
-         }
-
-         [TestMethod]
-         public void TestDeleteUserAndCleanInvalidTeamCheck()
-         {
-             //instance
-             Repository repository = new Repository();
-             Admin anAdmin = new Admin();
-             AdminHandler handler = new AdminHandler(anAdmin);
-             string name = "aNewName";
-             string lastName = "aLastName";
-             string email = "AnEmail";
-             DateTime birthDate = DateTime.Today;
-             string password = "aPassword";
-             User userToDelete = new Collaborator(name, lastName, email, birthDate, password);
-             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-             string aName = "testName";
-             string description = "testDescription";
-             int maximumUsers = 10;
-             List<User> members = new List<User>();
-             members.Add(userToDelete);
-             List<BlackBoard> boards = new List<BlackBoard>();
-             Team aTeam = new Team(name, new DateTime(), description, maximumUsers, members, boards);
-             TeamHandler teamHandler = new TeamHandler(aTeam);
-             handler.CreateTeam(aName, description, maximumUsers, members, boards, repository);
-             handler.DeleteUser(email, repository);
-             //assertion
-             bool result = repository.TeamList.Count == 0;
-             Assert.IsTrue(result);
-         }
-         [TestMethod]
-         public void TestDeleteUserAndNoCleanTeamCheck()
-         {
-             //instance
-             Repository repository = new Repository();
-             Admin anAdmin = new Admin();
-             AdminHandler handler = new AdminHandler(anAdmin);
-             string name = "aNewName";
-             string lastName = "aLastName";
-             string email = "AnEmail";
-             DateTime birthDate = DateTime.Today;
-             string password = "aPassword";
-             User userToDelete = new Collaborator(name, lastName, email, birthDate, password);
-             User anotherUser = new Collaborator(name, lastName, email + "Diferrent", birthDate, password);
-             handler.CreateCollaborator(name, lastName, email, birthDate, password, repository);
-             handler.CreateCollaborator(name, lastName, email + "Diferrent", birthDate, password, repository);
-             string aName = "testName";
-             string description = "testDescription";
-             int maximumUsers = 10;
-             List<User> members = new List<User>();
-             members.Add(userToDelete);
-             List<BlackBoard> boards = new List<BlackBoard>();
-             Team aTeam = new Team(name, new DateTime(), description, maximumUsers, members, boards);
-             TeamHandler teamHandler = new TeamHandler(aTeam);
-             teamHandler.AddMember(anotherUser);
-             handler.CreateTeam(aName, description, maximumUsers, members, boards, repository);
-             handler.DeleteUser(email, repository);
-             //assertion
-             bool result = repository.TeamList.Count == 0;
-             Assert.IsFalse(result);
-         }*/
-        [TestMethod]
-        public void TestDeleteUserDoesntExists()
+        public void TestModifyUserAlreadyExistsEmail()
         {
             //instance
             Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
-            string email = "AnEmail";
+            string name = "aNewName";
+            string lastName = "aLastName";
+            string email = "AnEmail@email";
+            DateTime birthDate = DateTime.Today;
+            string password = "aPassword";
+            string modEmail = "AModifiedEmail";
+            AdminPersistance adminContext = new AdminPersistance();
+            handler.CreateCollaborator(name, lastName, email, birthDate, password, adminContext);
+            ValidationReturn result = handler.CreateCollaborator(name, lastName, email, birthDate, password, adminContext);
             //assertion
-            //  bool result = handler.DeleteUser(email, repository);
-            //Assert.IsFalse(result);
-
+            Assert.IsFalse(result.Validation);
         }
-
+        [TestMethod]
+        public void TestDeleteUserCorrectly()
+        {
+            //instance
+            Repository repository = new Repository();
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string name = "aNewName";
+            string lastName = "aLastName";
+            string email = "test@AnEmail";
+            DateTime birthDate = DateTime.Today;
+            string password = "aPassword";
+            User userToAdd = new Admin();
+            userToAdd.BirthDate = birthDate;
+            userToAdd.LastName = lastName;
+            userToAdd.Password = password;
+            userToAdd.Email = email;
+            userToAdd.Name = name;
+            AdminPersistance adminContext = new AdminPersistance();
+            handler.CreateCollaborator(name, lastName, email, birthDate, password, adminContext);
+            User userToDelete = adminContext.GetUserByEmail(email);
+            //assertion
+            ValidationReturn result = handler.DeleteUser(userToDelete, adminContext);
+            Assert.IsTrue(result.Validation);
+        }
+        [TestMethod]
+        public void TestDeleteUserDoesntExists()
+        {
+            //instance
+            Admin anAdmin = new Admin();
+            AdminHandler handler = new AdminHandler(anAdmin);
+            string email = "AnEmail";
+            User newCollaborator = new Collaborator();
+            newCollaborator.Email = email;
+            AdminPersistance adminContext = new AdminPersistance();
+            //assertion
+            ValidationReturn result = handler.DeleteUser(newCollaborator, adminContext);
+            Assert.IsFalse(result.Validation);
+        }
         [TestMethod]
         public void TestCreateTeamCheck()
         {
@@ -279,25 +205,22 @@ namespace BlackBoardsTest.HandlerTests
         public void TestCreateTeamSameName()
         {
             //instance
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
             string name = "TEAM A";
             string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
-            // handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
+            TeamPersistance teamContext = new TeamPersistance();
+            handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), teamContext);
             //assertion
-            //  ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), repository);
-            // bool result = validation.Validation;
-            // result = result && repository.TeamList.Count == 1;
-            // Assert.IsFalse(result);
-
+            ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, new List<User>(), new List<BlackBoard>(), teamContext);
+            bool result = validation.Validation;
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestCreateTeamIncorrectlyMax0()
         {
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
             List<User> members = new List<User>();
@@ -315,17 +238,16 @@ namespace BlackBoardsTest.HandlerTests
             string description = "Default Team Description";
             int maxUsers = 0;
             AdminHandler handler = new AdminHandler(anAdmin);
+            TeamPersistance teamContext = new TeamPersistance();
             //assertion
-            //ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
-            //  bool result = validation.Validation;
-            //  Assert.IsFalse(result);
-
+            ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
+            bool result = validation.Validation;
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestCreateTeamIncorrectlyOverSized()
         {
             //instance
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
             List<User> members = new List<User>();
@@ -346,11 +268,11 @@ namespace BlackBoardsTest.HandlerTests
             string description = "Default Team Description";
             int maxUsers = 4;
             AdminHandler handler = new AdminHandler(anAdmin);
+            TeamPersistance teamContext = new TeamPersistance();
             //assertion
-            // ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), repository);
-            // bool result = validation.Validation;
-            // Assert.IsFalse(result);
-
+            ValidationReturn validation = handler.CreateTeam(name, description, maxUsers, members, new List<BlackBoard>(), teamContext);
+            bool result = validation.Validation;
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void TestCreateTeamCheckWrong()
@@ -404,7 +326,6 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             //  bool result = handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
             // Assert.IsTrue(result);
-
         }
         [TestMethod]
         public void TestModifyTeamCheck()
@@ -429,7 +350,6 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             bool result = repository.TeamList.ElementAt(0).MaxUsers == 5 && repository.TeamList.ElementAt(0).Name.Equals(newName);
             Assert.IsTrue(result);
-
         }
         [TestMethod]
         public void TestModifyTeamIncorrectly()
@@ -453,7 +373,6 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             // bool result = handler.ModifyTeam(name, newName, description, newMaxUsers, members, new List<BlackBoard>(), repository);
             // Assert.IsFalse(result);
-
         }
         [TestMethod]
         public void TestModifyTeamCheckWrong()
@@ -478,7 +397,6 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             bool result = repository.TeamList.ElementAt(0).Name.Equals(name) && repository.TeamList.ElementAt(0).MaxUsers == maxUsers;
             Assert.IsTrue(result);
-
         }
         [TestMethod]
         public void TestDeleteTeamCorrectly()
@@ -727,7 +645,5 @@ namespace BlackBoardsTest.HandlerTests
             //assertion
             Assert.IsFalse(existsNew);
         }
-
-
     }
 }
