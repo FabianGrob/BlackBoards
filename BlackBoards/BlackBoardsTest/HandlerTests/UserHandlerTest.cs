@@ -254,5 +254,28 @@ namespace BlackBoardsTest
             //assertion
             Assert.IsTrue(result.Validation);
         }
+        [TestMethod]
+        public void TestResolveComment()
+        {
+            //instance
+            Initialize();
+            AdminPersistance adminContext = new AdminPersistance();
+            User generatedUser = adminContext.GetUserByEmail("generatedEmail@email.com");
+            UserHandler handler = new UserHandler(generatedUser);
+            BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
+            BlackBoard generatedBlackBoard = blackBoardContext.GetBlackBoardByName("generatedBoard");
+            TextBox textBox = new TextBox();
+            textBox.blackBoardBelongs = generatedBlackBoard;
+            textBox.Font = "Arial";
+            textBox.FontSize = 12;
+            textBox.Content = "ThisIsATest";
+            handler.AddItemToBlackBoard(generatedBlackBoard, textBox);
+            TextBox theItem = generatedBlackBoard.itemList.ElementAt(0) as TextBox;
+            handler.CreateNewComment(theItem, "testComment");
+            ValidationReturn result = handler.CreateNewComment(theItem, "testComment");
+            CleanDB(new UserPersistance());
+            //assertion
+            Assert.IsTrue(result.Validation);
+        }
     }
 }
