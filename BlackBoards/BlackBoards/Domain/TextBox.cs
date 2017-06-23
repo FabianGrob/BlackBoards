@@ -79,24 +79,7 @@ namespace BlackBoards
                 this.fontSize = value;
             }
         }
-        public override bool Equals(object aTextBox)
-        {
-            if (aTextBox == null)
-            {
-                return false;
-            }
-            TextBox anotherTextBox = aTextBox as TextBox;
-            if ((System.Object)anotherTextBox == null)
-            {
-                return false;
-            }
-            bool sameDimensions = this.Dimension.Equals(anotherTextBox.Dimension);
-            bool sameOrigin = this.Origin.Equals(anotherTextBox.Origin);
-            bool sameComments = this.comments.Equals(anotherTextBox.comments);
-            bool sameFontAndSize = this.fontSize == anotherTextBox.fontSize && this.font.Equals(anotherTextBox.font);
-            bool sameContent = this.content.Equals(anotherTextBox.content);
-            return sameDimensions && sameOrigin && sameComments && sameFontAndSize && sameContent;
-        }
+       
         
         public ValidationReturn isValid()
         {

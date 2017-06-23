@@ -15,17 +15,17 @@ namespace UIBlackBoards
     {
         private string logged;
         private BlackBoard blackBoard;
-        private Repository theRepository;
-        public VisualizeBoard(BlackBoard tBlackBoards, string uLogged, Repository thRepository)
+        private Facade theFacade;
+        public VisualizeBoard(BlackBoard tBlackBoards, string uLogged, Facade facade)
         {
             InitializeComponent();
             blackBoard = tBlackBoards;
             logged = uLogged;
-            theRepository = thRepository;
+            theFacade = facade;
             panelOptions.Controls.Clear();
             panelBoard.Controls.Clear();
-            ManageBlackBoard manageBlackBoards = new ManageBlackBoard(logged, theRepository, panelOptions, panelBoard, blackBoard);
-            VisualizeBlackBoard visualizeBoards = new VisualizeBlackBoard(blackBoard, logged, panelBoard);
+            ManageBlackBoard manageBlackBoards = new ManageBlackBoard(logged, theFacade, panelOptions, panelBoard, blackBoard);
+            VisualizeBlackBoard visualizeBoards = new VisualizeBlackBoard(blackBoard, logged, panelBoard,theFacade);
             panelBoard.Controls.Add(visualizeBoards);
             panelOptions.Controls.Add(manageBlackBoards);
         }

@@ -33,6 +33,13 @@ namespace Persistance
             {
                 using (BlackBoardsContext dbContext = new BlackBoardsContext())
                 {
+                    CommentPersistance commentctx = new CommentPersistance();
+                    foreach (Comment actualComment in anItem.comments)
+                    {
+                        Comment completeComment = commentctx.GetComment(actualComment.IDComment);
+                        commentctx.Delete(completeComment);
+
+                    }
                     dbContext.items.Attach(anItem);
                     dbContext.Entry(anItem).State = EntityState.Deleted;
                     dbContext.SaveChanges();
@@ -61,7 +68,7 @@ namespace Persistance
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new PersistanceItemException("Error en la base de datos. Imposible Modificar el Elemento ");
             }

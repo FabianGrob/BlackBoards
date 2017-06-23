@@ -64,22 +64,7 @@ namespace BlackBoards
             string defualtImagePath = proyectPath + "\\Images\\default.jpg";
             return defualtImagePath;
         }
-        public override bool Equals(object aPicture)
-        {
-            if (aPicture == null)
-            {
-                return false;
-            }
-            Picture anotherPicture = aPicture as Picture;
-            if ((System.Object)anotherPicture == null)
-            {
-                return false;
-            }
-            bool sameDimensions = this.Dimension.Equals(anotherPicture.Dimension);
-            bool sameOrigin = this.Origin == anotherPicture.Origin;
-            bool sameComments = this.comments.Equals(anotherPicture.comments);
-            return sameDimensions && sameComments && sameComments;
-        }
+        
 
         private bool IsDescriptionValid()
         {

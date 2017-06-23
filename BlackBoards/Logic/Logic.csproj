@@ -44,7 +44,6 @@
     <Compile Include="ScoresCalculator.cs" />
     <Compile Include="ItemHandler.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="RepositoryHandler.cs" />
     <Compile Include="TeamHandler.cs" />
     <Compile Include="TextBoxHandler.cs" />
     <Compile Include="UserHandler.cs" />

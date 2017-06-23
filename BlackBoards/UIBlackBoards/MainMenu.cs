@@ -26,8 +26,8 @@ namespace UIBlackBoards
             buttonModifyTeam.Enabled = isUserAdmin;
             buttonCreateUser.Enabled = isUserAdmin;
             buttonModifyUser.Enabled = isUserAdmin;
-            buttonBlackBoardsPerTeam.Enabled = isUserAdmin;
-            buttonCommentsInform.Enabled = isUserAdmin;
+            buttonBlackBoardsPerTeam.Enabled = false;
+            buttonCommentsInform.Enabled = false;
 
         }
 

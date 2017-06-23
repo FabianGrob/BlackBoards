@@ -1,5 +1,6 @@
 ﻿using BlackBoards;
 using BlackBoards.Domain.BlackBoards;
+using Persistance;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,18 +19,20 @@ namespace UIBlackBoards
         private string FileNamePath;
         private string logged;
         private BlackBoard blackBoard;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel containerPanel;
         private Panel blackboardPanel;
 
-        public AddNewItem(string anUser, Repository aRepository, Panel container, Panel aBlackboardPanel, BlackBoard aBlackBoard)
+        public AddNewItem(string anUser, Facade facade, Panel container, Panel aBlackboardPanel, BlackBoard aBlackBoard)
         {
+            BlackBoardPersistance BBcontext = new BlackBoardPersistance();
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             containerPanel = container;
             blackboardPanel = aBlackboardPanel;
-            blackBoard = aBlackBoard;
+            blackBoard = BBcontext.GetBlackBoardByName(aBlackBoard.Name);
+
             List<string> allFonts = loadAllFonts();
             foreach (string font in allFonts)
             {
@@ -79,13 +82,14 @@ namespace UIBlackBoards
             bool ok = validationsTextBox(newItem);
             if (ok)
             {
+                theFacade.newTextBox(blackBoard,newItem.Content,newItem.Dimension.Height,newItem.Dimension.Width,newItem.Origin.XAxis,newItem.Origin.YAxis,newItem.Font,newItem.FontSize);
                // UserHandler handler = new UserHandler(logged);
                 //handler.AddItemToBlackBoard(blackBoard, newItem);
                 blackboardPanel.Controls.Clear();
-                VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel);
+                VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel,theFacade);
                 blackboardPanel.Controls.Add(visualize);
                 containerPanel.Controls.Clear();
-                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, containerPanel, blackboardPanel, blackBoard);
+                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, containerPanel, blackboardPanel, blackBoard);
                 containerPanel.Controls.Add(pwindow);
             }
         }
@@ -111,13 +115,14 @@ namespace UIBlackBoards
             bool ok = validationsPictures(newPicture);
             if (ok)
             {
-               // UserHandler handler = new UserHandler(logged);
-               // handler.AddItemToBlackBoard(blackBoard, newPicture);
+                UserPersistance userContext = new UserPersistance();
+               UserHandler handler = new UserHandler(userContext.GetUserByEmail(logged));
+               theFacade.newPicture(blackBoard,newPicture.Description,newPicture.Dimension.Height,newPicture.Dimension.Width,newPicture.Origin.XAxis,newPicture.Origin.YAxis,newPicture.ImgPath );
                 blackboardPanel.Controls.Clear();
-                VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel);
+                VisualizeBlackBoard visualize = new VisualizeBlackBoard(blackBoard, logged, blackboardPanel,theFacade);
                 blackboardPanel.Controls.Add(visualize);
                 containerPanel.Controls.Clear();
-                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, containerPanel, blackboardPanel, blackBoard);
+                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, containerPanel, blackboardPanel, blackBoard);
                 containerPanel.Controls.Add(pwindow);
             }
         }
@@ -125,7 +130,7 @@ namespace UIBlackBoards
         private void buttonComeBack_Click(object sender, EventArgs e)
         {
             containerPanel.Controls.Clear();
-            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, containerPanel, blackboardPanel, blackBoard);
+            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, containerPanel, blackboardPanel, blackBoard);
             containerPanel.Controls.Add(pwindow);
         }
     }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
@@ -17,15 +18,16 @@ namespace UIBlackBoards
         private string logged;
         private Panel panelContainer;
         private Panel boardContainer;
-        private Repository theRepository;
-        public SelectItemToDelete(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Repository aRepository)
+        private Facade theFacade;
+        public SelectItemToDelete(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Facade facade)
         {
+            BlackBoardPersistance bbctx = new BlackBoardPersistance();
             InitializeComponent();
-            actualBlackBoard = aBoard;
+            actualBlackBoard = bbctx.GetBlackBoardByName(aBoard.Name);
             logged = anUser;
             panelContainer = container;
             boardContainer = boardcontainer;
-            theRepository = aRepository;
+            theFacade = facade;
             foreach (Item actualItem in actualBlackBoard.itemList)
             {
                 listBoxItems.Items.Add(actualItem);
@@ -51,14 +53,17 @@ namespace UIBlackBoards
         {
             if (hasSelected())
             {
-                Item selectedItem = (Item)listBoxItems.SelectedItem;
-                //UserHandler handler = new UserHandler(logged);
-                //handler.RemoveItemBlackBoard(actualBlackBoard, selectedItem);
+                ItemPersistance itemctx = new ItemPersistance();
+                Item selectedItem = itemctx.GetItem(((Item)listBoxItems.SelectedItem).IDItem);
+                UserPersistance userContext = new UserPersistance();
+                UserHandler handler = new UserHandler(userContext.GetUserByEmail(logged));
+                User completeLoggedUser = userContext.GetUserByEmail(logged);
+                theFacade.DeleteItem(completeLoggedUser,actualBlackBoard, selectedItem);
                 boardContainer.Controls.Clear();
-                VisualizeBlackBoard visualize = new VisualizeBlackBoard(actualBlackBoard, logged, boardContainer);
+                VisualizeBlackBoard visualize = new VisualizeBlackBoard(actualBlackBoard, logged, boardContainer,theFacade);
                 boardContainer.Controls.Add(visualize);
                 panelContainer.Controls.Clear();
-                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, panelContainer, boardContainer, actualBlackBoard);
                 panelContainer.Controls.Add(pwindow);
                 MessageBox.Show("Se ha eliminado el elemento del pizarron", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -67,7 +72,7 @@ namespace UIBlackBoards
         private void buttonBack_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
-            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, panelContainer, boardContainer, actualBlackBoard);
             panelContainer.Controls.Add(pwindow);
         }
     }

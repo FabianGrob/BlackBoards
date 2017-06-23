@@ -20,15 +20,5 @@ namespace BlackBoardsTest.HandlerTests
             bool result = otherTbx.Equals(handler.TextBox);
             Assert.IsTrue(result);
         }
-        [TestMethod]
-        public void TestTextBoxHandlerDiferents()
-        {
-            TextBox aTbx = new TextBox();
-            aTbx.Content = "anyComment";
-            TextBox otherTbx = new TextBox();
-            TextBoxHandler handler = new TextBoxHandler(aTbx);
-            bool result = otherTbx.Equals(handler.TextBox);
-            Assert.IsFalse(result);
-        }
     }
 }

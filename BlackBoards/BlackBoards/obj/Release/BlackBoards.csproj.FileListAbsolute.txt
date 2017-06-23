@@ -6,3 +6,10 @@ C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\Black
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\BlackBoards.csproj.GenerateResource.Cache
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\BlackBoards.exe
 C:\Users\Fede\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\BlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Release\BlackBoards.exe.config
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Release\BlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\bin\Release\BlackBoards.pdb
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\BlackBoards.Properties.Resources.resources
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\BlackBoards.csproj.GenerateResource.Cache
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\BlackBoards.exe
+C:\Users\Fabian\Documents\CetraroGrobert\BlackBoards\BlackBoards\obj\Release\BlackBoards.pdb

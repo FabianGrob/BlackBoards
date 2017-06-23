@@ -63,7 +63,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DomainTests\ConnectionTest.cs" />
-    <Compile Include="DomainTests\RepositoryTest.cs" />
     <Compile Include="DomainTests\ScoreTest.cs" />
     <Compile Include="DomainTests\ScoreUserInTeamTest.cs" />
     <Compile Include="DomainTests\EstablishedScoreTeamTest.cs" />

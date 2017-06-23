@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
@@ -18,16 +19,18 @@ namespace UIBlackBoards
         private Panel panelContainer;
         private Panel boardContainer;
         private Item selectedItem;
-        private Repository theRepository;
-        public CommentItem(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Item actualItem, Repository aRepository)
+        private Facade theFacade;
+        public CommentItem(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Item actualItem, Facade facade)
         {
+            BlackBoardPersistance bbctx = new BlackBoardPersistance();
+            ItemPersistance itemctx = new ItemPersistance();
             InitializeComponent();
-            actualBlackBoard = aBoard;
+            actualBlackBoard = bbctx.GetBlackBoardByName(aBoard.Name);
             logged = anUser;
             panelContainer = container;
             boardContainer = boardcontainer;
-            selectedItem = actualItem;
-            theRepository = aRepository;
+            selectedItem = itemctx.GetItem(actualItem.IDItem);
+            theFacade = facade;
         }
         private bool validateText(string text)
         {
@@ -39,10 +42,10 @@ namespace UIBlackBoards
             string txt = textBox1.Text;
             if (validateText(txt))
             {
-                //UserHandler handler = new UserHandler(logged);
-               // handler.CreateNewComment(selectedItem, txt);
+                theFacade.newComment(logged, selectedItem, txt);
                 panelContainer.Controls.Clear();
-                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+
+                ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, panelContainer, boardContainer, actualBlackBoard);
                 panelContainer.Controls.Add(pwindow);
                 MessageBox.Show("Se creó el comentario correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -56,7 +59,7 @@ namespace UIBlackBoards
         private void button2_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
-            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, panelContainer, boardContainer, actualBlackBoard);
             panelContainer.Controls.Add(pwindow);
         }
     }

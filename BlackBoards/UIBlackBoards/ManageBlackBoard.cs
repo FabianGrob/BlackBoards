@@ -14,36 +14,36 @@ namespace UIBlackBoards
     public partial class ManageBlackBoard : UserControl
     {
         private string logged;
-        private Repository theRepository;
+        private Facade theFacade;
         private Panel panelContainer;
         private Panel panelContainerBlackBoard;
         private BlackBoard blackBoard;
-        public ManageBlackBoard(string anUser, Repository aRepository, Panel container, Panel containerBlackBoard, BlackBoard aBlackBoard)
+        public ManageBlackBoard(string anUser, Facade facade, Panel container, Panel containerBlackBoard, BlackBoard aBlackBoard)
         {
             InitializeComponent();
             logged = anUser;
-            theRepository = aRepository;
+            theFacade = facade;
             panelContainer = container;
             panelContainerBlackBoard = containerBlackBoard;
             blackBoard = aBlackBoard;
         }
         private void buttonCreateItem_Click(object sender, EventArgs e)
         {
-            AddNewItem newVisualize = new AddNewItem(logged, theRepository, panelContainer, panelContainerBlackBoard, blackBoard);
+            AddNewItem newVisualize = new AddNewItem(logged, theFacade, panelContainer, panelContainerBlackBoard, blackBoard);
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(newVisualize);
         }
 
         private void buttonManageComment_Click(object sender, EventArgs e)
         {
-            ItemListed newVisualize = new ItemListed(blackBoard, logged, panelContainer, panelContainerBlackBoard, theRepository);
+            ItemListed newVisualize = new ItemListed(blackBoard, logged, panelContainer, panelContainerBlackBoard, theFacade);
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(newVisualize);
         }
 
         private void buttonRemoveItem_Click(object sender, EventArgs e)
         {
-            SelectItemToDelete newVisualize = new SelectItemToDelete(blackBoard, logged, panelContainer, panelContainerBlackBoard, theRepository);
+            SelectItemToDelete newVisualize = new SelectItemToDelete(blackBoard, logged, panelContainer, panelContainerBlackBoard, theFacade);
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(newVisualize);
         }

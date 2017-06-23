@@ -57,7 +57,6 @@
     <Compile Include="Domain\DirectionType.cs" />
     <Compile Include="Domain\EstablishedScoreTeam.cs" />
     <Compile Include="Domain\Program.cs" />
-    <Compile Include="Domain\Repository.cs" />
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Picture.cs" />
     <Compile Include="Domain\Score.cs" />

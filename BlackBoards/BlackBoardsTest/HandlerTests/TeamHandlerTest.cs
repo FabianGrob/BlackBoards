@@ -383,7 +383,6 @@ namespace BlackBoardsTest.HandlerTests
             UserPersistance userContext = new UserPersistance();
             CleanDB(new BlackBoardPersistance());
             //instance
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
             anAdmin.Email = "tadmin@tadmin";
@@ -414,7 +413,6 @@ namespace BlackBoardsTest.HandlerTests
             UserPersistance userContext = new UserPersistance();
             CleanDB(new BlackBoardPersistance());
             //instance
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
             anAdmin.Email = "tadmin@tadmin";

@@ -27,26 +27,6 @@ namespace BlackBoardsTest
             otherComment.ResolvingDate = resolvingDate;
             otherComment.WrittenComment = comment;
             Assert.IsTrue(aComment.Equals(otherComment));
-        }
-
-        [TestMethod]
-        public void TestEqualsComment()
-        {
-            Admin resolvingUser = new Admin("nameResolvingTest", "lastNameResolvingTest", "emailResolvingTest", new DateTime(), "passwordResolvingTest");
-            Admin commentingUser = new Admin("nameCommentingTest", "lastNameCommentingTest", "emailCommentingTest", new DateTime(), "passwordCommentingTest");
-            Comment aComment = new Comment();
-            aComment.commentingUser = commentingUser;
-            aComment.resolvingUser = resolvingUser;
-            aComment.CommentingDate = DateTime.MinValue; 
-            aComment.ResolvingDate = DateTime.MinValue;
-            aComment.WrittenComment = "CommentTest";
-            Comment otherComment = new Comment();
-            otherComment.commentingUser = commentingUser;
-            otherComment.resolvingUser = resolvingUser;
-            otherComment.CommentingDate = DateTime.MaxValue; 
-            otherComment.ResolvingDate = DateTime.MaxValue;
-            otherComment.WrittenComment = "CommentTest";
-            Assert.IsFalse(aComment.Equals(otherComment));
-        }
+        }       
     }
 }

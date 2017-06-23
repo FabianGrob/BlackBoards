@@ -44,14 +44,6 @@ namespace BlackBoardsTest
             Assert.IsTrue(result);
         }
         [TestMethod]
-        public void TestTextBoxEquals()
-        {
-            Coordinate origin = new Coordinate();
-            TextBox aTextBox = new TextBox(new Dimension(1, 2), new List<Comment>(), origin, "TestContent", "Arial", 14);
-            TextBox anotherTextBox = new TextBox(new Dimension(1, 2), new List<Comment>(), origin, "TestContent2", "Verdana", 11);
-            Assert.AreNotEqual(aTextBox, anotherTextBox);
-        }
-        [TestMethod]
         public void TestTextBoxValid()
         {
             //instance

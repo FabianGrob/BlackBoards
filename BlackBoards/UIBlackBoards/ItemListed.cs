@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
@@ -17,15 +18,16 @@ namespace UIBlackBoards
         private string logged;
         private Panel panelContainer;
         private Panel boardContainer;
-        private Repository theRepository;
-        public ItemListed(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Repository aRepository)
+        private Facade theFacade;
+        public ItemListed(BlackBoard aBoard, string anUser, Panel container, Panel boardcontainer, Facade facade)
         {
+            BlackBoardPersistance bbctx = new BlackBoardPersistance();
             InitializeComponent();
-            actualBlackBoard = aBoard;
+            actualBlackBoard =bbctx.GetBlackBoardByName(aBoard.Name);
             logged = anUser;
             panelContainer = container;
             boardContainer = boardcontainer;
-            theRepository = aRepository;
+            theFacade = facade;
 
             foreach (Item actualItem in actualBlackBoard.itemList)
             {
@@ -50,7 +52,7 @@ namespace UIBlackBoards
 
                 Item selectedItem = (Item)listBoxItems.SelectedItem;
                 panelContainer.Controls.Clear();
-                CommentItem commentWindow = new CommentItem(actualBlackBoard, logged, panelContainer, boardContainer, selectedItem, theRepository);
+                CommentItem commentWindow = new CommentItem(actualBlackBoard, logged, panelContainer, boardContainer, selectedItem, theFacade);
                 panelContainer.Controls.Add(commentWindow);
 
 
@@ -68,7 +70,7 @@ namespace UIBlackBoards
             {
                 Item selectedItem = (Item)listBoxItems.SelectedItem;
                 panelContainer.Controls.Clear();
-                ResolveItemComment resolveWindow = new ResolveItemComment(actualBlackBoard, logged, panelContainer, boardContainer, selectedItem, theRepository);
+                ResolveItemComment resolveWindow = new ResolveItemComment(actualBlackBoard, logged, panelContainer, boardContainer, selectedItem, theFacade);
                 panelContainer.Controls.Add(resolveWindow);
 
             }
@@ -77,7 +79,7 @@ namespace UIBlackBoards
         private void buttonBack_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
-            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, panelContainer, boardContainer, actualBlackBoard);
             panelContainer.Controls.Add(pwindow);
         }
     }

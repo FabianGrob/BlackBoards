@@ -11,6 +11,8 @@ using BlackBoards;
 using System.Collections;
 using System.Drawing.Printing;
 using System.Drawing.Imaging;
+using Persistance;
+using BlackBoards.Domain;
 
 namespace UIBlackBoards
 {
@@ -20,12 +22,15 @@ namespace UIBlackBoards
         private string logged;
         private Panel panelContainer;
         private List<Control> controls;
+        private Facade theFacade;
 
-        public VisualizeBlackBoard(BlackBoard aBoard, string anUser, Panel container)
+        public VisualizeBlackBoard(BlackBoard aBoard, string anUser, Panel container,Facade facade)
         {
             InitializeComponent();
+            BlackBoardPersistance BBContext = new BlackBoardPersistance();
             panelContainer = container;
-            actualBlackBoard = aBoard;
+            theFacade = facade;
+            actualBlackBoard = BBContext.GetBlackBoardByName(aBoard.Name);
             logged = anUser;
             panelContainer.SetBounds(0, 0, actualBlackBoard.Dimension.Width, actualBlackBoard.Dimension.Height);
             controls = new List<Control>();
@@ -40,7 +45,7 @@ namespace UIBlackBoards
                 {
                     PictureBox actualControl = new PictureBox();
                     Picture itemToAdd = actualItem as Picture;
-                    //controlToAdd = 
+                    
 
                     actualControl.SizeMode = PictureBoxSizeMode.StretchImage;
                     actualControl.Image = itemToAdd.Img();
@@ -63,32 +68,28 @@ namespace UIBlackBoards
                 controls.Add(controlToAdd);
                 Controls.Add(controlToAdd);
             }
-            /*   
-        
-             public override Control Print()
-        {
-            RichTextBox itemToAdd = new RichTextBox();
-            itemToAdd.Text = this.content;
-            itemToAdd.Font = new Font(this.Font, this.FontSize);
-            itemToAdd.SetBounds(this.Origin.XAxis, this.Origin.YAxis, this.Dimension.Width, this.Dimension.Height);
-            itemToAdd.Visible = true;
-            return itemToAdd;
-        }*/
+           
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
             int indexItems = 0;
             foreach (Control aControl in controls)
             {
+                
                 int x = aControl.Bounds.X;
                 int y = aControl.Bounds.Y;
                 int height = aControl.Bounds.Height;
                 int width = aControl.Bounds.Width;
                 Item actualItem = actualBlackBoard.itemList.ElementAt(indexItems);
-                actualItem.Dimension.Height = height;
-                actualItem.Dimension.Width = width;
-                actualItem.Origin.XAxis = x;
-                actualItem.Origin.YAxis = y;
+                BlackBoardPersistance bbctx = new BlackBoardPersistance();
+                UserPersistance userctx = new UserPersistance();
+                User actualLogged = userctx.GetUserByEmail(logged);
+                BlackBoard actualBoardComplete = bbctx.GetBlackBoardByName(actualBlackBoard.Name);
+                theFacade.ModifyItemInBB(actualBoardComplete, actualItem, new Coordinate(x, y), new Dimension(width, height), actualLogged);
+                //actualItem.Dimension.Height = height;
+                //actualItem.Dimension.Width = width;
+                //actualItem.Origin.XAxis = x;
+                //actualItem.Origin.YAxis = y;
                 if (!actualItem.IsPicture())
                 {
                     BlackBoards.TextBox actualTxtBx = (BlackBoards.TextBox)actualItem;
@@ -103,7 +104,7 @@ namespace UIBlackBoards
         private void buttonDiscard_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
-            UserControl discardWindow = new VisualizeBlackBoard(actualBlackBoard, logged, panelContainer);
+            UserControl discardWindow = new VisualizeBlackBoard(actualBlackBoard, logged, panelContainer,theFacade);
             panelContainer.Controls.Add(discardWindow);
         }
 

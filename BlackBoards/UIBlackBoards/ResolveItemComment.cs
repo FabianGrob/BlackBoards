@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlackBoards;
+using Persistance;
 
 namespace UIBlackBoards
 {
@@ -18,16 +19,20 @@ namespace UIBlackBoards
         private string logged;
         private Panel panelContainer;
         private Panel boardContainer;
-        private Repository theRepository;
-        public ResolveItemComment(BlackBoard aBoard, string anUser, Panel container, Panel aBoardContainer, Item anItem, Repository aRepository)
+        private Facade theFacade;
+        private Item theItem;
+        public ResolveItemComment(BlackBoard aBoard, string anUser, Panel container, Panel aBoardContainer, Item anItem, Facade facade)
         {
+            BlackBoardPersistance bbctx = new BlackBoardPersistance();
             InitializeComponent();
-            actualBlackBoard = aBoard;
+            actualBlackBoard = bbctx.GetBlackBoardByName(aBoard.Name);
             logged = anUser;
+            ItemPersistance itemctx = new ItemPersistance();
+            theItem = itemctx.GetItem(anItem.IDItem);
             panelContainer = container;
             boardContainer = aBoardContainer;
-            theRepository = aRepository;
-            foreach (Comment aComment in anItem.comments)
+            theFacade = facade;
+            foreach (Comment aComment in theItem.comments)
             {
                 listBoxComments.Items.Add(aComment);
             }
@@ -42,14 +47,14 @@ namespace UIBlackBoards
             }
             else
             {
-                Comment selectedComment = (Comment)listBoxComments.SelectedItem;
-                //UserHandler handler = new UserHandler(logged);
-                if (selectedComment.ResolvingDate.Equals(DateTime.MaxValue))
+                CommentPersistance commentctx = new CommentPersistance();
+                Comment selectedComment = commentctx.GetComment(((Comment)listBoxComments.SelectedItem).IDComment);
+                if (!theFacade.WasResolved(selectedComment))
                 {
-                    bool resolved = true;// handler.ResolveComment(selectedComment);
+                    theFacade.resolveComment(logged,selectedComment);
                     MessageBox.Show("El comentario se marcó como resuelto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     panelContainer.Controls.Clear();
-                    ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+                    ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, panelContainer, boardContainer, actualBlackBoard);
                     panelContainer.Controls.Add(pwindow);
                 }
                 else
@@ -62,7 +67,7 @@ namespace UIBlackBoards
         private void buttonBack_Click(object sender, EventArgs e)
         {
             panelContainer.Controls.Clear();
-            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theRepository, panelContainer, boardContainer, actualBlackBoard);
+            ManageBlackBoard pwindow = new ManageBlackBoard(logged, theFacade, panelContainer, boardContainer, actualBlackBoard);
             panelContainer.Controls.Add(pwindow);
         }
     }

@@ -55,5 +55,20 @@ namespace BlackBoards
             }
             return validComment;
         }
+        public override bool Equals(object anItem)
+        {
+            if (anItem == null)
+            {
+                return false;
+            }
+            Item anotherItem = anItem as Item;
+            if ((System.Object)anotherItem == null)
+            {
+                return false;
+            }
+            return this.IDItem.Equals(anotherItem.IDItem);
+
+
+        }
     }
 }

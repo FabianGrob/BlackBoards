@@ -105,7 +105,6 @@ namespace BlackBoardsTest.HandlerTests
         {
             //instance
             this.CleanDB(new UserPersistance(), new TeamPersistance());
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
             string name = "aNewName";
@@ -126,7 +125,6 @@ namespace BlackBoardsTest.HandlerTests
         {
             //instance
             this.CleanDB(new UserPersistance(), new TeamPersistance());
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             AdminHandler handler = new AdminHandler(anAdmin);
             string name = "aNewName";
@@ -170,7 +168,6 @@ namespace BlackBoardsTest.HandlerTests
             //cleanDB
             CleanDB(new UserPersistance(), new TeamPersistance());
             //instance
-            Repository repository = new Repository();
             Admin anAdmin = new Admin();
             anAdmin.Name = "Admin";
             anAdmin.Email = "tadmin@tadmin";

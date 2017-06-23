@@ -83,10 +83,8 @@ namespace BlackBoards
             {
                 return false;
             }
-            bool dateEquals = this.resolvingDate.Equals(anotherComment.resolvingDate) && this.commentingDate.Equals(anotherComment.commentingDate);
-            bool userEquals = this.resolvingUser.Equals(anotherComment.resolvingUser) && this.commentingUser.Equals(anotherComment.commentingUser);
-            bool writtenCommentEquals = this.WrittenComment.Equals(anotherComment.WrittenComment);
-            return (dateEquals && userEquals && writtenCommentEquals);
+           
+            return this.IDComment.Equals(anotherComment.IDComment);
         }
         public override string ToString()
         {

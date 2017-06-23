@@ -1,5 +1,7 @@
 ﻿using BlackBoards;
+using BlackBoards.Domain;
 using BlackBoards.Domain.BlackBoards;
+using BlackBoards.Handlers;
 using Persistance;
 using System;
 using System.Collections.Generic;
@@ -86,8 +88,8 @@ namespace System
 
         public ValidationReturn deleteUser(string emailAdmin, string email)
         {
-            ValidationReturn validation = new ValidationReturn(false,"No se puede eliminar a si mismo");
-            if(!sameUser(emailAdmin,email))
+            ValidationReturn validation = new ValidationReturn(false, "No se puede eliminar a si mismo");
+            if (!sameUser(emailAdmin, email))
             {
                 validation = this.ereaseUser(emailAdmin, email);
             }
@@ -187,7 +189,7 @@ namespace System
             return validation;
         }
         #endregion Team
-        #region Team
+        #region BlackBoard
         public ValidationReturn newBlackBoard(string logged, Team aTeam, BlackBoard aBlackBoard)
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo usuario.");
@@ -198,7 +200,7 @@ namespace System
             validation.Validation = userHandler.CreateBlackBoard(aTeam, aBlackBoard);
             return validation;
         }
-        public ValidationReturn modifyBlackBoard(string logged, Team aTeam, BlackBoard newBlackBoard,BlackBoard oldBlackBoard)
+        public ValidationReturn modifyBlackBoard(string logged, Team aTeam, BlackBoard newBlackBoard, BlackBoard oldBlackBoard)
         {
             ValidationReturn validation = new ValidationReturn(false, "No se ha podido ingresar el nuevo usuario.");
             UserPersistance userContext = new UserPersistance();
@@ -216,7 +218,7 @@ namespace System
             UserHandler userHandler = new UserHandler(user);
             BlackBoardPersistance blackBoardContext = new BlackBoardPersistance();
             BlackBoard oldBlackBoard = blackBoardContext.GetBlackBoardByName(name);
-            validation = userHandler.RemoveBlackBoard(oldBlackBoard.teamBelongs,oldBlackBoard);
+            validation = userHandler.RemoveBlackBoard(oldBlackBoard.teamBelongs, oldBlackBoard);
             return validation;
         }
         public List<Team> GetAllTeamsInDB()
@@ -234,6 +236,114 @@ namespace System
             TeamPersistance teamContext = new TeamPersistance();
             return teamContext.GetBoardsFromSpecificTeam(aTeam);
         }
-        #endregion Team
+        #endregion BlackBoard
+        #region Item
+        public ValidationReturn newTextBox(BlackBoard container, string content, int heigth, int width, int xAxis, int yAxis, string font, int fontsize)
+        {
+            BlackBoardPersistance BBContext = new BlackBoardPersistance();
+            ValidationReturn added = new ValidationReturn(false, "No se agrego el Item");
+            BlackBoardHandler handler = new BlackBoardHandler(container);
+            BlackBoard completeBB = BBContext.GetBlackBoardByName(container.Name);
+            TextBox newTextBox = new TextBox(new Dimension(width, heigth), new List<Comment>(), new Coordinate(xAxis, yAxis), content, font, fontsize);
+            newTextBox.blackBoardBelongs = completeBB;
+            ValidationReturn canAdd = newTextBox.isValid();
+            if (canAdd.Validation)
+            {
+                added = handler.AddItem(newTextBox);
+            }
+            added.Message = canAdd.Message;
+
+            return added;
+        }
+        public ValidationReturn newPicture(BlackBoard container, string description, int heigth, int width, int xAxis, int yAxis, string imgPath)
+        {
+            BlackBoardPersistance BBContext = new BlackBoardPersistance();
+            ValidationReturn added = new ValidationReturn(false, "No se agrego el Item");
+            BlackBoardHandler handler = new BlackBoardHandler(container);
+            BlackBoard completeBB = BBContext.GetBlackBoardByName(container.Name);
+            Picture newPic = new Picture(new Dimension(width, heigth), new List<Comment>(), new Coordinate(xAxis, yAxis));
+            newPic.Description = description;
+            newPic.blackBoardBelongs = completeBB;
+            newPic.ImgPath = imgPath;
+            added = handler.AddItem(newPic);
+            return added;
+        }
+        public void ModifyItemInBB(BlackBoard aBoard,Item anItem,Coordinate newCoordinates,Dimension newDimensions,User actualLogged) {
+            UserHandler handler = new UserHandler(actualLogged);
+            ItemPersistance itemctx = new ItemPersistance();
+            Item completeItem = itemctx.GetItem(anItem.IDItem);
+            handler.MoveItemBlackBoard(aBoard, completeItem, newCoordinates);
+            handler.ResizeItemBlackBoard(aBoard, completeItem, newDimensions);
+
+        }
+        public bool DeleteItem(User anUser,BlackBoard aBoard, Item anItem) {
+            UserHandler handler = new UserHandler(anUser);
+           return handler.RemoveItemBlackBoard(aBoard, anItem);
+        }
+        #endregion Item
+        #region Comment
+        public ValidationReturn newComment(string loggedUser, Item aItem, string message)
+        {
+            UserPersistance userContext = new UserPersistance();
+            User user = userContext.GetUserByEmail(loggedUser);
+            UserHandler userHandler = new UserHandler(user);
+            ValidationReturn added = userHandler.CreateNewComment(aItem, message);
+            return added;
+        }
+        public ValidationReturn resolveComment(string loggedUser, Comment aComment)
+        {
+            UserPersistance userContext = new UserPersistance();
+            User user = userContext.GetUserByEmail(loggedUser);
+            UserHandler userHandler = new UserHandler(user);
+            ValidationReturn added = userHandler.ResolveComment(aComment);
+            return added;
+        }
+        public bool WasResolved(Comment selectedComment) {
+            CommentHandler handler = new CommentHandler(selectedComment);
+            return handler.WasResolved();
+        }
+        public List<Comment> ResolvedCommentsByUser(User anUser) {
+            UserPersistance userContext = new UserPersistance();
+            return userContext.GetUserByEmail(anUser.Email).resolvedComments;
+        }
+        public List<Comment> filterCommentingUser(List<Comment> comments, User commentingUser)
+        {
+            List<Comment> filtered = new List<Comment>();
+            foreach (Comment actualComment in comments)
+            {
+                if (commentingUser.Equals(actualComment.commentingUser))
+                {
+                    filtered.Add(actualComment);
+                }
+            }
+            return filtered;
+        }
+        public List<Comment> filterResolvingDate(List<Comment> comments, DateTime resolvingnDate)
+        {
+            List<Comment> filtered = new List<Comment>();
+            foreach (Comment actualComment in comments)
+            {
+                if (resolvingnDate.Equals(actualComment.ResolvingDate))
+                {
+                    filtered.Add(actualComment);
+                }
+            }
+            return filtered;
+
+        }
+        public List<Comment> filterCreationDate(List<Comment> comments, DateTime creationDate)
+        {
+            List<Comment> filtered = new List<Comment>();
+            foreach (Comment actualComment in comments)
+            {
+                if (creationDate.Equals(actualComment.CommentingDate))
+                {
+                    filtered.Add(actualComment);
+                }
+            }
+            return filtered;
+
+        }
+        #endregion Comment
     }
 }

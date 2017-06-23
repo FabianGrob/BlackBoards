@@ -85,8 +85,8 @@ namespace UIBlackBoards
             {
                 BlackBoard selectedBlackBoard = (BlackBoard)listBoxBlackBoards.SelectedItem;
                 this.Visible = false;
-                //VisualizeBoard newVi = new VisualizeBoard(selectedBlackBoard, logged, theFacade);
-                //newVi.Visible = true;
+                VisualizeBoard newVi = new VisualizeBoard(selectedBlackBoard, logged, theFacade);
+                newVi.Visible = true;
             }
         }
     }

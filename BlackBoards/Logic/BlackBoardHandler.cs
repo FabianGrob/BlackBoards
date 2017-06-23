@@ -80,6 +80,8 @@ namespace BlackBoards.Handlers
             bool existsItemInList = blackBoard.itemList.Contains(aItem);
             if (existsItemInList)
             {
+                ItemPersistance itemctx = new ItemPersistance();
+                itemctx.Delete(aItem);
                 this.blackBoard.itemList.Remove(aItem);
 
             }

@@ -40,32 +40,7 @@ namespace BlackBoardsTest.DomainTests
             bool sameDirection = direction == connection.Direction;
             bool result = sameName && sameDesccription && sameItems && sameDirection;
             Assert.IsTrue(result);
-        }
-        [TestMethod]
-        public void TestBuilderConnectionNotEq()
-        {
-            //instance
-            Connection connection = this.setUp();
-            TextBox from = new TextBox(connection.from as TextBox);
-            TextBox to = new TextBox(connection.from as TextBox);
-            DirectionType direction = DirectionType.nonDirected;
-            //assertion
-            bool sameName = connection.Name.Equals("testingConnection");
-            bool sameDesccription = connection.Description.Equals("this is a test");
-            bool sameItems = from.Equals(connection.from) && to.Equals(connection.to);
-            bool sameDirection = direction == connection.Direction;
-            bool result = sameName && sameDesccription && sameItems && sameDirection;
-            Assert.IsFalse(result);
-        }
-        [TestMethod]
-        public void TestIsValidOk()
-        {
-            //instance
-            Connection connection = this.setUp();
-            //assertion
-            bool result = connection.isValid().Validation;
-            Assert.IsTrue(result);
-        }
+        }     
         [TestMethod]
         public void TestIsValidShortName()
         {
